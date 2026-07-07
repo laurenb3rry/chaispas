@@ -1,0 +1,479 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "cognate_bridges",
+      "type": "vocab_cluster",
+      "tier": 0,
+      "difficulty_tier": 0,
+      "prereq_ids": [],
+      "title": "Cognate bridges: -tion / -able / -ible / -aire",
+      "explanation": "Before we build anything, here's your unfair advantage. Thousands of English words ending in -tion, -able, -ible, and -aire are already French. Say them the French way and they're yours: situation, possible, nécessaire. You start with two thousand words in the bank.",
+      "canonical_examples": [
+        { "english": "the situation", "formal": "la situation", "street": "la situation" },
+        { "english": "possible", "formal": "possible", "street": "possible" },
+        { "english": "the solution", "formal": "la solution", "street": "la solution" },
+        { "english": "comfortable", "formal": "confortable", "street": "confortable" },
+        { "english": "necessary", "formal": "nécessaire", "street": "nécessaire" },
+        { "english": "the decision", "formal": "la décision", "street": "la décision" },
+        { "english": "terrible", "formal": "terrible", "street": "terrible" },
+        { "english": "the conversation", "formal": "la conversation", "street": "la conversation" }
+      ],
+      "street_mapping": "These words don't change in casual speech — only the rhythm changes: even syllables, stress on the last one. 'Situation' is see-tua-SYON, not sit-you-AY-shun."
+    },
+    {
+      "id": "cest",
+      "type": "construction",
+      "tier": 0,
+      "difficulty_tier": 0,
+      "prereq_ids": ["cognate_bridges"],
+      "title": "c'est + adjective/noun",
+      "explanation": "'C'est' means 'it is' or 'that's' — one little word, and with your cognates you can already say hundreds of things. C'est possible. C'est la solution. Point at anything in the world and comment on it.",
+      "canonical_examples": [
+        { "english": "It's possible.", "formal": "C'est possible.", "street": "C'est possible." },
+        { "english": "That's the solution.", "formal": "C'est la solution.", "street": "C'est la solution." },
+        { "english": "It's important.", "formal": "C'est important.", "street": "C'est important." },
+        { "english": "That's normal.", "formal": "C'est normal.", "street": "C'est normal." },
+        { "english": "It's a catastrophe.", "formal": "C'est une catastrophe.", "street": "C'est une catastrophe." },
+        { "english": "That's interesting.", "formal": "C'est intéressant.", "street": "C'est intéressant." },
+        { "english": "It's different.", "formal": "C'est différent.", "street": "C'est différent." }
+      ],
+      "street_mapping": "'C'est' is identical in street French — it's already the reduced form (of 'cela est', which nobody says). In fast speech it glues onto the next word: c'est important → say-tan-por-TAN, one stream."
+    },
+    {
+      "id": "negation_pas",
+      "type": "construction+register",
+      "tier": 0,
+      "difficulty_tier": 0,
+      "prereq_ids": ["cest"],
+      "title": "Negation: pas (spoken norm is ne-drop)",
+      "explanation": "To say something is NOT, real spoken French just adds 'pas'. C'est pas possible. That's how everyone actually talks. The textbook sandwich — ne...pas, ce n'est pas — you only need to recognize it in writing.",
+      "canonical_examples": [
+        { "english": "It's not serious. / No worries.", "formal": "Ce n'est pas grave.", "street": "C'est pas grave." },
+        { "english": "It's not possible.", "formal": "Ce n'est pas possible.", "street": "C'est pas possible." },
+        { "english": "That's not normal.", "formal": "Ce n'est pas normal.", "street": "C'est pas normal." },
+        { "english": "It's not important.", "formal": "Ce n'est pas important.", "street": "C'est pas important." },
+        { "english": "That's not true.", "formal": "Ce n'est pas vrai.", "street": "C'est pas vrai." },
+        { "english": "That's not the solution.", "formal": "Ce n'est pas la solution.", "street": "C'est pas la solution." },
+        { "english": "It's not necessary.", "formal": "Ce n'est pas nécessaire.", "street": "C'est pas nécessaire." }
+      ],
+      "street_mapping": "Drop the 'ne' entirely — spoken French negates with 'pas' alone. 'Ce n'est pas' becomes 'c'est pas', and at full speed it can squeeze to 'c'pas'."
+    },
+    {
+      "id": "je_veux",
+      "type": "construction",
+      "tier": 0,
+      "difficulty_tier": 0,
+      "prereq_ids": ["cest"],
+      "title": "je veux + noun / + infinitive",
+      "explanation": "'Je veux' — I want. Follow it with a thing: je veux un café. Or follow it with a verb in its natural to-form: je veux parler — I want to speak. One pattern, infinite sentences.",
+      "canonical_examples": [
+        { "english": "I want a coffee.", "formal": "Je veux un café.", "street": "J'veux un café." },
+        { "english": "I want to speak French.", "formal": "Je veux parler français.", "street": "J'veux parler français." },
+        { "english": "I want to eat.", "formal": "Je veux manger.", "street": "J'veux manger." },
+        { "english": "I want a taxi.", "formal": "Je veux un taxi.", "street": "J'veux un taxi." },
+        { "english": "I want to see.", "formal": "Je veux voir.", "street": "J'veux voir." },
+        { "english": "I don't want to work.", "formal": "Je ne veux pas travailler.", "street": "J'veux pas travailler." },
+        { "english": "I want to understand.", "formal": "Je veux comprendre.", "street": "J'veux comprendre." }
+      ],
+      "street_mapping": "'Je veux' compresses to 'j'veux' — one syllable, ZHVEUH. With negation the 'ne' vanishes too: 'j'veux pas'."
+    },
+    {
+      "id": "chunks_greetings",
+      "type": "chunk",
+      "tier": 0,
+      "difficulty_tier": 0,
+      "prereq_ids": ["cest", "negation_pas", "je_veux"],
+      "title": "Greeting chunks: ça va, coucou, ça marche, ça roule, à toute",
+      "explanation": "Five social passwords. Don't analyze them, just own them: ça va — how's it going, and also the answer; coucou — hey; ça marche — works for me; ça roule — all good; à toute — see you in a bit.",
+      "canonical_examples": [
+        { "english": "How's it going?", "formal": "Comment ça va ?", "street": "Ça va ?" },
+        { "english": "Hey! (playful greeting)", "formal": "Bonjour !", "street": "Coucou !" },
+        { "english": "That works for me.", "formal": "D'accord, ça marche.", "street": "Ça marche." },
+        { "english": "All good.", "formal": "Tout va bien.", "street": "Ça roule." },
+        { "english": "See you in a bit!", "formal": "À tout à l'heure !", "street": "À toute !" },
+        { "english": "Fine, and you?", "formal": "Ça va, et vous ?", "street": "Ça va, et toi ?" }
+      ],
+      "street_mapping": "These ARE street forms — chunks live natively in casual register. 'À tout à l'heure' clips to 'à toute'. Answer 'ça va ?' with 'ça va' — the question is its own reply."
+    },
+    {
+      "id": "vouloir_present",
+      "type": "construction",
+      "tier": 1,
+      "difficulty_tier": 1,
+      "prereq_ids": ["je_veux"],
+      "title": "vouloir, full present (je/tu/il/on/vous)",
+      "explanation": "Now the whole want-machine. Je veux, tu veux, il veut — all sound identical: VEUH. On veut — we want. Only 'vous voulez' changes shape. One sound covers most of the verb.",
+      "canonical_examples": [
+        { "english": "Do you want a coffee?", "formal": "Est-ce que tu veux un café ?", "street": "Tu veux un café ?" },
+        { "english": "He wants to leave.", "formal": "Il veut partir.", "street": "Il veut partir." },
+        { "english": "We want to eat.", "formal": "Nous voulons manger.", "street": "On veut manger." },
+        { "english": "She wants a taxi.", "formal": "Elle veut un taxi.", "street": "Elle veut un taxi." },
+        { "english": "Do you (formal) want to speak?", "formal": "Vous voulez parler ?", "street": "Vous voulez parler ?" },
+        { "english": "You don't want to come?", "formal": "Tu ne veux pas venir ?", "street": "Tu veux pas venir ?" },
+        { "english": "We want to understand.", "formal": "Nous voulons comprendre.", "street": "On veut comprendre." }
+      ],
+      "street_mapping": "je/tu/il/elle/on forms all sound like VEUH — the spelling changes, the sound doesn't. Street questions skip inversion entirely: 'tu veux... ?' with rising tone."
+    },
+    {
+      "id": "on_for_nous",
+      "type": "register",
+      "tier": 1,
+      "difficulty_tier": 1,
+      "prereq_ids": ["vouloir_present"],
+      "title": "on replaces nous in speech",
+      "explanation": "Here's a secret that makes French easier: nobody says 'nous voulons' in conversation. Real French uses 'on' — grammatically 'one', practically 'we' — and it takes the simple il-form. On veut. One syllable, no conjugation pain.",
+      "canonical_examples": [
+        { "english": "We want a table.", "formal": "Nous voulons une table.", "street": "On veut une table." },
+        { "english": "We want to eat.", "formal": "Nous voulons manger.", "street": "On veut manger." },
+        { "english": "We want to leave.", "formal": "Nous voulons partir.", "street": "On veut partir." },
+        { "english": "We don't want to work.", "formal": "Nous ne voulons pas travailler.", "street": "On veut pas travailler." },
+        { "english": "We want to speak French.", "formal": "Nous voulons parler français.", "street": "On veut parler français." },
+        { "english": "We want a coffee.", "formal": "Nous voulons un café.", "street": "On veut un café." }
+      ],
+      "street_mapping": "'Nous + -ons form' → 'on' + the short il-form, always. 'On' is THE spoken 'we'; 'nous voulons' sounds like giving a speech."
+    },
+    {
+      "id": "pouvoir_inf",
+      "type": "construction",
+      "tier": 1,
+      "difficulty_tier": 1,
+      "prereq_ids": ["vouloir_present"],
+      "title": "pouvoir + infinitive",
+      "explanation": "'Je peux' — I can. Same music as vouloir: je peux, tu peux, il peut, on peut — all PEUH. Add any infinitive: je peux payer, tu peux venir. Can-plus-verb unlocks requests, offers, and permission.",
+      "canonical_examples": [
+        { "english": "I can pay.", "formal": "Je peux payer.", "street": "J'peux payer." },
+        { "english": "Can you come?", "formal": "Est-ce que tu peux venir ?", "street": "Tu peux venir ?" },
+        { "english": "We can eat here.", "formal": "Nous pouvons manger ici.", "street": "On peut manger ici." },
+        { "english": "Can you (formal) repeat that?", "formal": "Vous pouvez répéter ?", "street": "Tu peux répéter ?" },
+        { "english": "I can't work today.", "formal": "Je ne peux pas travailler aujourd'hui.", "street": "J'peux pas travailler aujourd'hui." },
+        { "english": "He can leave.", "formal": "Il peut partir.", "street": "Il peut partir." },
+        { "english": "I can't (make it).", "formal": "Je ne peux pas.", "street": "J'peux pas." }
+      ],
+      "street_mapping": "'Je peux' → 'j'peux' (ZHPEUH); with ne-drop: 'j'peux pas'. A question is just the statement plus rising tone: 'tu peux venir ?'"
+    },
+    {
+      "id": "devoir_inf",
+      "type": "construction",
+      "tier": 1,
+      "difficulty_tier": 1,
+      "prereq_ids": ["pouvoir_inf"],
+      "title": "devoir + infinitive",
+      "explanation": "'Je dois' — I must, I have to. Je dois partir — I have to leave: the politest exit in France. Tu dois, il doit, on doit — DWAH everywhere. Obligation in two words.",
+      "canonical_examples": [
+        { "english": "I have to leave.", "formal": "Je dois partir.", "street": "J'dois partir." },
+        { "english": "You have to see that.", "formal": "Tu dois voir ça.", "street": "Tu dois voir ça." },
+        { "english": "We have to pay.", "formal": "Nous devons payer.", "street": "On doit payer." },
+        { "english": "I have to work.", "formal": "Je dois travailler.", "street": "J'dois travailler." },
+        { "english": "He has to come.", "formal": "Il doit venir.", "street": "Il doit venir." },
+        { "english": "You (plural) have to come.", "formal": "Vous devez venir.", "street": "Vous devez venir." },
+        { "english": "We mustn't eat here.", "formal": "Nous ne devons pas manger ici.", "street": "On doit pas manger ici." }
+      ],
+      "street_mapping": "'Je dois' → 'j'dois'. Street French often reaches for 'il faut' instead, but 'dois/doit' stays common and is always understood."
+    },
+    {
+      "id": "aller_places",
+      "type": "construction",
+      "tier": 1,
+      "difficulty_tier": 1,
+      "prereq_ids": ["vouloir_present"],
+      "title": "aller + à/en/au + places",
+      "explanation": "'Je vais' — I go, I'm going. Where? À Paris. Au restaurant — 'au' for le-places. En France — 'en' for feminine countries. Je vais, tu vas, il va, on va — movement sorted.",
+      "canonical_examples": [
+        { "english": "I'm going to Paris.", "formal": "Je vais à Paris.", "street": "J'vais à Paris." },
+        { "english": "Are you going to the restaurant?", "formal": "Est-ce que tu vas au restaurant ?", "street": "Tu vas au resto ?" },
+        { "english": "We're going to the beach.", "formal": "Nous allons à la plage.", "street": "On va à la plage." },
+        { "english": "I'm going to France.", "formal": "Je vais en France.", "street": "J'vais en France." },
+        { "english": "Are you (plural) going to the cinema?", "formal": "Vous allez au cinéma ?", "street": "Vous allez au ciné ?" },
+        { "english": "He's going to the café.", "formal": "Il va au café.", "street": "Il va au café." },
+        { "english": "I'm not going to the office.", "formal": "Je ne vais pas au bureau.", "street": "J'vais pas au bureau." }
+      ],
+      "street_mapping": "'Je vais' → 'j'vais'. Places clip in casual speech: restaurant → resto, cinéma → ciné, après-midi → aprem."
+    },
+    {
+      "id": "futur_proche",
+      "type": "construction",
+      "tier": 1,
+      "difficulty_tier": 1,
+      "prereq_ids": ["aller_places"],
+      "title": "Futur proche: aller + infinitive",
+      "explanation": "Here's the entire future, for free: aller plus a verb. Je vais manger — I'm going to eat. You already conjugate aller, so you can now say anything in the future. On va voir — we'll see.",
+      "canonical_examples": [
+        { "english": "I'm going to eat.", "formal": "Je vais manger.", "street": "J'vais manger." },
+        { "english": "We'll see.", "formal": "Nous allons voir.", "street": "On va voir." },
+        { "english": "It's going to work.", "formal": "Ça va marcher.", "street": "Ça va marcher." },
+        { "english": "You're going to love it.", "formal": "Tu vas adorer.", "street": "Tu vas adorer." },
+        { "english": "We're going to speak French.", "formal": "Nous allons parler français.", "street": "On va parler français." },
+        { "english": "I'm not going to pay.", "formal": "Je ne vais pas payer.", "street": "J'vais pas payer." },
+        { "english": "He's going to come.", "formal": "Il va venir.", "street": "Il va venir." },
+        { "english": "It's going to be difficult.", "formal": "Ça va être difficile.", "street": "Ça va être difficile." }
+      ],
+      "street_mapping": "Same reductions as aller: 'j'vais manger', and with ne-drop 'j'vais pas payer'. This IS the spoken future — the written future tense can wait."
+    },
+    {
+      "id": "questions_intonation",
+      "type": "construction+register",
+      "tier": 1,
+      "difficulty_tier": 1,
+      "prereq_ids": ["vouloir_present"],
+      "title": "Questions: intonation-first, est-ce que second, inversion recognition-only",
+      "explanation": "Spoken French questions are just statements with a rising tone. Tu veux un café ? Question words go at the end: tu vas où ? Need formal? Glue 'est-ce que' on the front. Inversion — voulez-vous — recognize it, never build it.",
+      "canonical_examples": [
+        { "english": "Do you want a coffee?", "formal": "Est-ce que tu veux un café ?", "street": "Tu veux un café ?" },
+        { "english": "Where are you going?", "formal": "Où vas-tu ?", "street": "Tu vas où ?" },
+        { "english": "What do you want?", "formal": "Qu'est-ce que tu veux ?", "street": "Tu veux quoi ?" },
+        { "english": "What is it?", "formal": "Qu'est-ce que c'est ?", "street": "C'est quoi ?" },
+        { "english": "Can we eat here?", "formal": "Est-ce qu'on peut manger ici ?", "street": "On peut manger ici ?" },
+        { "english": "When are you leaving?", "formal": "Quand est-ce que tu pars ?", "street": "Tu pars quand ?" },
+        { "english": "Who wants a coffee?", "formal": "Qui veut un café ?", "street": "Qui veut un café ?" }
+      ],
+      "street_mapping": "Statement + rising pitch = question. Question words sit at the end: quoi, où, quand, combien. 'Est-ce que' is the neutral fallback; inversion is for writing and formal speech only."
+    },
+    {
+      "id": "chunks_fillers",
+      "type": "chunk",
+      "tier": 1,
+      "difficulty_tier": 1,
+      "prereq_ids": ["vouloir_present", "pouvoir_inf", "devoir_inf", "aller_places", "futur_proche", "questions_intonation"],
+      "title": "Filler chunks: bah, du coup, genre, en fait, bref, quoi",
+      "explanation": "The sounds of a real French speaker thinking: bah — well; du coup — so, as a result; genre — like; en fait — actually; bref — anyway; quoi — tacked on the end for emphasis. Sprinkle, don't analyze.",
+      "canonical_examples": [
+        { "english": "Well... yeah.", "formal": "Eh bien... oui.", "street": "Bah... ouais." },
+        { "english": "So, we're going to eat.", "formal": "Donc, nous allons manger.", "street": "Du coup, on va manger." },
+        { "english": "It's, like, difficult.", "formal": "C'est plutôt difficile.", "street": "C'est genre difficile." },
+        { "english": "Actually, it's not possible.", "formal": "En réalité, ce n'est pas possible.", "street": "En fait, c'est pas possible." },
+        { "english": "Anyway, I have to leave.", "formal": "Enfin bref, je dois partir.", "street": "Bref, j'dois partir." },
+        { "english": "It's normal, you know.", "formal": "C'est normal, tu sais.", "street": "C'est normal, quoi." }
+      ],
+      "street_mapping": "Fillers ARE street register. 'Oui' relaxes to 'ouais'. End-of-sentence 'quoi' ≈ 'you know'. 'Du coup' is the duct tape of French conversation — it connects everything."
+    },
+    {
+      "id": "dobj_pronouns",
+      "type": "construction",
+      "tier": 2,
+      "difficulty_tier": 2,
+      "prereq_ids": ["vouloir_present", "pouvoir_inf"],
+      "title": "Direct object pronouns: le/la/les placement",
+      "explanation": "Le, la, les — him, her, it, them — and they jump IN FRONT of the verb. Je le veux — I want it, literally 'I it want'. Get used to the little word arriving early; that's the French rhythm.",
+      "canonical_examples": [
+        { "english": "I want it. (masculine)", "formal": "Je le veux.", "street": "J'le veux." },
+        { "english": "I want it. (feminine)", "formal": "Je la veux.", "street": "J'la veux." },
+        { "english": "I want them.", "formal": "Je les veux.", "street": "J'les veux." },
+        { "english": "Can you repeat it?", "formal": "Vous pouvez le répéter ?", "street": "Tu peux l'répéter ?" },
+        { "english": "I can see them.", "formal": "Je peux les voir.", "street": "J'peux les voir." },
+        { "english": "We don't want it.", "formal": "Nous ne le voulons pas.", "street": "On l'veut pas." },
+        { "english": "I can't pay it.", "formal": "Je ne peux pas le payer.", "street": "J'peux pas l'payer." }
+      ],
+      "street_mapping": "The pronoun sits before the verb; in fast speech its vowel often drops: 'j'le veux' → ZHLUH-VEUH, 'on l'veut pas'."
+    },
+    {
+      "id": "iobj_pronouns",
+      "type": "construction",
+      "tier": 2,
+      "difficulty_tier": 2,
+      "prereq_ids": ["dobj_pronouns"],
+      "title": "Indirect object pronouns: me/te/lui/leur",
+      "explanation": "Me, te, lui, leur — to me, to you, to him or her, to them. Same trick: they land before the verb. Tu me parles — you're talking to me. Je lui parle — I'm talking to him... or her — lui does both.",
+      "canonical_examples": [
+        { "english": "Can you help me?", "formal": "Vous pouvez m'aider ?", "street": "Tu peux m'aider ?" },
+        { "english": "I'm talking to him.", "formal": "Je lui parle.", "street": "J'lui parle." },
+        { "english": "She's talking to me.", "formal": "Elle me parle.", "street": "Elle me parle." },
+        { "english": "I swear (to you).", "formal": "Je te jure.", "street": "J'te jure." },
+        { "english": "Can you call me?", "formal": "Vous pouvez m'appeler ?", "street": "Tu peux m'appeler ?" },
+        { "english": "We're going to talk to them.", "formal": "Nous allons leur parler.", "street": "On va leur parler." },
+        { "english": "You can tell him.", "formal": "Tu peux lui dire.", "street": "Tu peux lui dire." }
+      ],
+      "street_mapping": "'me/te' squeeze to m'/t' — before vowels always, and before consonants in fast speech: 'j'te jure', 'tu m'dis'. 'Lui' covers him AND her."
+    },
+    {
+      "id": "y_en",
+      "type": "construction",
+      "tier": 2,
+      "difficulty_tier": 2,
+      "prereq_ids": ["dobj_pronouns"],
+      "title": "y and en",
+      "explanation": "Two tiny super-pronouns. Y means 'there': j'y vais — I'm off. En means 'of it, some': j'en veux — I want some. And the essential mood sentence: j'en peux plus — I can't take it anymore.",
+      "canonical_examples": [
+        { "english": "I'm off. / I'm going.", "formal": "J'y vais.", "street": "J'y vais." },
+        { "english": "Shall we go?", "formal": "On y va ?", "street": "On y va ?" },
+        { "english": "I want some.", "formal": "J'en veux.", "street": "J'en veux." },
+        { "english": "I want two (of them).", "formal": "J'en veux deux.", "street": "J'en veux deux." },
+        { "english": "There are a lot (of them).", "formal": "Il y en a beaucoup.", "street": "Y'en a beaucoup." },
+        { "english": "I can't take it anymore.", "formal": "Je n'en peux plus.", "street": "J'en peux plus." },
+        { "english": "There's none left.", "formal": "Il n'y en a plus.", "street": "Y'en a plus." }
+      ],
+      "street_mapping": "The 'il y a' family collapses: 'il y en a' → 'y'en a'. Formal 'je n'en peux plus' → street 'j'en peux plus' — one of the most-said sentences in French."
+    },
+    {
+      "id": "pc_avoir",
+      "type": "construction",
+      "tier": 2,
+      "difficulty_tier": 2,
+      "prereq_ids": ["vouloir_present"],
+      "title": "Passé composé with avoir, high-frequency participles",
+      "explanation": "The past in French is a two-piece: avoir plus a past participle. J'ai mangé — I ate, I have eaten, same thing. Learn a handful of participles — vu, fait, dit, fini, compris — and your whole story goes into the past.",
+      "canonical_examples": [
+        { "english": "I ate.", "formal": "J'ai mangé.", "street": "J'ai mangé." },
+        { "english": "I saw.", "formal": "J'ai vu.", "street": "J'ai vu." },
+        { "english": "Did you finish?", "formal": "Est-ce que tu as fini ?", "street": "T'as fini ?" },
+        { "english": "We talked.", "formal": "Nous avons parlé.", "street": "On a parlé." },
+        { "english": "She said no.", "formal": "Elle a dit non.", "street": "Elle a dit non." },
+        { "english": "You saw (that)?", "formal": "Tu as vu ?", "street": "T'as vu ?" },
+        { "english": "I didn't understand.", "formal": "Je n'ai pas compris.", "street": "J'ai pas compris." },
+        { "english": "We finished.", "formal": "Nous avons fini.", "street": "On a fini." }
+      ],
+      "street_mapping": "'Tu as' → 't'as', always, in speech: 't'as vu ?', 't'as fini ?'. Negation drops 'ne': 'j'ai pas compris'."
+    },
+    {
+      "id": "pc_etre",
+      "type": "construction",
+      "tier": 2,
+      "difficulty_tier": 2,
+      "prereq_ids": ["pc_avoir"],
+      "title": "Passé composé with être (movement verbs)",
+      "explanation": "A small club of verbs — the coming-and-going verbs — take être in the past instead. Je suis allé — I went. Tu es parti — you left. Same two-piece idea, different helper, and the participle agrees like an adjective.",
+      "canonical_examples": [
+        { "english": "I went to Paris.", "formal": "Je suis allé à Paris.", "street": "J'suis allé à Paris." },
+        { "english": "Did you leave?", "formal": "Est-ce que tu es parti ?", "street": "T'es parti ?" },
+        { "english": "We arrived.", "formal": "Nous sommes arrivés.", "street": "On est arrivés." },
+        { "english": "She came.", "formal": "Elle est venue.", "street": "Elle est venue." },
+        { "english": "He stayed.", "formal": "Il est resté.", "street": "Il est resté." },
+        { "english": "I went out.", "formal": "Je suis sorti.", "street": "J'suis sorti." },
+        { "english": "We didn't leave.", "formal": "Nous ne sommes pas partis.", "street": "On est pas partis." }
+      ],
+      "street_mapping": "'Je suis' → 'j'suis' (sounds like CHUI); 'tu es' → 't'es': 't'es parti ?'. 'On est' runs together with liaison: on-nay."
+    },
+    {
+      "id": "connected_speech",
+      "type": "register",
+      "tier": 2,
+      "difficulty_tier": 2,
+      "prereq_ids": ["negation_pas", "questions_intonation"],
+      "title": "Connected speech: t'as, t'es, chais pas, y'a, liaison basics",
+      "explanation": "Now the sound of real French. Tu as → t'as. Tu es → t'es. Il y a → y'a. Je ne sais pas → chais pas. These aren't slang, they're just how French is pronounced at speed. Your ear needs them even more than your mouth does.",
+      "canonical_examples": [
+        { "english": "You're right.", "formal": "Tu as raison.", "street": "T'as raison." },
+        { "english": "Where are you?", "formal": "Tu es où ?", "street": "T'es où ?" },
+        { "english": "I don't know.", "formal": "Je ne sais pas.", "street": "Chais pas." },
+        { "english": "There's a problem.", "formal": "Il y a un problème.", "street": "Y'a un problème." },
+        { "english": "There's no taxi.", "formal": "Il n'y a pas de taxi.", "street": "Y'a pas de taxi." },
+        { "english": "Do you have a euro?", "formal": "Est-ce que tu as un euro ?", "street": "T'as un euro ?" },
+        { "english": "I'm here.", "formal": "Je suis là.", "street": "J'suis là." }
+      ],
+      "street_mapping": "The core rules: tu + vowel → t' (t'as, t'es); il y a → y'a; je sais pas → chais pas; je suis → j'suis/chuis. Slow-formal and fast-street are the same sentence wearing different clothes."
+    },
+    {
+      "id": "chunks_reactions",
+      "type": "chunk",
+      "tier": 2,
+      "difficulty_tier": 2,
+      "prereq_ids": ["dobj_pronouns", "iobj_pronouns", "y_en", "pc_avoir", "pc_etre"],
+      "title": "Reaction chunks: grave, carrément, c'est chaud, n'importe quoi, ça me saoule",
+      "explanation": "Your reaction kit: grave — totally; carrément — absolutely; c'est chaud — that's rough, that's risky; n'importe quoi — nonsense!; ça me saoule — it's driving me nuts. Instant authentic responses, zero grammar.",
+      "canonical_examples": [
+        { "english": "Totally.", "formal": "Tout à fait.", "street": "Grave." },
+        { "english": "Absolutely.", "formal": "Absolument.", "street": "Carrément." },
+        { "english": "That's rough.", "formal": "C'est difficile.", "street": "C'est chaud." },
+        { "english": "(That's) nonsense!", "formal": "C'est absurde !", "street": "N'importe quoi !" },
+        { "english": "It's driving me nuts.", "formal": "Ça m'agace vraiment.", "street": "Ça me saoule." },
+        { "english": "It's complete nonsense.", "formal": "C'est absurde.", "street": "C'est n'importe quoi." }
+      ],
+      "street_mapping": "All native street register. 'Grave' as a one-word answer means 'totally'. 'Ça me saoule' → 'ça m'saoule' in fast speech."
+    },
+    {
+      "id": "faire_expressions",
+      "type": "construction",
+      "tier": 3,
+      "difficulty_tier": 3,
+      "prereq_ids": ["pc_avoir"],
+      "title": "faire expressions: weather, ça fait, faire + infinitive",
+      "explanation": "Faire — to make or do — is France's Swiss-army verb. Weather: il fait beau. Time: ça fait deux ans — it's been two years. Even 'you make me laugh': tu me fais rire. When in doubt, French uses faire.",
+      "canonical_examples": [
+        { "english": "The weather's nice.", "formal": "Il fait beau.", "street": "Fait beau." },
+        { "english": "It's cold out.", "formal": "Il fait froid.", "street": "Fait froid." },
+        { "english": "It's been a long time.", "formal": "Ça fait longtemps.", "street": "Ça fait longtemps." },
+        { "english": "How much is it?", "formal": "Ça fait combien ?", "street": "Ça fait combien ?" },
+        { "english": "It's been two years.", "formal": "Ça fait deux ans.", "street": "Ça fait deux ans." },
+        { "english": "You make me laugh.", "formal": "Tu me fais rire.", "street": "Tu m'fais rire." },
+        { "english": "What are you doing?", "formal": "Qu'est-ce que tu fais ?", "street": "Tu fais quoi ?" }
+      ],
+      "street_mapping": "Street drops the dummy 'il' in weather: 'fait beau', 'fait chaud'. 'Tu fais quoi ?' is the default 'what are you up to?'"
+    },
+    {
+      "id": "reflexives",
+      "type": "construction+register",
+      "tier": 3,
+      "difficulty_tier": 3,
+      "prereq_ids": ["connected_speech"],
+      "title": "Reflexives: je me... with j'me reduction",
+      "explanation": "Some verbs point back at you: je me lève — I get up; je m'appelle — I call myself. The 'me' is glued before the verb, and in real speech it shrinks: j'me lève. One extra syllable, a whole new verb family.",
+      "canonical_examples": [
+        { "english": "I get up at seven.", "formal": "Je me lève à sept heures.", "street": "J'me lève à sept heures." },
+        { "english": "My name is Lauren.", "formal": "Je m'appelle Lauren.", "street": "J'm'appelle Lauren." },
+        { "english": "Do you remember?", "formal": "Vous vous souvenez ?", "street": "Tu t'souviens ?" },
+        { "english": "We'll see each other tomorrow.", "formal": "Nous nous voyons demain.", "street": "On s'voit demain." },
+        { "english": "I wonder.", "formal": "Je me demande.", "street": "J'me demande." },
+        { "english": "He's resting.", "formal": "Il se repose.", "street": "Il s'repose." },
+        { "english": "I'm getting ready.", "formal": "Je me prépare.", "street": "J'me prépare." }
+      ],
+      "street_mapping": "The reflexive bit compresses to a bare consonant: 'je me' → 'j'me', 'tu te' → 'tu t'', 'nous nous' → 'on s''. 'On s'voit' — see you around — is pure street gold."
+    },
+    {
+      "id": "imparfait_vs_pc",
+      "type": "construction",
+      "tier": 3,
+      "difficulty_tier": 3,
+      "prereq_ids": ["pc_etre"],
+      "title": "Imparfait vs passé composé: storytelling contrast",
+      "explanation": "Two pasts, one movie: the imparfait is the scenery — c'était, il faisait beau, j'étais fatigué. The passé composé is the action that happens: il est arrivé. Background rolls in imparfait; events land in passé composé.",
+      "canonical_examples": [
+        { "english": "It was great.", "formal": "C'était super.", "street": "C'était super." },
+        { "english": "I was tired.", "formal": "J'étais fatigué.", "street": "J'étais fatigué." },
+        { "english": "The weather was nice.", "formal": "Il faisait beau.", "street": "Il faisait beau." },
+        { "english": "I was eating when you arrived.", "formal": "Je mangeais quand tu es arrivé.", "street": "Je mangeais quand t'es arrivé." },
+        { "english": "We were at the restaurant when he arrived.", "formal": "Nous étions au restaurant quand il est arrivé.", "street": "On était au resto quand il est arrivé." },
+        { "english": "It wasn't easy.", "formal": "Ce n'était pas facile.", "street": "C'était pas facile." },
+        { "english": "I wanted to leave.", "formal": "Je voulais partir.", "street": "J'voulais partir." }
+      ],
+      "street_mapping": "Same reductions as everywhere: 'c'était pas', 't'es arrivé', 'j'voulais'. Ear-cue: the -ais/-ait endings all sound like EH — that EH sound means background."
+    },
+    {
+      "id": "relatives_qui_que",
+      "type": "construction",
+      "tier": 3,
+      "difficulty_tier": 3,
+      "prereq_ids": ["dobj_pronouns"],
+      "title": "Relative clauses: qui and que",
+      "explanation": "Glue two thoughts with qui or que. Qui when a verb comes next: la fille qui parle — the girl who's speaking. Que when a new subject follows: le café que je veux — the coffee that I want. Verb after? qui. Subject after? que.",
+      "canonical_examples": [
+        { "english": "the girl who speaks French", "formal": "la fille qui parle français", "street": "la fille qui parle français" },
+        { "english": "the coffee that I want", "formal": "le café que je veux", "street": "le café qu'je veux" },
+        { "english": "It's the film I saw.", "formal": "C'est le film que j'ai vu.", "street": "C'est le film qu'j'ai vu." },
+        { "english": "That's what I want.", "formal": "C'est ce que je veux.", "street": "C'est c'que j'veux." },
+        { "english": "the people who are arriving", "formal": "les gens qui arrivent", "street": "les gens qui arrivent" },
+        { "english": "It's something that works.", "formal": "C'est quelque chose qui marche.", "street": "C'est un truc qui marche." },
+        { "english": "the guy who came", "formal": "l'homme qui est venu", "street": "le mec qui est venu" }
+      ],
+      "street_mapping": "'que' squashes to qu' before anything: 'c'que j'veux'. Street also swaps the nouns: homme → mec, quelque chose → un truc."
+    },
+    {
+      "id": "conditional_softeners",
+      "type": "construction",
+      "tier": 3,
+      "difficulty_tier": 3,
+      "prereq_ids": ["devoir_inf"],
+      "title": "Conditional softeners: je voudrais, ça serait, politeness register",
+      "explanation": "French politeness is one tense away. Je veux — I want — becomes je voudrais — I'd like. Ça serait super — that would be great. Tu pourrais...? — could you...? The -rais sound is your soft-focus filter.",
+      "canonical_examples": [
+        { "english": "I'd like a coffee.", "formal": "Je voudrais un café.", "street": "J'voudrais un café." },
+        { "english": "That would be great.", "formal": "Ce serait super.", "street": "Ça s'rait super." },
+        { "english": "Could you help me?", "formal": "Pourriez-vous m'aider ?", "street": "Tu pourrais m'aider ?" },
+        { "english": "We should leave.", "formal": "Nous devrions partir.", "street": "On devrait partir." },
+        { "english": "I'd really like to.", "formal": "J'aimerais bien.", "street": "J'aimerais bien." },
+        { "english": "Would that be possible?", "formal": "Ce serait possible ?", "street": "Ça s'rait possible ?" },
+        { "english": "You could come.", "formal": "Vous pourriez venir.", "street": "Tu pourrais venir." }
+      ],
+      "street_mapping": "'serait' → 's'rait', 'je voudrais' → 'j'voudrais'. Politeness survives street register — softeners are used at every level, just with the usual reductions."
+    }
+  ]
+}

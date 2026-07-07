@@ -1,0 +1,315 @@
+{
+  "passed": 959,
+  "rejected": 41,
+  "rejections": [
+    {
+      "id": "cognate_bridges_017",
+      "french_formal": "la décision est nécessaire",
+      "violations": [
+        "detected 'pc_etre' construction not in allowed set (pattern: (?:suis|es|est|sommes|êtes|sont) (?:pas )?(?:allé|parti|arri)"
+      ]
+    },
+    {
+      "id": "cognate_bridges_019",
+      "french_formal": "l'information est nécessaire",
+      "violations": [
+        "detected 'pc_etre' construction not in allowed set (pattern: (?:suis|es|est|sommes|êtes|sont) (?:pas )?(?:allé|parti|arri)"
+      ]
+    },
+    {
+      "id": "cest_021",
+      "french_formal": "C'est une question.",
+      "violations": [
+        "relative clause (qui/que) but relatives_qui_que not allowed"
+      ]
+    },
+    {
+      "id": "negation_pas_006",
+      "french_formal": "Ce n'est pas nécessaire.",
+      "violations": [
+        "detected 'pc_etre' construction not in allowed set (pattern: (?:suis|es|est|sommes|êtes|sont) (?:pas )?(?:allé|parti|arri)"
+      ]
+    },
+    {
+      "id": "negation_pas_020",
+      "french_formal": "Ce n'est pas naturel.",
+      "violations": [
+        "unknown vocab: 'naturel'",
+        "unknown vocab: 'naturel'"
+      ]
+    },
+    {
+      "id": "negation_pas_022",
+      "french_formal": "Ce n'est pas idéal.",
+      "violations": [
+        "unknown vocab: 'idéal'",
+        "unknown vocab: 'idéal'"
+      ]
+    },
+    {
+      "id": "negation_pas_023",
+      "french_formal": "Ce n'est pas la bonne situation.",
+      "violations": [
+        "unknown vocab: 'bonne'",
+        "unknown vocab: 'bonne'"
+      ]
+    },
+    {
+      "id": "negation_pas_024",
+      "french_formal": "Ce n'est pas la bonne solution.",
+      "violations": [
+        "unknown vocab: 'bonne'",
+        "unknown vocab: 'bonne'"
+      ]
+    },
+    {
+      "id": "je_veux_007",
+      "french_formal": "Je veux la solution.",
+      "violations": [
+        "detected 'dobj_pronouns' construction not in allowed set (pattern: (?:je |j'|tu |on |nous |vous |peux |peut |pouvez |veux |veut)"
+      ]
+    },
+    {
+      "id": "je_veux_010",
+      "french_formal": "Je veux la situation.",
+      "violations": [
+        "detected 'dobj_pronouns' construction not in allowed set (pattern: (?:je |j'|tu |on |nous |vous |peux |peut |pouvez |veux |veut)"
+      ]
+    },
+    {
+      "id": "je_veux_011",
+      "french_formal": "Je veux manger quelque chose de confortable.",
+      "violations": [
+        "relative clause (qui/que) but relatives_qui_que not allowed"
+      ]
+    },
+    {
+      "id": "je_veux_012",
+      "french_formal": "Je veux un café au lait.",
+      "violations": [
+        "unknown vocab: 'lait'",
+        "unknown vocab: 'lait'"
+      ]
+    },
+    {
+      "id": "je_veux_015",
+      "french_formal": "Je veux la solution. C'est important.",
+      "violations": [
+        "detected 'dobj_pronouns' construction not in allowed set (pattern: (?:je |j'|tu |on |nous |vous |peux |peut |pouvez |veux |veut)"
+      ]
+    },
+    {
+      "id": "chunks_greetings_026",
+      "french_formal": "Je veux la solution. Ça marche.",
+      "violations": [
+        "detected 'dobj_pronouns' construction not in allowed set (pattern: (?:je |j'|tu |on |nous |vous |peux |peut |pouvez |veux |veut)"
+      ]
+    },
+    {
+      "id": "chunks_greetings_038",
+      "french_formal": "Je veux la situation. Tout va bien.",
+      "violations": [
+        "detected 'dobj_pronouns' construction not in allowed set (pattern: (?:je |j'|tu |on |nous |vous |peux |peut |pouvez |veux |veut)"
+      ]
+    },
+    {
+      "id": "vouloir_present_034",
+      "french_formal": "Je veux la solution et elle veut comprendre.",
+      "violations": [
+        "detected 'dobj_pronouns' construction not in allowed set (pattern: (?:je |j'|tu |on |nous |vous |peux |peut |pouvez |veux |veut)"
+      ]
+    },
+    {
+      "id": "on_for_nous_008",
+      "french_formal": "Nous voulons la solution.",
+      "violations": [
+        "detected 'dobj_pronouns' construction not in allowed set (pattern: (?:je |j'|tu |on |nous |vous |peux |peut |pouvez |veux |veut)"
+      ]
+    },
+    {
+      "id": "on_for_nous_011",
+      "french_formal": "Nous voulons la situation possible.",
+      "violations": [
+        "detected 'dobj_pronouns' construction not in allowed set (pattern: (?:je |j'|tu |on |nous |vous |peux |peut |pouvez |veux |veut)"
+      ]
+    },
+    {
+      "id": "on_for_nous_020",
+      "french_formal": "Nous voulons la situation.",
+      "violations": [
+        "detected 'dobj_pronouns' construction not in allowed set (pattern: (?:je |j'|tu |on |nous |vous |peux |peut |pouvez |veux |veut)"
+      ]
+    },
+    {
+      "id": "devoir_inf_017",
+      "french_formal": "Elle doit trouver la solution.",
+      "violations": [
+        "unknown vocab: 'trouver'",
+        "unknown vocab: 'trouver'"
+      ]
+    },
+    {
+      "id": "devoir_inf_018",
+      "french_formal": "Nous devons trouver une solution.",
+      "violations": [
+        "unknown vocab: 'trouver'",
+        "unknown vocab: 'trouver'"
+      ]
+    },
+    {
+      "id": "devoir_inf_021",
+      "french_formal": "Vous devez trouver une solution.",
+      "violations": [
+        "unknown vocab: 'trouver'",
+        "unknown vocab: 'trouver'"
+      ]
+    },
+    {
+      "id": "devoir_inf_039",
+      "french_formal": "Elle veut voir la situation et elle doit trouver une solution.",
+      "violations": [
+        "unknown vocab: 'trouver'",
+        "unknown vocab: 'trouver'"
+      ]
+    },
+    {
+      "id": "devoir_inf_040",
+      "french_formal": "C'est important — je dois voir la situation et trouver une solution.",
+      "violations": [
+        "unknown vocab: 'trouver'",
+        "unknown vocab: 'trouver'"
+      ]
+    },
+    {
+      "id": "questions_intonation_020",
+      "french_formal": "Est-ce que tu veux la solution ?",
+      "violations": [
+        "detected 'dobj_pronouns' construction not in allowed set (pattern: (?:je |j'|tu |on |nous |vous |peux |peut |pouvez |veux |veut)"
+      ]
+    },
+    {
+      "id": "questions_intonation_023",
+      "french_formal": "Où est-ce que tu veux aller ?",
+      "violations": [
+        "unknown vocab: 'aller'",
+        "unknown vocab: 'aller'"
+      ]
+    },
+    {
+      "id": "questions_intonation_031",
+      "french_formal": "Où est-ce qu'elle veut aller ?",
+      "violations": [
+        "unknown vocab: 'aller'",
+        "unknown vocab: 'aller'"
+      ]
+    },
+    {
+      "id": "iobj_pronouns_010",
+      "french_formal": "Nous leur parlons.",
+      "violations": [
+        "unknown vocab: 'parlons'"
+      ]
+    },
+    {
+      "id": "pc_avoir_030",
+      "french_formal": "Je voulais manger et j'ai mangé.",
+      "violations": [
+        "detected 'imparfait_vs_pc' construction not in allowed set (pattern: \\b(?:étais|était|étions|étiez|étaient|faisais|faisait|voulai)",
+        "unknown vocab: 'voulais'"
+      ]
+    },
+    {
+      "id": "pc_etre_025",
+      "french_formal": "Il voulait partir et il est parti.",
+      "violations": [
+        "detected 'imparfait_vs_pc' construction not in allowed set (pattern: \\b(?:étais|était|étions|étiez|étaient|faisais|faisait|voulai)",
+        "unknown vocab: 'voulait'",
+        "unknown vocab: 'voulait'"
+      ]
+    },
+    {
+      "id": "pc_etre_028",
+      "french_formal": "Je veux aller et je suis allé.",
+      "violations": [
+        "unknown vocab: 'aller'",
+        "unknown vocab: 'aller'"
+      ]
+    },
+    {
+      "id": "reflexives_031",
+      "french_formal": "Vous avez raison — je ne me lève pas à sept heures.",
+      "violations": [
+        "unknown vocab: 'avez'"
+      ]
+    },
+    {
+      "id": "imparfait_vs_pc_009",
+      "french_formal": "Nous voulions manger.",
+      "violations": [
+        "unknown vocab: 'voulions'"
+      ]
+    },
+    {
+      "id": "imparfait_vs_pc_032",
+      "french_formal": "Nous mangions quand il est parti.",
+      "violations": [
+        "unknown vocab: 'mangions'"
+      ]
+    },
+    {
+      "id": "relatives_qui_que_006",
+      "french_formal": "l'homme qui est venu",
+      "violations": [
+        "detected 'pc_etre' construction not in allowed set (pattern: (?:suis|es|est|sommes|êtes|sont) (?:pas )?(?:allé|parti|arri)"
+      ]
+    },
+    {
+      "id": "relatives_qui_que_015",
+      "french_formal": "les gens qui veulent manger",
+      "violations": [
+        "unknown vocab: 'veulent'",
+        "unknown vocab: 'veulent'"
+      ]
+    },
+    {
+      "id": "relatives_qui_que_022",
+      "french_formal": "les gens qui peuvent payer",
+      "violations": [
+        "unknown vocab: 'peuvent'",
+        "unknown vocab: 'peuvent'"
+      ]
+    },
+    {
+      "id": "relatives_qui_que_028",
+      "french_formal": "la fille qui arrive",
+      "violations": [
+        "unknown vocab: 'arrive'",
+        "unknown vocab: 'arrive'"
+      ]
+    },
+    {
+      "id": "relatives_qui_que_032",
+      "french_formal": "la situation que je peux gérer",
+      "violations": [
+        "unknown vocab: 'gérer'",
+        "unknown vocab: 'gérer'"
+      ]
+    },
+    {
+      "id": "relatives_qui_que_034",
+      "french_formal": "les gens qui veulent venir",
+      "violations": [
+        "unknown vocab: 'veulent'",
+        "unknown vocab: 'veulent'"
+      ]
+    },
+    {
+      "id": "relatives_qui_que_037",
+      "french_formal": "C'est les gens qui peuvent payer.",
+      "violations": [
+        "unknown vocab: 'peuvent'",
+        "unknown vocab: 'peuvent'"
+      ]
+    }
+  ]
+}
