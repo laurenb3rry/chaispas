@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CA9B00012FFD9A0000000001 /* content_pack_v1 in Resources */ = {isa = PBXBuildFile; fileRef = CA9B00022FFD9A0000000002 /* content_pack_v1 */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		BAEB0EA42FFD831400501820 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		BAEB0E912FFD831200501820 /* ChaisPas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChaisPas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAEB0EA32FFD831400501820 /* ChaisPasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChaisPasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAEB0EAD2FFD831500501820 /* ChaisPasUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChaisPasUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA9B00022FFD9A0000000002 /* content_pack_v1 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = content_pack_v1; path = "../content-pipeline/content_pack_v1"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -76,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				BAEB0E932FFD831200501820 /* ChaisPas */,
+				CA9B00022FFD9A0000000002 /* content_pack_v1 */,
 				BAEB0EA62FFD831500501820 /* ChaisPasTests */,
 				BAEB0EB02FFD831500501820 /* ChaisPasUITests */,
 				BAEB0E922FFD831200501820 /* Products */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA9B00012FFD9A0000000001 /* content_pack_v1 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

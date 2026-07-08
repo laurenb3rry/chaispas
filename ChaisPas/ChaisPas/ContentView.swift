@@ -9,23 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack {
-            DSColor.background.ignoresSafeArea()
-            VStack(spacing: DSSpacing.lg) {
-                Text("Chais Pas")
-                    .font(DSType.largeTitle)
-                    .tracking(DSType.largeTitleTracking)
-                    .foregroundStyle(DSColor.textPrimary)
-                Text("C'est pas grave.")
-                    .font(DSType.french)
-                    .foregroundStyle(DSColor.accent)
-                Text("Phase 1 scaffold — models + design system")
-                    .font(DSType.caption)
-                    .foregroundStyle(DSColor.textSecondary)
-            }
-            .padding(.horizontal, DSSpacing.margin)
-        }
-        .preferredColorScheme(.dark)
+        // Temporary: phase-3 verification screen until the session player lands
+        DebugView()
     }
 }
 

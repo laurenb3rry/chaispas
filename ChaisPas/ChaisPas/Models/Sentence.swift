@@ -14,6 +14,9 @@ final class Sentence {
     var fsrsStability: Double
     var fsrsDifficulty: Double
     var fsrsDue: Date
+    // Needed to compute elapsed days (retrievability) at review time;
+    // nil until the first review
+    var fsrsLastReviewed: Date?
 
     init(
         id: String,

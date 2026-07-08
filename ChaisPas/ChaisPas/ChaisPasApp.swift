@@ -21,7 +21,11 @@ struct ChaisPasApp: App {
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            // Synchronous on purpose: ~1k rows imports in well under a second,
+            // and every view can then assume the pack is present
+            ContentPackImporter.importIfNeeded(context: ModelContext(container))
+            return container
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
