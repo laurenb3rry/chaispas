@@ -5,6 +5,10 @@ import SwiftData
 final class Sentence {
     @Attribute(.unique) var id: String
     var conceptIds: [String]
+    // The concept this drill was generated for (conceptIds also lists the
+    // prereqs the sentence happens to use); default enables lightweight
+    // migration of stores imported before this field existed
+    var targetConceptId: String = ""
     var english: String
     var frenchFormal: String
     var frenchStreet: String
@@ -21,6 +25,7 @@ final class Sentence {
     init(
         id: String,
         conceptIds: [String],
+        targetConceptId: String,
         english: String,
         frenchFormal: String,
         frenchStreet: String,
@@ -31,6 +36,7 @@ final class Sentence {
     ) {
         self.id = id
         self.conceptIds = conceptIds
+        self.targetConceptId = targetConceptId
         self.english = english
         self.frenchFormal = frenchFormal
         self.frenchStreet = frenchStreet

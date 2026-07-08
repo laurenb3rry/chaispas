@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        // Temporary: phase-3 verification screen until the session player lands
-        DebugView()
+        TodayView()
     }
 }
 

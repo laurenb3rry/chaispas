@@ -8,6 +8,8 @@ import SwiftData
 enum ContentPackImporter {
     static func importIfNeeded(context: ModelContext) {
         do {
+            try backfillTargetConceptIds(context: context)
+
             let conceptCount = try context.fetchCount(FetchDescriptor<ConceptNode>())
             let sentenceCount = try context.fetchCount(FetchDescriptor<Sentence>())
             guard conceptCount == 0 || sentenceCount == 0 else { return }
@@ -36,6 +38,7 @@ enum ContentPackImporter {
                     context.insert(Sentence(
                         id: sentence.id,
                         conceptIds: sentence.conceptIds,
+                        targetConceptId: sentence.targetConceptId,
                         english: sentence.english,
                         frenchFormal: sentence.frenchFormal,
                         frenchStreet: sentence.frenchStreet,
@@ -52,5 +55,21 @@ enum ContentPackImporter {
         } catch {
             assertionFailure("Content pack import failed: \(error)")
         }
+    }
+
+    /// Stores imported before `Sentence.targetConceptId` existed migrate with
+    /// the field empty; the pipeline names every sentence
+    /// `<target_concept_id>_NNN`, so the value is recoverable from the id.
+    private static func backfillTargetConceptIds(context: ModelContext) throws {
+        let missing = try context.fetch(FetchDescriptor<Sentence>(
+            predicate: #Predicate { $0.targetConceptId == "" }
+        ))
+        guard !missing.isEmpty else { return }
+        for sentence in missing {
+            if let cut = sentence.id.lastIndex(of: "_") {
+                sentence.targetConceptId = String(sentence.id[..<cut])
+            }
+        }
+        try context.save()
     }
 }

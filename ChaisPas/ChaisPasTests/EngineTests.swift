@@ -12,6 +12,7 @@ struct FSRSTests {
         Sentence(
             id: "test_001",
             conceptIds: ["cest"],
+            targetConceptId: "cest",
             english: "It's possible.",
             frenchFormal: "C'est possible.",
             frenchStreet: "C'est possible.",

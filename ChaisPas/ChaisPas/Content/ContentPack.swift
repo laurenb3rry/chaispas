@@ -36,6 +36,7 @@ enum ContentPack {
     struct PackSentence: Decodable {
         var id: String
         var conceptIds: [String]
+        var targetConceptId: String
         var english: String
         var frenchFormal: String
         var frenchStreet: String
@@ -43,6 +44,7 @@ enum ContentPack {
         enum CodingKeys: String, CodingKey {
             case id, english
             case conceptIds = "concept_ids"
+            case targetConceptId = "target_concept_id"
             case frenchFormal = "french_formal"
             case frenchStreet = "french_street"
         }
