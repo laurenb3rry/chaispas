@@ -12,7 +12,11 @@ import SwiftData
 struct ChaisPasApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            ConceptNode.self,
+            Sentence.self,
+            DrillEvent.self,
+            MasteryScore.self,
+            SessionLog.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
