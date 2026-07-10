@@ -9,6 +9,10 @@ prompt audio present, whole drill flows can run screen-off.
 Sources:
     content_pack_v1/sentences.json          (v1 drill sentences)
     learn_{conjugation,vocab,grammar}.json  (v2 Learn drills; validated preferred)
+    scenarios.json                          (Speak user-line intent prompts; validated
+                                             preferred — enables the hands-free scenario
+                                             flow of PLAN2 §5.2; branch-choice labels are
+                                             excluded by design, they stay on-screen taps)
 
 The budget estimate is always printed before any synthesis starts.
 
@@ -26,7 +30,8 @@ import time
 
 from dotenv import load_dotenv
 
-from tts import EN_VOICE, HERE, PACK_V2, RATE_NORMAL, STANDARD_FREE_TIER, load_learn, synthesize
+from tts import (EN_VOICE, HERE, PACK_V2, RATE_NORMAL, STANDARD_FREE_TIER,
+                 load_learn, load_v2b, synthesize)
 
 OUT_DIR = PACK_V2 / "english_prompts"
 
@@ -57,6 +62,19 @@ def collect_items():
                 items.append((d["id"], d["english"]))
                 count += 1
         print(f"v2 source: {src} ({count} prompts)")
+
+    scenarios = load_v2b("scenarios", "scenarios")
+    if scenarios is not None:
+        count = 0
+        for scn in scenarios:
+            for v in scn["variants"]:
+                for n in v["nodes"]:
+                    if n["speaker"] == "user":
+                        items.append((n["node_id"], n["english"]))
+                        count += 1
+        print(f"v2 source: scenarios ({count} user-line prompts)")
+    else:
+        print("v2 scenarios: no content file yet — skipped")
 
     deduped = []
     for item_id, english in items:

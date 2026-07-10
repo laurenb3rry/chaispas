@@ -1,22 +1,31 @@
 #!/usr/bin/env python3
-"""Shared TTS library + v2 Learn-content synthesis CLI (PLAN2 §3.7).
+"""Shared TTS library + v2 content synthesis CLI (PLAN2 §3.7).
 
 Library (used by tts_batch.py and gen_english_prompts.py):
     synthesize(text, voice, rate, api_key)  — Google Cloud TTS with retries
     budget_report(...)                      — free-tier accounting
 
-CLI — synthesizes all French audio for the Learn module into
-content_pack_v2/learn/audio/ from learn_{conjugation,vocab,grammar}.json
-(validated versions preferred):
+CLI — synthesizes all French audio for the v2 pack:
+  Learn (content_pack_v2/learn/audio/, from learn_*.json, validated preferred):
     conjugation tables   {node}_tbl_{tense}_{person}_{formal|street}.mp3   (street only where it differs)
     politesse forms      {node}_{form_id}_{formal|street}.mp3
     vocab words          {word_id}.mp3
     grammar examples     {node}_ex{NN}_{formal|street_slow|street_fast}.mp3
     all drills           {id}_{formal|street_slow|street_fast}.mp3
+  Speak (content_pack_v2/speak/audio/, from scenarios.json, validated preferred):
+    npc lines            {node_uid}_{street_fast|street_slow}.mp3
+    user lines           {node_uid}_{formal|street_slow|street_fast}.mp3
+  Listen (content_pack_v2/listen/audio/, from listen.json, validated preferred):
+    per line             {line_id}_{fast|slow}.mp3   (two WaveNet voices per episode,
+                                                      per-episode level rates)
+    full episode         {episode_id}_full_{fast|slow}.mp3 — assembled locally by
+                         concatenating the line MP3s with a synthesized 500ms gap
+                         (same encoder params throughout, so raw concat is safe)
 
 The budget estimate is ALWAYS printed before any synthesis starts; a real run
 also requires the printed estimate to fit the remaining WaveNet free tier or
---ignore-budget.
+--ignore-budget. English prompt audio (incl. Speak user prompts) lives in
+gen_english_prompts.py on the separate Standard tier.
 
 BACKFILL (carried from v1): street variants to be regenerated with ElevenLabs
 for authentic casual prosody — file naming is drop-in identical.
@@ -24,6 +33,7 @@ for authentic casual prosody — file naming is drop-in identical.
 Usage:
     python tts.py --budget-check        # dry run: chars + free-tier % + full-run projection
     python tts.py                       # synthesize everything missing
+    python tts.py --module scenarios --module listen
     python tts.py --module conjugation --limit 20
 """
 
@@ -41,6 +51,8 @@ from dotenv import load_dotenv
 HERE = Path(__file__).parent
 PACK_V2 = HERE / "content_pack_v2"
 LEARN_AUDIO = PACK_V2 / "learn" / "audio"
+SPEAK_AUDIO = PACK_V2 / "speak" / "audio"
+LISTEN_AUDIO = PACK_V2 / "listen" / "audio"
 
 TTS_URL = "https://texttospeech.googleapis.com/v1/text:synthesize"
 FR_VOICE = {"languageCode": "fr-FR", "name": "fr-FR-Wavenet-C"}  # same voice as pack v1
@@ -54,12 +66,15 @@ TENSES = ["present", "passe_compose", "imparfait", "futur_proche"]
 PERSONS = ["je", "tu", "il", "on", "vous", "ils"]
 
 # Expected unit counts for the full-run projection printed by --budget-check.
-EXPECTED_UNITS = {"conjugation": 21, "vocab": 40, "grammar": 15}
+# scenarios counts variants (12 scenarios x 3); listen counts episodes.
+EXPECTED_UNITS = {"conjugation": 21, "vocab": 40, "grammar": 15,
+                  "scenarios": 36, "listen": 30}
+GAP_MS = 500  # silence between lines in assembled full-episode audio
 
 
-def synthesize(text, voice, rate, api_key):
+def synthesize(text, voice, rate, api_key, ssml=False):
     body = {
-        "input": {"text": text},
+        "input": {"ssml": text} if ssml else {"text": text},
         "voice": voice,
         "audioConfig": {"audioEncoding": "MP3", "speakingRate": rate},
     }
@@ -139,7 +154,109 @@ def collect_jobs(modules):
     return jobs, found
 
 
-def budget_report(jobs, found, label="Learn module (French, WaveNet)"):
+def load_v2b(name, key):
+    """scenarios/listen content; validated file preferred, like load_learn."""
+    validated = HERE / f"{name}_validated.json"
+    raw = HERE / f"{name}.json"
+    path = validated if validated.exists() else raw
+    if not path.exists():
+        return None
+    if path is raw:
+        print(f"  note: {validated.name} not found — using unvalidated {raw.name}")
+    with open(path) as f:
+        return json.load(f)[key]
+
+
+def collect_speak_jobs():
+    """(module, out_path, text, voice, rate) for every scenario line. Returns
+    (jobs, n_variants) — n_variants feeds the full-run projection."""
+    scenarios = load_v2b("scenarios", "scenarios")
+    if scenarios is None:
+        print("  scenarios: no content file yet — skipped")
+        return [], 0
+    jobs, n_variants = [], 0
+    for scn in scenarios:
+        for v in scn["variants"]:
+            n_variants += 1
+            for n in v["nodes"]:
+                uid, street = n["node_id"], n["french_street"]
+                if n["speaker"] == "user":
+                    formal = n.get("french_formal", street)
+                    jobs.append(("scenarios", SPEAK_AUDIO / f"{uid}_formal.mp3", formal, FR_VOICE, RATE_NORMAL))
+                    jobs.append(("scenarios", SPEAK_AUDIO / f"{uid}_street_slow.mp3", street, FR_VOICE, RATE_SLOW))
+                    jobs.append(("scenarios", SPEAK_AUDIO / f"{uid}_street_fast.mp3", street, FR_VOICE, RATE_FAST))
+                else:
+                    jobs.append(("scenarios", SPEAK_AUDIO / f"{uid}_street_fast.mp3", street, FR_VOICE, RATE_FAST))
+                    jobs.append(("scenarios", SPEAK_AUDIO / f"{uid}_street_slow.mp3", street, FR_VOICE, RATE_SLOW))
+    return jobs, n_variants
+
+
+def collect_listen_jobs():
+    """Per-line jobs, two voices per episode at the episode's level rates.
+    Returns (jobs, episodes) — episodes are needed again for concat."""
+    episodes = load_v2b("listen", "episodes")
+    if episodes is None:
+        print("  listen: no content file yet — skipped")
+        return [], []
+    jobs = []
+    for ep in episodes:
+        voices = {i + 1: {"languageCode": "fr-FR", "name": s["voice"]}
+                  for i, s in enumerate(ep["speakers"])}
+        for l in ep["lines"]:
+            voice = voices[l["speaker"]]
+            jobs.append(("listen", LISTEN_AUDIO / l["audio_refs"]["fast"],
+                         l["french_street"], voice, ep["rate_fast"]))
+            jobs.append(("listen", LISTEN_AUDIO / l["audio_refs"]["slow"],
+                         l["french_street"], voice, ep["rate_slow"]))
+    return jobs, episodes
+
+
+def listen_spec_projection():
+    """Char estimate for the full 30-episode run from the spec file alone
+    (level char-target midpoints x 2 renditions) — level-mix aware, unlike the
+    linear per-unit projection."""
+    from gen_listen import LEVELS
+    spec_path = HERE / "data" / "listen_episodes.json"
+    if not spec_path.exists():
+        return None
+    with open(spec_path) as f:
+        specs = json.load(f)["episodes"]
+    return sum(sum(LEVELS[s["level"]]["chars"]) for s in specs)  # midpoint x 2 = sum
+
+
+def assemble_full_episodes(episodes, api_key):
+    """Build {ep}_full_fast/slow.mp3 by concatenating line MP3s with a
+    synthesized silence gap. Google returns uniform CBR MP3 frames, so raw
+    byte concatenation is safe."""
+    gap_path = LISTEN_AUDIO / "_gap.mp3"
+    if not gap_path.exists():
+        LISTEN_AUDIO.mkdir(parents=True, exist_ok=True)
+        gap_path.write_bytes(synthesize(
+            f'<speak><break time="{GAP_MS}ms"/></speak>',
+            FR_VOICE, RATE_NORMAL, api_key, ssml=True))
+    gap = gap_path.read_bytes()
+    built, waiting = 0, 0
+    for ep in episodes:
+        for speed in ("fast", "slow"):
+            out = LISTEN_AUDIO / ep["audio_refs"][f"full_{speed}"]
+            if out.exists():
+                continue
+            parts = [LISTEN_AUDIO / l["audio_refs"][speed] for l in ep["lines"]]
+            if not all(p.exists() for p in parts):
+                waiting += 1
+                continue
+            chunks = []
+            for i, p in enumerate(parts):
+                if i:
+                    chunks.append(gap)
+                chunks.append(p.read_bytes())
+            out.write_bytes(b"".join(chunks))
+            built += 1
+    print(f"full episodes: {built} assembled"
+          + (f", {waiting} waiting on missing line files" if waiting else ""))
+
+
+def budget_report(jobs, found, label="v2 French audio (WaveNet)"):
     """Print the budget estimate. Returns chars still to synthesize."""
     todo = [(m, p, t) for m, p, t, *_ in jobs if not p.exists()]
     todo_chars = sum(len(t) for _, _, t in todo)
@@ -163,9 +280,15 @@ def budget_report(jobs, found, label="Learn module (French, WaveNet)"):
     if any(0 < found.get(m, 0) < EXPECTED_UNITS.get(m, 0) for m in found):
         projection = sum(per_module.get(m, 0) * EXPECTED_UNITS.get(m, n) / n
                          for m, n in found.items() if n)
-        print(f"  Full-run projection ({EXPECTED_UNITS['conjugation']} conj + "
-              f"{EXPECTED_UNITS['vocab']} vocab + {EXPECTED_UNITS['grammar']} grammar units): "
+        units = " + ".join(f"{EXPECTED_UNITS[m]} {m}" for m in sorted(found)
+                           if m in EXPECTED_UNITS)
+        print(f"  Full-run projection ({units} units; scenarios counted in variants): "
               f"≈ {projection:,.0f} chars ≈ {projection / WAVENET_FREE_TIER:.1%} of the free tier")
+    if "listen" in found:
+        spec_est = listen_spec_projection()
+        if spec_est:
+            print(f"  Listen spec-based full-run estimate (level-mix aware, 30 episodes, "
+                  f"fast+slow): ≈ {spec_est:,.0f} chars ≈ {spec_est / WAVENET_FREE_TIER:.1%}")
     print(f"  (English prompt audio is billed on the separate Standard tier — "
           f"see gen_english_prompts.py --budget-check)\n")
     return todo_chars
@@ -174,18 +297,34 @@ def budget_report(jobs, found, label="Learn module (French, WaveNet)"):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--budget-check", action="store_true", help="print budget estimate, no API calls")
-    ap.add_argument("--module", action="append", choices=["conjugation", "vocab", "grammar"])
+    ap.add_argument("--module", action="append",
+                    choices=["conjugation", "vocab", "grammar", "scenarios", "listen"])
     ap.add_argument("--limit", type=int, help="only synthesize the first N missing files")
     ap.add_argument("--ignore-budget", action="store_true",
                     help="proceed even if the run exceeds the monthly free tier")
     args = ap.parse_args()
 
-    modules = args.module or ["conjugation", "vocab", "grammar"]
-    jobs, found = collect_jobs(modules)
+    modules = args.module or ["conjugation", "vocab", "grammar", "scenarios", "listen"]
+    jobs, found = collect_jobs([m for m in modules
+                                if m in ("conjugation", "vocab", "grammar")])
+    episodes = []
+    if "scenarios" in modules:
+        speak_jobs, n_variants = collect_speak_jobs()
+        jobs += speak_jobs
+        if n_variants:
+            found["scenarios"] = n_variants
+    if "listen" in modules:
+        line_jobs, episodes = collect_listen_jobs()
+        jobs += line_jobs
+        if episodes:
+            found["listen"] = len(episodes)
+
     todo_chars = budget_report(jobs, found)
     if args.budget_check:
         return
-    if todo_chars == 0:
+    need_concat = any(not (LISTEN_AUDIO / ep["audio_refs"][f"full_{speed}"]).exists()
+                      for ep in episodes for speed in ("fast", "slow"))
+    if todo_chars == 0 and not need_concat:
         print("nothing to synthesize")
         return
     if todo_chars > WAVENET_FREE_TIER and not args.ignore_budget:
@@ -197,7 +336,6 @@ def main():
     if not api_key:
         sys.exit("GOOGLE_TTS_API_KEY not set")
 
-    LEARN_AUDIO.mkdir(parents=True, exist_ok=True)
     synthesized, failures = 0, []
     for module, out, text, voice, rate in jobs:
         if out.exists():
@@ -205,6 +343,7 @@ def main():
         if args.limit and synthesized >= args.limit:
             break
         try:
+            out.parent.mkdir(parents=True, exist_ok=True)
             out.write_bytes(synthesize(text, voice, rate, api_key))
             synthesized += 1
             if synthesized % 50 == 0:
@@ -214,6 +353,8 @@ def main():
             failures.append(f"{out.name}: {e}")
             print(f"  FAILED {out.name}: {e}", file=sys.stderr)
 
+    if episodes:
+        assemble_full_episodes(episodes, api_key)
     print(f"done: {synthesized} synthesized, {len(failures)} failed")
     print("BACKFILL reminder: street variants to be regenerated with ElevenLabs later.")
     if failures:

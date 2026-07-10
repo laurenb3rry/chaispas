@@ -594,14 +594,285 @@ def validate_v2(strict):
         sys.exit(1)
 
 
+# ---------------------------------------------------------------------------
+# v2b validation (PLAN2 §3.4-3.5, phase 6): Speak scenarios and Listen
+# episodes. Same philosophy as v2 Learn: structural problems are errors
+# (demand regeneration), vocabulary drift is warn-level. Granularity is the
+# whole scenario / episode — a unit with any error is excluded from the
+# validated output so TTS never voices broken content.
+
+# Nodes on every start->end path. PLAN2's "8-14 exchanges" read as npc+user
+# pairs (~2 nodes each) — one-line-per-exchange forced unnaturally clipped
+# dialogues in practice — with grace at the bottom for reconverging branch paths.
+SCN_PATH_RANGE = (12, 28)
+SCN_BRANCH_RANGE = (2, 3)    # branch points per variant
+
+
+def collect_french_strings(obj, out):
+    """All French text in a generated-content JSON tree (for lexicon building)."""
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            if isinstance(v, str) and k in ("formal", "street", "french_formal",
+                                            "french_street", "lemma"):
+                out.append(v)
+            else:
+                collect_french_strings(v, out)
+    elif isinstance(obj, list):
+        for x in obj:
+            collect_french_strings(x, out)
+
+
+def v2b_lexicon(v1_nodes):
+    """v2 base lexicon plus everything the Learn module already teaches —
+    scenario/episode vocab checks warn relative to the whole curriculum."""
+    lex = v2_base_lexicon(v1_nodes)
+    for module in V2_MODULES:
+        path = HERE / f"learn_{module}_validated.json"
+        if not path.exists():
+            path = HERE / f"learn_{module}.json"
+        if not path.exists():
+            continue
+        strings = []
+        with open(path) as f:
+            collect_french_strings(json.load(f), strings)
+        for s in strings:
+            lex.update(tokenize(s))
+    return lex
+
+
+def walk_variant(nodes_by_id, start_id, errors, prefix):
+    """DFS the branching dialogue. Returns (path lengths, reachable node ids)."""
+    lengths, reachable = [], set()
+
+    def walk(nid, seen, depth):
+        if depth > 30:
+            errors.append(f"{prefix}: path deeper than 30 nodes — runaway graph")
+            return
+        node = nodes_by_id.get(nid)
+        if node is None:
+            errors.append(f"{prefix}: reference to unknown node '{nid}'")
+            return
+        if nid in seen:
+            errors.append(f"{prefix}: cycle through '{nid}'")
+            return
+        reachable.add(nid)
+        if node.get("branches"):
+            nexts = [b.get("next") for b in node["branches"]]
+        else:
+            nexts = [node.get("next")]
+        for nx in nexts:
+            if nx is None:
+                lengths.append(depth + 1)
+            else:
+                walk(nx, seen | {nid}, depth + 1)
+
+    walk(start_id, set(), 0)
+    return lengths, reachable
+
+
+def validate_v2b_variant(variant, lex, report):
+    vid = variant.get("variant_id", "?")
+    nodes = variant.get("nodes", [])
+    if not nodes:
+        report["errors"].append(f"{vid}: no nodes")
+        return
+    ids = [n.get("node_id") for n in nodes]
+    if len(ids) != len(set(ids)):
+        report["errors"].append(f"{vid}: duplicate node ids")
+    nodes_by_id = {n["node_id"]: n for n in nodes}
+
+    for n in nodes:
+        nid = n.get("node_id", "?")
+        if n.get("speaker") not in ("npc", "user"):
+            report["errors"].append(f"{nid}: bad speaker '{n.get('speaker')}'")
+        for field in ("english", "french_street"):
+            if not str(n.get(field, "")).strip():
+                report["errors"].append(f"{nid}: empty {field}")
+        if n.get("speaker") == "user" and not str(n.get("french_formal", "")).strip():
+            report["warnings"].append(f"{nid}: user node missing french_formal")
+        if n.get("branches"):
+            if n.get("next"):
+                report["errors"].append(f"{nid}: has both 'next' and 'branches'")
+            if n.get("speaker") != "npc":
+                report["warnings"].append(f"{nid}: branch point on a user node")
+            if not SCN_BRANCH_RANGE[0] <= len(n["branches"]) <= SCN_BRANCH_RANGE[1]:
+                report["errors"].append(f"{nid}: {len(n['branches'])} branch options (spec 2-3)")
+            for b in n["branches"]:
+                if not str(b.get("label_english", "")).strip():
+                    report["errors"].append(f"{nid}: branch option missing label_english")
+        unk = sorted({t for t in tokenize(n.get("french_street", "")) +
+                      tokenize(n.get("french_formal", ""))
+                      if not in_lexicon(t, lex) and not COGNATE.match(t)
+                      and not t.isdigit()})
+        if unk:
+            report["warnings"].append(f"{nid}: vocabulary outside known set: {unk}")
+
+    lengths, reachable = walk_variant(nodes_by_id, nodes[0]["node_id"], report["errors"], vid)
+    unreachable = set(nodes_by_id) - reachable
+    if unreachable:
+        report["errors"].append(f"{vid}: unreachable nodes {sorted(unreachable)}")
+    if lengths and not (SCN_PATH_RANGE[0] <= min(lengths) and max(lengths) <= SCN_PATH_RANGE[1]):
+        report["errors"].append(f"{vid}: path lengths {min(lengths)}-{max(lengths)} "
+                                f"(spec {SCN_PATH_RANGE[0]}-{SCN_PATH_RANGE[1]})")
+    n_branch = sum(1 for n in nodes if n.get("branches"))
+    if not SCN_BRANCH_RANGE[0] <= n_branch <= SCN_BRANCH_RANGE[1]:
+        report["errors"].append(f"{vid}: {n_branch} branch points "
+                                f"(spec {SCN_BRANCH_RANGE[0]}-{SCN_BRANCH_RANGE[1]})")
+    n_user = sum(1 for n in nodes if n.get("speaker") == "user")
+    if n_user < 4:
+        report["warnings"].append(f"{vid}: only {n_user} user turns")
+
+
+def validate_v2b_scenario(scn, lex, report):
+    sid = scn.get("id", "?")
+    for field in ("id", "title", "icon", "setting_blurb", "difficulty"):
+        if scn.get(field) in (None, ""):
+            report["errors"].append(f"{sid}: missing scenario field '{field}'")
+    variants = scn.get("variants", [])
+    if len(variants) != 3:
+        report["errors"].append(f"{sid}: {len(variants)} variants (spec 3) — "
+                                f"finish generation before validating")
+    for v in variants:
+        validate_v2b_variant(v, lex, report)
+
+
+def validate_v2b_episode(ep, lex, report):
+    from gen_listen import LEVELS
+    eid = ep.get("id", "?")
+    level = LEVELS.get(ep.get("level"))
+    if level is None:
+        report["errors"].append(f"{eid}: unknown level '{ep.get('level')}'")
+        return
+
+    speakers = ep.get("speakers", [])
+    if len(speakers) != 2 or any(not s.get("label") or not s.get("voice") for s in speakers):
+        report["errors"].append(f"{eid}: needs exactly 2 speakers with label+voice")
+    elif speakers[0]["voice"] == speakers[1]["voice"]:
+        report["errors"].append(f"{eid}: both speakers use the same voice")
+
+    lines = ep.get("lines", [])
+    lo, hi = level["lines"]
+    if not lo - 2 <= len(lines) <= hi + 3:
+        report["errors"].append(f"{eid}: {len(lines)} lines (level {ep['level']} spec {lo}-{hi})")
+    elif not lo <= len(lines) <= hi:
+        report["warnings"].append(f"{eid}: {len(lines)} lines (level {ep['level']} spec {lo}-{hi})")
+    clo, chi = level["chars"]
+    total_chars = sum(len(l.get("french_street", "")) for l in lines)
+    if not clo * 0.7 <= total_chars <= chi * 1.3:
+        report["warnings"].append(f"{eid}: {total_chars} French chars "
+                                  f"(level {ep['level']} target {clo}-{chi})")
+
+    extra = set()
+    for s in speakers:
+        extra.update(tokenize(s.get("label", "")))
+    extra.update(tokenize(ep.get("title", "")))
+    used_speakers, doubles = set(), 0
+    prev = None
+    for l in lines:
+        lid = l.get("line_id", "?")
+        if l.get("speaker") not in (1, 2):
+            report["errors"].append(f"{lid}: bad speaker '{l.get('speaker')}'")
+        used_speakers.add(l.get("speaker"))
+        if l.get("speaker") == prev:
+            doubles += 1
+        prev = l.get("speaker")
+        for field in ("french_street", "english"):
+            if not str(l.get(field, "")).strip():
+                report["errors"].append(f"{lid}: empty {field}")
+        unk = sorted({t for t in tokenize(l.get("french_street", ""))
+                      if not in_lexicon(t, lex) and not in_lexicon(t, extra)
+                      and not COGNATE.match(t) and not t.isdigit()})
+        if unk:
+            report["warnings"].append(f"{lid}: vocabulary outside known set: {unk}")
+    if len(used_speakers - {None}) < 2:
+        report["errors"].append(f"{eid}: only one speaker ever talks")
+    if doubles > 2:
+        report["warnings"].append(f"{eid}: {doubles} consecutive same-speaker turns")
+
+    questions = ep.get("questions", [])
+    if len(questions) != 3:
+        report["errors"].append(f"{eid}: {len(questions)} questions (spec 3)")
+    answer_positions = set()
+    for i, q in enumerate(questions, 1):
+        if not str(q.get("question", "")).strip():
+            report["errors"].append(f"{eid} q{i}: empty question")
+        opts = q.get("options", [])
+        if len(opts) != 4 or any(not str(o).strip() for o in opts):
+            report["errors"].append(f"{eid} q{i}: needs exactly 4 non-empty options")
+        if not isinstance(q.get("answer_index"), int) or not 0 <= q["answer_index"] <= 3:
+            report["errors"].append(f"{eid} q{i}: bad answer_index {q.get('answer_index')}")
+        else:
+            answer_positions.add(q["answer_index"])
+    if len(questions) == 3 and len(answer_positions) == 1:
+        report["warnings"].append(f"{eid}: all correct answers at position "
+                                  f"{answer_positions.pop()}")
+
+
+def validate_v2b(strict):
+    with open(HERE / "graph.json") as f:
+        graph = json.load(f)
+    base_lex = v2b_lexicon(graph["nodes"])
+    full_report, any_errors = {}, False
+
+    sections = [
+        ("scenarios", HERE / "scenarios.json", "scenarios", validate_v2b_scenario,
+         lambda u: f"{len(u.get('variants', []))} variants"),
+        ("listen", HERE / "listen.json", "episodes", validate_v2b_episode,
+         lambda u: f"level {u.get('level')}, {len(u.get('lines', []))} lines"),
+    ]
+    for name, path, key, checker, describe in sections:
+        if not path.exists():
+            print(f"{path.name} not found — skipped")
+            continue
+        with open(path) as f:
+            data = json.load(f)
+        report = {"errors": [], "warnings": []}
+        kept, failed = [], []
+        for unit in data[key]:
+            before = len(report["errors"])
+            checker(unit, base_lex, report)
+            if len(report["errors"]) == before:
+                kept.append(unit)
+            else:
+                failed.append(unit.get("id", "?"))
+
+        out_path = HERE / f"{name}_validated.json"
+        with open(out_path, "w") as f:
+            json.dump({"version": data.get("version", 2), key: kept},
+                      f, ensure_ascii=False, indent=2)
+
+        full_report[name] = {"units_kept": len(kept), "units_failed": failed, **report}
+        any_errors = any_errors or bool(report["errors"])
+        print(f"{name}: {len(kept)}/{len(data[key])} units kept, "
+              f"{len(report['errors'])} errors, {len(report['warnings'])} warnings "
+              f"-> {out_path.name}")
+        if failed:
+            print(f"  failed units (regenerate with --force): {failed}")
+        for e in report["errors"][:5]:
+            print(f"  ERROR {e}")
+        for w in report["warnings"][:5]:
+            print(f"  warn  {w}")
+
+    with open(HERE / "validation_report_v2b.json", "w") as f:
+        json.dump(full_report, f, ensure_ascii=False, indent=2)
+    print("full detail in validation_report_v2b.json")
+    if any_errors and strict:
+        sys.exit(1)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--strict", action="store_true", help="exit 1 on any rejection")
     ap.add_argument("--v2", action="store_true",
                     help="validate v2 Learn content (learn_*.json) instead of v1 sentences")
+    ap.add_argument("--v2b", action="store_true",
+                    help="validate Speak scenarios + Listen episodes (scenarios.json, listen.json)")
     ap.add_argument("--sentences", default=HERE / "sentences.json", type=Path)
     args = ap.parse_args()
 
+    if args.v2b:
+        validate_v2b(args.strict)
+        return
     if args.v2:
         validate_v2(args.strict)
         return

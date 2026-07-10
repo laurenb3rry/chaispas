@@ -1,0 +1,317 @@
+{
+  "comment": "Speak scenario specs (PLAN2 §3.4). 12 everyday-France scenarios in priority order; gen_scenarios.py generates 3 branching-dialogue variants per scenario from the variant_angles. icon = SF Symbol name.",
+  "scenarios": [
+    {
+      "id": "scn_cafe",
+      "title": "Café order",
+      "icon": "cup.and.saucer.fill",
+      "difficulty": 1,
+      "setting_blurb": "A Paris café. Get a table, order, handle the follow-ups, and pay — without switching to English.",
+      "npc_role": "waiter at a busy Parisian café",
+      "user_goal": "sit down, order a drink (and maybe food), handle the waiter's follow-up questions, get the bill and pay",
+      "beats": [
+        "greeting and getting a table or ordering at the counter",
+        "ordering a drink",
+        "a waiter follow-up question (with milk? terrace or inside? anything to eat?)",
+        "asking for or receiving the bill",
+        "paying and leaving politely"
+      ],
+      "branch_ideas": [
+        "waiter asks: anything to eat with that?",
+        "they're out of what you ordered — pick something else",
+        "pay by card or in cash"
+      ],
+      "variant_angles": [
+        "Morning, relaxed: a coffee and a croissant on the terrace, small talk about the weather at the end",
+        "Afternoon: your first drink choice is unavailable, you pick an alternative and ask for the wifi code",
+        "Rush hour at the counter: quick order to take away, the card machine acts up, you sort out payment"
+      ]
+    },
+    {
+      "id": "scn_restaurant",
+      "title": "Restaurant — full meal",
+      "icon": "fork.knife",
+      "difficulty": 2,
+      "setting_blurb": "Dinner at a bistro: menu questions, ordering courses, drinks, dessert, and the bill.",
+      "npc_role": "waiter at a neighborhood bistro",
+      "user_goal": "get seated, ask about a dish, order a starter and main with drinks, decide on dessert or coffee, get the bill",
+      "beats": [
+        "arriving with or without a reservation, getting a table",
+        "asking what a dish is or what the waiter recommends",
+        "ordering starter and main course plus drinks",
+        "the dessert-or-coffee moment",
+        "asking for the bill"
+      ],
+      "branch_ideas": [
+        "the waiter recommends two dishes — choose one",
+        "how do you want the meat cooked",
+        "dessert or just a coffee"
+      ],
+      "variant_angles": [
+        "Evening with a reservation: full three-course dinner, asking what a dish on the menu actually is",
+        "Weekday lunch: the plat du jour and the formule, asking what today's special comes with",
+        "Dinner with a friend: your first choice of main is finished, and you ask to split the bill at the end"
+      ]
+    },
+    {
+      "id": "scn_boulangerie",
+      "title": "Boulangerie & market",
+      "icon": "basket.fill",
+      "difficulty": 1,
+      "setting_blurb": "Buy bread, pastries, and produce — quantities, prices, and the ritual 'et avec ceci ?'.",
+      "npc_role": "boulangère or market stall vendor",
+      "user_goal": "greet, ask for items with quantities, respond to 'anything else?', ask the price, pay with small cash",
+      "beats": [
+        "the greeting ritual (bonjour first, always)",
+        "asking for items with quantities",
+        "responding to 'et avec ceci ?'",
+        "asking or hearing the price",
+        "paying and saying goodbye"
+      ],
+      "branch_ideas": [
+        "well-baked or lighter baguette (bien cuite ou pas trop)",
+        "the vendor suggests something extra — accept or decline",
+        "exact change or a big bill"
+      ],
+      "variant_angles": [
+        "Morning boulangerie run: a baguette and croissants, they ask how baked you want the bread",
+        "Sunday market fruit-and-veg stand: quantities in kilos, the vendor offers a taste, you pick what looks good",
+        "Cheese stall at the market: you ask for a recommendation for tonight, quantity by weight, a big bill to break"
+      ]
+    },
+    {
+      "id": "scn_shopping",
+      "title": "Clothing shop",
+      "icon": "tshirt.fill",
+      "difficulty": 2,
+      "setting_blurb": "Browse, ask for your size, try things on, and pay — or politely escape the sales pitch.",
+      "npc_role": "sales assistant in a clothing shop",
+      "user_goal": "browse without pressure, ask for a size, try something on, react to how it fits, decide and pay",
+      "beats": [
+        "responding to 'je peux vous aider ?' (just looking, or asking for help)",
+        "asking for an item in your size",
+        "the fitting room",
+        "reacting to fit (too small, too big, just right)",
+        "deciding to take it or not, and paying"
+      ],
+      "branch_ideas": [
+        "it fits or you need another size",
+        "take it now or think about it",
+        "pay by card or cash"
+      ],
+      "variant_angles": [
+        "Looking for jeans: the first pair is too small, you ask for the size up and take them",
+        "Buying a jacket as a gift for a friend: you ask about the return policy and whether they can gift-wrap it",
+        "The soldes: you ask if the sale price is really the final price and hesitate between two items"
+      ]
+    },
+    {
+      "id": "scn_metro",
+      "title": "Métro & train",
+      "icon": "tram.fill",
+      "difficulty": 2,
+      "setting_blurb": "Tickets, directions, platforms — and what to do when your line is down.",
+      "npc_role": "ticket-window agent (or a helpful fellow passenger)",
+      "user_goal": "buy the right ticket, find your line or platform, confirm the direction, handle a disruption",
+      "beats": [
+        "asking for a ticket, carnet, or pass",
+        "asking which line or platform for your destination",
+        "confirming the direction or the last stop",
+        "a complication (disruption, wrong platform, connection)",
+        "thanking and heading off"
+      ],
+      "branch_ideas": [
+        "single ticket or a carnet",
+        "the direct line is down — alternative route or bus",
+        "first class or second class on the train"
+      ],
+      "variant_angles": [
+        "Métro ticket window: you buy a carnet and ask how to get to Montmartre, which line and direction",
+        "Gare de Lyon: a ticket to Lyon this afternoon, which platform, and whether you can get a window seat",
+        "Your métro line is partly closed: a fellow passenger explains the workaround with one change"
+      ]
+    },
+    {
+      "id": "scn_directions",
+      "title": "Asking directions",
+      "icon": "map.fill",
+      "difficulty": 2,
+      "setting_blurb": "Stop a stranger, follow two-step directions, and confirm you got it right.",
+      "npc_role": "passerby on the street",
+      "user_goal": "politely stop someone, ask where something is, follow multi-step directions, confirm your understanding, thank them",
+      "beats": [
+        "the polite stop (excusez-moi...)",
+        "asking where the place is",
+        "receiving two-or-three-step directions",
+        "confirming by repeating back the key steps",
+        "thanking them warmly"
+      ],
+      "branch_ideas": [
+        "on foot or is it too far — take the bus?",
+        "they offer a landmark shortcut vs. street-by-street directions",
+        "they're not sure — ask someone else or check together"
+      ],
+      "variant_angles": [
+        "You need a pharmacy: it's a five-minute walk with two turns, you repeat the directions back to check",
+        "Looking for the nearest métro: it's far, the passerby suggests the bus instead and tells you which stop",
+        "Your phone is dead and you're looking for a small street: the passerby knows the area and walks you through it via a landmark"
+      ]
+    },
+    {
+      "id": "scn_hotel",
+      "title": "Hotel & Airbnb",
+      "icon": "bed.double.fill",
+      "difficulty": 2,
+      "setting_blurb": "Check in, get the practical info, and get problems fixed without drama.",
+      "npc_role": "hotel receptionist or Airbnb host",
+      "user_goal": "check in under your name, get key and practical info (wifi, breakfast, floor), report a problem later, get it resolved",
+      "beats": [
+        "announcing yourself and your reservation",
+        "the practical rundown (key, floor, wifi, breakfast times)",
+        "asking one practical question",
+        "reporting an issue (heating, hot water, noise)",
+        "the resolution"
+      ],
+      "branch_ideas": [
+        "breakfast included or added now",
+        "the issue: fixed tonight or room change",
+        "late checkout — possible or not"
+      ],
+      "variant_angles": [
+        "Smooth hotel check-in: reservation found, you ask about breakfast times and the wifi code, plus late checkout",
+        "Airbnb: the host shows you around, explains the quirks, and later you message about no hot water",
+        "Hotel: they can't find your reservation at first, then the heating doesn't work and you ask to change rooms"
+      ]
+    },
+    {
+      "id": "scn_pharmacie",
+      "title": "Pharmacy",
+      "icon": "cross.case.fill",
+      "difficulty": 2,
+      "setting_blurb": "Describe what hurts, answer the pharmacist's questions, and leave with the right thing.",
+      "npc_role": "pharmacist",
+      "user_goal": "describe a minor ailment, answer 'since when' and follow-up questions, understand the dosage, pay",
+      "beats": [
+        "describing the symptom",
+        "answering 'depuis quand ?' and one more follow-up",
+        "the pharmacist's recommendation",
+        "understanding the dosage instructions",
+        "paying and thanking"
+      ],
+      "branch_ideas": [
+        "tablets or effervescent",
+        "do you have a prescription — no, something over the counter",
+        "the stronger option or the gentle one"
+      ],
+      "variant_angles": [
+        "A cold and a sore throat since yesterday: the pharmacist asks about fever and recommends two things",
+        "A headache plus blisters from walking all day: two problems, two products, dosage for each",
+        "An upset stomach: they ask what you ate, you ask whether to take it with food and how often"
+      ]
+    },
+    {
+      "id": "scn_phone",
+      "title": "Phone calls & bookings",
+      "icon": "phone.fill",
+      "difficulty": 3,
+      "setting_blurb": "The hardest mode: no faces, no gestures. Book a table, an appointment, a callback.",
+      "npc_role": "person answering the phone (restaurant host, salon receptionist, doctor's secretary)",
+      "user_goal": "open the call, state what you want, negotiate a date and time, spell your name, confirm and close",
+      "beats": [
+        "opening the call and stating your purpose",
+        "proposing a date, time, and party size",
+        "handling 'nothing available then' with an alternative",
+        "giving and spelling your name",
+        "confirming the details and closing the call"
+      ],
+      "branch_ideas": [
+        "8pm is full — earlier, later, or another day",
+        "terrace or inside / with which stylist / morning or evening slot",
+        "leave a phone number for confirmation"
+      ],
+      "variant_angles": [
+        "Calling a restaurant for a table for two tonight: 8pm is full, you take 9pm and spell your name",
+        "Booking a haircut: negotiating a Thursday slot, choosing morning or after work",
+        "Calling the doctor's office: describing roughly why, the only slot is Friday, you leave your number"
+      ]
+    },
+    {
+      "id": "scn_smalltalk",
+      "title": "Small talk",
+      "icon": "bubble.left.and.bubble.right.fill",
+      "difficulty": 3,
+      "setting_blurb": "A stranger starts chatting. Keep up, react naturally, and exit gracefully.",
+      "npc_role": "friendly stranger (in a queue, a park, an elevator)",
+      "user_goal": "handle an opener, answer where you're from and what you do, react naturally to what they say, exit politely",
+      "beats": [
+        "the opener (weather, the wait, the dog)",
+        "where are you from / how long have you been here",
+        "what do you do — and asking them back",
+        "reacting naturally to something they tell you",
+        "the graceful exit"
+      ],
+      "branch_ideas": [
+        "admit you're learning French or press on like a local",
+        "ask them a question back or let them carry it",
+        "exchange pleasantries and go, or linger"
+      ],
+      "variant_angles": [
+        "The post-office queue: mutual complaining about the wait, they ask where your accent is from",
+        "The elevator neighbor: introductions, how long you've been in the building, an invitation to the building apéro",
+        "A park bench: their dog breaks the ice, weather, then weekend plans — you mention yours"
+      ]
+    },
+    {
+      "id": "scn_bar",
+      "title": "Bar & apéro",
+      "icon": "wineglass.fill",
+      "difficulty": 3,
+      "setting_blurb": "Order a round, toast, meet a friend-of-a-friend, and hold your own in fast chat.",
+      "npc_role": "bartender, then a friend-of-a-friend at the table",
+      "user_goal": "order a round, toast, introduce yourself to someone new, answer the classic questions, decide on one more or heading home",
+      "beats": [
+        "ordering a round at the counter",
+        "the toast",
+        "being introduced to someone new",
+        "the classic questions (what do you do, how do you know X)",
+        "one more round or calling it a night"
+      ],
+      "branch_ideas": [
+        "pression or a cocktail",
+        "same again or something different",
+        "stay for one more or head home"
+      ],
+      "variant_angles": [
+        "At the counter: ordering two beers, chatting with the bartender about the neighborhood, opening a tab",
+        "A friend's birthday drinks: you're introduced to Camille, the how-do-you-know-each-other exchange",
+        "After-work apéro: splitting the next round, then deciding between one more and the last métro"
+      ]
+    },
+    {
+      "id": "scn_complaints",
+      "title": "Problems & complaints",
+      "icon": "exclamationmark.bubble.fill",
+      "difficulty": 3,
+      "setting_blurb": "Wrong order, broken purchase, lost bag: state the problem, stay polite, get it fixed.",
+      "npc_role": "shop assistant, waiter, or lost-and-found agent",
+      "user_goal": "state the problem calmly with the key details, listen to the options, insist politely if needed, reach a resolution",
+      "beats": [
+        "stating the problem with specifics",
+        "providing the receipt / date / description",
+        "hearing the options",
+        "insisting politely when the first answer is weak",
+        "the resolution and thanks"
+      ],
+      "branch_ideas": [
+        "refund or exchange",
+        "accept the offer or ask for the manager",
+        "the item was found vs. leave your contact details"
+      ],
+      "variant_angles": [
+        "Returning a sweater that shrank in the wash: receipt in hand, choosing refund or exchange",
+        "At a restaurant: the wrong dish arrives, and then the bill has an extra item on it",
+        "Lost-and-found at the station: you left a bag on the train and describe it — contents, color, which train"
+      ]
+    }
+  ]
+}
