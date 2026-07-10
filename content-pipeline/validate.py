@@ -155,6 +155,67 @@ def in_lexicon(token, lex):
     return False
 
 
+def deaccent(s):
+    """Accent/ligature-insensitive comparison key (préfère->prefere, œil->oeil)."""
+    s = s.replace("œ", "oe").replace("æ", "ae")
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
+
+
+# Stems (deaccented) for verbs whose conjugated forms escape the regular
+# lemma[:-2] prefix rule. A filter, not a proof — mild false positives are fine.
+IRREGULAR_STEMS = {
+    "mourir": ("meur", "mort"), "valoir": ("vau", "val"),
+    "recevoir": ("recoi", "recev", "recu"), "asseoir": ("assied", "assey", "assis"),
+    "prévoir": ("prevu", "prevoi"), "boire": ("boi", "buv"),
+    "promettre": ("promet", "promis"), "apprendre": ("apprend", "appris"),
+    "vivre": ("viv", "vecu"), "suivre": ("suiv", "suivi"),
+    "craindre": ("crain", "craint"), "ouvrir": ("ouvr", "ouvert"),
+    "offrir": ("offr", "offert"), "découvrir": ("decouvr", "decouvert"),
+    "tenir": ("tien", "tenu"), "revenir": ("revien", "revenu"),
+    "devenir": ("devien", "devenu"), "obtenir": ("obtien", "obtenu"),
+    "appartenir": ("appartien", "apparten"),
+    "sentir": ("sen", "senti"), "ressentir": ("ressen",), "sortir": ("sor",),
+    "dormir": ("dor",), "servir": ("ser", "servi"), "mentir": ("men", "menti"),
+    "tuer": ("tue",), "plaire": ("plai",),
+    "connaître": ("connai",), "paraître": ("parai",),
+    # irregular feminines beyond the doubled-consonant rule
+    "blanc": ("blanch",), "frais": ("fraich",), "fou": ("foll",),
+}
+
+
+def lemma_in_text(lemma, text_tokens):
+    """Loose lemma match for vocab coverage: exact token, plural/feminine strip,
+    or verb-stem prefix — all accent-insensitive. Shared with gen_vocab.py."""
+    if "'" in lemma or "-" in lemma:
+        # multiword lemmas (d'accord, peut-être) tokenize into pieces
+        return all(p in text_tokens for p in tokenize(lemma))
+    toks = {deaccent(t) for t in text_tokens}
+    lem = deaccent(lemma)
+    if lem in toks:
+        return True
+    for t in toks:
+        t2 = t.rstrip("s").rstrip("e")
+        if t.rstrip("s") == lem or t2 == lem.rstrip("e"):
+            return True
+        if len(t2) >= 2 and t2[-1] == t2[-2] and t2[:-1] == lem:
+            return True  # patronne -> patron, gentille -> gentil
+        if lem.endswith("eux") and t2.endswith("eus") and t2[:-3] == lem[:-3]:
+            return True  # amoureuse -> amoureux
+        # same word family (journée/jour, travailler/travail) — coverage filter,
+        # not a proof; short lemmas guarded against runaway prefixing
+        if len(lem) >= 4 and t.startswith(lem):
+            return True
+        if len(t) >= 5 and lem.startswith(t):
+            return True
+    stems = set(IRREGULAR_STEMS.get(lemma, ()))
+    if lem[-2:] in ("er", "ir", "re") and len(lem) > 4:
+        stem = lem[:-2]
+        stems.add(stem)
+        if len(stem) >= 2 and stem[-1] == stem[-2]:
+            stems.add(stem[:-1])  # promett -> promet, jett -> jet
+    return any(len(s) >= 3 and any(t.startswith(s) for t in toks) for s in stems)
+
+
 def ancestors(nid, nodes_by_id, acc=None):
     if acc is None:
         acc = set()
@@ -251,11 +312,299 @@ def check_sentence(s, nodes_by_id):
     return violations
 
 
+# ---------------------------------------------------------------------------
+# v2 validation (PLAN2 §3.7): schema checks per Learn content type, DAG checks
+# for the new concept nodes against the combined v1+v2 graph, vocab-pack word
+# coverage, and warn-level (not reject) vocabulary checks — per plan, v2 Learn
+# content is best-effort constrained, so structural problems are errors but
+# vocabulary drift is only warned about.
+
+V2_MODULES = ("conjugation", "vocab", "grammar")
+V2_TYPES = {"conjugation", "vocab_pack", "grammar"}
+V2_TENSES = ("present", "passe_compose", "imparfait", "futur_proche")
+V2_PERSONS = ("je", "tu", "il", "on", "vous", "ils")
+
+
+def load_v2_module(module):
+    path = HERE / f"learn_{module}.json"
+    if not path.exists():
+        return None
+    with open(path) as f:
+        return json.load(f)
+
+
+def validate_v2_dag(v1_nodes, v2_nodes):
+    """Combined-graph checks: unique ids, known types, resolvable prereqs, acyclic."""
+    errors = []
+    all_ids = [n["id"] for n in v1_nodes] + [n["id"] for n in v2_nodes]
+    dupes = {i for i in all_ids if all_ids.count(i) > 1}
+    if dupes:
+        errors.append(f"duplicate node ids across v1+v2: {sorted(dupes)}")
+    by_id = {n["id"]: n for n in v1_nodes + v2_nodes}
+    for n in v2_nodes:
+        if n.get("type") not in V2_TYPES:
+            errors.append(f"{n['id']}: unknown v2 type '{n.get('type')}'")
+        for p in n.get("prereq_ids", []):
+            if p not in by_id:
+                errors.append(f"{n['id']}: unknown prereq {p}")
+
+    seen, stack = set(), []
+
+    def visit(nid):
+        if nid in stack:
+            errors.append(f"cycle: {' -> '.join(stack + [nid])}")
+            return
+        if nid in seen or nid not in by_id:
+            return
+        seen.add(nid)
+        stack.append(nid)
+        for p in by_id[nid].get("prereq_ids", []):
+            visit(p)
+        stack.pop()
+
+    for nid in by_id:
+        visit(nid)
+    return errors
+
+
+def v2_base_lexicon(v1_nodes):
+    """Known-word set for warn-level vocab checks: function words + everything
+    that appears in v1 canonical examples and validated v1 sentences."""
+    lex = set(FUNCTION_WORDS)
+    for n in v1_nodes:
+        for ex in n["canonical_examples"]:
+            lex.update(tokenize(ex["formal"]))
+            lex.update(tokenize(ex["street"]))
+        lex.update(CONCEPT_EXTRA_VOCAB.get(n["id"], set()))
+    v1_sentences = HERE / "sentences_validated.json"
+    if v1_sentences.exists():
+        with open(v1_sentences) as f:
+            for s in json.load(f)["sentences"]:
+                lex.update(tokenize(s["french_formal"]))
+                lex.update(tokenize(s["french_street"]))
+    return lex
+
+
+def check_drill_fields(drill, node_id):
+    problems = []
+    for field in ("id", "english", "french_formal", "french_street"):
+        if not str(drill.get(field, "")).strip():
+            problems.append(f"empty {field}")
+    if drill.get("target_concept_id") != node_id:
+        problems.append("target_concept_id != node id")
+    return problems
+
+
+def unknown_tokens(drill, lex, extra):
+    toks = tokenize(drill["french_formal"]) + tokenize(drill["french_street"])
+    return sorted({t for t in toks
+                   if not in_lexicon(t, lex) and not in_lexicon(t, extra)
+                   and not COGNATE.match(t)})
+
+
+def verb_form_tokens(node):
+    """Every token that counts as 'a form of this verb' for drill matching."""
+    forms = set()
+    for tense in V2_TENSES:
+        for cell in node.get("table", {}).get(tense, {}).values():
+            forms.update(tokenize(cell["formal"]))
+            if "street" in cell:
+                forms.update(tokenize(cell["street"]))
+    forms.update(tokenize(node.get("infinitive", "")))
+    forms.update(tokenize(node.get("participle", "")))
+    forms -= {"je", "tu", "il", "on", "vous", "ils", "j", "t"}
+    # être-aux compounds put suis/est/sont in the table; keep them — they are
+    # legitimately part of the paradigm being drilled
+    return forms
+
+
+def validate_v2_conjugation(node, base_lex, report):
+    """Returns kept drills. Structural problems -> errors; vocab -> warnings."""
+    if node.get("family") == "politesse":
+        form_tokens = set()
+        for f in node.get("forms", []):
+            form_tokens.update(tokenize(f["formal"]))
+            form_tokens.update(tokenize(f["street"]))
+        if not node.get("forms"):
+            report["errors"].append(f"{node['id']}: politesse node has no forms")
+    else:
+        for tense in V2_TENSES:
+            missing = [p for p in V2_PERSONS if not node.get("table", {}).get(tense, {}).get(p, {}).get("formal")]
+            if missing:
+                report["errors"].append(f"{node['id']}: table {tense} missing persons {missing}")
+        form_tokens = verb_form_tokens(node)
+
+    kept = []
+    extra = form_tokens | set()
+    for d in node.get("drills", []):
+        problems = check_drill_fields(d, node["id"])
+        toks = set(tokenize(d["french_formal"])) | set(tokenize(d["french_street"]))
+        if form_tokens and not toks & form_tokens:
+            problems.append("no form of the target verb in the French text")
+        if problems:
+            report["dropped"].append({"id": d.get("id", "?"), "reasons": problems,
+                                      "french_formal": d.get("french_formal", "")})
+            continue
+        unk = unknown_tokens(d, base_lex, extra)
+        if unk:
+            report["warnings"].append(f"{d['id']}: vocabulary outside known set: {unk}")
+        kept.append(d)
+    if len(kept) < 15 and node.get("family") != "politesse":
+        report["errors"].append(f"{node['id']}: only {len(kept)} valid drills (need >= 15) — regenerate with --force")
+    return kept
+
+
+def validate_v2_vocab(node, base_lex, report):
+    words = node.get("words", [])
+    if len(words) != 25:
+        report["errors"].append(f"{node['id']}: {len(words)} words (expected 25)")
+    for w in words:
+        if not w.get("lemma", "").strip() or not w.get("english", "").strip():
+            report["errors"].append(f"{node['id']}: word {w.get('id')} missing lemma/gloss")
+
+    kept = []
+    pack_lemmas = {w["lemma"] for w in words}
+    for d in node.get("drills", []):
+        problems = check_drill_fields(d, node["id"])
+        toks = set(tokenize(d["french_formal"])) | set(tokenize(d["french_street"]))
+        claimed = [w for w in d.get("target_words", []) if w in pack_lemmas]
+        if not any(lemma_in_text(w, toks) for w in claimed):
+            problems.append("no claimed pack word found in the French text")
+        if problems:
+            report["dropped"].append({"id": d.get("id", "?"), "reasons": problems,
+                                      "french_formal": d.get("french_formal", "")})
+            continue
+        unk = unknown_tokens(d, base_lex, pack_lemmas)
+        if unk:
+            report["warnings"].append(f"{d['id']}: vocabulary outside known set: {unk}")
+        kept.append(d)
+
+    for w in words:
+        n = sum(1 for d in kept
+                if lemma_in_text(w["lemma"], set(tokenize(d["french_formal"])) | set(tokenize(d["french_street"]))))
+        if n < 2:
+            report["errors"].append(f"{node['id']}: '{w['lemma']}' covered by {n} drill(s) "
+                                    f"(need >= 2) — regenerate with --force")
+    return kept
+
+
+def validate_v2_grammar(node, base_lex, report):
+    n_words = len(node.get("explanation", "").split())
+    if n_words > 260:
+        report["errors"].append(f"{node['id']}: explanation {n_words} words (spec <= 200)")
+    elif n_words > 200:
+        report["warnings"].append(f"{node['id']}: explanation {n_words} words (spec <= 200)")
+    n_ex = len(node.get("canonical_examples", []))
+    if not 6 <= n_ex <= 8:
+        report["errors"].append(f"{node['id']}: {n_ex} canonical examples (spec 6-8)")
+    example_tokens = set()
+    for ex in node.get("canonical_examples", []):
+        for field in ("english", "formal", "street"):
+            if not ex.get(field, "").strip():
+                report["errors"].append(f"{node['id']}: canonical example missing {field}")
+        example_tokens.update(tokenize(ex.get("formal", "")))
+        example_tokens.update(tokenize(ex.get("street", "")))
+
+    kept = []
+    for d in node.get("drills", []):
+        problems = check_drill_fields(d, node["id"])
+        if problems:
+            report["dropped"].append({"id": d.get("id", "?"), "reasons": problems,
+                                      "french_formal": d.get("french_formal", "")})
+            continue
+        unk = unknown_tokens(d, base_lex, example_tokens)
+        if unk:
+            report["warnings"].append(f"{d['id']}: vocabulary outside known set: {unk}")
+        kept.append(d)
+    if len(kept) < 18:
+        report["errors"].append(f"{node['id']}: only {len(kept)} valid drills (spec 20) — regenerate with --force")
+    return kept
+
+
+def validate_v2(strict):
+    with open(HERE / "graph.json") as f:
+        graph = json.load(f)
+    graph_errors = validate_graph(graph)
+    if graph_errors:
+        print("V1 GRAPH ERRORS:")
+        for e in graph_errors:
+            print(f"  - {e}")
+        sys.exit(1)
+
+    checkers = {"conjugation": validate_v2_conjugation,
+                "vocab": validate_v2_vocab,
+                "grammar": validate_v2_grammar}
+    base_lex = v2_base_lexicon(graph["nodes"])
+    full_report, any_errors = {}, False
+    all_v2_nodes = []
+    module_data = {}
+    for module in V2_MODULES:
+        data = load_v2_module(module)
+        if data is None:
+            print(f"learn_{module}.json not found — skipped")
+            continue
+        module_data[module] = data
+        all_v2_nodes.extend(data["nodes"])
+
+    dag_errors = validate_v2_dag(graph["nodes"], all_v2_nodes)
+    if dag_errors:
+        any_errors = True
+        print("V2 DAG ERRORS:")
+        for e in dag_errors:
+            print(f"  - {e}")
+    elif all_v2_nodes:
+        print(f"combined DAG OK ({len(graph['nodes'])} v1 + {len(all_v2_nodes)} v2 nodes)")
+
+    for module, data in module_data.items():
+        report = {"errors": [], "warnings": [], "dropped": []}
+        validated_nodes = []
+        drills_kept = 0
+        for node in data["nodes"]:
+            kept = checkers[module](node, base_lex, report)
+            vn = dict(node)
+            vn["drills"] = kept
+            drills_kept += len(kept)
+            validated_nodes.append(vn)
+
+        out_path = HERE / f"learn_{module}_validated.json"
+        with open(out_path, "w") as f:
+            json.dump({"version": data.get("version", 2), "nodes": validated_nodes},
+                      f, ensure_ascii=False, indent=2)
+
+        full_report[module] = {
+            "nodes": len(validated_nodes),
+            "drills_kept": drills_kept,
+            "drills_dropped": len(report["dropped"]),
+            **report,
+        }
+        any_errors = any_errors or bool(report["errors"])
+        print(f"{module}: {len(validated_nodes)} nodes, {drills_kept} drills kept, "
+              f"{len(report['dropped'])} dropped, {len(report['errors'])} errors, "
+              f"{len(report['warnings'])} warnings -> {out_path.name}")
+        for e in report["errors"][:5]:
+            print(f"  ERROR {e}")
+        for w in report["warnings"][:5]:
+            print(f"  warn  {w}")
+
+    full_report["dag_errors"] = dag_errors
+    with open(HERE / "validation_report_v2.json", "w") as f:
+        json.dump(full_report, f, ensure_ascii=False, indent=2)
+    print("full detail in validation_report_v2.json")
+    if any_errors and strict:
+        sys.exit(1)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--strict", action="store_true", help="exit 1 on any rejection")
+    ap.add_argument("--v2", action="store_true",
+                    help="validate v2 Learn content (learn_*.json) instead of v1 sentences")
     ap.add_argument("--sentences", default=HERE / "sentences.json", type=Path)
     args = ap.parse_args()
+
+    if args.v2:
+        validate_v2(args.strict)
+        return
 
     with open(HERE / "graph.json") as f:
         graph = json.load(f)

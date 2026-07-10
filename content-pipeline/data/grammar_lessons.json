@@ -1,0 +1,207 @@
+{
+  "comment": "Lesson specs for the v2 Learn/Grammar module (PLAN2 §3.3). NOTE: PLAN2 says '15 lessons' but enumerates 14 — gram_demonstratives_possessives was added as the 15th (flagged for review). prereq_ids may reference v1 graph.json ids (soft recommendations, validated against the combined DAG). 'focus' bullets steer the generation prompt.",
+  "lessons": [
+    {
+      "id": "gram_gender_articles",
+      "title": "Gender & articles: le, la, un, une",
+      "tier": 0,
+      "prereq_ids": ["cest"],
+      "focus": [
+        "Every noun is le or la — learn the article as part of the word, never the bare noun",
+        "un/une, le/la/les, and l' before vowels",
+        "Ending patterns that predict gender: -tion/-sion/-té → la; -age/-ment/-eau → le (with the famous exceptions kept light)",
+        "Getting gender wrong is a shrug, not a catastrophe — French people do not stop understanding you"
+      ],
+      "street_angle": "Articles never drop in street French — t'as vu la meuf, j'ai pris le métro. The article is glued to the noun at any speed."
+    },
+    {
+      "id": "gram_plurals_agreement",
+      "title": "Plurals & adjective agreement",
+      "tier": 1,
+      "prereq_ids": ["gram_gender_articles"],
+      "focus": [
+        "Written -s is silent — les/des/mes carry the plural in speech, not the noun",
+        "Adjectives agree: petit/petite/petits/petites — but most agreement is inaudible",
+        "The audible cases: petit/petite, bon/bonne, blanc/blanche — final consonant wakes up in the feminine",
+        "des before the noun: des amis, des trucs"
+      ],
+      "street_angle": "Spoken French marks plural almost entirely on the article — train the ear on le/les and un/des contrasts at speed."
+    },
+    {
+      "id": "gram_adjective_placement",
+      "title": "Adjective placement: before or after?",
+      "tier": 1,
+      "prereq_ids": ["gram_gender_articles"],
+      "focus": [
+        "Default: adjective AFTER the noun — un café noir, une question difficile (opposite of English)",
+        "The small before-club: bon, petit, grand, gros, beau, jeune, vieux, nouveau, mauvais",
+        "un petit café, une bonne idée — the before-club words are the highest-frequency adjectives",
+        "Meaning shifts (un grand homme vs un homme grand) mentioned once, not drilled"
+      ],
+      "street_angle": "Street French loves the before-club as intensifiers: un gros problème, une petite question, un vrai galère."
+    },
+    {
+      "id": "gram_prepositions",
+      "title": "Prepositions: à, de, en, au, chez",
+      "tier": 1,
+      "prereq_ids": ["aller_places"],
+      "focus": [
+        "à + le → au, à + les → aux (mandatory contraction): au café, aux toilettes",
+        "de + le → du, de + les → des: le menu du jour",
+        "en + feminine countries / à + cities: en France, à Paris",
+        "chez = at someone's place or business: chez moi, chez le médecin",
+        "The workhorse pairs: à for direction/location, de for origin/possession"
+      ],
+      "street_angle": "Prepositions survive intact in street French but glue into the flow: j'suis chez moi, on va au bar."
+    },
+    {
+      "id": "gram_questions_deep",
+      "title": "Question forms: the full toolkit",
+      "tier": 1,
+      "prereq_ids": ["questions_intonation"],
+      "focus": [
+        "Intonation questions are the spoken default: tu viens ? c'est bon ?",
+        "Question word at the END in casual speech: tu fais quoi ? il arrive quand ? c'est où ?",
+        "est-ce que as the neutral register: est-ce que tu viens ?",
+        "Question words: quoi, où, quand, qui, comment, pourquoi, combien",
+        "Inversion (viens-tu ?) is recognition-only — hear it, never forced to produce it"
+      ],
+      "street_angle": "Street French puts the question word last and rides intonation: c'est qui lui ? tu pars quand ? ça coûte combien ?"
+    },
+    {
+      "id": "gram_negation_variants",
+      "title": "Beyond pas: jamais, rien, plus, personne",
+      "tier": 2,
+      "prereq_ids": ["negation_pas"],
+      "focus": [
+        "Same slot as pas: je (ne) ... jamais/rien/plus/personne",
+        "jamais = never, rien = nothing, plus = no more/anymore, personne = nobody",
+        "The ne drops in speech exactly like with pas: j'ai rien dit, il vient jamais, y'a personne",
+        "plus meaning 'no more' has a silent s — j'en peux plus",
+        "rien and personne can be subjects: personne (ne) sait"
+      ],
+      "street_angle": "Ne-drop is the rule for all of these: j'ai rien fait, j'y vais plus, y'a jamais personne ici."
+    },
+    {
+      "id": "gram_object_pronoun_order",
+      "title": "Object pronoun order: me le, te la, le lui",
+      "tier": 2,
+      "prereq_ids": ["dobj_pronouns", "iobj_pronouns"],
+      "focus": [
+        "When two pronouns stack: me/te/nous/vous come before le/la/les — tu me le donnes",
+        "But le/la/les come before lui/leur — je le lui dis",
+        "All of it sits before the verb: il me l'a dit",
+        "Keep examples to the high-frequency combos: me le, te le, le lui, me l'a, te l'a"
+      ],
+      "street_angle": "Fast speech crushes the cluster: tu me le donnes → tu m'le donnes, je te l'ai dit → j't'l'ai dit (recognition first, production second)."
+    },
+    {
+      "id": "gram_y_en_deep",
+      "title": "y & en: the two little pronouns, deep dive",
+      "tier": 2,
+      "prereq_ids": ["y_en"],
+      "focus": [
+        "y replaces à + thing/place: j'y vais, j'y pense",
+        "en replaces de + thing and quantities: j'en veux deux, j'en ai marre",
+        "en with numbers and quantity words: il y en a trois, j'en ai plein",
+        "Fixed expressions that live on y/en: ça y est, j'en peux plus, on y va, t'en fais pas"
+      ],
+      "street_angle": "y'a / y'en a are the street existentials: y'en a plus, y'a rien. These chunks are heard dozens of times a day."
+    },
+    {
+      "id": "gram_comparatives",
+      "title": "Comparatives & superlatives: plus, moins, aussi",
+      "tier": 2,
+      "prereq_ids": ["cest"],
+      "focus": [
+        "plus ... que / moins ... que / aussi ... que: c'est plus cher qu'à Paris",
+        "The irregulars: bon → meilleur, bien → mieux (c'est mieux, c'est meilleur)",
+        "Superlative = le/la plus + adjective: le plus simple, la moins chère",
+        "plus before a vowel or as 'more' sounds the s (plus intéressant); 'no more' plus is silent"
+      ],
+      "street_angle": "Street comparisons lean on c'est: c'est mieux, c'est moins cher, c'est carrément plus simple."
+    },
+    {
+      "id": "gram_imperatives",
+      "title": "Imperatives: commands without a subject",
+      "tier": 2,
+      "prereq_ids": [],
+      "focus": [
+        "Drop the subject: tu viens → viens ! vous attendez → attendez !",
+        "-er verbs lose the s in tu-form: tu manges → mange !",
+        "Pronouns attach after with a hyphen: donne-moi, dis-moi, attends-moi",
+        "Negative commands: (ne) touche pas, t'inquiète pas",
+        "Softeners: s'il te plaît / s'il vous plaît, vas-y"
+      ],
+      "street_angle": "Street commands are everywhere: vas-y, attends, arrête, laisse tomber, t'inquiète (the pas drops too)."
+    },
+    {
+      "id": "gram_reflexives_deep",
+      "title": "Reflexive verbs: the daily-routine engine",
+      "tier": 3,
+      "prereq_ids": ["reflexives"],
+      "focus": [
+        "me/te/se/nous/vous before the verb: je me lève, on se voit",
+        "The daily routine set: se lever, se doucher, s'habiller, se coucher, se réveiller",
+        "The social set: se voir, s'appeler, se retrouver, se parler",
+        "Passé composé with être: je me suis levé(e), on s'est vus",
+        "Reciprocal meaning: on se voit demain = we'll see each other tomorrow"
+      ],
+      "street_angle": "je me → j'me is near-universal: j'me lève, j'me casse, j'm'en fous. The e of me almost never survives."
+    },
+    {
+      "id": "gram_partitives",
+      "title": "Partitives: du, de la, des — 'some'",
+      "tier": 2,
+      "prereq_ids": ["gram_gender_articles"],
+      "focus": [
+        "du pain, de la bière, des frites — French requires the 'some' word, English drops it",
+        "After negation everything collapses to de: j'ai pas de pain, y'a plus de café",
+        "After quantities also de: beaucoup de monde, un peu de temps, trop de trucs",
+        "The café/market frame: je prends du café, je voudrais de l'eau"
+      ],
+      "street_angle": "Partitives never drop in street French — j'veux du pain, y'a plus d'lait. The d' glues into the noun at speed."
+    },
+    {
+      "id": "gram_il_faut",
+      "title": "il faut & impersonal expressions",
+      "tier": 2,
+      "prereq_ids": ["devoir_inf"],
+      "focus": [
+        "il faut + infinitive = you have to / one must: il faut partir, il faut voir",
+        "il faut + noun = we need: il faut du temps, il faut une réservation",
+        "The impersonal family: il vaut mieux (better to), ça prend (it takes), il reste (there's left)",
+        "faut is softer and more common than tu dois for advice"
+      ],
+      "street_angle": "The il drops: faut partir, faut voir, faut pas faire ça, fallait le dire — 'faut' alone is the spoken norm."
+    },
+    {
+      "id": "gram_time_date",
+      "title": "Time & date expressions",
+      "tier": 1,
+      "prereq_ids": [],
+      "focus": [
+        "Telling time: il est trois heures, et demie, moins le quart; the 24h clock for schedules (quatorze heures trente)",
+        "Days and months are lowercase and article-free: lundi, en janvier",
+        "The anchor words: aujourd'hui, demain, hier, ce soir, ce matin, la semaine prochaine",
+        "à + time for appointments: à huit heures, à demain",
+        "depuis for ongoing duration: j'habite ici depuis deux ans"
+      ],
+      "street_angle": "Time chunks compress: à toute (see you soon), à demain, c'est quand ? — schedule talk is chunk territory."
+    },
+    {
+      "id": "gram_demonstratives_possessives",
+      "title": "Pointing & owning: ce, cette, mon, ton, son",
+      "tier": 1,
+      "prereq_ids": ["gram_gender_articles"],
+      "focus": [
+        "ce/cette/ces = this/that/these: ce truc, cette table, ces gens (cet before vowels: cet après-midi)",
+        "Possessives track the OWNED noun's gender, not the owner: sa voiture = his OR her car",
+        "mon/ma/mes, ton/ta/tes, son/sa/ses; notre/votre/leur kept light",
+        "mon before feminine vowel-nouns: mon amie",
+        "-là for pointing contrast: ce truc-là, cette table-là"
+      ],
+      "street_angle": "ce mec, cette meuf, ce truc-là — demonstratives are the backbone of street pointing-and-commenting."
+    }
+  ]
+}

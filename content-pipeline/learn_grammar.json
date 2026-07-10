@@ -1,0 +1,4337 @@
+{
+  "version": 2,
+  "nodes": [
+    {
+      "id": "gram_gender_articles",
+      "type": "grammar",
+      "tier": 0,
+      "prereq_ids": [
+        "cest"
+      ],
+      "title": "Gender & articles: le, la, un, une",
+      "explanation": "Here's the one rule that changes everything: French nouns don't come naked. Every noun arrives with its article glued to it — le café, la rue, un film, une idée. You're not learning café, you're learning le café. Do that from the start and gender never becomes a problem to solve later. Now, how do you know which one? The ending of the word gives you a strong hint. If it ends in -tion, -sion, or -té — think situation, solution, liberté — it's feminine, so it's la. Those -tion words you already know from cognate bridges? All la. Words ending in -age, -ment, or -eau tend to be masculine — le message, le moment, le gâteau. Not perfect, but it gets you right most of the time. And when you're wrong? Genuinely no catastrophe — a French person will understand you, maybe not even notice. Now here's the street angle: unlike English, French never drops the article. You can drop ne, you can drop the subject sometimes, but the article stays — it's glued on at any speed. T'as vu la meuf? J'ai pris le métro. The article is always there. So own it, stick it on, and keep going.",
+      "canonical_examples": [
+        {
+          "english": "The situation is not good.",
+          "formal": "La situation n'est pas bonne.",
+          "street": "La situation, c'est pas bon."
+        },
+        {
+          "english": "I want a coffee.",
+          "formal": "Je veux un café.",
+          "street": "J'veux un café."
+        },
+        {
+          "english": "It's the solution.",
+          "formal": "C'est la solution.",
+          "street": "C'est la solution."
+        },
+        {
+          "english": "I took the metro.",
+          "formal": "J'ai pris le métro.",
+          "street": "J'ai pris le métro."
+        },
+        {
+          "english": "Do you want a table?",
+          "formal": "Est-ce que tu veux une table ?",
+          "street": "Tu veux une table ?"
+        },
+        {
+          "english": "The message is important.",
+          "formal": "Le message est important.",
+          "street": "Le message, c'est important."
+        },
+        {
+          "english": "Did you see the girl who speaks French?",
+          "formal": "Tu as vu la fille qui parle français ?",
+          "street": "T'as vu la fille qui parle français ?"
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_gender_articles_001",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "gender_articles",
+            "gram_gender_articles"
+          ],
+          "english": "the coffee",
+          "french_formal": "le café",
+          "french_street": "le café"
+        },
+        {
+          "id": "gram_gender_articles_002",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "cognate_bridges",
+            "gender_articles",
+            "gram_gender_articles"
+          ],
+          "english": "a solution",
+          "french_formal": "une solution",
+          "french_street": "une solution"
+        },
+        {
+          "id": "gram_gender_articles_003",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "cognate_bridges",
+            "gender_articles",
+            "gram_gender_articles"
+          ],
+          "english": "the situation",
+          "french_formal": "la situation",
+          "french_street": "la situation"
+        },
+        {
+          "id": "gram_gender_articles_004",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "gender_articles",
+            "gram_gender_articles"
+          ],
+          "english": "a message",
+          "french_formal": "un message",
+          "french_street": "un message"
+        },
+        {
+          "id": "gram_gender_articles_005",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "gender_articles",
+            "gram_gender_articles",
+            "je_veux"
+          ],
+          "english": "I want a coffee.",
+          "french_formal": "Je veux un café.",
+          "french_street": "J'veux un café."
+        },
+        {
+          "id": "gram_gender_articles_006",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "cest",
+            "cognate_bridges",
+            "gender_articles",
+            "gram_gender_articles"
+          ],
+          "english": "It's a possibility.",
+          "french_formal": "C'est une possibilité.",
+          "french_street": "C'est une possibilité."
+        },
+        {
+          "id": "gram_gender_articles_007",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "gender_articles",
+            "gram_gender_articles",
+            "on_for_nous",
+            "vouloir_present"
+          ],
+          "english": "We want a table.",
+          "french_formal": "Nous voulons une table.",
+          "french_street": "On veut une table."
+        },
+        {
+          "id": "gram_gender_articles_008",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "cest",
+            "gender_articles",
+            "gram_gender_articles",
+            "negation_pas"
+          ],
+          "english": "The metro is not possible.",
+          "french_formal": "Le métro n'est pas possible.",
+          "french_street": "Le métro, c'est pas possible."
+        },
+        {
+          "id": "gram_gender_articles_009",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "gender_articles",
+            "gram_gender_articles",
+            "pouvoir_inf"
+          ],
+          "english": "I can pay the bill.",
+          "french_formal": "Je peux payer l'addition.",
+          "french_street": "J'peux payer l'addition."
+        },
+        {
+          "id": "gram_gender_articles_010",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "connected_speech",
+            "gender_articles",
+            "gram_gender_articles",
+            "pc_avoir"
+          ],
+          "english": "Did you see the film?",
+          "french_formal": "Est-ce que tu as vu le film ?",
+          "french_street": "T'as vu le film ?"
+        },
+        {
+          "id": "gram_gender_articles_011",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "aller_places",
+            "gender_articles",
+            "gram_gender_articles",
+            "on_for_nous"
+          ],
+          "english": "We're going to the beach.",
+          "french_formal": "Nous allons à la plage.",
+          "french_street": "On va à la plage."
+        },
+        {
+          "id": "gram_gender_articles_012",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "gender_articles",
+            "gram_gender_articles",
+            "negation_pas"
+          ],
+          "english": "The moment is not right.",
+          "french_formal": "Le moment n'est pas bon.",
+          "french_street": "Le moment, c'est pas bon."
+        },
+        {
+          "id": "gram_gender_articles_013",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gender_articles",
+            "gram_gender_articles",
+            "je_veux"
+          ],
+          "english": "I want it. (the coffee — masculine)",
+          "french_formal": "Je le veux.",
+          "french_street": "J'le veux."
+        },
+        {
+          "id": "gram_gender_articles_014",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gender_articles",
+            "gram_gender_articles",
+            "je_veux"
+          ],
+          "english": "I want it. (the solution — feminine)",
+          "french_formal": "Je la veux.",
+          "french_street": "J'la veux."
+        },
+        {
+          "id": "gram_gender_articles_015",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "chunks_fillers",
+            "gender_articles",
+            "gram_gender_articles",
+            "questions_intonation"
+          ],
+          "english": "So, the situation is serious?",
+          "french_formal": "Donc, la situation est grave ?",
+          "french_street": "Du coup, la situation c'est grave ?"
+        },
+        {
+          "id": "gram_gender_articles_016",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "gender_articles",
+            "gram_gender_articles",
+            "pc_avoir",
+            "relatives_qui_que"
+          ],
+          "english": "It's the film I saw.",
+          "french_formal": "C'est le film que j'ai vu.",
+          "french_street": "C'est le film qu'j'ai vu."
+        },
+        {
+          "id": "gram_gender_articles_017",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "devoir_inf",
+            "gender_articles",
+            "gram_gender_articles"
+          ],
+          "english": "I have to take the metro.",
+          "french_formal": "Je dois prendre le métro.",
+          "french_street": "J'dois prendre le métro."
+        },
+        {
+          "id": "gram_gender_articles_018",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "conditional_softeners",
+            "gender_articles",
+            "gram_gender_articles"
+          ],
+          "english": "I'd like a coffee.",
+          "french_formal": "Je voudrais un café.",
+          "french_street": "J'voudrais un café."
+        },
+        {
+          "id": "gram_gender_articles_019",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "cognate_bridges",
+            "connected_speech",
+            "gender_articles",
+            "gram_gender_articles"
+          ],
+          "english": "There's a solution.",
+          "french_formal": "Il y a une solution.",
+          "french_street": "Y'a une solution."
+        },
+        {
+          "id": "gram_gender_articles_020",
+          "target_concept_id": "gram_gender_articles",
+          "concept_ids": [
+            "connected_speech",
+            "gender_articles",
+            "gram_gender_articles",
+            "pc_avoir",
+            "relatives_qui_que"
+          ],
+          "english": "The girl who speaks French — did you see her?",
+          "french_formal": "La fille qui parle français, est-ce que tu l'as vue ?",
+          "french_street": "La fille qui parle français, t'as vu ?"
+        }
+      ]
+    },
+    {
+      "id": "gram_plurals_agreement",
+      "type": "grammar",
+      "tier": 1,
+      "prereq_ids": [
+        "gram_gender_articles"
+      ],
+      "title": "Plurals & adjective agreement",
+      "explanation": "Here's something that will save you a lot of worry. In spoken French, the plural -s on a noun is completely silent. You will never hear it. What carries the plural for you is the article — le becomes les, un becomes des. That's it. Les amis, des trucs — the noun itself sounds exactly the same as singular. Train your ear on that article swap and you've got plural. Now adjectives do agree in gender and number in writing, but most of the time you can't hear it either — les petits cafés and le petit café sound identical on the adjective. The audible cases are the ones to lock in: petit sounds like puh-TEE, but petite wakes up that final T — puh-TEET. Same logic with bon and bonne — the N is silent in the masculine, alive in the feminine. Blanc, blanche — the C and the SH appear out of nowhere in the feminine. So the rule of thumb is this: the final consonant of an adjective is sleeping in the masculine and wakes up in the feminine. On the street, plural is almost entirely carried by les versus le, des versus un. Get those article swaps clicking at speed and you sound natural straight away.",
+      "canonical_examples": [
+        {
+          "english": "I want some friends.",
+          "formal": "Je veux des amis.",
+          "street": "J'veux des amis."
+        },
+        {
+          "english": "It's not a big deal.",
+          "formal": "Ce n'est pas grave.",
+          "street": "C'est pas grave."
+        },
+        {
+          "english": "The small coffees are good.",
+          "formal": "Les petits cafés sont bons.",
+          "street": "Les petits cafés sont bons."
+        },
+        {
+          "english": "She's a good friend.",
+          "formal": "C'est une bonne amie.",
+          "street": "C'est une bonne amie."
+        },
+        {
+          "english": "I saw some white things.",
+          "formal": "J'ai vu des trucs blancs.",
+          "street": "J'ai vu des trucs blancs."
+        },
+        {
+          "english": "We're going to eat some small things.",
+          "formal": "Nous allons manger des petites choses.",
+          "street": "On va manger des petites choses."
+        },
+        {
+          "english": "It's not the same, the white table and the white tables.",
+          "formal": "Ce n'est pas pareil, la table blanche et les tables blanches.",
+          "street": "C'est pas pareil, la table blanche et les tables blanches."
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_plurals_agreement_001",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "gram_plurals_agreement"
+          ],
+          "english": "some friends",
+          "french_formal": "des amis",
+          "french_street": "des amis"
+        },
+        {
+          "id": "gram_plurals_agreement_002",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "gram_plurals_agreement"
+          ],
+          "english": "the small coffees",
+          "french_formal": "les petits cafés",
+          "french_street": "les petits cafés"
+        },
+        {
+          "id": "gram_plurals_agreement_003",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "cest",
+            "gram_plurals_agreement"
+          ],
+          "english": "It's a good thing.",
+          "french_formal": "C'est une bonne chose.",
+          "french_street": "C'est une bonne chose."
+        },
+        {
+          "id": "gram_plurals_agreement_004",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "gram_plurals_agreement"
+          ],
+          "english": "some good things",
+          "french_formal": "des bonnes choses",
+          "french_street": "des bonnes choses"
+        },
+        {
+          "id": "gram_plurals_agreement_005",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "cest",
+            "gram_plurals_agreement",
+            "negation_pas"
+          ],
+          "english": "It's not small.",
+          "french_formal": "Ce n'est pas petit.",
+          "french_street": "C'est pas petit."
+        },
+        {
+          "id": "gram_plurals_agreement_006",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "gram_plurals_agreement"
+          ],
+          "english": "She's small.",
+          "french_formal": "Elle est petite.",
+          "french_street": "Elle est petite."
+        },
+        {
+          "id": "gram_plurals_agreement_007",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "gram_plurals_agreement",
+            "je_veux"
+          ],
+          "english": "I want some good coffees.",
+          "french_formal": "Je veux des bons cafés.",
+          "french_street": "J'veux des bons cafés."
+        },
+        {
+          "id": "gram_plurals_agreement_008",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "gram_plurals_agreement"
+          ],
+          "english": "the white tables",
+          "french_formal": "les tables blanches",
+          "french_street": "les tables blanches"
+        },
+        {
+          "id": "gram_plurals_agreement_009",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "cest",
+            "gram_plurals_agreement",
+            "negation_pas"
+          ],
+          "english": "It's not the same thing.",
+          "french_formal": "Ce n'est pas la même chose.",
+          "french_street": "C'est pas la même chose."
+        },
+        {
+          "id": "gram_plurals_agreement_010",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "gram_plurals_agreement",
+            "on_for_nous",
+            "pouvoir_inf"
+          ],
+          "english": "We can eat some good things.",
+          "french_formal": "Nous pouvons manger des bonnes choses.",
+          "french_street": "On peut manger des bonnes choses."
+        },
+        {
+          "id": "gram_plurals_agreement_011",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_plurals_agreement",
+            "pc_avoir"
+          ],
+          "english": "I saw the white tables.",
+          "french_formal": "J'ai vu les tables blanches.",
+          "french_street": "J'ai vu les tables blanches."
+        },
+        {
+          "id": "gram_plurals_agreement_012",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_plurals_agreement",
+            "je_veux"
+          ],
+          "english": "I want them. (the small ones, feminine)",
+          "french_formal": "Je les veux, les petites.",
+          "french_street": "J'les veux, les petites."
+        },
+        {
+          "id": "gram_plurals_agreement_013",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "connected_speech",
+            "gram_plurals_agreement",
+            "pc_avoir",
+            "questions_intonation"
+          ],
+          "english": "Did you finish the small coffees?",
+          "french_formal": "Est-ce que tu as fini les petits cafés ?",
+          "french_street": "T'as fini les petits cafés ?"
+        },
+        {
+          "id": "gram_plurals_agreement_014",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "cest",
+            "chunks_reactions",
+            "gram_plurals_agreement"
+          ],
+          "english": "It's totally good.",
+          "french_formal": "C'est vraiment bon.",
+          "french_street": "C'est carrément bon."
+        },
+        {
+          "id": "gram_plurals_agreement_015",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "futur_proche",
+            "gram_plurals_agreement",
+            "on_for_nous"
+          ],
+          "english": "We're going to see some good films.",
+          "french_formal": "Nous allons voir des bons films.",
+          "french_street": "On va voir des bons films."
+        },
+        {
+          "id": "gram_plurals_agreement_016",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "cest",
+            "cognate_bridges",
+            "gram_plurals_agreement"
+          ],
+          "english": "It's the good solution, the white one.",
+          "french_formal": "C'est la bonne solution, la blanche.",
+          "french_street": "C'est la bonne solution, la blanche."
+        },
+        {
+          "id": "gram_plurals_agreement_017",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "connected_speech",
+            "gram_plurals_agreement",
+            "negation_pas"
+          ],
+          "english": "I don't know the small ones.",
+          "french_formal": "Je ne connais pas les petits.",
+          "french_street": "Chais pas les petits."
+        },
+        {
+          "id": "gram_plurals_agreement_018",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "gram_plurals_agreement",
+            "je_veux",
+            "relatives_qui_que"
+          ],
+          "english": "It's the good ones that I want.",
+          "french_formal": "Ce sont les bonnes que je veux.",
+          "french_street": "C'est les bonnes qu'je veux."
+        },
+        {
+          "id": "gram_plurals_agreement_019",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "devoir_inf",
+            "gram_plurals_agreement",
+            "on_for_nous"
+          ],
+          "english": "We have to pay for the white tables.",
+          "french_formal": "Nous devons payer pour les tables blanches.",
+          "french_street": "On doit payer pour les tables blanches."
+        },
+        {
+          "id": "gram_plurals_agreement_020",
+          "target_concept_id": "gram_plurals_agreement",
+          "concept_ids": [
+            "chunks_fillers",
+            "gram_plurals_agreement",
+            "imparfait_vs_pc"
+          ],
+          "english": "So, it was a good small thing.",
+          "french_formal": "Donc, c'était une bonne petite chose.",
+          "french_street": "Du coup, c'était une bonne petite chose."
+        }
+      ]
+    },
+    {
+      "id": "gram_adjective_placement",
+      "type": "grammar",
+      "tier": 1,
+      "prereq_ids": [
+        "gram_gender_articles"
+      ],
+      "title": "Adjective placement: before or after?",
+      "explanation": "Here's the big reversal from English: in French, adjectives almost always go after the noun. So 'a black coffee' becomes un café noir — the colour lands after. 'A difficult question' is une question difficile. Just flip your English instinct and you're already right ninety percent of the time. Now, there's a small VIP club of adjectives that insist on going before the noun — think of them as the highest-frequency words, the ones you'll use every single day: bon, petit, grand, gros, beau, jeune, vieux, nouveau, mauvais. So it's une bonne idée, un petit café, un vieux film. You'll hear these constantly. One thing worth knowing: a handful of these words can shift meaning depending on position — un grand homme means a great man, but un homme grand just means a tall man. Don't stress that for now, just notice it exists. The really fun part is street French — people use the before-club words as intensifiers all the time. C'est un gros problème. T'as une petite question ? C'est une vraie galère. That gros isn't about size, it's about emphasis. Same energy as 'major problem' in English. Once you feel that, you sound instantly more natural.",
+      "canonical_examples": [
+        {
+          "english": "A black coffee.",
+          "formal": "Un café noir.",
+          "street": "Un café noir."
+        },
+        {
+          "english": "It's a good idea.",
+          "formal": "C'est une bonne idée.",
+          "street": "C'est une bonne idée."
+        },
+        {
+          "english": "It's a big problem.",
+          "formal": "C'est un gros problème.",
+          "street": "C'est un gros problème."
+        },
+        {
+          "english": "I want a small coffee.",
+          "formal": "Je veux un petit café.",
+          "street": "J'veux un petit café."
+        },
+        {
+          "english": "She's a great woman.",
+          "formal": "C'est une grande femme.",
+          "street": "C'est une grande femme."
+        },
+        {
+          "english": "Do you have a difficult question?",
+          "formal": "Est-ce que tu as une question difficile ?",
+          "street": "T'as une question difficile ?"
+        },
+        {
+          "english": "It's a real nightmare, I don't know.",
+          "formal": "C'est une vraie galère, je ne sais pas.",
+          "street": "C'est une vraie galère, chais pas."
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_adjective_placement_001",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "cognate_bridges",
+            "gram_adjective_placement"
+          ],
+          "english": "a good solution",
+          "french_formal": "une bonne solution",
+          "french_street": "une bonne solution"
+        },
+        {
+          "id": "gram_adjective_placement_002",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "gram_adjective_placement"
+          ],
+          "english": "a black coffee",
+          "french_formal": "un café noir",
+          "french_street": "un café noir"
+        },
+        {
+          "id": "gram_adjective_placement_003",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "cognate_bridges",
+            "gram_adjective_placement"
+          ],
+          "english": "a difficult situation",
+          "french_formal": "une situation difficile",
+          "french_street": "une situation difficile"
+        },
+        {
+          "id": "gram_adjective_placement_004",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "gram_adjective_placement"
+          ],
+          "english": "a small problem",
+          "french_formal": "un petit problème",
+          "french_street": "un petit problème"
+        },
+        {
+          "id": "gram_adjective_placement_005",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "cest",
+            "gram_adjective_placement"
+          ],
+          "english": "It's a good idea.",
+          "french_formal": "C'est une bonne idée.",
+          "french_street": "C'est une bonne idée."
+        },
+        {
+          "id": "gram_adjective_placement_006",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "cest",
+            "gram_adjective_placement",
+            "negation_pas"
+          ],
+          "english": "It's not a bad idea.",
+          "french_formal": "Ce n'est pas une mauvaise idée.",
+          "french_street": "C'est pas une mauvaise idée."
+        },
+        {
+          "id": "gram_adjective_placement_007",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "gram_adjective_placement",
+            "je_veux"
+          ],
+          "english": "I want a small coffee.",
+          "french_formal": "Je veux un petit café.",
+          "french_street": "J'veux un petit café."
+        },
+        {
+          "id": "gram_adjective_placement_008",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "cognate_bridges",
+            "gram_adjective_placement",
+            "je_veux"
+          ],
+          "english": "I want the new solution.",
+          "french_formal": "Je veux la nouvelle solution.",
+          "french_street": "J'veux la nouvelle solution."
+        },
+        {
+          "id": "gram_adjective_placement_009",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "cest",
+            "gram_adjective_placement"
+          ],
+          "english": "It's a big problem.",
+          "french_formal": "C'est un gros problème.",
+          "french_street": "C'est un gros problème."
+        },
+        {
+          "id": "gram_adjective_placement_010",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "gram_adjective_placement",
+            "questions_intonation",
+            "vouloir_present"
+          ],
+          "english": "Do you want a good coffee?",
+          "french_formal": "Est-ce que tu veux un bon café ?",
+          "french_street": "Tu veux un bon café ?"
+        },
+        {
+          "id": "gram_adjective_placement_011",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "gram_adjective_placement",
+            "on_for_nous",
+            "pouvoir_inf"
+          ],
+          "english": "We can eat at a good restaurant.",
+          "french_formal": "Nous pouvons manger dans un bon restaurant.",
+          "french_street": "On peut manger dans un bon resto."
+        },
+        {
+          "id": "gram_adjective_placement_012",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "devoir_inf",
+            "gram_adjective_placement"
+          ],
+          "english": "I have to see a difficult film.",
+          "french_formal": "Je dois voir un film difficile.",
+          "french_street": "J'dois voir un film difficile."
+        },
+        {
+          "id": "gram_adjective_placement_013",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "aller_places",
+            "gram_adjective_placement"
+          ],
+          "english": "I'm going to a good restaurant.",
+          "french_formal": "Je vais dans un bon restaurant.",
+          "french_street": "J'vais dans un bon resto."
+        },
+        {
+          "id": "gram_adjective_placement_014",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "futur_proche",
+            "gram_adjective_placement"
+          ],
+          "english": "It's going to be a big problem.",
+          "french_formal": "Ça va être un gros problème.",
+          "french_street": "Ça va être un gros problème."
+        },
+        {
+          "id": "gram_adjective_placement_015",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "gram_adjective_placement",
+            "pc_avoir"
+          ],
+          "english": "I ate at a good small restaurant.",
+          "french_formal": "J'ai mangé dans un bon petit restaurant.",
+          "french_street": "J'ai mangé dans un bon petit resto."
+        },
+        {
+          "id": "gram_adjective_placement_016",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_adjective_placement"
+          ],
+          "english": "I want it — the good coffee.",
+          "french_formal": "Je le veux — le bon café.",
+          "french_street": "J'le veux — le bon café."
+        },
+        {
+          "id": "gram_adjective_placement_017",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "cognate_bridges",
+            "gram_adjective_placement",
+            "imparfait_vs_pc"
+          ],
+          "english": "It was a difficult situation.",
+          "french_formal": "C'était une situation difficile.",
+          "french_street": "C'était une situation difficile."
+        },
+        {
+          "id": "gram_adjective_placement_018",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "gram_adjective_placement",
+            "pc_avoir",
+            "relatives_qui_que"
+          ],
+          "english": "It's a good film that I saw.",
+          "french_formal": "C'est un bon film que j'ai vu.",
+          "french_street": "C'est un bon film qu'j'ai vu."
+        },
+        {
+          "id": "gram_adjective_placement_019",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "conditional_softeners",
+            "gram_adjective_placement",
+            "iobj_pronouns"
+          ],
+          "english": "Could you give me a small question?",
+          "french_formal": "Pourriez-vous me donner une petite question ?",
+          "french_street": "Tu pourrais me donner une petite question ?"
+        },
+        {
+          "id": "gram_adjective_placement_020",
+          "target_concept_id": "gram_adjective_placement",
+          "concept_ids": [
+            "cest",
+            "chunks_fillers",
+            "connected_speech",
+            "gram_adjective_placement"
+          ],
+          "english": "So, it's a real big problem, I don't know.",
+          "french_formal": "Du coup, c'est un vrai gros problème, je ne sais pas.",
+          "french_street": "Du coup, c'est un vrai gros problème, chais pas."
+        }
+      ]
+    },
+    {
+      "id": "gram_prepositions",
+      "type": "grammar",
+      "tier": 1,
+      "prereq_ids": [
+        "aller_places"
+      ],
+      "title": "Prepositions: à, de, en, au, chez",
+      "explanation": "Here's something you already do in English without thinking — you glue small words onto places and people. In French those small words are prepositions, and the big news is that two of them actually merge with the article. When à meets le, they fuse into au — you can't say à le, it just doesn't exist in French. So it's au café, au bar, au resto. When à meets les, you get aux — aux toilettes, aux États-Unis. Same deal with de: de plus le becomes du — le menu du jour, the dish of the day. De plus les becomes des. Now for places: with feminine countries you use en — en France, en Espagne — and with cities you use à — à Paris, à Lyon. That pattern is very consistent, so trust it. Then there's chez, which is one of those beautifully compact French words. It means at someone's place or their professional space — chez moi is at mine, chez toi is at yours, chez le médecin is at the doctor's. On the street these prepositions don't change, they just glide into the flow — j'suis chez moi, on va au bar, t'as vu le menu du jour ? You already know aller and the futur proche, so you've got the perfect launchpad for all of this.",
+      "canonical_examples": [
+        {
+          "english": "I'm going to the café.",
+          "formal": "Je vais au café.",
+          "street": "J'vais au café."
+        },
+        {
+          "english": "We're going to the toilets.",
+          "formal": "Nous allons aux toilettes.",
+          "street": "On va aux toilettes."
+        },
+        {
+          "english": "It's the dish of the day.",
+          "formal": "C'est le plat du jour.",
+          "street": "C'est le plat du jour."
+        },
+        {
+          "english": "She's in France, in Paris.",
+          "formal": "Elle est en France, à Paris.",
+          "street": "Elle est en France, à Paris."
+        },
+        {
+          "english": "I'm at home.",
+          "formal": "Je suis chez moi.",
+          "street": "J'suis chez moi."
+        },
+        {
+          "english": "We have to go to the doctor's.",
+          "formal": "Nous devons aller chez le médecin.",
+          "street": "On doit aller chez le médecin."
+        },
+        {
+          "english": "Did you see the menu of the restaurant?",
+          "formal": "Tu as vu le menu du restaurant ?",
+          "street": "T'as vu le menu du resto ?"
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_prepositions_001",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "aller_places",
+            "gram_prepositions"
+          ],
+          "english": "at the bar",
+          "french_formal": "au bar",
+          "french_street": "au bar"
+        },
+        {
+          "id": "gram_prepositions_002",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "gram_prepositions"
+          ],
+          "english": "at my place",
+          "french_formal": "chez moi",
+          "french_street": "chez moi"
+        },
+        {
+          "id": "gram_prepositions_003",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "gram_prepositions"
+          ],
+          "english": "the coffee of the day",
+          "french_formal": "le café du jour",
+          "french_street": "le café du jour"
+        },
+        {
+          "id": "gram_prepositions_004",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "gram_prepositions"
+          ],
+          "english": "in Spain",
+          "french_formal": "en Espagne",
+          "french_street": "en Espagne"
+        },
+        {
+          "id": "gram_prepositions_005",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "aller_places",
+            "connected_speech",
+            "gram_prepositions"
+          ],
+          "english": "I'm going to the restaurant.",
+          "french_formal": "Je vais au restaurant.",
+          "french_street": "J'vais au resto."
+        },
+        {
+          "id": "gram_prepositions_006",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "aller_places",
+            "gram_prepositions",
+            "on_for_nous"
+          ],
+          "english": "We're going to Paris.",
+          "french_formal": "Nous allons à Paris.",
+          "french_street": "On va à Paris."
+        },
+        {
+          "id": "gram_prepositions_007",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "connected_speech",
+            "gram_prepositions",
+            "je_veux"
+          ],
+          "english": "I want to eat at yours.",
+          "french_formal": "Je veux manger chez toi.",
+          "french_street": "J'veux manger chez toi."
+        },
+        {
+          "id": "gram_prepositions_008",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "gram_prepositions",
+            "pouvoir_inf",
+            "questions_intonation"
+          ],
+          "english": "Can you come to my place?",
+          "french_formal": "Tu peux venir chez moi ?",
+          "french_street": "Tu peux venir chez moi ?"
+        },
+        {
+          "id": "gram_prepositions_009",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "cognate_bridges",
+            "gram_prepositions",
+            "negation_pas"
+          ],
+          "english": "The solution of the day — that's not normal.",
+          "french_formal": "La solution du jour — ce n'est pas normal.",
+          "french_street": "La solution du jour — c'est pas normal."
+        },
+        {
+          "id": "gram_prepositions_010",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "devoir_inf",
+            "gram_prepositions",
+            "on_for_nous"
+          ],
+          "english": "We have to go to the toilets.",
+          "french_formal": "Nous devons aller aux toilettes.",
+          "french_street": "On doit aller aux toilettes."
+        },
+        {
+          "id": "gram_prepositions_011",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "aller_places",
+            "connected_speech",
+            "gram_prepositions"
+          ],
+          "english": "I'm going to the doctor's.",
+          "french_formal": "Je vais chez le médecin.",
+          "french_street": "J'vais chez le médecin."
+        },
+        {
+          "id": "gram_prepositions_012",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "gram_prepositions",
+            "pc_etre"
+          ],
+          "english": "She went to Spain.",
+          "french_formal": "Elle est allée en Espagne.",
+          "french_street": "Elle est allée en Espagne."
+        },
+        {
+          "id": "gram_prepositions_013",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "connected_speech",
+            "gram_prepositions",
+            "pc_avoir",
+            "questions_intonation"
+          ],
+          "english": "Did you eat at the restaurant?",
+          "french_formal": "Tu as mangé au restaurant ?",
+          "french_street": "T'as mangé au resto ?"
+        },
+        {
+          "id": "gram_prepositions_014",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "aller_places",
+            "chunks_fillers",
+            "gram_prepositions",
+            "on_for_nous"
+          ],
+          "english": "So, we're going to the bar.",
+          "french_formal": "Donc, nous allons au bar.",
+          "french_street": "Du coup, on va au bar."
+        },
+        {
+          "id": "gram_prepositions_015",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "gram_prepositions",
+            "imparfait_vs_pc"
+          ],
+          "english": "I was at my friend's place.",
+          "french_formal": "J'étais chez mon ami.",
+          "french_street": "J'étais chez mon ami."
+        },
+        {
+          "id": "gram_prepositions_016",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "gram_prepositions",
+            "je_veux",
+            "relatives_qui_que"
+          ],
+          "english": "That's the coffee I want.",
+          "french_formal": "C'est le café que je veux.",
+          "french_street": "C'est le café qu'je veux."
+        },
+        {
+          "id": "gram_prepositions_017",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "connected_speech",
+            "futur_proche",
+            "gram_prepositions"
+          ],
+          "english": "I'm going to eat at yours, it's going to be great.",
+          "french_formal": "Je vais manger chez toi, ça va être super.",
+          "french_street": "J'vais manger chez toi, ça va être super."
+        },
+        {
+          "id": "gram_prepositions_018",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "conditional_softeners",
+            "connected_speech",
+            "gram_prepositions"
+          ],
+          "english": "I'd like a table at the restaurant.",
+          "french_formal": "Je voudrais une table au restaurant.",
+          "french_street": "J'voudrais une table au resto."
+        },
+        {
+          "id": "gram_prepositions_019",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "connected_speech",
+            "gram_prepositions",
+            "on_for_nous",
+            "pouvoir_inf"
+          ],
+          "english": "I don't know — we can eat at the bar.",
+          "french_formal": "Je ne sais pas — nous pouvons manger au bar.",
+          "french_street": "Chais pas — on peut manger au bar."
+        },
+        {
+          "id": "gram_prepositions_020",
+          "target_concept_id": "gram_prepositions",
+          "concept_ids": [
+            "gram_prepositions",
+            "relatives_qui_que"
+          ],
+          "english": "The girl who lives in France is at my place.",
+          "french_formal": "La fille qui habite en France est chez moi.",
+          "french_street": "La fille qui habite en France est chez moi."
+        }
+      ]
+    },
+    {
+      "id": "gram_questions_deep",
+      "type": "grammar",
+      "tier": 1,
+      "prereq_ids": [
+        "questions_intonation"
+      ],
+      "title": "Question forms: the full toolkit",
+      "explanation": "Here's something that's going to unlock the way real French people actually talk. When French speakers ask a question, most of the time they just say a normal sentence and let their voice go up at the end. Tu viens? C'est bon? That rising tone does all the work — no rearranging words, nothing. Now here's the street move that's going to feel immediately natural to you: question words go at the END. Not at the front like in a textbook. Tu fais quoi? Il arrive quand? C'est où? You already know those words and that structure — you're just flipping the question word to the back and riding the intonation up. Est-ce que is your neutral, careful register — perfectly correct, never wrong, just a touch more formal than the street version. And inversion — viens-tu, où vas-tu — you'll hear it, maybe read it, but you never need to produce it. It's like the subjunctive of question forms: recognise it, don't fear it, move on. On the street, these question words — quoi, où, quand, qui, comment, pourquoi, combien — all sit at the end and let the sentence breathe before them. C'est qui lui? Tu pars quand? Ça coûte combien? That's it. That's real French.",
+      "canonical_examples": [
+        {
+          "english": "You're coming?",
+          "formal": "Est-ce que tu viens ?",
+          "street": "Tu viens ?"
+        },
+        {
+          "english": "What are you doing?",
+          "formal": "Qu'est-ce que tu fais ?",
+          "street": "Tu fais quoi ?"
+        },
+        {
+          "english": "Where are you going?",
+          "formal": "Où est-ce que tu vas ?",
+          "street": "Tu vas où ?"
+        },
+        {
+          "english": "When does he arrive?",
+          "formal": "Quand est-ce qu'il arrive ?",
+          "street": "Il arrive quand ?"
+        },
+        {
+          "english": "Who is he?",
+          "formal": "Qui est-ce que c'est ?",
+          "street": "C'est qui lui ?"
+        },
+        {
+          "english": "How much does it cost?",
+          "formal": "Combien est-ce que ça coûte ?",
+          "street": "Ça coûte combien ?"
+        },
+        {
+          "english": "Why can't you come?",
+          "formal": "Pourquoi est-ce que tu ne peux pas venir ?",
+          "street": "Tu peux pas venir pourquoi ?"
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_questions_deep_001",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "cest",
+            "gram_questions_deep",
+            "questions_intonation"
+          ],
+          "english": "It's good?",
+          "french_formal": "C'est bon ?",
+          "french_street": "C'est bon ?"
+        },
+        {
+          "id": "gram_questions_deep_002",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "connected_speech",
+            "gram_questions_deep",
+            "questions_intonation",
+            "vouloir_present",
+            "y_en"
+          ],
+          "english": "You want some?",
+          "french_formal": "Tu en veux ?",
+          "french_street": "T'en veux ?"
+        },
+        {
+          "id": "gram_questions_deep_003",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "cest",
+            "gram_questions_deep",
+            "questions_intonation"
+          ],
+          "english": "Where is it?",
+          "french_formal": "C'est où ?",
+          "french_street": "C'est où ?"
+        },
+        {
+          "id": "gram_questions_deep_004",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "connected_speech",
+            "gram_questions_deep",
+            "pc_avoir",
+            "questions_intonation"
+          ],
+          "english": "You ate what?",
+          "french_formal": "Tu as mangé quoi ?",
+          "french_street": "T'as mangé quoi ?"
+        },
+        {
+          "id": "gram_questions_deep_005",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "gram_questions_deep",
+            "questions_intonation"
+          ],
+          "english": "He's leaving when?",
+          "french_formal": "Il part quand ?",
+          "french_street": "Il part quand ?"
+        },
+        {
+          "id": "gram_questions_deep_006",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "cest",
+            "cognate_bridges",
+            "gram_questions_deep",
+            "questions_intonation"
+          ],
+          "english": "Is it possible?",
+          "french_formal": "Est-ce que c'est possible ?",
+          "french_street": "C'est possible ?"
+        },
+        {
+          "id": "gram_questions_deep_007",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "gram_questions_deep",
+            "on_for_nous",
+            "pouvoir_inf",
+            "questions_intonation"
+          ],
+          "english": "We can eat here?",
+          "french_formal": "Est-ce qu'on peut manger ici ?",
+          "french_street": "On peut manger ici ?"
+        },
+        {
+          "id": "gram_questions_deep_008",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "gram_questions_deep",
+            "questions_intonation"
+          ],
+          "english": "How much does that cost?",
+          "french_formal": "Ça coûte combien ?",
+          "french_street": "Ça coûte combien ?"
+        },
+        {
+          "id": "gram_questions_deep_009",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "cest",
+            "gram_questions_deep",
+            "questions_intonation"
+          ],
+          "english": "Who is she?",
+          "french_formal": "C'est qui ?",
+          "french_street": "C'est qui elle ?"
+        },
+        {
+          "id": "gram_questions_deep_010",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "cest",
+            "cognate_bridges",
+            "gram_questions_deep",
+            "negation_pas",
+            "questions_intonation"
+          ],
+          "english": "Why is it not possible?",
+          "french_formal": "Pourquoi ce n'est pas possible ?",
+          "french_street": "C'est pas possible pourquoi ?"
+        },
+        {
+          "id": "gram_questions_deep_011",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "aller_places",
+            "gram_questions_deep",
+            "questions_intonation"
+          ],
+          "english": "Are you going to the restaurant?",
+          "french_formal": "Est-ce que tu vas au restaurant ?",
+          "french_street": "Tu vas au resto ?"
+        },
+        {
+          "id": "gram_questions_deep_012",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "connected_speech",
+            "gram_questions_deep",
+            "pc_avoir",
+            "questions_intonation"
+          ],
+          "english": "You finished?",
+          "french_formal": "Est-ce que tu as fini ?",
+          "french_street": "T'as fini ?"
+        },
+        {
+          "id": "gram_questions_deep_013",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "faire_expressions",
+            "gram_questions_deep",
+            "questions_intonation"
+          ],
+          "english": "How are you doing that?",
+          "french_formal": "Tu fais ça comment ?",
+          "french_street": "Tu fais ça comment ?"
+        },
+        {
+          "id": "gram_questions_deep_014",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "gram_questions_deep",
+            "iobj_pronouns",
+            "pouvoir_inf",
+            "questions_intonation"
+          ],
+          "english": "Can you help me?",
+          "french_formal": "Est-ce que tu peux m'aider ?",
+          "french_street": "Tu peux m'aider ?"
+        },
+        {
+          "id": "gram_questions_deep_015",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "connected_speech",
+            "gram_questions_deep",
+            "pc_etre",
+            "questions_intonation"
+          ],
+          "english": "Where did you go?",
+          "french_formal": "Tu es allé où ?",
+          "french_street": "T'es allé où ?"
+        },
+        {
+          "id": "gram_questions_deep_016",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "chunks_fillers",
+            "futur_proche",
+            "gram_questions_deep",
+            "on_for_nous",
+            "questions_intonation"
+          ],
+          "english": "So we're going to eat where?",
+          "french_formal": "Du coup, on va manger où ?",
+          "french_street": "Du coup, on va manger où ?"
+        },
+        {
+          "id": "gram_questions_deep_017",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_questions_deep",
+            "questions_intonation",
+            "vouloir_present"
+          ],
+          "english": "You want to see it?",
+          "french_formal": "Est-ce que tu veux le voir ?",
+          "french_street": "Tu veux l'voir ?"
+        },
+        {
+          "id": "gram_questions_deep_018",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "gram_questions_deep",
+            "imparfait_vs_pc",
+            "questions_intonation"
+          ],
+          "english": "It was like that?",
+          "french_formal": "C'était comme ça ?",
+          "french_street": "C'était comme ça ?"
+        },
+        {
+          "id": "gram_questions_deep_019",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "gram_questions_deep",
+            "questions_intonation",
+            "relatives_qui_que"
+          ],
+          "english": "The girl who's speaking — she's leaving when?",
+          "french_formal": "La fille qui parle, elle part quand ?",
+          "french_street": "La fille qui parle, elle part quand ?"
+        },
+        {
+          "id": "gram_questions_deep_020",
+          "target_concept_id": "gram_questions_deep",
+          "concept_ids": [
+            "conditional_softeners",
+            "gram_questions_deep",
+            "questions_intonation"
+          ],
+          "english": "That would be great — how much does it cost?",
+          "french_formal": "Ce serait super — ça coûte combien ?",
+          "french_street": "Ça s'rait super — ça coûte combien ?"
+        }
+      ]
+    },
+    {
+      "id": "gram_negation_variants",
+      "type": "grammar",
+      "tier": 2,
+      "prereq_ids": [
+        "negation_pas"
+      ],
+      "title": "Beyond pas: jamais, rien, plus, personne",
+      "explanation": "You already know how pas works — it sits right after the verb, and in real speech the ne vanishes. Well, jamais, rien, plus, and personne all work the exact same way. Same slot, same ne-drop. Je ne vais jamais là-bas becomes j'vais jamais là-bas. Je n'ai rien dit becomes j'ai rien dit. It's not laziness, it's just French. Jamais is never, rien is nothing, plus is no more or not anymore — and watch out, that s is completely silent: j'en peux plus sounds like j'en peu plu. Personne means nobody, and here's the cool bit — rien and personne can actually flip to the front and become the subject: personne sait, rien se passe. When they're up front the ne can hang around, but on the street it still usually drops. You can even stack them: y'a jamais personne ici — there's never anyone here. That's three negatives in one go and it's completely normal French. So the pattern is locked: whatever you built with pas, swap it out for any of these four and you're done. J'ai rien fait, j'y vais plus, il vient jamais — you're already speaking it.",
+      "canonical_examples": [
+        {
+          "english": "I never go there.",
+          "formal": "Je ne vais jamais là-bas.",
+          "street": "J'vais jamais là-bas."
+        },
+        {
+          "english": "I didn't say anything.",
+          "formal": "Je n'ai rien dit.",
+          "street": "J'ai rien dit."
+        },
+        {
+          "english": "I can't take it anymore.",
+          "formal": "Je n'en peux plus.",
+          "street": "J'en peux plus."
+        },
+        {
+          "english": "Nobody knows.",
+          "formal": "Personne ne sait.",
+          "street": "Personne sait."
+        },
+        {
+          "english": "He never comes.",
+          "formal": "Il ne vient jamais.",
+          "street": "Il vient jamais."
+        },
+        {
+          "english": "There's never anyone here.",
+          "formal": "Il n'y a jamais personne ici.",
+          "street": "Y'a jamais personne ici."
+        },
+        {
+          "english": "She doesn't want anything anymore.",
+          "formal": "Elle ne veut plus rien.",
+          "street": "Elle veut plus rien."
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_negation_variants_001",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "negation_pas",
+            "pc_avoir"
+          ],
+          "english": "I never eat there.",
+          "french_formal": "Je ne mange jamais là-bas.",
+          "french_street": "J'mange jamais là-bas."
+        },
+        {
+          "id": "gram_negation_variants_002",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "negation_pas",
+            "pc_avoir"
+          ],
+          "english": "I did nothing.",
+          "french_formal": "Je n'ai rien fait.",
+          "french_street": "J'ai rien fait."
+        },
+        {
+          "id": "gram_negation_variants_003",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "negation_pas"
+          ],
+          "english": "Nobody is here.",
+          "french_formal": "Personne n'est ici.",
+          "french_street": "Personne est ici."
+        },
+        {
+          "id": "gram_negation_variants_004",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "negation_pas",
+            "y_en"
+          ],
+          "english": "I'm not going there anymore.",
+          "french_formal": "Je n'y vais plus.",
+          "french_street": "J'y vais plus."
+        },
+        {
+          "id": "gram_negation_variants_005",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "negation_pas",
+            "vouloir_present"
+          ],
+          "english": "He never wants to leave.",
+          "french_formal": "Il ne veut jamais partir.",
+          "french_street": "Il veut jamais partir."
+        },
+        {
+          "id": "gram_negation_variants_006",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "connected_speech",
+            "gram_negation_variants",
+            "negation_pas"
+          ],
+          "english": "There's nothing here.",
+          "french_formal": "Il n'y a rien ici.",
+          "french_street": "Y'a rien ici."
+        },
+        {
+          "id": "gram_negation_variants_007",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "negation_pas",
+            "pc_etre"
+          ],
+          "english": "Nobody came.",
+          "french_formal": "Personne n'est venu.",
+          "french_street": "Personne est venu."
+        },
+        {
+          "id": "gram_negation_variants_008",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_negation_variants",
+            "negation_pas",
+            "pouvoir_inf"
+          ],
+          "english": "I can't do it anymore.",
+          "french_formal": "Je ne peux plus le faire.",
+          "french_street": "J'peux plus le faire."
+        },
+        {
+          "id": "gram_negation_variants_009",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "iobj_pronouns",
+            "negation_pas"
+          ],
+          "english": "She never speaks to me.",
+          "french_formal": "Elle ne me parle jamais.",
+          "french_street": "Elle me parle jamais."
+        },
+        {
+          "id": "gram_negation_variants_010",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "negation_pas",
+            "pc_avoir"
+          ],
+          "english": "I saw nothing.",
+          "french_formal": "Je n'ai rien vu.",
+          "french_street": "J'ai rien vu."
+        },
+        {
+          "id": "gram_negation_variants_011",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "aller_places",
+            "gram_negation_variants",
+            "negation_pas",
+            "on_for_nous"
+          ],
+          "english": "We never go to the restaurant anymore.",
+          "french_formal": "Nous n'allons plus jamais au restaurant.",
+          "french_street": "On va plus jamais au resto."
+        },
+        {
+          "id": "gram_negation_variants_012",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "negation_pas",
+            "vouloir_present"
+          ],
+          "english": "Nobody wants to pay.",
+          "french_formal": "Personne ne veut payer.",
+          "french_street": "Personne veut payer."
+        },
+        {
+          "id": "gram_negation_variants_013",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "je_veux",
+            "negation_pas"
+          ],
+          "english": "I don't want anything.",
+          "french_formal": "Je ne veux rien.",
+          "french_street": "J'veux rien."
+        },
+        {
+          "id": "gram_negation_variants_014",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "aller_places",
+            "connected_speech",
+            "gram_negation_variants",
+            "negation_pas"
+          ],
+          "english": "There's never anyone at the beach.",
+          "french_formal": "Il n'y a jamais personne à la plage.",
+          "french_street": "Y'a jamais personne à la plage."
+        },
+        {
+          "id": "gram_negation_variants_015",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "negation_pas",
+            "pc_avoir"
+          ],
+          "english": "I have nothing to do.",
+          "french_formal": "Je n'ai rien à faire.",
+          "french_street": "J'ai rien à faire."
+        },
+        {
+          "id": "gram_negation_variants_016",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "negation_pas",
+            "reflexives"
+          ],
+          "english": "He doesn't remember anything.",
+          "french_formal": "Il ne se souvient de rien.",
+          "french_street": "Il se souvient de rien."
+        },
+        {
+          "id": "gram_negation_variants_017",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "negation_pas",
+            "y_en"
+          ],
+          "english": "I'm never going back there.",
+          "french_formal": "Je n'y retourne jamais.",
+          "french_street": "J'y retourne jamais."
+        },
+        {
+          "id": "gram_negation_variants_018",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "iobj_pronouns",
+            "negation_pas",
+            "pc_avoir"
+          ],
+          "english": "Nobody called me.",
+          "french_formal": "Personne ne m'a appelé.",
+          "french_street": "Personne m'a appelé."
+        },
+        {
+          "id": "gram_negation_variants_019",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "cest",
+            "chunks_fillers",
+            "connected_speech",
+            "gram_negation_variants",
+            "negation_pas"
+          ],
+          "english": "It's like there's nothing left.",
+          "french_formal": "C'est comme s'il n'y a plus rien.",
+          "french_street": "C'est genre y'a plus rien."
+        },
+        {
+          "id": "gram_negation_variants_020",
+          "target_concept_id": "gram_negation_variants",
+          "concept_ids": [
+            "gram_negation_variants",
+            "imparfait_vs_pc",
+            "negation_pas"
+          ],
+          "english": "I was never tired back then.",
+          "french_formal": "Je n'étais jamais fatigué à cette époque.",
+          "french_street": "J'étais jamais fatigué à l'époque."
+        }
+      ]
+    },
+    {
+      "id": "gram_object_pronoun_order",
+      "type": "grammar",
+      "tier": 2,
+      "prereq_ids": [
+        "dobj_pronouns",
+        "iobj_pronouns"
+      ],
+      "title": "Object pronoun order: me le, te la, le lui",
+      "explanation": "You already know how to drop a single pronoun in front of a verb — je le veux, je lui parle. Now you're going to stack two of them, and there's a dead-simple rule for the order. When you've got me, te, nous, or vous in the mix, they always go first — so it's tu me le donnes, not tu le me donnes. Think of it as: the person comes before the thing. But watch what happens when you swap to a third-person indirect pronoun like lui or leur — now the thing jumps in front: je le lui dis, je le lui donne. Him or her goes last. And the whole cluster — both pronouns together — sits before the verb, just like a single pronoun does. In the passé composé that means before the auxiliary: il me l'a dit, je te l'ai donné. Now here's the street layer, and this is just about recognition for now. In fast real speech that cluster gets crushed. Tu me le donnes becomes tu m'le donnes, and je te l'ai dit gets squeezed all the way down to j't'l'ai dit. You'll hear it before you produce it, and that's exactly how it should go.",
+      "canonical_examples": [
+        {
+          "english": "He's giving it to me.",
+          "formal": "Il me le donne.",
+          "street": "Il m'le donne."
+        },
+        {
+          "english": "I'm telling him.",
+          "formal": "Je le lui dis.",
+          "street": "J'le lui dis."
+        },
+        {
+          "english": "Can you give it to me?",
+          "formal": "Tu peux me le donner ?",
+          "street": "Tu peux m'le donner ?"
+        },
+        {
+          "english": "He told me.",
+          "formal": "Il me l'a dit.",
+          "street": "Il m'l'a dit."
+        },
+        {
+          "english": "I told you.",
+          "formal": "Je te l'ai dit.",
+          "street": "J't'l'ai dit."
+        },
+        {
+          "english": "She's giving it to him.",
+          "formal": "Elle le lui donne.",
+          "street": "Elle le lui donne."
+        },
+        {
+          "english": "We have to give it to them.",
+          "formal": "On doit le leur donner.",
+          "street": "On doit le leur donner."
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_object_pronoun_order_001",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns"
+          ],
+          "english": "He gives it to me.",
+          "french_formal": "Il me le donne.",
+          "french_street": "Il m'le donne."
+        },
+        {
+          "id": "gram_object_pronoun_order_002",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns"
+          ],
+          "english": "I give it to him.",
+          "french_formal": "Je le lui donne.",
+          "french_street": "J'le lui donne."
+        },
+        {
+          "id": "gram_object_pronoun_order_003",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns"
+          ],
+          "english": "She gives it to me.",
+          "french_formal": "Elle me le donne.",
+          "french_street": "Elle m'le donne."
+        },
+        {
+          "id": "gram_object_pronoun_order_004",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns"
+          ],
+          "english": "I tell him.",
+          "french_formal": "Je le lui dis.",
+          "french_street": "J'le lui dis."
+        },
+        {
+          "id": "gram_object_pronoun_order_005",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns",
+            "pc_avoir"
+          ],
+          "english": "He told me.",
+          "french_formal": "Il me l'a dit.",
+          "french_street": "Il m'l'a dit."
+        },
+        {
+          "id": "gram_object_pronoun_order_006",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns",
+            "pc_avoir"
+          ],
+          "english": "I told you.",
+          "french_formal": "Je te l'ai dit.",
+          "french_street": "J't'l'ai dit."
+        },
+        {
+          "id": "gram_object_pronoun_order_007",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns",
+            "pc_avoir"
+          ],
+          "english": "He showed it to me.",
+          "french_formal": "Il me l'a montré.",
+          "french_street": "Il m'l'a montré."
+        },
+        {
+          "id": "gram_object_pronoun_order_008",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns",
+            "pc_avoir"
+          ],
+          "english": "I showed it to him.",
+          "french_formal": "Je le lui ai montré.",
+          "french_street": "J'le lui ai montré."
+        },
+        {
+          "id": "gram_object_pronoun_order_009",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns",
+            "pouvoir_inf",
+            "questions_intonation"
+          ],
+          "english": "Can you give it to me?",
+          "french_formal": "Tu peux me le donner ?",
+          "french_street": "Tu peux m'le donner ?"
+        },
+        {
+          "id": "gram_object_pronoun_order_010",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns",
+            "je_veux"
+          ],
+          "english": "I want to give it to him.",
+          "french_formal": "Je veux le lui donner.",
+          "french_street": "J'veux le lui donner."
+        },
+        {
+          "id": "gram_object_pronoun_order_011",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "devoir_inf",
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns"
+          ],
+          "english": "You have to give it to me.",
+          "french_formal": "Tu dois me le donner.",
+          "french_street": "Tu dois m'le donner."
+        },
+        {
+          "id": "gram_object_pronoun_order_012",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "futur_proche",
+            "gram_object_pronoun_order",
+            "iobj_pronouns"
+          ],
+          "english": "I'm going to give it to him.",
+          "french_formal": "Je vais le lui donner.",
+          "french_street": "J'vais le lui donner."
+        },
+        {
+          "id": "gram_object_pronoun_order_013",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns",
+            "pc_avoir"
+          ],
+          "english": "She already gave it to me.",
+          "french_formal": "Elle me l'a déjà donné.",
+          "french_street": "Elle m'l'a déjà donné."
+        },
+        {
+          "id": "gram_object_pronoun_order_014",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns",
+            "pc_avoir",
+            "questions_intonation"
+          ],
+          "english": "Did you tell him?",
+          "french_formal": "Tu le lui as dit ?",
+          "french_street": "Tu l'lui as dit ?"
+        },
+        {
+          "id": "gram_object_pronoun_order_015",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "cest",
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns",
+            "negation_pas",
+            "pc_avoir"
+          ],
+          "english": "It's not possible, I told you.",
+          "french_formal": "Ce n'est pas possible, je te l'ai dit.",
+          "french_street": "C'est pas possible, j't'l'ai dit."
+        },
+        {
+          "id": "gram_object_pronoun_order_016",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "devoir_inf",
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns",
+            "on_for_nous"
+          ],
+          "english": "We have to give it to them.",
+          "french_formal": "On doit le leur donner.",
+          "french_street": "On doit le leur donner."
+        },
+        {
+          "id": "gram_object_pronoun_order_017",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "imparfait_vs_pc",
+            "iobj_pronouns"
+          ],
+          "english": "He was giving it to her.",
+          "french_formal": "Il le lui donnait.",
+          "french_street": "Il le lui donnait."
+        },
+        {
+          "id": "gram_object_pronoun_order_018",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns",
+            "pc_avoir"
+          ],
+          "english": "I saw it — he told me.",
+          "french_formal": "J'ai vu — il me l'a dit.",
+          "french_street": "J'ai vu — il m'l'a dit."
+        },
+        {
+          "id": "gram_object_pronoun_order_019",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "chunks_reactions",
+            "dobj_pronouns",
+            "gram_object_pronoun_order",
+            "iobj_pronouns",
+            "negation_pas",
+            "pc_avoir"
+          ],
+          "english": "That's rough, she didn't give it to me.",
+          "french_formal": "C'est chaud, elle ne me l'a pas donné.",
+          "french_street": "C'est chaud, elle m'l'a pas donné."
+        },
+        {
+          "id": "gram_object_pronoun_order_020",
+          "target_concept_id": "gram_object_pronoun_order",
+          "concept_ids": [
+            "connected_speech",
+            "dobj_pronouns",
+            "futur_proche",
+            "gram_object_pronoun_order",
+            "iobj_pronouns"
+          ],
+          "english": "I know, I'm going to tell him.",
+          "french_formal": "Je sais, je vais le lui dire.",
+          "french_street": "Chais, j'vais le lui dire."
+        }
+      ]
+    },
+    {
+      "id": "gram_y_en_deep",
+      "type": "grammar",
+      "tier": 2,
+      "prereq_ids": [
+        "y_en"
+      ],
+      "title": "y & en: the two little pronouns, deep dive",
+      "explanation": "You already know y and en from the v1 list — now let's go deep. Think of y as a little stand-in for à plus a place or thing. You go to the café? J'y vais. You're thinking about the problem? J'y pense. The y just swallows that whole à-phrase. En does the same job but for de — and for quantities. You want some? J'en veux. You want two? J'en veux deux. You have loads? J'en ai plein. The quantity word always comes after the verb, hanging on the end — that's your signal. Now the street angle, and this is big: y'a and y'en a are the existentials you hear all day long. Y'a rien means there's nothing. Y'en a plus means there's none left. Y'en a trois means there are three of them. These aren't fancy grammar — they're the air French speakers breathe. Then there are the frozen expressions you just grab whole: ça y est means that's it, it's done. On y va means let's go. T'en fais pas means don't worry about it. J'en peux plus means I can't take it anymore. Lock those chunks in — they'll carry you through dozens of conversations.",
+      "canonical_examples": [
+        {
+          "english": "I'm going there.",
+          "formal": "J'y vais.",
+          "street": "J'y vais."
+        },
+        {
+          "english": "I'm thinking about it.",
+          "formal": "J'y pense.",
+          "street": "J'y pense."
+        },
+        {
+          "english": "I want two of them.",
+          "formal": "J'en veux deux.",
+          "street": "J'en veux deux."
+        },
+        {
+          "english": "There are three of them.",
+          "formal": "Il y en a trois.",
+          "street": "Y'en a trois."
+        },
+        {
+          "english": "There's nothing left.",
+          "formal": "Il n'y en a plus.",
+          "street": "Y'en a plus."
+        },
+        {
+          "english": "That's it, done!",
+          "formal": "Ça y est !",
+          "street": "Ça y est !"
+        },
+        {
+          "english": "I can't take it anymore.",
+          "formal": "Je n'en peux plus.",
+          "street": "J'en peux plus."
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_y_en_deep_001",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "aller_places",
+            "gram_y_en_deep",
+            "y_en"
+          ],
+          "english": "I'm going there.",
+          "french_formal": "J'y vais.",
+          "french_street": "J'y vais."
+        },
+        {
+          "id": "gram_y_en_deep_002",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "gram_y_en_deep",
+            "on_for_nous",
+            "questions_intonation",
+            "y_en"
+          ],
+          "english": "Shall we go?",
+          "french_formal": "On y va ?",
+          "french_street": "On y va ?"
+        },
+        {
+          "id": "gram_y_en_deep_003",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "gram_y_en_deep",
+            "je_veux",
+            "y_en"
+          ],
+          "english": "I want some.",
+          "french_formal": "J'en veux.",
+          "french_street": "J'en veux."
+        },
+        {
+          "id": "gram_y_en_deep_004",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "faire_expressions",
+            "gram_y_en_deep",
+            "negation_pas",
+            "y_en"
+          ],
+          "english": "Don't worry about it.",
+          "french_formal": "Ne t'en fais pas.",
+          "french_street": "T'en fais pas."
+        },
+        {
+          "id": "gram_y_en_deep_005",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "gram_y_en_deep",
+            "y_en"
+          ],
+          "english": "That's it!",
+          "french_formal": "Ça y est !",
+          "french_street": "Ça y est !"
+        },
+        {
+          "id": "gram_y_en_deep_006",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "connected_speech",
+            "gram_y_en_deep",
+            "negation_pas",
+            "y_en"
+          ],
+          "english": "There's nothing.",
+          "french_formal": "Il n'y a rien.",
+          "french_street": "Y'a rien."
+        },
+        {
+          "id": "gram_y_en_deep_007",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "connected_speech",
+            "gram_y_en_deep",
+            "negation_pas",
+            "y_en"
+          ],
+          "english": "There are none left.",
+          "french_formal": "Il n'y en a plus.",
+          "french_street": "Y'en a plus."
+        },
+        {
+          "id": "gram_y_en_deep_008",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "connected_speech",
+            "gram_y_en_deep",
+            "y_en"
+          ],
+          "english": "There are three of them.",
+          "french_formal": "Il y en a trois.",
+          "french_street": "Y'en a trois."
+        },
+        {
+          "id": "gram_y_en_deep_009",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "gram_y_en_deep",
+            "negation_pas",
+            "pouvoir_inf",
+            "y_en"
+          ],
+          "english": "I can't take it anymore.",
+          "french_formal": "Je n'en peux plus.",
+          "french_street": "J'en peux plus."
+        },
+        {
+          "id": "gram_y_en_deep_010",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "gram_y_en_deep",
+            "pc_avoir",
+            "y_en"
+          ],
+          "english": "I'm fed up with it.",
+          "french_formal": "J'en ai marre.",
+          "french_street": "J'en ai marre."
+        },
+        {
+          "id": "gram_y_en_deep_011",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "gram_y_en_deep",
+            "y_en"
+          ],
+          "english": "I think about it.",
+          "french_formal": "J'y pense.",
+          "french_street": "J'y pense."
+        },
+        {
+          "id": "gram_y_en_deep_012",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "gram_y_en_deep",
+            "je_veux",
+            "y_en"
+          ],
+          "english": "I want loads of it.",
+          "french_formal": "J'en veux plein.",
+          "french_street": "J'en veux plein."
+        },
+        {
+          "id": "gram_y_en_deep_013",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "devoir_inf",
+            "gram_y_en_deep",
+            "on_for_nous",
+            "y_en"
+          ],
+          "english": "We have to go there.",
+          "french_formal": "On doit y aller.",
+          "french_street": "On doit y aller."
+        },
+        {
+          "id": "gram_y_en_deep_014",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "connected_speech",
+            "gram_y_en_deep",
+            "y_en"
+          ],
+          "english": "There's some left, there are two of them.",
+          "french_formal": "Il y en a encore, il y en a deux.",
+          "french_street": "Y'en a encore, y'en a deux."
+        },
+        {
+          "id": "gram_y_en_deep_015",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "gram_y_en_deep",
+            "negation_pas",
+            "pouvoir_inf",
+            "y_en"
+          ],
+          "english": "I can't go there today.",
+          "french_formal": "Je ne peux pas y aller aujourd'hui.",
+          "french_street": "J'peux pas y aller aujourd'hui."
+        },
+        {
+          "id": "gram_y_en_deep_016",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "connected_speech",
+            "gram_y_en_deep",
+            "pc_avoir",
+            "questions_intonation",
+            "y_en"
+          ],
+          "english": "Did you eat some?",
+          "french_formal": "Est-ce que tu en as mangé ?",
+          "french_street": "T'en as mangé ?"
+        },
+        {
+          "id": "gram_y_en_deep_017",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "aller_places",
+            "gram_y_en_deep",
+            "pc_etre",
+            "y_en"
+          ],
+          "english": "I went there yesterday.",
+          "french_formal": "J'y suis allé hier.",
+          "french_street": "J'y suis allé hier."
+        },
+        {
+          "id": "gram_y_en_deep_018",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "cest",
+            "connected_speech",
+            "gram_y_en_deep",
+            "negation_pas",
+            "y_en"
+          ],
+          "english": "There's nothing there, it's not possible.",
+          "french_formal": "Il n'y a rien, ce n'est pas possible.",
+          "french_street": "Y'a rien, c'est pas possible."
+        },
+        {
+          "id": "gram_y_en_deep_019",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "aller_places",
+            "gram_y_en_deep",
+            "je_veux",
+            "y_en"
+          ],
+          "english": "I want to go there, I've been thinking about it.",
+          "french_formal": "Je veux y aller, j'y pense.",
+          "french_street": "J'veux y aller, j'y pense."
+        },
+        {
+          "id": "gram_y_en_deep_020",
+          "target_concept_id": "gram_y_en_deep",
+          "concept_ids": [
+            "chunks_fillers",
+            "gram_y_en_deep",
+            "negation_pas",
+            "on_for_nous",
+            "questions_intonation",
+            "y_en"
+          ],
+          "english": "So, are we going? I can't take it anymore.",
+          "french_formal": "Donc, on y va ? Je n'en peux plus.",
+          "french_street": "Du coup, on y va ? J'en peux plus."
+        }
+      ]
+    },
+    {
+      "id": "gram_comparatives",
+      "type": "grammar",
+      "tier": 2,
+      "prereq_ids": [
+        "cest"
+      ],
+      "title": "Comparatives & superlatives: plus, moins, aussi",
+      "explanation": "You already know c'est — now you're going to weaponise it. To say something is more, less, or as something as something else, French gives you three little words: plus, moins, aussi. The pattern is dead simple: c'est plus cher qu'à Paris — it's more expensive than in Paris. C'est moins cher — less expensive. C'est aussi bien — just as good. Notice que links the two things being compared, and it contracts to qu' before a vowel, just like in English 'that'. Now, two irregulars you have to own: bon, meaning good, doesn't do plus bon — it becomes meilleur. Bien, meaning well or good as an adverb, becomes mieux. So c'est mieux, c'est meilleur — those two are your bread and butter. For superlatives, just add le, la, or les before plus or moins: le plus simple, la moins chère. One sound thing to lock in: when plus means more, you hear the s — plus intéressant, plus cher. When it means no more, like je mange plus, the s is silent. On the street, comparisons almost always ride on c'est: c'est mieux, c'est moins cher, c'est carrément plus simple. That's your go-to frame.",
+      "canonical_examples": [
+        {
+          "english": "It's more expensive than in Paris.",
+          "formal": "C'est plus cher qu'à Paris.",
+          "street": "C'est plus cher qu'à Paris."
+        },
+        {
+          "english": "It's less serious than that.",
+          "formal": "C'est moins grave que ça.",
+          "street": "C'est moins grave que ça."
+        },
+        {
+          "english": "It's just as good.",
+          "formal": "C'est aussi bien.",
+          "street": "C'est aussi bien."
+        },
+        {
+          "english": "It's better here.",
+          "formal": "C'est mieux ici.",
+          "street": "C'est mieux ici."
+        },
+        {
+          "english": "This restaurant is better than the other one.",
+          "formal": "Ce restaurant est meilleur que l'autre.",
+          "street": "Ce resto est meilleur que l'autre."
+        },
+        {
+          "english": "It's absolutely the simplest solution.",
+          "formal": "C'est carrément la solution la plus simple.",
+          "street": "C'est carrément la solution la plus simple."
+        },
+        {
+          "english": "I don't want any more — it's more interesting over there.",
+          "formal": "Je n'en veux plus — c'est plus intéressant là-bas.",
+          "street": "J'en veux plus — c'est plus intéressant là-bas."
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_comparatives_001",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "cest",
+            "gram_comparatives"
+          ],
+          "english": "It's better.",
+          "french_formal": "C'est mieux.",
+          "french_street": "C'est mieux."
+        },
+        {
+          "id": "gram_comparatives_002",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "cest",
+            "gram_comparatives"
+          ],
+          "english": "It's less expensive.",
+          "french_formal": "C'est moins cher.",
+          "french_street": "C'est moins cher."
+        },
+        {
+          "id": "gram_comparatives_003",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "cest",
+            "cognate_bridges",
+            "gram_comparatives"
+          ],
+          "english": "It's more possible than that.",
+          "french_formal": "C'est plus possible que ça.",
+          "french_street": "C'est plus possible que ça."
+        },
+        {
+          "id": "gram_comparatives_004",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "cest",
+            "gram_comparatives",
+            "negation_pas"
+          ],
+          "english": "It's not better.",
+          "french_formal": "Ce n'est pas mieux.",
+          "french_street": "C'est pas mieux."
+        },
+        {
+          "id": "gram_comparatives_005",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "cest",
+            "chunks_reactions",
+            "gram_comparatives"
+          ],
+          "english": "It's absolutely less expensive here.",
+          "french_formal": "C'est carrément moins cher ici.",
+          "french_street": "C'est carrément moins cher ici."
+        },
+        {
+          "id": "gram_comparatives_006",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "cest",
+            "cognate_bridges",
+            "gram_comparatives"
+          ],
+          "english": "It's the best solution.",
+          "french_formal": "C'est la meilleure solution.",
+          "french_street": "C'est la meilleure solution."
+        },
+        {
+          "id": "gram_comparatives_007",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "cest",
+            "gram_comparatives"
+          ],
+          "english": "It's the simplest.",
+          "french_formal": "C'est le plus simple.",
+          "french_street": "C'est le plus simple."
+        },
+        {
+          "id": "gram_comparatives_008",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "gram_comparatives",
+            "questions_intonation",
+            "vouloir_present"
+          ],
+          "english": "Do you want something better?",
+          "french_formal": "Est-ce que tu veux quelque chose de mieux ?",
+          "french_street": "Tu veux quelque chose de mieux ?"
+        },
+        {
+          "id": "gram_comparatives_009",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "aller_places",
+            "gram_comparatives",
+            "on_for_nous"
+          ],
+          "english": "We're going to the least expensive restaurant.",
+          "french_formal": "Nous allons au restaurant le moins cher.",
+          "french_street": "On va au resto le moins cher."
+        },
+        {
+          "id": "gram_comparatives_010",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "gram_comparatives",
+            "je_veux"
+          ],
+          "english": "I want to eat somewhere better.",
+          "french_formal": "Je veux manger dans un endroit meilleur.",
+          "french_street": "J'veux manger dans un endroit meilleur."
+        },
+        {
+          "id": "gram_comparatives_011",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "gram_comparatives",
+            "je_veux",
+            "negation_pas",
+            "y_en"
+          ],
+          "english": "I don't want any more.",
+          "french_formal": "Je n'en veux plus.",
+          "french_street": "J'en veux plus."
+        },
+        {
+          "id": "gram_comparatives_012",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "gram_comparatives",
+            "pouvoir_inf",
+            "questions_intonation"
+          ],
+          "english": "Can you find something less expensive?",
+          "french_formal": "Est-ce que tu peux trouver quelque chose de moins cher ?",
+          "french_street": "Tu peux trouver quelque chose de moins cher ?"
+        },
+        {
+          "id": "gram_comparatives_013",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "cest",
+            "cognate_bridges",
+            "gram_comparatives",
+            "imparfait_vs_pc"
+          ],
+          "english": "It's more interesting than I thought.",
+          "french_formal": "C'est plus intéressant que je pensais.",
+          "french_street": "C'est plus intéressant que j'pensais."
+        },
+        {
+          "id": "gram_comparatives_014",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "cognate_bridges",
+            "devoir_inf",
+            "gram_comparatives",
+            "on_for_nous"
+          ],
+          "english": "We have to find the best solution.",
+          "french_formal": "Nous devons trouver la meilleure solution.",
+          "french_street": "On doit trouver la meilleure solution."
+        },
+        {
+          "id": "gram_comparatives_015",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "futur_proche",
+            "gram_comparatives"
+          ],
+          "english": "It's going to be better, I think.",
+          "french_formal": "Ça va être mieux, je pense.",
+          "french_street": "Ça va être mieux, j'pense."
+        },
+        {
+          "id": "gram_comparatives_016",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "gram_comparatives",
+            "imparfait_vs_pc",
+            "pc_avoir",
+            "relatives_qui_que"
+          ],
+          "english": "The film I saw was better than the other one.",
+          "french_formal": "Le film que j'ai vu était meilleur que l'autre.",
+          "french_street": "Le film qu'j'ai vu était meilleur que l'autre."
+        },
+        {
+          "id": "gram_comparatives_017",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "conditional_softeners",
+            "gram_comparatives"
+          ],
+          "english": "That would be even better.",
+          "french_formal": "Ce serait encore mieux.",
+          "french_street": "Ça s'rait encore mieux."
+        },
+        {
+          "id": "gram_comparatives_018",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "cest",
+            "chunks_reactions",
+            "cognate_bridges",
+            "gram_comparatives"
+          ],
+          "english": "It's totally the most important thing.",
+          "french_formal": "C'est carrément la chose la plus importante.",
+          "french_street": "C'est carrément la chose la plus importante."
+        },
+        {
+          "id": "gram_comparatives_019",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "connected_speech",
+            "gram_comparatives",
+            "pc_etre"
+          ],
+          "english": "You went to a better place than us.",
+          "french_formal": "Tu es allé dans un endroit meilleur que nous.",
+          "french_street": "T'es allé dans un endroit meilleur que nous."
+        },
+        {
+          "id": "gram_comparatives_020",
+          "target_concept_id": "gram_comparatives",
+          "concept_ids": [
+            "chunks_fillers",
+            "gram_comparatives",
+            "imparfait_vs_pc"
+          ],
+          "english": "In the end it was less expensive than expected.",
+          "french_formal": "En fait, c'était moins cher que prévu.",
+          "french_street": "En fait, c'était moins cher que prévu."
+        }
+      ]
+    },
+    {
+      "id": "gram_imperatives",
+      "type": "grammar",
+      "tier": 2,
+      "prereq_ids": [],
+      "title": "Imperatives: commands without a subject",
+      "explanation": "Here's something you're going to love — commands in French are actually simpler than what you already know, because you drop the subject entirely. You already know 'tu viens' — well, just cut the 'tu' and say 'viens !' That's it, that's your command. Same with 'vous attendez' — drop the subject, say 'attendez !' Now there's one thing to watch with -er verbs in the tu-form: the 's' disappears. So 'tu manges' becomes 'mange !' — no 's'. It feels wrong for a second, then it clicks. Now, when you want to attach a pronoun — like 'me' or 'moi' — it hooks on after the verb with a hyphen: 'donne-moi', 'dis-moi', 'attends-moi'. And for negative commands you already have your best friend 'pas' from day one — 'touche pas', 't'inquiète pas'. On the street the 'ne' is always gone, and you'll even hear 'pas' drop too — just 't'inquiète' on its own. You already know 'vas-y' and 'j'y vais' — well 'vas-y' is a command, and it's everywhere. Add 's'il te plaît' to soften anything, and you sound completely natural.",
+      "canonical_examples": [
+        {
+          "english": "Come!",
+          "formal": "Viens !",
+          "street": "Viens !"
+        },
+        {
+          "english": "Eat! (to a friend)",
+          "formal": "Mange !",
+          "street": "Mange !"
+        },
+        {
+          "english": "Wait for me!",
+          "formal": "Attends-moi !",
+          "street": "Attends-moi !"
+        },
+        {
+          "english": "Tell me.",
+          "formal": "Dis-moi.",
+          "street": "Dis-moi."
+        },
+        {
+          "english": "Don't touch that!",
+          "formal": "Ne touche pas ça !",
+          "street": "Touche pas ça !"
+        },
+        {
+          "english": "Don't worry.",
+          "formal": "Ne t'inquiète pas.",
+          "street": "T'inquiète."
+        },
+        {
+          "english": "Go on then, please!",
+          "formal": "Allez-y, s'il vous plaît !",
+          "street": "Vas-y, s'il te plaît !"
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_imperatives_001",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "aller_places",
+            "gram_imperatives"
+          ],
+          "english": "Go!",
+          "french_formal": "Allez !",
+          "french_street": "Vas-y !"
+        },
+        {
+          "id": "gram_imperatives_002",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "gram_imperatives"
+          ],
+          "english": "Stop!",
+          "french_formal": "Arrête !",
+          "french_street": "Arrête !"
+        },
+        {
+          "id": "gram_imperatives_003",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "gram_imperatives"
+          ],
+          "english": "Wait!",
+          "french_formal": "Attends !",
+          "french_street": "Attends !"
+        },
+        {
+          "id": "gram_imperatives_004",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "gram_imperatives"
+          ],
+          "english": "Come here, please.",
+          "french_formal": "Viens ici, s'il te plaît.",
+          "french_street": "Viens là, s'il te plaît."
+        },
+        {
+          "id": "gram_imperatives_005",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "gram_imperatives"
+          ],
+          "english": "Give me a coffee.",
+          "french_formal": "Donne-moi un café.",
+          "french_street": "Donne-moi un café."
+        },
+        {
+          "id": "gram_imperatives_006",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "cognate_bridges",
+            "gram_imperatives",
+            "iobj_pronouns"
+          ],
+          "english": "Tell me the solution.",
+          "french_formal": "Dis-moi la solution.",
+          "french_street": "Dis-moi la solution."
+        },
+        {
+          "id": "gram_imperatives_007",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "gram_imperatives"
+          ],
+          "english": "Don't leave!",
+          "french_formal": "Ne pars pas !",
+          "french_street": "Pars pas !"
+        },
+        {
+          "id": "gram_imperatives_008",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "gram_imperatives",
+            "negation_pas"
+          ],
+          "english": "Don't touch that, please.",
+          "french_formal": "Ne touche pas ça, s'il te plaît.",
+          "french_street": "Touche pas ça, s'il te plaît."
+        },
+        {
+          "id": "gram_imperatives_009",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "chunks_reactions",
+            "gram_imperatives",
+            "negation_pas",
+            "reflexives"
+          ],
+          "english": "Don't worry, it's not serious.",
+          "french_formal": "Ne t'inquiète pas, ce n'est pas grave.",
+          "french_street": "T'inquiète, c'est pas grave."
+        },
+        {
+          "id": "gram_imperatives_010",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "gram_imperatives",
+            "je_veux",
+            "vouloir_present"
+          ],
+          "english": "Eat something, you want to eat, right?",
+          "french_formal": "Mange quelque chose, tu veux manger, non ?",
+          "french_street": "Mange quelque chose, tu veux manger, non ?"
+        },
+        {
+          "id": "gram_imperatives_011",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "futur_proche",
+            "gram_imperatives",
+            "iobj_pronouns"
+          ],
+          "english": "Wait for me, I'm going to pay.",
+          "french_formal": "Attends-moi, je vais payer.",
+          "french_street": "Attends-moi, j'vais payer."
+        },
+        {
+          "id": "gram_imperatives_012",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "cest",
+            "gram_imperatives",
+            "negation_pas"
+          ],
+          "english": "Look at that, it's not possible!",
+          "french_formal": "Regarde ça, ce n'est pas possible !",
+          "french_street": "Regarde ça, c'est pas possible !"
+        },
+        {
+          "id": "gram_imperatives_013",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "aller_places",
+            "gram_imperatives",
+            "negation_pas"
+          ],
+          "english": "Don't go to the restaurant without me.",
+          "french_formal": "Ne va pas au restaurant sans moi.",
+          "french_street": "Va pas au resto sans moi."
+        },
+        {
+          "id": "gram_imperatives_014",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "cest",
+            "dobj_pronouns",
+            "gram_imperatives",
+            "iobj_pronouns"
+          ],
+          "english": "Give it to him, it's important.",
+          "french_formal": "Donne-le-lui, c'est important.",
+          "french_street": "Donne-le-lui, c'est important."
+        },
+        {
+          "id": "gram_imperatives_015",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "chunks_reactions",
+            "gram_imperatives",
+            "negation_pas"
+          ],
+          "english": "Let it go, it's not serious.",
+          "french_formal": "Laisse tomber, ce n'est pas grave.",
+          "french_street": "Laisse tomber, c'est pas grave."
+        },
+        {
+          "id": "gram_imperatives_016",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "gram_imperatives",
+            "on_for_nous",
+            "y_en"
+          ],
+          "english": "Come on, let's go!",
+          "french_formal": "Allez, allons-y !",
+          "french_street": "Allez, on y va !"
+        },
+        {
+          "id": "gram_imperatives_017",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "chunks_greetings",
+            "gram_imperatives",
+            "iobj_pronouns"
+          ],
+          "english": "Call me, okay?",
+          "french_formal": "Appelle-moi, d'accord ?",
+          "french_street": "Appelle-moi, ça marche ?"
+        },
+        {
+          "id": "gram_imperatives_018",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "devoir_inf",
+            "gram_imperatives",
+            "negation_pas"
+          ],
+          "english": "Don't forget, you have to pay.",
+          "french_formal": "N'oublie pas, tu dois payer.",
+          "french_street": "Oublie pas, tu dois payer."
+        },
+        {
+          "id": "gram_imperatives_019",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "chunks_reactions",
+            "gram_imperatives",
+            "pc_avoir",
+            "relatives_qui_que"
+          ],
+          "english": "Watch what I saw, it's totally crazy.",
+          "french_formal": "Regarde ce que j'ai vu, c'est carrément fou.",
+          "french_street": "Regarde c'que j'ai vu, c'est carrément fou."
+        },
+        {
+          "id": "gram_imperatives_020",
+          "target_concept_id": "gram_imperatives",
+          "concept_ids": [
+            "cognate_bridges",
+            "futur_proche",
+            "gram_imperatives",
+            "negation_pas",
+            "on_for_nous"
+          ],
+          "english": "Don't stress, we're going to find a solution.",
+          "french_formal": "Ne stresse pas, nous allons trouver une solution.",
+          "french_street": "Stresse pas, on va trouver une solution."
+        }
+      ]
+    },
+    {
+      "id": "gram_reflexives_deep",
+      "type": "grammar",
+      "tier": 3,
+      "prereq_ids": [
+        "reflexives"
+      ],
+      "title": "Reflexive verbs: the daily-routine engine",
+      "explanation": "Here's the big unlock: French has a whole category of verbs where the action bounces back onto you — you do it to yourself. These are reflexive verbs, and they run on a single simple idea: stick me, te, se, nous, or vous right before the verb. So je lève means I lift something, but je me lève means I lift myself — I get up. That's the engine. And in real spoken French, that me collapses almost immediately: je me becomes j'me — so j'me lève, j'me couche, j'me casse. The e of me basically never survives on the street. Now your daily-routine verbs — se lever, se doucher, s'habiller, se réveiller, se coucher — all work exactly this way. Then there's a social set where the action goes between two people: se voir, s'appeler, se retrouver, se parler. On se voit demain means we see each other tomorrow — that reciprocal meaning comes for free. In passé composé, reflexives always take être, just like your movement verbs — je me suis levé, on s'est vus. You already know être in passé composé, so this is just that same machine with a reflexive pronoun clipped in front.",
+      "canonical_examples": [
+        {
+          "english": "I get up at seven.",
+          "formal": "Je me lève à sept heures.",
+          "street": "J'me lève à sept heures."
+        },
+        {
+          "english": "She's getting dressed.",
+          "formal": "Elle s'habille.",
+          "street": "Elle s'habille."
+        },
+        {
+          "english": "We see each other tomorrow.",
+          "formal": "On se voit demain.",
+          "street": "On se voit demain."
+        },
+        {
+          "english": "Can you get up early?",
+          "formal": "Tu peux te lever tôt ?",
+          "street": "Tu peux t'lever tôt ?"
+        },
+        {
+          "english": "We're going to meet up at the café.",
+          "formal": "On va se retrouver au café.",
+          "street": "On va se retrouver au café."
+        },
+        {
+          "english": "I got up late this morning.",
+          "formal": "Je me suis levé tard ce matin.",
+          "street": "J'me suis levé tard ce matin."
+        },
+        {
+          "english": "We saw each other yesterday — it had been a long time.",
+          "formal": "On s'est vus hier — ça faisait longtemps.",
+          "street": "On s'est vus hier — ça faisait longtemps."
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_reflexives_deep_001",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "gram_reflexives_deep",
+            "reflexives"
+          ],
+          "english": "I get up.",
+          "french_formal": "Je me lève.",
+          "french_street": "J'me lève."
+        },
+        {
+          "id": "gram_reflexives_deep_002",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "gram_reflexives_deep",
+            "reflexives"
+          ],
+          "english": "She showers.",
+          "french_formal": "Elle se douche.",
+          "french_street": "Elle se douche."
+        },
+        {
+          "id": "gram_reflexives_deep_003",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "gram_reflexives_deep",
+            "reflexives"
+          ],
+          "english": "He gets dressed.",
+          "french_formal": "Il s'habille.",
+          "french_street": "Il s'habille."
+        },
+        {
+          "id": "gram_reflexives_deep_004",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "gram_reflexives_deep",
+            "on_for_nous",
+            "reflexives"
+          ],
+          "english": "We see each other tomorrow.",
+          "french_formal": "On se voit demain.",
+          "french_street": "On se voit demain."
+        },
+        {
+          "id": "gram_reflexives_deep_005",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "gram_reflexives_deep",
+            "je_veux",
+            "reflexives"
+          ],
+          "english": "I want to go to bed.",
+          "french_formal": "Je veux me coucher.",
+          "french_street": "J'veux m'coucher."
+        },
+        {
+          "id": "gram_reflexives_deep_006",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "gram_reflexives_deep",
+            "pouvoir_inf",
+            "questions_intonation",
+            "reflexives"
+          ],
+          "english": "Can you wake up early?",
+          "french_formal": "Tu peux te réveiller tôt ?",
+          "french_street": "Tu peux t'réveiller tôt ?"
+        },
+        {
+          "id": "gram_reflexives_deep_007",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "aller_places",
+            "futur_proche",
+            "gram_reflexives_deep",
+            "on_for_nous",
+            "reflexives"
+          ],
+          "english": "We're going to meet up at the restaurant.",
+          "french_formal": "On va se retrouver au restaurant.",
+          "french_street": "On va se retrouver au resto."
+        },
+        {
+          "id": "gram_reflexives_deep_008",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "gram_reflexives_deep",
+            "on_for_nous",
+            "reflexives"
+          ],
+          "english": "We talk to each other every day.",
+          "french_formal": "On se parle tous les jours.",
+          "french_street": "On se parle tous les jours."
+        },
+        {
+          "id": "gram_reflexives_deep_009",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "devoir_inf",
+            "gram_reflexives_deep",
+            "reflexives"
+          ],
+          "english": "I have to get dressed.",
+          "french_formal": "Je dois m'habiller.",
+          "french_street": "J'dois m'habiller."
+        },
+        {
+          "id": "gram_reflexives_deep_010",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "gram_reflexives_deep",
+            "questions_intonation",
+            "reflexives"
+          ],
+          "english": "What are you called? My name is Sarah.",
+          "french_formal": "Tu t'appelles comment ? Je m'appelle Sarah.",
+          "french_street": "Tu t'appelles comment ? J'm'appelle Sarah."
+        },
+        {
+          "id": "gram_reflexives_deep_011",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "gram_reflexives_deep",
+            "pc_etre",
+            "reflexives"
+          ],
+          "english": "I got up at eight this morning.",
+          "french_formal": "Je me suis levé à huit heures ce matin.",
+          "french_street": "J'me suis levé à huit heures ce matin."
+        },
+        {
+          "id": "gram_reflexives_deep_012",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "gram_reflexives_deep",
+            "pc_etre",
+            "reflexives"
+          ],
+          "english": "She got dressed quickly.",
+          "french_formal": "Elle s'est habillée vite.",
+          "french_street": "Elle s'est habillée vite."
+        },
+        {
+          "id": "gram_reflexives_deep_013",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "gram_reflexives_deep",
+            "on_for_nous",
+            "pc_etre",
+            "reflexives"
+          ],
+          "english": "We saw each other yesterday.",
+          "french_formal": "On s'est vus hier.",
+          "french_street": "On s'est vus hier."
+        },
+        {
+          "id": "gram_reflexives_deep_014",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "connected_speech",
+            "gram_reflexives_deep",
+            "negation_pas",
+            "pc_etre",
+            "reflexives"
+          ],
+          "english": "Did you shower? No, not yet.",
+          "french_formal": "Tu t'es douché ? Non, pas encore.",
+          "french_street": "T'es douché ? Non, pas encore."
+        },
+        {
+          "id": "gram_reflexives_deep_015",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "chunks_reactions",
+            "gram_reflexives_deep",
+            "negation_pas",
+            "pc_etre",
+            "reflexives"
+          ],
+          "english": "I didn't get up early — it was rough.",
+          "french_formal": "Je ne me suis pas levé tôt — c'était chaud.",
+          "french_street": "J'me suis pas levé tôt — c'était chaud."
+        },
+        {
+          "id": "gram_reflexives_deep_016",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "chunks_fillers",
+            "futur_proche",
+            "gram_reflexives_deep",
+            "on_for_nous",
+            "reflexives"
+          ],
+          "english": "So we're going to meet up at nine?",
+          "french_formal": "Du coup, on va se retrouver à neuf heures ?",
+          "french_street": "Du coup, on va se retrouver à neuf heures ?"
+        },
+        {
+          "id": "gram_reflexives_deep_017",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "connected_speech",
+            "gram_reflexives_deep",
+            "negation_pas",
+            "reflexives"
+          ],
+          "english": "I don't know what time I get up.",
+          "french_formal": "Je ne sais pas à quelle heure je me lève.",
+          "french_street": "Chais pas à quelle heure j'me lève."
+        },
+        {
+          "id": "gram_reflexives_deep_018",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "cest",
+            "gram_reflexives_deep",
+            "reflexives",
+            "relatives_qui_que"
+          ],
+          "english": "It's the girl I see every day.",
+          "french_formal": "C'est la fille que je vois tous les jours.",
+          "french_street": "C'est la fille qu'je vois tous les jours."
+        },
+        {
+          "id": "gram_reflexives_deep_019",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "gram_reflexives_deep",
+            "imparfait_vs_pc",
+            "pc_etre",
+            "reflexives"
+          ],
+          "english": "I was tired — I went to bed early.",
+          "french_formal": "J'étais fatigué — je me suis couché tôt.",
+          "french_street": "J'étais fatigué — j'me suis couché tôt."
+        },
+        {
+          "id": "gram_reflexives_deep_020",
+          "target_concept_id": "gram_reflexives_deep",
+          "concept_ids": [
+            "cest",
+            "gram_reflexives_deep",
+            "negation_pas",
+            "on_for_nous",
+            "pc_etre",
+            "reflexives"
+          ],
+          "english": "It's not possible — we didn't see each other.",
+          "french_formal": "Ce n'est pas possible — on ne s'est pas vus.",
+          "french_street": "C'est pas possible — on s'est pas vus."
+        }
+      ]
+    },
+    {
+      "id": "gram_partitives",
+      "type": "grammar",
+      "tier": 2,
+      "prereq_ids": [
+        "gram_gender_articles"
+      ],
+      "title": "Partitives: du, de la, des — 'some'",
+      "explanation": "Here's the thing about French — where English happily says 'I want bread' or 'there's no coffee', French always needs its little 'some' word, and that word changes shape depending on the noun. With a masculine noun you get du: du pain, du café. With a feminine noun, de la: de la bière, de la musique. With plurals, des: des frites, des amis. That's it — du, de la, des. Now here's the beautiful shortcut that makes everything easier. The moment you go negative — pas, plus, jamais — all three collapse into one tiny word: de. J'ai pas de pain, y'a plus de café, y'a pas de lait. One rule kills three forms. Same thing after quantities: beaucoup de monde, un peu de temps, trop de trucs — de every time, no exceptions. On the street, this all stays exactly as it is — partitives never drop — but the sounds glue together at speed. Y'a plus d'lait, j'veux du pain, j'prends d'la bière. That d'gluing into the next word is just connected speech doing its thing. You already know j'en veux from y and en — that en is actually replacing the whole partitive chunk. So you've been using this system already without knowing it.",
+      "canonical_examples": [
+        {
+          "english": "I want some bread.",
+          "formal": "Je veux du pain.",
+          "street": "J'veux du pain."
+        },
+        {
+          "english": "I'll have some water, please.",
+          "formal": "Je voudrais de l'eau, s'il vous plaît.",
+          "street": "J'voudrais d'l'eau, s'il vous plaît."
+        },
+        {
+          "english": "There's some coffee and some fries.",
+          "formal": "Il y a du café et des frites.",
+          "street": "Y'a du café et des frites."
+        },
+        {
+          "english": "I don't have any bread.",
+          "formal": "Je n'ai pas de pain.",
+          "street": "J'ai pas de pain."
+        },
+        {
+          "english": "There's no more milk.",
+          "formal": "Il n'y a plus de lait.",
+          "street": "Y'a plus d'lait."
+        },
+        {
+          "english": "There are a lot of people and too many things to do.",
+          "formal": "Il y a beaucoup de monde et trop de choses à faire.",
+          "street": "Y'a beaucoup d'monde et trop d'trucs à faire."
+        },
+        {
+          "english": "We're going to have some beer at the café — we haven't got much time though.",
+          "formal": "Nous allons prendre de la bière au café — nous n'avons pas beaucoup de temps.",
+          "street": "On va prendre d'la bière au café — on a pas beaucoup d'temps."
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_partitives_001",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "gram_partitives",
+            "partitives"
+          ],
+          "english": "Some coffee.",
+          "french_formal": "Du café.",
+          "french_street": "Du café."
+        },
+        {
+          "id": "gram_partitives_002",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "gram_partitives",
+            "partitives"
+          ],
+          "english": "Some beer.",
+          "french_formal": "De la bière.",
+          "french_street": "D'la bière."
+        },
+        {
+          "id": "gram_partitives_003",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "gram_partitives",
+            "partitives"
+          ],
+          "english": "Some fries.",
+          "french_formal": "Des frites.",
+          "french_street": "Des frites."
+        },
+        {
+          "id": "gram_partitives_004",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "gram_partitives",
+            "je_veux",
+            "partitives"
+          ],
+          "english": "I want some coffee.",
+          "french_formal": "Je veux du café.",
+          "french_street": "J'veux du café."
+        },
+        {
+          "id": "gram_partitives_005",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "connected_speech",
+            "gram_partitives",
+            "partitives"
+          ],
+          "english": "There's some water.",
+          "french_formal": "Il y a de l'eau.",
+          "french_street": "Y'a d'l'eau."
+        },
+        {
+          "id": "gram_partitives_006",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "conditional_softeners",
+            "gram_partitives",
+            "partitives"
+          ],
+          "english": "I'd like some beer.",
+          "french_formal": "Je voudrais de la bière.",
+          "french_street": "J'voudrais d'la bière."
+        },
+        {
+          "id": "gram_partitives_007",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "gram_partitives",
+            "negation_pas",
+            "partitives"
+          ],
+          "english": "I don't have any coffee.",
+          "french_formal": "Je n'ai pas de café.",
+          "french_street": "J'ai pas d'café."
+        },
+        {
+          "id": "gram_partitives_008",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "connected_speech",
+            "gram_partitives",
+            "negation_pas",
+            "partitives"
+          ],
+          "english": "There's no bread.",
+          "french_formal": "Il n'y a pas de pain.",
+          "french_street": "Y'a pas d'pain."
+        },
+        {
+          "id": "gram_partitives_009",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "connected_speech",
+            "gram_partitives",
+            "negation_pas",
+            "partitives"
+          ],
+          "english": "There's no more water.",
+          "french_formal": "Il n'y a plus d'eau.",
+          "french_street": "Y'a plus d'eau."
+        },
+        {
+          "id": "gram_partitives_010",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "gram_partitives",
+            "partitives"
+          ],
+          "english": "A lot of people.",
+          "french_formal": "Beaucoup de monde.",
+          "french_street": "Beaucoup d'monde."
+        },
+        {
+          "id": "gram_partitives_011",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "gram_partitives",
+            "partitives"
+          ],
+          "english": "A little time.",
+          "french_formal": "Un peu de temps.",
+          "french_street": "Un peu d'temps."
+        },
+        {
+          "id": "gram_partitives_012",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "gram_partitives",
+            "partitives"
+          ],
+          "english": "Too many things.",
+          "french_formal": "Trop de choses.",
+          "french_street": "Trop d'trucs."
+        },
+        {
+          "id": "gram_partitives_013",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "futur_proche",
+            "gram_partitives",
+            "partitives"
+          ],
+          "english": "I'm going to have some coffee.",
+          "french_formal": "Je vais prendre du café.",
+          "french_street": "J'vais prendre du café."
+        },
+        {
+          "id": "gram_partitives_014",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "gram_partitives",
+            "partitives",
+            "questions_intonation",
+            "vouloir_present"
+          ],
+          "english": "Do you want some fries?",
+          "french_formal": "Est-ce que tu veux des frites ?",
+          "french_street": "Tu veux des frites ?"
+        },
+        {
+          "id": "gram_partitives_015",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "aller_places",
+            "gram_partitives",
+            "on_for_nous",
+            "partitives",
+            "vouloir_present"
+          ],
+          "english": "We want some water at the café.",
+          "french_formal": "Nous voulons de l'eau au café.",
+          "french_street": "On veut d'l'eau au café."
+        },
+        {
+          "id": "gram_partitives_016",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "gram_partitives",
+            "partitives",
+            "pc_avoir"
+          ],
+          "english": "I ate some bread and some fries.",
+          "french_formal": "J'ai mangé du pain et des frites.",
+          "french_street": "J'ai mangé du pain et des frites."
+        },
+        {
+          "id": "gram_partitives_017",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "cest",
+            "gram_partitives",
+            "imparfait_vs_pc",
+            "negation_pas",
+            "partitives"
+          ],
+          "english": "There was a lot of beer — it's not normal.",
+          "french_formal": "Il y avait beaucoup de bière — ce n'est pas normal.",
+          "french_street": "Y'avait beaucoup d'bière — c'est pas normal."
+        },
+        {
+          "id": "gram_partitives_018",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "chunks_fillers",
+            "futur_proche",
+            "gram_partitives",
+            "negation_pas",
+            "partitives"
+          ],
+          "english": "I don't have any time, so we're going to leave.",
+          "french_formal": "Je n'ai pas de temps, donc on va partir.",
+          "french_street": "J'ai pas d'temps, du coup on va partir."
+        },
+        {
+          "id": "gram_partitives_019",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "connected_speech",
+            "gram_partitives",
+            "negation_pas",
+            "partitives",
+            "pouvoir_inf"
+          ],
+          "english": "Can you get some water? There's no more coffee.",
+          "french_formal": "Tu peux prendre de l'eau ? Il n'y a plus de café.",
+          "french_street": "Tu peux prendre d'l'eau ? Y'a plus d'café."
+        },
+        {
+          "id": "gram_partitives_020",
+          "target_concept_id": "gram_partitives",
+          "concept_ids": [
+            "aller_places",
+            "chunks_reactions",
+            "gram_partitives",
+            "imparfait_vs_pc",
+            "partitives",
+            "pc_etre"
+          ],
+          "english": "I went to the market and there were loads of people — totally.",
+          "french_formal": "Je suis allé au marché et il y avait beaucoup de monde — absolument.",
+          "french_street": "J'suis allé au marché et y'avait beaucoup d'monde — carrément."
+        }
+      ]
+    },
+    {
+      "id": "gram_il_faut",
+      "type": "grammar",
+      "tier": 2,
+      "prereq_ids": [
+        "devoir_inf"
+      ],
+      "title": "il faut & impersonal expressions",
+      "explanation": "Here's a beautiful piece of French that does a lot of heavy lifting for you. Il faut — it means you have to, one must, we need. The magic is it's impersonal, so you never have to worry about who's doing the action. Il faut partir — you have to leave. Il faut voir ça — you've got to see that. And with a noun: il faut du temps — you need time. Il faut une réservation — you need a reservation. Now here's the street layer, and this is important: in real spoken French, the il just disappears. Nobody says il faut, they say faut. Faut partir. Faut voir. Faut pas faire ça — don't do that. That dropped faut is everywhere. Compare it to tu dois, which you already know — tu dois is more personal, a bit more direct, sometimes a bit accusatory. Faut is softer, more like giving advice naturally. There's a whole family around this idea too: il vaut mieux, which shortens to vaut mieux — better to. Ça prend — it takes, as in time. Il reste — there's still, there's left. These all work the same impersonal way, no subject to manage. Lean on faut and you'll sound natural immediately.",
+      "canonical_examples": [
+        {
+          "english": "You have to leave.",
+          "formal": "Il faut partir.",
+          "street": "Faut partir."
+        },
+        {
+          "english": "You have to see that.",
+          "formal": "Il faut voir ça.",
+          "street": "Faut voir ça."
+        },
+        {
+          "english": "We need a reservation.",
+          "formal": "Il faut une réservation.",
+          "street": "Faut une réservation."
+        },
+        {
+          "english": "You shouldn't do that.",
+          "formal": "Il ne faut pas faire ça.",
+          "street": "Faut pas faire ça."
+        },
+        {
+          "english": "You should have said so.",
+          "formal": "Il fallait le dire.",
+          "street": "Fallait le dire."
+        },
+        {
+          "english": "It's better to wait.",
+          "formal": "Il vaut mieux attendre.",
+          "street": "Vaut mieux attendre."
+        },
+        {
+          "english": "It takes time.",
+          "formal": "Ça prend du temps.",
+          "street": "Ça prend du temps."
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_il_faut_001",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "devoir_inf",
+            "gram_il_faut"
+          ],
+          "english": "You have to eat.",
+          "french_formal": "Il faut manger.",
+          "french_street": "Faut manger."
+        },
+        {
+          "id": "gram_il_faut_002",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "devoir_inf",
+            "gram_il_faut"
+          ],
+          "english": "You have to pay.",
+          "french_formal": "Il faut payer.",
+          "french_street": "Faut payer."
+        },
+        {
+          "id": "gram_il_faut_003",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "gram_il_faut",
+            "on_for_nous"
+          ],
+          "english": "We need time.",
+          "french_formal": "Il faut du temps.",
+          "french_street": "Faut du temps."
+        },
+        {
+          "id": "gram_il_faut_004",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "gram_il_faut",
+            "negation_pas"
+          ],
+          "english": "You shouldn't leave.",
+          "french_formal": "Il ne faut pas partir.",
+          "french_street": "Faut pas partir."
+        },
+        {
+          "id": "gram_il_faut_005",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "aller_places",
+            "gram_il_faut",
+            "y_en"
+          ],
+          "english": "It's better to go.",
+          "french_formal": "Il vaut mieux y aller.",
+          "french_street": "Vaut mieux y aller."
+        },
+        {
+          "id": "gram_il_faut_006",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "faire_expressions",
+            "gram_il_faut"
+          ],
+          "english": "It takes twenty minutes.",
+          "french_formal": "Ça prend vingt minutes.",
+          "french_street": "Ça prend vingt minutes."
+        },
+        {
+          "id": "gram_il_faut_007",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "gram_il_faut",
+            "y_en"
+          ],
+          "english": "There's still some coffee.",
+          "french_formal": "Il reste du café.",
+          "french_street": "Il reste du café."
+        },
+        {
+          "id": "gram_il_faut_008",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_il_faut"
+          ],
+          "english": "You have to call him.",
+          "french_formal": "Il faut l'appeler.",
+          "french_street": "Faut l'appeler."
+        },
+        {
+          "id": "gram_il_faut_009",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "gram_il_faut",
+            "relatives_qui_que"
+          ],
+          "english": "You really have to see this film.",
+          "french_formal": "Il faut vraiment voir ce film.",
+          "french_street": "Faut vraiment voir ce film."
+        },
+        {
+          "id": "gram_il_faut_010",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "gram_il_faut",
+            "imparfait_vs_pc"
+          ],
+          "english": "You should have come.",
+          "french_formal": "Il fallait venir.",
+          "french_street": "Fallait venir."
+        },
+        {
+          "id": "gram_il_faut_011",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "cognate_bridges",
+            "gram_il_faut",
+            "on_for_nous"
+          ],
+          "english": "We need a solution.",
+          "french_formal": "Il faut une solution.",
+          "french_street": "Faut une solution."
+        },
+        {
+          "id": "gram_il_faut_012",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "gram_il_faut",
+            "negation_pas"
+          ],
+          "english": "It's better not to say anything.",
+          "french_formal": "Il vaut mieux ne rien dire.",
+          "french_street": "Vaut mieux rien dire."
+        },
+        {
+          "id": "gram_il_faut_013",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "aller_places",
+            "chunks_fillers",
+            "gram_il_faut"
+          ],
+          "english": "So, you have to go to the restaurant?",
+          "french_formal": "Donc, il faut aller au restaurant ?",
+          "french_street": "Du coup, faut aller au resto ?"
+        },
+        {
+          "id": "gram_il_faut_014",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "gram_il_faut",
+            "iobj_pronouns"
+          ],
+          "english": "You have to talk to him.",
+          "french_formal": "Il faut lui parler.",
+          "french_street": "Faut lui parler."
+        },
+        {
+          "id": "gram_il_faut_015",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "chunks_reactions",
+            "gram_il_faut",
+            "imparfait_vs_pc",
+            "negation_pas"
+          ],
+          "english": "You shouldn't have done that — that's rough.",
+          "french_formal": "Il ne fallait pas faire ça — c'est difficile.",
+          "french_street": "Fallait pas faire ça — c'est chaud."
+        },
+        {
+          "id": "gram_il_faut_016",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "cest",
+            "gram_il_faut"
+          ],
+          "english": "There are two seats left.",
+          "french_formal": "Il reste deux places.",
+          "french_street": "Il reste deux places."
+        },
+        {
+          "id": "gram_il_faut_017",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "faire_expressions",
+            "futur_proche",
+            "gram_il_faut"
+          ],
+          "english": "It's going to take a long time.",
+          "french_formal": "Ça va prendre longtemps.",
+          "french_street": "Ça va prendre longtemps."
+        },
+        {
+          "id": "gram_il_faut_018",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "gram_il_faut",
+            "je_veux",
+            "y_en"
+          ],
+          "english": "I want to go but you have to book.",
+          "french_formal": "Je veux y aller mais il faut réserver.",
+          "french_street": "J'veux y aller mais faut réserver."
+        },
+        {
+          "id": "gram_il_faut_019",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "cest",
+            "cognate_bridges",
+            "gram_il_faut",
+            "negation_pas"
+          ],
+          "english": "It's not possible — we need a reservation.",
+          "french_formal": "Ce n'est pas possible — il faut une réservation.",
+          "french_street": "C'est pas possible — faut une réservation."
+        },
+        {
+          "id": "gram_il_faut_020",
+          "target_concept_id": "gram_il_faut",
+          "concept_ids": [
+            "chunks_fillers",
+            "faire_expressions",
+            "gram_il_faut"
+          ],
+          "english": "Well, it's better to wait — it takes time.",
+          "french_formal": "Eh bien, il vaut mieux attendre — ça prend du temps.",
+          "french_street": "Bah, vaut mieux attendre — ça prend du temps."
+        }
+      ]
+    },
+    {
+      "id": "gram_time_date",
+      "type": "grammar",
+      "tier": 1,
+      "prereq_ids": [],
+      "title": "Time & date expressions",
+      "explanation": "Time in French is built on one anchor: il est, meaning it is. Il est trois heures — it is three o'clock. Add et demie for half past, et quart for quarter past, moins le quart for quarter to. On the street, il est often drops to just c'est trois heures or even t'as l'heure — do you have the time? For schedules — trains, appointments — France uses the 24-hour clock: quatorze heures trente, vingt heures. You'll see it on every screen, so recognise it. Days and months never take a capital and never need an article: lundi, en janvier — just like that, bare. Your anchor words are aujourd'hui today, demain tomorrow, hier yesterday, ce matin this morning, ce soir this evening. For appointments, à does all the work: à huit heures, à lundi, and the gorgeous chunk à demain — see you tomorrow. You already know à toute from your greetings chunk — same instinct, time compressed into a word. For ongoing situations, depuis is your friend: j'habite ici depuis deux ans — I've been living here for two years. Notice French uses the present tense where English uses have been. And c'est quand — when is it? — is your go-to for any schedule question on the street.",
+      "canonical_examples": [
+        {
+          "english": "It's three thirty.",
+          "formal": "Il est trois heures et demie.",
+          "street": "Il est trois heures et demie."
+        },
+        {
+          "english": "The meeting is at two thirty p.m.",
+          "formal": "La réunion est à quatorze heures trente.",
+          "street": "La réunion est à quatorze heures trente."
+        },
+        {
+          "english": "See you tomorrow!",
+          "formal": "À demain !",
+          "street": "À demain !"
+        },
+        {
+          "english": "We're going out this evening.",
+          "formal": "Nous allons sortir ce soir.",
+          "street": "On va sortir ce soir."
+        },
+        {
+          "english": "I've been living here for two years.",
+          "formal": "J'habite ici depuis deux ans.",
+          "street": "J'habite ici depuis deux ans."
+        },
+        {
+          "english": "I saw him yesterday morning.",
+          "formal": "Je l'ai vu hier matin.",
+          "street": "J'l'ai vu hier matin."
+        },
+        {
+          "english": "It's quarter to eight — I have to leave.",
+          "formal": "Il est huit heures moins le quart — je dois partir.",
+          "street": "Il est huit heures moins le quart — j'dois partir."
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_time_date_001",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "gram_time_date"
+          ],
+          "english": "It's five o'clock.",
+          "french_formal": "Il est cinq heures.",
+          "french_street": "Il est cinq heures."
+        },
+        {
+          "id": "gram_time_date_002",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "gram_time_date"
+          ],
+          "english": "It's half past nine.",
+          "french_formal": "Il est neuf heures et demie.",
+          "french_street": "Il est neuf heures et demie."
+        },
+        {
+          "id": "gram_time_date_003",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "gram_time_date"
+          ],
+          "english": "It's quarter past seven.",
+          "french_formal": "Il est sept heures et quart.",
+          "french_street": "Il est sept heures et quart."
+        },
+        {
+          "id": "gram_time_date_004",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "gram_time_date"
+          ],
+          "english": "It's quarter to six.",
+          "french_formal": "Il est six heures moins le quart.",
+          "french_street": "Il est six heures moins le quart."
+        },
+        {
+          "id": "gram_time_date_005",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "gram_time_date"
+          ],
+          "english": "The train is at twenty hours fifteen.",
+          "french_formal": "Le train est à vingt heures quinze.",
+          "french_street": "Le train est à vingt heures quinze."
+        },
+        {
+          "id": "gram_time_date_006",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "cest",
+            "gram_time_date"
+          ],
+          "english": "Today is Monday.",
+          "french_formal": "Aujourd'hui, c'est lundi.",
+          "french_street": "Aujourd'hui, c'est lundi."
+        },
+        {
+          "id": "gram_time_date_007",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "gram_time_date"
+          ],
+          "english": "I work in January.",
+          "french_formal": "Je travaille en janvier.",
+          "french_street": "J'travaille en janvier."
+        },
+        {
+          "id": "gram_time_date_008",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "chunks_greetings",
+            "gram_time_date"
+          ],
+          "english": "See you soon!",
+          "french_formal": "À toute !",
+          "french_street": "À toute !"
+        },
+        {
+          "id": "gram_time_date_009",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "gram_time_date",
+            "je_veux"
+          ],
+          "english": "I want to eat this evening.",
+          "french_formal": "Je veux manger ce soir.",
+          "french_street": "J'veux manger ce soir."
+        },
+        {
+          "id": "gram_time_date_010",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "gram_time_date",
+            "on_for_nous",
+            "pouvoir_inf"
+          ],
+          "english": "We can go out tomorrow.",
+          "french_formal": "Nous pouvons sortir demain.",
+          "french_street": "On peut sortir demain."
+        },
+        {
+          "id": "gram_time_date_011",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "devoir_inf",
+            "gram_time_date"
+          ],
+          "english": "I have to be there at eight o'clock.",
+          "french_formal": "Je dois être là à huit heures.",
+          "french_street": "J'dois être là à huit heures."
+        },
+        {
+          "id": "gram_time_date_012",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "dobj_pronouns",
+            "futur_proche",
+            "gram_time_date"
+          ],
+          "english": "I'm going to call him this morning.",
+          "french_formal": "Je vais l'appeler ce matin.",
+          "french_street": "J'vais l'appeler ce matin."
+        },
+        {
+          "id": "gram_time_date_013",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "cest",
+            "gram_time_date",
+            "questions_intonation"
+          ],
+          "english": "When is it?",
+          "french_formal": "C'est quand ?",
+          "french_street": "C'est quand ?"
+        },
+        {
+          "id": "gram_time_date_014",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "gram_time_date"
+          ],
+          "english": "I've been working here since January.",
+          "french_formal": "Je travaille ici depuis janvier.",
+          "french_street": "J'travaille ici depuis janvier."
+        },
+        {
+          "id": "gram_time_date_015",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "gram_time_date"
+          ],
+          "english": "I've been waiting for two hours.",
+          "french_formal": "J'attends depuis deux heures.",
+          "french_street": "J'attends depuis deux heures."
+        },
+        {
+          "id": "gram_time_date_016",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "faire_expressions",
+            "gram_time_date",
+            "imparfait_vs_pc"
+          ],
+          "english": "Yesterday it was cold.",
+          "french_formal": "Hier, il faisait froid.",
+          "french_street": "Hier, fait froid."
+        },
+        {
+          "id": "gram_time_date_017",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "gram_time_date",
+            "pc_etre",
+            "reflexives"
+          ],
+          "english": "I got up at seven this morning.",
+          "french_formal": "Je me suis levé à sept heures ce matin.",
+          "french_street": "J'me suis levé à sept heures ce matin."
+        },
+        {
+          "id": "gram_time_date_018",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "gram_time_date",
+            "pc_etre"
+          ],
+          "english": "She arrived yesterday.",
+          "french_formal": "Elle est arrivée hier.",
+          "french_street": "Elle est arrivée hier."
+        },
+        {
+          "id": "gram_time_date_019",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "gram_time_date",
+            "negation_pas"
+          ],
+          "english": "It's not possible — the appointment is at fourteen hours.",
+          "french_formal": "Ce n'est pas possible — le rendez-vous est à quatorze heures.",
+          "french_street": "C'est pas possible — le rendez-vous est à quatorze heures."
+        },
+        {
+          "id": "gram_time_date_020",
+          "target_concept_id": "gram_time_date",
+          "concept_ids": [
+            "chunks_fillers",
+            "gram_time_date",
+            "on_for_nous",
+            "questions_intonation",
+            "y_en"
+          ],
+          "english": "So, are we going next week?",
+          "french_formal": "Donc, nous allons y aller la semaine prochaine ?",
+          "french_street": "Du coup, on y va la semaine prochaine ?"
+        }
+      ]
+    },
+    {
+      "id": "gram_demonstratives_possessives",
+      "type": "grammar",
+      "tier": 1,
+      "prereq_ids": [
+        "gram_gender_articles"
+      ],
+      "title": "Pointing & owning: ce, cette, mon, ton, son",
+      "explanation": "Here's something you're already half-doing every time you say 'c'est' — now you're going to point at specific things. 'Ce', 'cette', 'ces' mean this, that, these, all in one. The rule is just gender: 'ce' for masculine nouns, 'cette' for feminine, 'ces' for any plural. So 'ce mec' is this guy, 'cette meuf' is this girl, 'ces gens' are these people — you've got your street commentary toolkit right there. One bonus form: before a vowel sound, masculine 'ce' becomes 'cet' — so 'cet après-midi'. And you can slap '-là' on the end for extra pointing force: 'ce truc-là', like 'that thing right there'. Now, possessives — 'mon', 'ton', 'son' — here's the catch that trips everyone: they track the thing owned, not the owner. So 'sa voiture' means his car or her car depending on context, because 'voiture' is feminine. Mon, ton, son for masculine or vowel-starting feminine nouns — and yes, 'mon amie' even though she's a friend, because 'amie' starts with a vowel. Notre, votre, leur stay the same for both genders, so those are easy. Put it all together and you can point at anything and claim anything — which is basically half of street conversation.",
+      "canonical_examples": [
+        {
+          "english": "This guy is not normal.",
+          "formal": "Ce mec n'est pas normal.",
+          "street": "Ce mec, c'est pas normal."
+        },
+        {
+          "english": "I want this thing right there.",
+          "formal": "Je veux ce truc-là.",
+          "street": "J'veux ce truc-là."
+        },
+        {
+          "english": "This afternoon we're going to the restaurant.",
+          "formal": "Cet après-midi, nous allons au restaurant.",
+          "street": "Cet après-midi, on va au resto."
+        },
+        {
+          "english": "His car is not possible — that's rough.",
+          "formal": "Sa voiture, ce n'est pas possible — c'est difficile.",
+          "street": "Sa voiture, c'est pas possible — c'est chaud."
+        },
+        {
+          "english": "My friend — she spoke to him.",
+          "formal": "Mon amie — elle lui a parlé.",
+          "street": "Mon amie — elle lui a parlé."
+        },
+        {
+          "english": "These people, I don't know them.",
+          "formal": "Ces gens, je ne les connais pas.",
+          "street": "Ces gens, j'les connais pas."
+        },
+        {
+          "english": "This table — your coffee is on it.",
+          "formal": "Cette table — votre café est dessus.",
+          "street": "Cette table-là — ton café, il est dessus."
+        }
+      ],
+      "drills": [
+        {
+          "id": "gram_demonstratives_possessives_001",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "gram_demonstratives_possessives"
+          ],
+          "english": "this guy",
+          "french_formal": "ce mec",
+          "french_street": "ce mec"
+        },
+        {
+          "id": "gram_demonstratives_possessives_002",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "gram_demonstratives_possessives"
+          ],
+          "english": "this girl",
+          "french_formal": "cette meuf",
+          "french_street": "cette meuf"
+        },
+        {
+          "id": "gram_demonstratives_possessives_003",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "gram_demonstratives_possessives"
+          ],
+          "english": "these people",
+          "french_formal": "ces gens",
+          "french_street": "ces gens"
+        },
+        {
+          "id": "gram_demonstratives_possessives_004",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "gram_demonstratives_possessives"
+          ],
+          "english": "that thing right there",
+          "french_formal": "ce truc-là",
+          "french_street": "ce truc-là"
+        },
+        {
+          "id": "gram_demonstratives_possessives_005",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "gram_demonstratives_possessives"
+          ],
+          "english": "this afternoon",
+          "french_formal": "cet après-midi",
+          "french_street": "cet après-midi"
+        },
+        {
+          "id": "gram_demonstratives_possessives_006",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "gram_demonstratives_possessives"
+          ],
+          "english": "my friend (female)",
+          "french_formal": "mon amie",
+          "french_street": "mon amie"
+        },
+        {
+          "id": "gram_demonstratives_possessives_007",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "cest",
+            "gram_demonstratives_possessives",
+            "negation_pas"
+          ],
+          "english": "It's not possible — that thing right there.",
+          "french_formal": "Ce truc-là, ce n'est pas possible.",
+          "french_street": "Ce truc-là, c'est pas possible."
+        },
+        {
+          "id": "gram_demonstratives_possessives_008",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "cest",
+            "gram_demonstratives_possessives"
+          ],
+          "english": "His car is great.",
+          "french_formal": "Sa voiture, c'est super.",
+          "french_street": "Sa voiture, c'est super."
+        },
+        {
+          "id": "gram_demonstratives_possessives_009",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "gram_demonstratives_possessives",
+            "je_veux"
+          ],
+          "english": "I want this coffee.",
+          "french_formal": "Je veux ce café.",
+          "french_street": "J'veux ce café."
+        },
+        {
+          "id": "gram_demonstratives_possessives_010",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "cognate_bridges",
+            "gram_demonstratives_possessives"
+          ],
+          "english": "Her solution is good.",
+          "french_formal": "Sa solution est bonne.",
+          "french_street": "Sa solution, elle est bonne."
+        },
+        {
+          "id": "gram_demonstratives_possessives_011",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "gram_demonstratives_possessives",
+            "on_for_nous",
+            "pouvoir_inf"
+          ],
+          "english": "We can eat at this table.",
+          "french_formal": "Nous pouvons manger à cette table.",
+          "french_street": "On peut manger à cette table."
+        },
+        {
+          "id": "gram_demonstratives_possessives_012",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_demonstratives_possessives",
+            "questions_intonation"
+          ],
+          "english": "These people, do you know them?",
+          "french_formal": "Ces gens, vous les connaissez ?",
+          "french_street": "Ces gens, tu les connais ?"
+        },
+        {
+          "id": "gram_demonstratives_possessives_013",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "devoir_inf",
+            "gram_demonstratives_possessives",
+            "on_for_nous"
+          ],
+          "english": "This afternoon we have to pay.",
+          "french_formal": "Cet après-midi, nous devons payer.",
+          "french_street": "Cet après-midi, on doit payer."
+        },
+        {
+          "id": "gram_demonstratives_possessives_014",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "cognate_bridges",
+            "gram_demonstratives_possessives",
+            "negation_pas"
+          ],
+          "english": "His situation is not normal.",
+          "french_formal": "Sa situation n'est pas normale.",
+          "french_street": "Sa situation, c'est pas normal."
+        },
+        {
+          "id": "gram_demonstratives_possessives_015",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "gram_demonstratives_possessives",
+            "pc_etre"
+          ],
+          "english": "I went to see this film.",
+          "french_formal": "Je suis allé voir ce film.",
+          "french_street": "J'suis allé voir ce film."
+        },
+        {
+          "id": "gram_demonstratives_possessives_016",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "dobj_pronouns",
+            "gram_demonstratives_possessives",
+            "je_veux",
+            "negation_pas"
+          ],
+          "english": "That thing right there, I don't want it.",
+          "french_formal": "Ce truc-là, je ne le veux pas.",
+          "french_street": "Ce truc-là, j'le veux pas."
+        },
+        {
+          "id": "gram_demonstratives_possessives_017",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "faire_expressions",
+            "gram_demonstratives_possessives"
+          ],
+          "english": "Their table — it's been a long time.",
+          "french_formal": "Leur table — ça fait longtemps.",
+          "french_street": "Leur table — ça fait longtemps."
+        },
+        {
+          "id": "gram_demonstratives_possessives_018",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "gram_demonstratives_possessives",
+            "iobj_pronouns",
+            "pc_avoir"
+          ],
+          "english": "This guy, I talked to him.",
+          "french_formal": "Ce mec, je lui ai parlé.",
+          "french_street": "Ce mec, j'lui ai parlé."
+        },
+        {
+          "id": "gram_demonstratives_possessives_019",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "futur_proche",
+            "gram_demonstratives_possessives"
+          ],
+          "english": "My friend, she's going to come this afternoon.",
+          "french_formal": "Mon amie, elle va venir cet après-midi.",
+          "french_street": "Mon amie, elle va venir cet après-midi."
+        },
+        {
+          "id": "gram_demonstratives_possessives_020",
+          "target_concept_id": "gram_demonstratives_possessives",
+          "concept_ids": [
+            "chunks_fillers",
+            "chunks_reactions",
+            "gram_demonstratives_possessives",
+            "negation_pas"
+          ],
+          "english": "These people, honestly, that's totally not normal.",
+          "french_formal": "Ces gens, vraiment, ce n'est absolument pas normal.",
+          "french_street": "Ces gens, en fait, c'est carrément pas normal."
+        }
+      ]
+    }
+  ]
+}

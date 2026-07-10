@@ -22,7 +22,6 @@ Usage:
 """
 
 import argparse
-import base64
 import json
 import os
 import shutil
@@ -30,15 +29,13 @@ import sys
 import time
 from pathlib import Path
 
-import requests
 from dotenv import load_dotenv
+
+from tts import FR_VOICE, synthesize as tts_synthesize
 
 HERE = Path(__file__).parent
 PACK_DIR = HERE / "content_pack_v1"
 AUDIO_DIR = PACK_DIR / "audio"
-
-TTS_URL = "https://texttospeech.googleapis.com/v1/text:synthesize"
-VOICE = {"languageCode": "fr-FR", "name": "fr-FR-Wavenet-C"}
 
 # variant -> (text field, speaking rate)
 VARIANTS = {
@@ -49,23 +46,8 @@ VARIANTS = {
 
 
 def synthesize(text, rate, api_key):
-    body = {
-        "input": {"text": text},
-        "voice": VOICE,
-        "audioConfig": {"audioEncoding": "MP3", "speakingRate": rate},
-    }
-    for attempt in range(5):
-        resp = requests.post(TTS_URL, params={"key": api_key}, json=body, timeout=30)
-        if resp.status_code == 200:
-            return base64.b64decode(resp.json()["audioContent"])
-        # 403 included: key-restriction changes flap for ~5 min while propagating
-        if resp.status_code in (403, 429) or resp.status_code >= 500:
-            wait = 30 * (attempt + 1) if resp.status_code == 403 else 2 ** (attempt + 1)
-            print(f"    HTTP {resp.status_code}, retrying in {wait}s", file=sys.stderr)
-            time.sleep(wait)
-            continue
-        raise RuntimeError(f"TTS failed ({resp.status_code}): {resp.text[:200]}")
-    raise RuntimeError("TTS failed after retries")
+    # shared implementation lives in tts.py (v2 refactor); same voice, same retries
+    return tts_synthesize(text, FR_VOICE, rate, api_key)
 
 
 def collect_items():
