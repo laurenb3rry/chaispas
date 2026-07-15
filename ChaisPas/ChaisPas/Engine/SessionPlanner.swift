@@ -33,8 +33,18 @@ enum SessionPlanner {
         (s.conceptIds.count, s.frenchFormal.split(separator: " ").count)
     }
 
+    /// The concept types the v1 Construction session drills. Pack v2 adds
+    /// conjugation/vocab_pack/grammar nodes (several with no prereqs, so
+    /// instantly unlocked), but their drills live in the v2 pack and belong
+    /// to the Learn players — keep them out of this session until phase 10
+    /// rehomes Construction under Learn.
+    static let v1Types: Set<ConceptType> = [
+        .construction, .chunk, .vocabCluster, .register, .constructionRegister,
+    ]
+
     static func makePlan(context: ModelContext, now: Date = .now) throws -> SessionPlan {
         let nodes = try context.fetch(FetchDescriptor<ConceptNode>())
+            .filter { v1Types.contains($0.type) }
         let unlocked = try MasteryModel.unlockedConceptIds(context: context)
         let introduced = Set(nodes.filter(\.introduced).map(\.id))
 
@@ -58,7 +68,9 @@ enum SessionPlanner {
 
         // Warm recall: most overdue reviews first, nothing new.
         var dueDescriptor = FetchDescriptor<Sentence>(
-            predicate: #Predicate { $0.fsrsStability > 0 && $0.fsrsDue <= now },
+            predicate: #Predicate {
+                $0.packVersion == 1 && $0.fsrsStability > 0 && $0.fsrsDue <= now
+            },
             sortBy: [SortDescriptor(\.fsrsDue)]
         )
         dueDescriptor.fetchLimit = warmRecallCount
@@ -69,7 +81,7 @@ enum SessionPlanner {
         // generation time; re-checking here keeps the scheduler honest too.
         let allowed = introduced.union([targetId])
         let ladderPool = try context.fetch(FetchDescriptor<Sentence>(
-            predicate: #Predicate { $0.targetConceptId == targetId }
+            predicate: #Predicate { $0.packVersion == 1 && $0.targetConceptId == targetId }
         ))
         .filter { Set($0.conceptIds).isSubset(of: allowed) }
         .sorted {
@@ -80,7 +92,7 @@ enum SessionPlanner {
         // Spontaneous close: sentences combining the target with older
         // concepts, unseen and richer combinations first.
         let spontaneousPool = try context.fetch(FetchDescriptor<Sentence>(
-            predicate: #Predicate { $0.targetConceptId != targetId }
+            predicate: #Predicate { $0.packVersion == 1 && $0.targetConceptId != targetId }
         ))
         .filter {
             $0.conceptIds.contains(targetId)

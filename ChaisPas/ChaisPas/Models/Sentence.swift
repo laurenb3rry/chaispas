@@ -21,6 +21,12 @@ final class Sentence {
     // Needed to compute elapsed days (retrievability) at review time;
     // nil until the first review
     var fsrsLastReviewed: Date?
+    // Which content pack the sentence ships in (1 or 2) — audio resolves
+    // against that pack's directory. Default keeps migration lightweight.
+    var packVersion: Int = 1
+    // `{id}_english.mp3` in content_pack_v2/english_prompts (hands-free
+    // prompt audio); nil until the importer backfills it
+    var englishAudioRef: String?
 
     init(
         id: String,
@@ -32,7 +38,9 @@ final class Sentence {
         audioRefs: AudioRefs,
         fsrsStability: Double = 0,
         fsrsDifficulty: Double = 0,
-        fsrsDue: Date = .distantPast
+        fsrsDue: Date = .distantPast,
+        packVersion: Int = 1,
+        englishAudioRef: String? = nil
     ) {
         self.id = id
         self.conceptIds = conceptIds
@@ -44,5 +52,7 @@ final class Sentence {
         self.fsrsStability = fsrsStability
         self.fsrsDifficulty = fsrsDifficulty
         self.fsrsDue = fsrsDue
+        self.packVersion = packVersion
+        self.englishAudioRef = englishAudioRef
     }
 }

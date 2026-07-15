@@ -10,30 +10,36 @@ import SwiftData
 
 @main
 struct ChaisPasApp: App {
-    var sharedModelContainer: ModelContainer = {
+    let sharedModelContainer: ModelContainer
+    // Decided once at launch with cheap fetchCounts: populated stores render
+    // ContentView immediately; the pack import itself runs async in RootView
+    let needsImport: Bool
+
+    init() {
         let schema = Schema([
             ConceptNode.self,
             Sentence.self,
             DrillEvent.self,
             MasteryScore.self,
             SessionLog.self,
+            Scenario.self,
+            ListenEpisode.self,
+            Passage.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
             let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
-            // Synchronous on purpose: ~1k rows imports in well under a second,
-            // and every view can then assume the pack is present
-            ContentPackImporter.importIfNeeded(context: ModelContext(container))
-            return container
+            sharedModelContainer = container
+            needsImport = ContentPackImporter.needsWork(context: ModelContext(container))
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
-    }()
+    }
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView(needsImport: needsImport)
         }
         .modelContainer(sharedModelContainer)
     }

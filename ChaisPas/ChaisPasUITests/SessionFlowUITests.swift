@@ -17,54 +17,51 @@ final class SessionFlowUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        // Today screen → session
-        let start = app.buttons["Start session"].firstMatch
-        if !start.waitForExistence(timeout: 10) {
-            app.buttons["Practice again"].firstMatch.tap()
-        } else {
-            start.tap()
-        }
-
         let gotIt = app.buttons["Got it"].firstMatch
         let intro = app.buttons["Got it — let's build"].firstMatch
         let missed = app.buttons["Missed it"].firstMatch
         let skip = app.buttons["Skip"].firstMatch
         let done = app.buttons["Done"].firstMatch
 
-        // Warm recall only exists once reviews are due; grade any through.
-        // Concept intro appears on a fresh store.
-        if intro.waitForExistence(timeout: 15) {
-            intro.tap()
+        // Today fades in behind RootView's async-import transition; a tap
+        // synthesized mid-transition can be dropped (the phase-4 gotcha), so
+        // re-tap Start until the session actually presents. On a fresh
+        // store the session opens with the concept intro.
+        let start = app.buttons["Start session"].firstMatch
+        XCTAssertTrue(start.waitForExistence(timeout: 30),
+                      "Today should appear once the import finishes")
+        var entered = false
+        for _ in 0..<4 where !entered {
+            if start.exists { start.tap() }
+            entered = intro.waitForExistence(timeout: 5) || gotIt.exists
         }
+        XCTAssertTrue(entered, "session should present after tapping Start")
+        if intro.exists { intro.tap() }
 
-        // Construction ladder (+ possibly spontaneous close): drade every
-        // reveal; miss every 4th item so the rung controller walks both ways.
+        // Construction ladder → street mirror → spontaneous close: grade
+        // every reveal, missing every 4th item so the rung controller walks
+        // both ways. Only user-gated buttons (intro/grades) are tapped — the
+        // street mirror advances itself on audio timers, and tapping its
+        // transient Skip races the element vanishing mid-tap (the phase-8
+        // flake). The mirror is simply waited out instead.
+        _ = skip // transient; deliberately never tapped
         var graded = 0
-        while graded < 40 {
-            if done.exists { break }
-            if intro.exists { intro.tap(); continue }
-            if skip.exists { skip.tap(); continue }
-            guard gotIt.waitForExistence(timeout: 12) else { break }
-            if graded % 4 == 3, missed.exists {
-                missed.tap()
+        let deadline = Date.now.addingTimeInterval(480)
+        while !done.exists, Date.now < deadline {
+            if intro.exists {
+                intro.tap()
+            } else if gotIt.exists {
+                (graded % 4 == 3 && missed.exists ? missed : gotIt).tap()
+                graded += 1
+                // grade buttons animate out after the tap; wait them out so
+                // the next iteration can't grab an outgoing element mid-fade
+                _ = gotIt.waitForNonExistence(timeout: 5)
             } else {
-                gotIt.tap()
+                usleep(500_000)
             }
-            graded += 1
         }
         XCTAssertGreaterThanOrEqual(graded, 8, "ladder should run at least 8 items")
-
-        // Street mirror runs on audio timers; skip through whatever remains.
-        while !done.exists {
-            if skip.waitForExistence(timeout: 5) {
-                skip.tap()
-            } else if done.waitForExistence(timeout: 30) {
-                break
-            } else {
-                XCTFail("session stalled before summary")
-                return
-            }
-        }
+        XCTAssertTrue(done.waitForExistence(timeout: 60), "session stalled before summary")
 
         // Summary → back to Today
         XCTAssertTrue(app.staticTexts["C'est fait."].waitForExistence(timeout: 5))

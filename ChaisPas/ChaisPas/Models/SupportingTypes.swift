@@ -6,6 +6,10 @@ enum ConceptType: String, Codable {
     case vocabCluster = "vocab_cluster"
     case register
     case constructionRegister = "construction+register"
+    // pack v2 Learn modules (PLAN2 §4)
+    case conjugation
+    case vocabPack = "vocab_pack"
+    case grammar
 }
 
 enum DrillAxis: String, Codable {
