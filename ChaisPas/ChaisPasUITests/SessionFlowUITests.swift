@@ -23,13 +23,13 @@ final class SessionFlowUITests: XCTestCase {
         let skip = app.buttons["Skip"].firstMatch
         let done = app.buttons["Done"].firstMatch
 
-        // Today fades in behind RootView's async-import transition; a tap
+        // Home fades in behind RootView's async-import transition; a tap
         // synthesized mid-transition can be dropped (the phase-4 gotcha), so
-        // re-tap Start until the session actually presents. On a fresh
-        // store the session opens with the concept intro.
-        let start = app.buttons["Start session"].firstMatch
+        // re-tap the recommended card until the session actually presents.
+        // On a fresh store the session opens with the concept intro.
+        let start = app.buttons["recommended-today"].firstMatch
         XCTAssertTrue(start.waitForExistence(timeout: 30),
-                      "Today should appear once the import finishes")
+                      "Home should appear once the import finishes")
         var entered = false
         for _ in 0..<4 where !entered {
             if start.exists { start.tap() }
@@ -63,12 +63,12 @@ final class SessionFlowUITests: XCTestCase {
         XCTAssertGreaterThanOrEqual(graded, 8, "ladder should run at least 8 items")
         XCTAssertTrue(done.waitForExistence(timeout: 60), "session stalled before summary")
 
-        // Summary → back to Today
+        // Summary → back to Home
         XCTAssertTrue(app.staticTexts["C'est fait."].waitForExistence(timeout: 5))
         done.tap()
         XCTAssertTrue(
-            app.buttons["Practice again"].waitForExistence(timeout: 10),
-            "Today should reflect the completed session"
+            start.waitForExistence(timeout: 10),
+            "Home should return after the session completes"
         )
     }
 }

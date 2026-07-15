@@ -8,6 +8,9 @@ enum MasteryModel {
     static let learningRate = 0.2
     /// Prereqs must exceed this production mastery for a concept to unlock.
     static let unlockThreshold = 0.6
+    /// Display-only bar for calling a concept "mastered" in library counts
+    /// (Home tiles, Learn index) — stricter than unlocking, which is a hint.
+    static let masteredThreshold = 0.8
 
     /// Latency weighting: full credit at or under this latency…
     static let fastLatencyMs = 2_000

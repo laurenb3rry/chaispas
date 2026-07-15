@@ -1,11 +1,11 @@
 import SwiftData
 import SwiftUI
 
-/// Launch gate: populated stores go straight to ContentView; stores that
-/// need pack import show a minimal loading state while the import runs on a
-/// background context, then spring-transition in. `needsImport` is decided
-/// synchronously at app init (cheap fetchCounts) so a normal launch never
-/// flashes the loading screen.
+/// Launch gate: populated stores go straight to the Home library; stores
+/// that need pack import show a minimal loading state while the import runs
+/// on a background context, then spring-transition in. `needsImport` is
+/// decided synchronously at app init (cheap fetchCounts) so a normal launch
+/// never flashes the loading screen.
 struct RootView: View {
     @Environment(\.modelContext) private var modelContext
 
@@ -23,7 +23,7 @@ struct RootView: View {
                 loadingState
                     .transition(.opacity)
             } else {
-                ContentView()
+                HomeView()
                     .transition(.opacity)
             }
         }

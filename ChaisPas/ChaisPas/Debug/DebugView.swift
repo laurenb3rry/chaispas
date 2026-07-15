@@ -31,7 +31,7 @@ struct DebugView: View {
             DSColor.background.ignoresSafeArea()
             ScrollView {
                 VStack(alignment: .leading, spacing: DSSpacing.xl) {
-                    Text("Debug — Phase 8")
+                    Text("Debug")
                         .font(DSType.largeTitle)
                         .tracking(DSType.largeTitleTracking)
                         .foregroundStyle(DSColor.textPrimary)
