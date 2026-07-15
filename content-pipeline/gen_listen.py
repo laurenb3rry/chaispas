@@ -42,10 +42,12 @@ LEVELS = {
           "brief": "Fast natural chat between friends. Full street register incl. reductions "
                    "(chais pas, j'suis, faut) and frequent fillers (bah, du coup, genre, "
                    "bref, quoi). Reactions and interruption-like short turns welcome."},
-    "D": {"lines": (12, 16), "chars": (880, 1400), "rate_fast": 1.3, "rate_slow": 0.9,
+    "D": {"lines": (14, 18), "chars": (1300, 1900), "rate_fast": 1.3, "rate_slow": 0.9,
           "brief": "Full-speed native gossip/venting. Heavy fillers and reductions, "
                    "colloquial reactions (grave, carrément, n'importe quoi, ça me saoule), "
-                   "trailing sentences, back-channel turns. 60-90 seconds of audio."},
+                   "trailing sentences, back-channel turns. 60-90 seconds of audio: most "
+                   "turns are meaty 2-3 sentence stretches of storytelling with concrete "
+                   "detail, not one-liners."},
 }
 
 
@@ -60,7 +62,7 @@ TOPIC: {spec['topic']}
 SPEAKERS: speaker 1 = {s1}, speaker 2 = {s2}. Two friends/interlocutors, informal (tutoiement) unless the topic implies a service call.
 
 LEVEL {spec['level']} — {level['brief']}
-SIZE: {lo}-{hi} lines total, and a HARD budget of {clo}-{chi} characters of French across all lines — count as you write, and compress lines rather than exceed it (real speech is terse; most lines should be one short sentence). Lines alternate speakers (an occasional double turn by the same speaker is OK if natural).
+SIZE: {lo}-{hi} lines total, and a HARD budget of {clo}-{chi} characters of French across all lines — aim for the middle of that range; undershooting the minimum is as much a failure as exceeding the maximum. Lines alternate speakers (an occasional double turn by the same speaker is OK if natural).
 
 {STREET_REGISTER_BRIEF}
 
@@ -100,8 +102,9 @@ def episode_from_gen(spec, level, gen):
             "audio_refs": {"fast": f"{line_id}_fast.mp3", "slow": f"{line_id}_slow.mp3"},
         })
     total_chars = sum(len(l["french_street"]) for l in lines)
-    # ~13 chars/sec of French at rate 1.0, plus the inter-line gaps added at concat
-    est = round(total_chars / (13 * level["rate_fast"]) + 0.5 * (len(lines) - 1))
+    # ~17 chars/sec of French at rate 1.0 (measured from the synthesized pack),
+    # plus the inter-line gaps added at concat
+    est = round(total_chars / (17 * level["rate_fast"]) + 0.5 * (len(lines) - 1))
     return {
         "id": eid,
         "title": spec["title"],
@@ -148,10 +151,23 @@ def main():
             print(build_prompt(spec, level) + "\n" + "=" * 80)
             continue
 
-        gen = call_claude(client, build_prompt(spec, level), label=eid)
-        for key in ("lines", "questions"):
-            if not gen.get(key):
-                raise RuntimeError(f"{eid}: missing '{key}' in generation result")
+        clo, chi = level["chars"]
+        for attempt in range(3):
+            prompt = build_prompt(spec, level)
+            if attempt:
+                prompt += (f"\n\nIMPORTANT — a previous attempt wrote {chars} characters "
+                           f"of French, outside the {clo}-{chi} budget. Hit the budget "
+                           f"this time; adjust line length, not just line count.")
+            gen = call_claude(client, prompt, label=eid)
+            for key in ("lines", "questions"):
+                if not gen.get(key):
+                    raise RuntimeError(f"{eid}: missing '{key}' in generation result")
+            chars = sum(len(l["french_street"]) for l in gen["lines"])
+            if clo * 0.9 <= chars <= chi * 1.2:
+                break
+            print(f"    {chars} chars outside budget {clo}-{chi} (attempt {attempt + 1})")
+        else:
+            print(f"    WARNING: keeping last attempt despite size ({chars} chars)")
         episode = episode_from_gen(spec, level, gen)
         out["episodes"] = [e for e in out["episodes"] if e["id"] != eid] + [episode]
         save_output(OUT_PATH, out)

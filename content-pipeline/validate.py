@@ -860,6 +860,160 @@ def validate_v2b(strict):
         sys.exit(1)
 
 
+# ---------------------------------------------------------------------------
+# v2c validation (PLAN2 §3.6, phase 7): Read passages. Structural problems are
+# errors (a passage with any error is excluded from the validated output);
+# gloss keys that don't appear in the body are pruned with a warning. Unlike
+# the other modes there is no unknown-vocab warning pass — Read is explicitly
+# wide-exposure content and the gloss map is the safety net; what gets checked
+# instead is that the gloss actually covers the passage's content words.
+# Style diversity (max 8 passages per style) is checked file-level per plan.
+
+MAX_PER_STYLE = 8
+READ_HARD_WORDS = (50, 230)   # spec 60-200 plus generation grace
+GLOSS_COVERAGE_ERROR = 0.50   # below: regenerate
+GLOSS_COVERAGE_WARN = 0.80
+CAPITALIZED = re.compile(r"[A-ZÀ-Ý][\wà-ÿ'’-]*")
+
+
+def gloss_coverage(body, gloss):
+    """Share of the body's content tokens covered by some gloss key.
+    Proper-noun-looking (capitalized) and digit-bearing tokens are exempt —
+    a filter, not a proof (sentence-initial words ride along as exempt)."""
+    covered = set()
+    for k in gloss:
+        covered.update(tokenize(k))
+    exempt = set()
+    for m in CAPITALIZED.finditer(body):
+        exempt.update(tokenize(m.group(0)))
+    content = [t for t in tokenize(body)
+               if t not in FUNCTION_WORDS and t not in exempt
+               and len(t) > 1 and not any(c.isdigit() for c in t)]
+    if not content:
+        return 1.0, []
+    missed = [t for t in content if t not in covered]
+    return 1 - len(missed) / len(content), sorted(set(missed))
+
+
+def validate_v2c_passage(p, report):
+    from gen_read import STYLES, TIERS, count_words
+    pid = p.get("id", "?")
+    for field in ("id", "title", "style", "body", "gloss", "questions"):
+        if not p.get(field):
+            report["errors"].append(f"{pid}: missing/empty '{field}'")
+    if p.get("style") not in STYLES:
+        report["errors"].append(f"{pid}: unknown style '{p.get('style')}'")
+    tier = p.get("tier")
+    if tier not in TIERS:
+        report["errors"].append(f"{pid}: bad tier {tier!r}")
+        return
+
+    body = p.get("body", "")
+    words = count_words(body)
+    lo, hi = TIERS[tier]["words"]
+    if not READ_HARD_WORDS[0] <= words <= READ_HARD_WORDS[1]:
+        report["errors"].append(f"{pid}: {words} words (hard bounds "
+                                f"{READ_HARD_WORDS[0]}-{READ_HARD_WORDS[1]})")
+    elif not lo <= words <= hi:
+        report["warnings"].append(f"{pid}: {words} words (tier {tier} target {lo}-{hi})")
+
+    gloss = p.get("gloss", {})
+    if isinstance(gloss, dict) and gloss:
+        body_norm = norm(body).replace("’", "'")
+        stale = [k for k in gloss if norm(k) not in body_norm]
+        if stale:
+            report["warnings"].append(f"{pid}: gloss keys not found in body "
+                                      f"(pruned): {stale}")
+            for k in stale:
+                del gloss[k]
+        coverage, missed = gloss_coverage(body, gloss)
+        if coverage < GLOSS_COVERAGE_ERROR:
+            report["errors"].append(f"{pid}: gloss covers only {coverage:.0%} of content "
+                                    f"words — regenerate with --force (missed: {missed[:10]})")
+        elif coverage < GLOSS_COVERAGE_WARN:
+            report["warnings"].append(f"{pid}: gloss coverage {coverage:.0%} "
+                                      f"(missed: {missed[:10]})")
+
+    questions = p.get("questions", [])
+    if not 2 <= len(questions) <= 3:
+        report["errors"].append(f"{pid}: {len(questions)} questions (spec 2-3)")
+    answer_positions = set()
+    for i, q in enumerate(questions, 1):
+        if not str(q.get("question", "")).strip():
+            report["errors"].append(f"{pid} q{i}: empty question")
+        opts = q.get("options", [])
+        if len(opts) != 4 or any(not str(o).strip() for o in opts):
+            report["errors"].append(f"{pid} q{i}: needs exactly 4 non-empty options")
+        if not isinstance(q.get("answer_index"), int) or not 0 <= q["answer_index"] <= 3:
+            report["errors"].append(f"{pid} q{i}: bad answer_index {q.get('answer_index')}")
+        else:
+            answer_positions.add(q["answer_index"])
+    if len(questions) >= 2 and len(answer_positions) == 1:
+        report["warnings"].append(f"{pid}: all correct answers at position "
+                                  f"{answer_positions.pop()}")
+
+
+def validate_v2c(strict):
+    path = HERE / "read.json"
+    if not path.exists():
+        print("read.json not found — nothing to validate")
+        return
+    with open(path) as f:
+        data = json.load(f)
+    passages = data["passages"]
+
+    report = {"errors": [], "warnings": []}
+    ids = [p.get("id") for p in passages]
+    dupes = {i for i in ids if ids.count(i) > 1}
+    if dupes:
+        report["errors"].append(f"duplicate passage ids: {sorted(dupes)}")
+
+    kept, failed = [], []
+    for p in passages:
+        before = len(report["errors"])
+        validate_v2c_passage(p, report)
+        if len(report["errors"]) == before:
+            kept.append(p)
+        else:
+            failed.append(p.get("id", "?"))
+
+    style_counts, tier_counts = {}, {}
+    for p in kept:
+        style_counts[p["style"]] = style_counts.get(p["style"], 0) + 1
+        tier_counts[p["tier"]] = tier_counts.get(p["tier"], 0) + 1
+    over = {s: n for s, n in style_counts.items() if n > MAX_PER_STYLE}
+    if over:
+        report["errors"].append(f"style diversity violated (max {MAX_PER_STYLE} "
+                                f"per style): {over}")
+
+    out_path = HERE / "read_validated.json"
+    with open(out_path, "w") as f:
+        json.dump({"version": data.get("version", 2), "passages": kept},
+                  f, ensure_ascii=False, indent=2)
+
+    full_report = {"passages_kept": len(kept), "passages_failed": failed,
+                   "by_style": dict(sorted(style_counts.items())),
+                   "by_tier": {str(t): n for t, n in sorted(tier_counts.items())},
+                   **report}
+    with open(HERE / "validation_report_v2c.json", "w") as f:
+        json.dump(full_report, f, ensure_ascii=False, indent=2)
+
+    print(f"read: {len(kept)}/{len(passages)} passages kept, "
+          f"{len(report['errors'])} errors, {len(report['warnings'])} warnings "
+          f"-> {out_path.name}")
+    print(f"  by style: {full_report['by_style']}")
+    print(f"  by tier:  {full_report['by_tier']}")
+    if failed:
+        print(f"  failed passages (regenerate with --force): {failed}")
+    for e in report["errors"][:5]:
+        print(f"  ERROR {e}")
+    for w in report["warnings"][:5]:
+        print(f"  warn  {w}")
+    print("full detail in validation_report_v2c.json")
+    if report["errors"] and strict:
+        sys.exit(1)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--strict", action="store_true", help="exit 1 on any rejection")
@@ -867,9 +1021,14 @@ def main():
                     help="validate v2 Learn content (learn_*.json) instead of v1 sentences")
     ap.add_argument("--v2b", action="store_true",
                     help="validate Speak scenarios + Listen episodes (scenarios.json, listen.json)")
+    ap.add_argument("--v2c", action="store_true",
+                    help="validate Read passages (read.json)")
     ap.add_argument("--sentences", default=HERE / "sentences.json", type=Path)
     args = ap.parse_args()
 
+    if args.v2c:
+        validate_v2c(args.strict)
+        return
     if args.v2b:
         validate_v2b(args.strict)
         return

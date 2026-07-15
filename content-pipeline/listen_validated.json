@@ -3479,13 +3479,13 @@
       ],
       "rate_fast": 1.3,
       "rate_slow": 0.9,
-      "est_duration_sec": 61,
+      "est_duration_sec": 86,
       "lines": [
         {
           "line_id": "lst_d01_l01",
           "speaker": 1,
-          "french_street": "Karim, t'as vu l'heure à laquelle j'suis arrivée ce matin ?",
-          "english": "Karim, did you see what time I got in this morning?",
+          "french_street": "Karim, t'es au courant de la galère ce matin sur la ligne B ? J'suis restée bloquée entre deux stations genre vingt minutes, moteur coupé, le noir complet.",
+          "english": "Karim, did you hear about the mess this morning on line B? I was stuck between two stations for like twenty minutes, engine cut, total darkness.",
           "audio_refs": {
             "fast": "lst_d01_l01_fast.mp3",
             "slow": "lst_d01_l01_slow.mp3"
@@ -3494,8 +3494,8 @@
         {
           "line_id": "lst_d01_l02",
           "speaker": 2,
-          "french_street": "Ouais, t'étais en retard grave — t'as eu quoi, un problème de métro ?",
-          "english": "Yeah, you were seriously late — what happened, a metro problem?",
+          "french_street": "Sérieux ?! Vingt minutes dans le tunnel ? Carrément, j'aurais pété un câble. Et y'avait des annonces au moins ?",
+          "english": "Seriously?! Twenty minutes in the tunnel? I would've totally lost it. And were there at least any announcements?",
           "audio_refs": {
             "fast": "lst_d01_l02_fast.mp3",
             "slow": "lst_d01_l02_slow.mp3"
@@ -3504,8 +3504,8 @@
         {
           "line_id": "lst_d01_l03",
           "speaker": 1,
-          "french_street": "Le RER s'est arrêté en plein tunnel, entre Châtelet et Les Halles, vingt minutes sans bouger.",
-          "english": "The RER stopped right in the tunnel, between Châtelet and Les Halles, twenty minutes without moving.",
+          "french_street": "Rien du tout. Le conducteur il disait absolument rien, les gens commençaient à se lever, à taper dans les portes... c'était le bazar total.",
+          "english": "Nothing at all. The driver wasn't saying anything, people started getting up, banging on the doors... it was absolute chaos.",
           "audio_refs": {
             "fast": "lst_d01_l03_fast.mp3",
             "slow": "lst_d01_l03_slow.mp3"
@@ -3514,8 +3514,8 @@
         {
           "line_id": "lst_d01_l04",
           "speaker": 2,
-          "french_street": "Non ?! Et y'avait des annonces au moins ?",
-          "english": "No way! And were there at least announcements?",
+          "french_street": "N'importe quoi. Et après ils t'ont évacuée à pied dans le tunnel ou quoi ?",
+          "english": "That's ridiculous. And after that did they evacuate you on foot through the tunnel or what?",
           "audio_refs": {
             "fast": "lst_d01_l04_fast.mp3",
             "slow": "lst_d01_l04_slow.mp3"
@@ -3524,8 +3524,8 @@
         {
           "line_id": "lst_d01_l05",
           "speaker": 1,
-          "french_street": "Zéro. Silence total. Les gens commençaient à péter un câble dans le wagon.",
-          "english": "Nothing. Total silence. People were starting to lose it in the carriage.",
+          "french_street": "À pied ouais, avec une lampe torche pour tout le monde. On marchait en file indienne sur le ballast, les gens en talons, les enfants qui pleuraient... un film catastrophe.",
+          "english": "On foot yeah, with one flashlight for everyone. We were walking single file on the track bed, people in heels, kids crying... a total disaster movie.",
           "audio_refs": {
             "fast": "lst_d01_l05_fast.mp3",
             "slow": "lst_d01_l05_slow.mp3"
@@ -3534,8 +3534,8 @@
         {
           "line_id": "lst_d01_l06",
           "speaker": 2,
-          "french_street": "C'est n'importe quoi. Et après t'as fait comment ?",
-          "english": "That's insane. So what did you do after?",
+          "french_street": "Grave, ça me saoule juste d'imaginer. Et une fois sorti du tunnel, t'as pu prendre quoi ?",
+          "english": "Honestly, it stresses me out just imagining it. And once you got out of the tunnel, what could you take?",
           "audio_refs": {
             "fast": "lst_d01_l06_fast.mp3",
             "slow": "lst_d01_l06_slow.mp3"
@@ -3544,8 +3544,8 @@
         {
           "line_id": "lst_d01_l07",
           "speaker": 1,
-          "french_street": "On a été évacués sur le quai, et là on nous dit de prendre un bus de remplacement.",
-          "english": "We were evacuated onto the platform, and then they tell us to take a replacement bus.",
+          "french_street": "Soi-disant y'avait un bus de remplacement mais personne savait où il s'arrêtait. J'ai attendu trente minutes sur un trottoir, aucun agent, aucun panneau.",
+          "english": "Apparently there was a replacement bus but nobody knew where it stopped. I waited thirty minutes on a sidewalk, no staff, no signs.",
           "audio_refs": {
             "fast": "lst_d01_l07_fast.mp3",
             "slow": "lst_d01_l07_slow.mp3"
@@ -3554,8 +3554,8 @@
         {
           "line_id": "lst_d01_l08",
           "speaker": 2,
-          "french_street": "Ah ouais le bus de remplacement… carrément la galère.",
-          "english": "Oh yeah the replacement bus… absolute nightmare.",
+          "french_street": "Chais pas comment la SNCF s'en sort à chaque fois sans que ça parte en scandale national. C'est dingue.",
+          "english": "I don't know how SNCF gets away with it every time without it becoming a national scandal. It's crazy.",
           "audio_refs": {
             "fast": "lst_d01_l08_fast.mp3",
             "slow": "lst_d01_l08_slow.mp3"
@@ -3564,8 +3564,8 @@
         {
           "line_id": "lst_d01_l09",
           "speaker": 1,
-          "french_street": "J'ai attendu quarante minutes sous la pluie, le bus était blindé, j'ai même pas pu monter.",
-          "english": "I waited forty minutes in the rain, the bus was packed, I couldn't even get on.",
+          "french_street": "Bah là y'a des gens qui filmaient, ça tourne déjà sur les réseaux. Apparemment un câble électrique a lâché au-dessus des voies, donc voilà.",
+          "english": "Well now people were filming, it's already going around on social media. Apparently an electrical cable snapped above the tracks, so there you go.",
           "audio_refs": {
             "fast": "lst_d01_l09_fast.mp3",
             "slow": "lst_d01_l09_slow.mp3"
@@ -3574,8 +3574,8 @@
         {
           "line_id": "lst_d01_l10",
           "speaker": 2,
-          "french_street": "Sérieux ? Ça me saoule rien que d'entendre ça.",
-          "english": "Seriously? Just hearing that is making me mad.",
+          "french_street": "Un câble ? Et ils connaissaient pas l'état des infrastructures avant ? Ça me dépasse vraiment. T'as eu quand même un remboursement ?",
+          "english": "A cable? And they didn't know the state of the infrastructure beforehand? It's just beyond me. Did you at least get a refund?",
           "audio_refs": {
             "fast": "lst_d01_l10_fast.mp3",
             "slow": "lst_d01_l10_slow.mp3"
@@ -3584,8 +3584,8 @@
         {
           "line_id": "lst_d01_l11",
           "speaker": 1,
-          "french_street": "J'ai fini par prendre un Uber, j'avais plus le choix. Vingt balles partis comme ça.",
-          "english": "I ended up taking an Uber, I had no choice. Twenty euros gone just like that.",
+          "french_street": "J'ai rempli le formulaire en ligne mais j'ai reçu un mail automatique qui dit que le traitement peut prendre jusqu'à trente jours. Trente jours pour un billet à cinq euros, c'est un peu fort.",
+          "english": "I filled in the online form but I got an automated email saying processing can take up to thirty days. Thirty days for a five-euro ticket, that's a bit much.",
           "audio_refs": {
             "fast": "lst_d01_l11_fast.mp3",
             "slow": "lst_d01_l11_slow.mp3"
@@ -3594,8 +3594,8 @@
         {
           "line_id": "lst_d01_l12",
           "speaker": 2,
-          "french_street": "T'aurais dû prévenir le chef au moins, non ?",
-          "english": "You should have at least told the boss, right?",
+          "french_street": "Carrément. Et du coup t'es arrivée à quelle heure au taf finalement ?",
+          "english": "Totally. And so what time did you end up getting to work in the end?",
           "audio_refs": {
             "fast": "lst_d01_l12_fast.mp3",
             "slow": "lst_d01_l12_slow.mp3"
@@ -3604,8 +3604,8 @@
         {
           "line_id": "lst_d01_l13",
           "speaker": 1,
-          "french_street": "Chais pas si ça sert à quelque chose, mais ouais j'lui ai envoyé un message dans le métro.",
-          "english": "I don't know if it's worth anything, but yeah I sent him a message while still on the metro.",
+          "french_street": "Avec deux heures de retard. Mon chef était plutôt compréhensif mais bon, j'avais une réunion à neuf heures que j'ai ratée complètement.",
+          "english": "Two hours late. My boss was pretty understanding but still, I had a nine o'clock meeting that I missed entirely.",
           "audio_refs": {
             "fast": "lst_d01_l13_fast.mp3",
             "slow": "lst_d01_l13_slow.mp3"
@@ -3614,8 +3614,8 @@
         {
           "line_id": "lst_d01_l14",
           "speaker": 2,
-          "french_street": "Bon au moins t'as ça. J'espère qu'il a pas fait le con.",
-          "english": "Well at least you've got that. I hope he didn't make a fuss.",
+          "french_street": "Putain, deux heures... bon la prochaine fois on covoiture, j'te jure. Je passe te chercher, c'est réglé.",
+          "english": "Damn, two hours... right, next time we carpool, I'm telling you. I'll come pick you up, that's settled.",
           "audio_refs": {
             "fast": "lst_d01_l14_fast.mp3",
             "slow": "lst_d01_l14_slow.mp3"
@@ -3624,32 +3624,32 @@
       ],
       "questions": [
         {
-          "question": "Where exactly was the RER stopped?",
+          "question": "Why was the train stopped in the tunnel?",
           "options": [
-            "Between Nation and Gare de Lyon",
-            "Between Montparnasse and Denfert",
-            "Between Châtelet and Les Halles",
-            "At Châtelet station platform"
+            "A signalling computer crashed",
+            "Another train broke down ahead",
+            "An electrical cable snapped above the tracks",
+            "Maintenance workers were on the line"
           ],
           "answer_index": 2
         },
         {
-          "question": "Why couldn't Inès board the replacement bus?",
+          "question": "How long did Inès wait for the replacement bus?",
           "options": [
-            "The bus was too full",
-            "It drove away before she arrived",
-            "She went to the wrong stop",
-            "The bus service was cancelled"
+            "Thirty minutes",
+            "Twenty minutes",
+            "Ten minutes",
+            "An hour"
           ],
           "answer_index": 0
         },
         {
-          "question": "How did Inès eventually get to work?",
+          "question": "What does Karim propose at the end of the conversation?",
           "options": [
-            "She walked",
-            "She took the next RER",
-            "She called a colleague for a lift",
-            "She took an Uber"
+            "To file a complaint together with SNCF",
+            "To work from home next time",
+            "To take an earlier train in future",
+            "To carpool and pick Inès up"
           ],
           "answer_index": 3
         }
@@ -3676,13 +3676,13 @@
       ],
       "rate_fast": 1.3,
       "rate_slow": 0.9,
-      "est_duration_sec": 48,
+      "est_duration_sec": 91,
       "lines": [
         {
           "line_id": "lst_d02_l01",
           "speaker": 1,
-          "french_street": "Alors t'as vu Lucas hier soir, ça s'est passé comment ?",
-          "english": "So you saw Lucas last night, how did it go?",
+          "french_street": "Alors ce date hier soir, t'as survécu ou pas ? Parce que t'avais l'air tellement stressée avant.",
+          "english": "So that date last night, did you survive or not? Because you looked so stressed beforehand.",
           "audio_refs": {
             "fast": "lst_d02_l01_fast.mp3",
             "slow": "lst_d02_l01_slow.mp3"
@@ -3691,8 +3691,8 @@
         {
           "line_id": "lst_d02_l02",
           "speaker": 2,
-          "french_street": "Globalement bien, mais y'a eu un moment de gêne énorme.",
-          "english": "Pretty good overall, but there was one super awkward moment.",
+          "french_street": "Pff, chais pas trop comment te dire ça... C'était un peu le mélange des deux, quoi. Le restau était top, genre vraiment sympa, mais lui il a passé genre la moitié du repas à me parler de son ex.",
+          "english": "Pfff, I don't really know how to put it... It was kind of a mix of both, you know. The restaurant was great, like really nice, but he spent like half the meal talking to me about his ex.",
           "audio_refs": {
             "fast": "lst_d02_l02_fast.mp3",
             "slow": "lst_d02_l02_slow.mp3"
@@ -3701,8 +3701,8 @@
         {
           "line_id": "lst_d02_l03",
           "speaker": 1,
-          "french_street": "Quoi, genre quoi ?",
-          "english": "What, like what?",
+          "french_street": "Non ! Mais t'es sérieuse là ? Dès le premier date ?",
+          "english": "No way! Are you serious? On the very first date?",
           "audio_refs": {
             "fast": "lst_d02_l03_fast.mp3",
             "slow": "lst_d02_l03_slow.mp3"
@@ -3711,8 +3711,8 @@
         {
           "line_id": "lst_d02_l04",
           "speaker": 2,
-          "french_street": "Il a appelé sa mère pendant le dîner. Genre il a décroché, il a parlé cinq minutes.",
-          "english": "He called his mum during dinner. Like he picked up and talked for five minutes.",
+          "french_street": "Carrément, et en mode... il me décrivait leurs vacances en Grèce ensemble, leurs petites habitudes le matin... j'étais là genre, mais pourquoi tu me racontes ça à moi ?",
+          "english": "Totally, and like... he was describing their holidays in Greece together, their little morning routines... I was just sitting there like, why are you telling me all this?",
           "audio_refs": {
             "fast": "lst_d02_l04_fast.mp3",
             "slow": "lst_d02_l04_slow.mp3"
@@ -3721,8 +3721,8 @@
         {
           "line_id": "lst_d02_l05",
           "speaker": 1,
-          "french_street": "N'importe quoi, c'est pas possible ça.",
-          "english": "No way, that's unbelievable.",
+          "french_street": "C'est n'importe quoi, ça me saoule rien que d'entendre ça. T'as rien dit, toi ?",
+          "english": "That's ridiculous, it's annoying me just hearing it. Did you say anything?",
           "audio_refs": {
             "fast": "lst_d02_l05_fast.mp3",
             "slow": "lst_d02_l05_slow.mp3"
@@ -3731,8 +3731,8 @@
         {
           "line_id": "lst_d02_l06",
           "speaker": 2,
-          "french_street": "Chais pas, j'étais tellement mal à l'aise, j'savais plus où me mettre.",
-          "english": "I don't know, I was so uncomfortable, I didn't know where to look.",
+          "french_street": "J'ai essayé de changer de sujet deux ou trois fois, mais il revenait toujours dessus. À un moment j'ai juste dit « ah ouais cool » et j'ai regardé le menu comme si j'avais pas entendu.",
+          "english": "I tried to change the subject two or three times, but he kept coming back to it. At some point I just said 'oh yeah cool' and stared at the menu like I hadn't heard.",
           "audio_refs": {
             "fast": "lst_d02_l06_fast.mp3",
             "slow": "lst_d02_l06_slow.mp3"
@@ -3741,8 +3741,8 @@
         {
           "line_id": "lst_d02_l07",
           "speaker": 1,
-          "french_street": "À part ça c'était bien quand même ?",
-          "english": "Apart from that it was still good though?",
+          "french_street": "Haha, classique. Mais attends, t'as dit que c'était un mélange des deux — y'a quand même eu des bons moments ?",
+          "english": "Haha, classic. But wait, you said it was a mix of both — were there still some good moments?",
           "audio_refs": {
             "fast": "lst_d02_l07_fast.mp3",
             "slow": "lst_d02_l07_slow.mp3"
@@ -3751,8 +3751,8 @@
         {
           "line_id": "lst_d02_l08",
           "speaker": 2,
-          "french_street": "Ouais grave, on a ri, le resto était top, il a payé l'addition...",
-          "english": "Yeah totally, we laughed, the restaurant was great, he paid the bill...",
+          "french_street": "Ouais grave, après le dîner on a marché le long du canal et là c'était vraiment bien en fait. Il était drôle, détendu, on a parlé de trucs qu'on aimait tous les deux... j'ai presque oublié le fiasco du restau.",
+          "english": "Yeah for sure, after dinner we walked along the canal and that was actually really nice. He was funny, relaxed, we talked about stuff we both liked... I almost forgot the restaurant disaster.",
           "audio_refs": {
             "fast": "lst_d02_l08_fast.mp3",
             "slow": "lst_d02_l08_slow.mp3"
@@ -3761,8 +3761,8 @@
         {
           "line_id": "lst_d02_l09",
           "speaker": 1,
-          "french_street": "Oooh il a payé, c'est mignon.",
-          "english": "Ooh he paid, that's sweet.",
+          "french_street": "Ah ouais quand même ! Et il ressemble à quoi ? T'as mis aucune photo sur le groupe.",
+          "english": "Oh nice actually! And what does he look like? You didn't post any photos in the group chat.",
           "audio_refs": {
             "fast": "lst_d02_l09_fast.mp3",
             "slow": "lst_d02_l09_slow.mp3"
@@ -3771,8 +3771,8 @@
         {
           "line_id": "lst_d02_l10",
           "speaker": 2,
-          "french_street": "Carrément. Et après on s'est baladés au bord du canal, c'était sympa.",
-          "english": "Definitely. And after we walked along the canal, it was nice.",
+          "french_street": "Grand, les cheveux foncés, il a un petit accent du Sud qui est pas désagréable du tout. Mais franchement c'est pas ça le problème, le problème c'est dans sa tête, quoi.",
+          "english": "Tall, dark hair, he's got a slight Southern accent that's not unpleasant at all. But honestly that's not the issue, the issue is what's going on in his head.",
           "audio_refs": {
             "fast": "lst_d02_l10_fast.mp3",
             "slow": "lst_d02_l10_slow.mp3"
@@ -3781,8 +3781,8 @@
         {
           "line_id": "lst_d02_l11",
           "speaker": 1,
-          "french_street": "Donc t'es partante pour un deuxième date ?",
-          "english": "So you're up for a second date?",
+          "french_street": "Ouais j'vois. Et du coup y'a un deuxième date ou t'as décidé de passer ton tour ?",
+          "english": "Yeah I get it. So is there a second date or have you decided to pass?",
           "audio_refs": {
             "fast": "lst_d02_l11_fast.mp3",
             "slow": "lst_d02_l11_slow.mp3"
@@ -3791,8 +3791,8 @@
         {
           "line_id": "lst_d02_l12",
           "speaker": 2,
-          "french_street": "Ouais j'pense, si il rappelle pas sa mère cette fois-ci.",
-          "english": "Yeah I think so, as long as he doesn't call his mum again this time.",
+          "french_street": "Il m'a envoyé un message ce matin pour dire qu'il avait passé une super soirée et que ça serait cool de se revoir. J'ai pas encore répondu, j'arrive pas à me décider.",
+          "english": "He sent me a message this morning saying he had a great evening and that it'd be cool to see each other again. I haven't replied yet, I can't make up my mind.",
           "audio_refs": {
             "fast": "lst_d02_l12_fast.mp3",
             "slow": "lst_d02_l12_slow.mp3"
@@ -3801,8 +3801,8 @@
         {
           "line_id": "lst_d02_l13",
           "speaker": 1,
-          "french_street": "Haha t'as intérêt à lui dire direct !",
-          "english": "Ha, you'd better tell him straight up!",
+          "french_street": "Écoute, si la balade était bien, ça mérite peut-être une deuxième chance. Mais genre tu lui dis direct que tu veux pas entendre parler de l'ex, hein.",
+          "english": "Look, if the walk was nice, maybe it deserves a second chance. But like you tell him straight up that you don't want to hear about the ex, okay.",
           "audio_refs": {
             "fast": "lst_d02_l13_fast.mp3",
             "slow": "lst_d02_l13_slow.mp3"
@@ -3811,8 +3811,8 @@
         {
           "line_id": "lst_d02_l14",
           "speaker": 2,
-          "french_street": "C'est clair, j'vais pas me laisser faire quand même.",
-          "english": "For sure, I'm not just going to let it slide.",
+          "french_street": "Ouais t'as raison... bon j'vais lui répondre ce soir. Mais s'il repart sur la Grèce, je me lève et je pars, je te jure.",
+          "english": "Yeah you're right... okay I'll reply to him tonight. But if he starts on about Greece again, I'm getting up and leaving, I swear.",
           "audio_refs": {
             "fast": "lst_d02_l14_fast.mp3",
             "slow": "lst_d02_l14_slow.mp3"
@@ -3821,32 +3821,32 @@
       ],
       "questions": [
         {
-          "question": "What did Lucas do during dinner that embarrassed his date?",
+          "question": "What did the date spend a lot of time talking about during dinner?",
           "options": [
-            "He called his mother and talked for five minutes",
-            "He spilled his drink",
-            "He forgot his wallet",
-            "He argued with the waiter"
+            "His ex-girlfriend",
+            "His job and career plans",
+            "His travels in general",
+            "His family back home"
           ],
           "answer_index": 0
         },
         {
-          "question": "Who paid the bill at the restaurant?",
+          "question": "What happened after dinner that improved the evening?",
           "options": [
-            "They split it",
-            "His date paid",
-            "Neither — they used a voucher",
-            "Lucas paid"
+            "They went to a bar and had drinks",
+            "They went to a cinema nearby",
+            "They ran into some mutual friends",
+            "They walked along the canal together"
           ],
           "answer_index": 3
         },
         {
-          "question": "What did the two of them do after leaving the restaurant?",
+          "question": "What did Chloé advise about a possible second date?",
           "options": [
-            "They went to a bar",
-            "They walked along the canal",
-            "They took the metro home",
-            "They got dessert nearby"
+            "Ignore his message and move on",
+            "Give it another chance but be honest about the ex topic",
+            "Ask a friend to come along for support",
+            "Wait at least a week before replying"
           ],
           "answer_index": 1
         }
@@ -3873,13 +3873,13 @@
       ],
       "rate_fast": 1.3,
       "rate_slow": 0.9,
-      "est_duration_sec": 49,
+      "est_duration_sec": 88,
       "lines": [
         {
           "line_id": "lst_d03_l01",
           "speaker": 1,
-          "french_street": "Sérieux, mon boss me saoule tellement en ce moment.",
-          "english": "Seriously, my boss is driving me so crazy right now.",
+          "french_street": "Lucas, j'te jure, mon boss me saoule tellement en ce moment, j'sais plus quoi faire. Hier il nous convoque à une réunion à dix-sept heures trente, genre cinq minutes avant la fin de la journée.",
+          "english": "Lucas, I swear, my boss is driving me absolutely crazy right now, I don't know what to do anymore. Yesterday he calls us into a meeting at five-thirty, like five minutes before the end of the day.",
           "audio_refs": {
             "fast": "lst_d03_l01_fast.mp3",
             "slow": "lst_d03_l01_slow.mp3"
@@ -3888,8 +3888,8 @@
         {
           "line_id": "lst_d03_l02",
           "speaker": 2,
-          "french_street": "Encore quoi ?",
-          "english": "What now?",
+          "french_street": "Attends, à dix-sept heures trente un vendredi ?! C'est pas possible, il fait ça souvent ?",
+          "english": "Wait, at five-thirty on a Friday?! That's unbelievable, does he do that often?",
           "audio_refs": {
             "fast": "lst_d03_l02_fast.mp3",
             "slow": "lst_d03_l02_slow.mp3"
@@ -3898,8 +3898,8 @@
         {
           "line_id": "lst_d03_l03",
           "speaker": 1,
-          "french_street": "Hier il nous convoque à une réunion à dix-huit heures, la veille pour le lendemain, j'avais déjà prévu un truc.",
-          "english": "Yesterday he calls us into a meeting at six p.m., day-before notice, I already had plans.",
+          "french_street": "Carrément, c'est genre la troisième fois ce mois-ci. Et le pire c'est que la réunion elle sert à rien, on passe une heure à parler de trucs qu'on aurait pu régler en un mail.",
+          "english": "Totally, it's like the third time this month. And the worst part is the meeting is pointless, we spend an hour talking about stuff we could've sorted in one email.",
           "audio_refs": {
             "fast": "lst_d03_l03_fast.mp3",
             "slow": "lst_d03_l03_slow.mp3"
@@ -3908,8 +3908,8 @@
         {
           "line_id": "lst_d03_l04",
           "speaker": 2,
-          "french_street": "N'importe quoi.",
-          "english": "That's ridiculous.",
+          "french_street": "N'importe quoi… Et t'as des collègues qui disent quelque chose au moins ?",
+          "english": "What a joke… And do your colleagues say anything at least?",
           "audio_refs": {
             "fast": "lst_d03_l04_fast.mp3",
             "slow": "lst_d03_l04_slow.mp3"
@@ -3918,8 +3918,8 @@
         {
           "line_id": "lst_d03_l05",
           "speaker": 1,
-          "french_street": "Et en plus, le projet sur lequel j'ai bossé trois semaines, il s'est levé devant le client et il a dit c'était son idée.",
-          "english": "And on top of that, the project I worked on for three weeks — he stood up in front of the client and said it was his idea.",
+          "french_street": "Alors ça, c'est l'autre truc qui me rend dingue. Y'a Mathieu, tu vois, il passe son temps à acquiescer, genre « oui tout à fait, très bonne idée », peu importe ce que le boss dit. C'est un lèche-bottes de compétition.",
+          "english": "Oh that's the other thing that drives me crazy. There's Mathieu, right, he spends his whole time nodding along, like 'yes absolutely, great idea', no matter what the boss says. He's a world-class kiss-ass.",
           "audio_refs": {
             "fast": "lst_d03_l05_fast.mp3",
             "slow": "lst_d03_l05_slow.mp3"
@@ -3928,8 +3928,8 @@
         {
           "line_id": "lst_d03_l06",
           "speaker": 2,
-          "french_street": "Carrément ? Il a dit ça devant tout le monde ?",
-          "english": "Seriously? He said that in front of everyone?",
+          "french_street": "Ah ouais ce genre de profil… il cherche une promo ou quoi ?",
+          "english": "Oh yeah that type… is he gunning for a promotion or what?",
           "audio_refs": {
             "fast": "lst_d03_l06_fast.mp3",
             "slow": "lst_d03_l06_slow.mp3"
@@ -3938,8 +3938,8 @@
         {
           "line_id": "lst_d03_l07",
           "speaker": 1,
-          "french_street": "Ouais, et y'a Théo qui était là, il a rien dit, il a juste hoché la tête comme un idiot.",
-          "english": "Yeah, and Théo was right there, said nothing, just nodded along like an idiot.",
+          "french_street": "Chais pas, mais en plus la semaine dernière mon boss a présenté mon analyse au directeur comme si c'était la sienne. Il a même pas mentionné mon nom, rien.",
+          "english": "I don't know, but on top of that last week my boss presented my analysis to the director as if it were his own. He didn't even mention my name, nothing.",
           "audio_refs": {
             "fast": "lst_d03_l07_fast.mp3",
             "slow": "lst_d03_l07_slow.mp3"
@@ -3948,8 +3948,8 @@
         {
           "line_id": "lst_d03_l08",
           "speaker": 2,
-          "french_street": "Ah ouais, Théo c'est le genre à jamais contredire le boss.",
-          "english": "Right, Théo's the type who never contradicts the boss.",
+          "french_street": "Non, il a pas fait ça sérieusement ?! T'étais dans la salle quand il l'a présenté ?",
+          "english": "No, he seriously didn't?! Were you in the room when he presented it?",
           "audio_refs": {
             "fast": "lst_d03_l08_fast.mp3",
             "slow": "lst_d03_l08_slow.mp3"
@@ -3958,8 +3958,8 @@
         {
           "line_id": "lst_d03_l09",
           "speaker": 1,
-          "french_street": "Exactement, c'est un lèche-bottes de compét'.",
-          "english": "Exactly, he's a total kiss-ass.",
+          "french_street": "Ouais j'étais là, j'ai rien dit sur le moment parce que j'étais trop sous le choc. Mais là j'en peux plus, ça fait trop.",
+          "english": "Yeah I was there, I didn't say anything at the time because I was too shocked. But now I've had enough, it's just too much.",
           "audio_refs": {
             "fast": "lst_d03_l09_fast.mp3",
             "slow": "lst_d03_l09_slow.mp3"
@@ -3968,8 +3968,8 @@
         {
           "line_id": "lst_d03_l10",
           "speaker": 2,
-          "french_street": "T'as rien dit toi non plus alors ?",
-          "english": "And you didn't say anything either?",
+          "french_street": "T'as raison, là c'est clairement du vol de crédit. Faut que t'en parles à quelqu'un, les RH ou un responsable au-dessus de lui.",
+          "english": "You're right, that's clearly credit-stealing. You need to talk to someone about it, HR or a manager above him.",
           "audio_refs": {
             "fast": "lst_d03_l10_fast.mp3",
             "slow": "lst_d03_l10_slow.mp3"
@@ -3978,8 +3978,8 @@
         {
           "line_id": "lst_d03_l11",
           "speaker": 1,
-          "french_street": "Chais pas, j'étais tellement choquée sur le moment… Mais là j'en peux plus, j'crois que je vais en parler aux RH.",
-          "english": "I don't know, I was so shocked in the moment… But now I've had it, I think I'm going to talk to HR.",
+          "french_street": "J'y ai pensé, mais j'ai peur que ça se retourne contre moi. T'sais comment c'est, des fois tu fais une plainte et c'est toi qui passes pour le difficile.",
+          "english": "I've thought about it, but I'm scared it'll backfire on me. You know how it is, sometimes you make a complaint and you end up looking like the difficult one.",
           "audio_refs": {
             "fast": "lst_d03_l11_fast.mp3",
             "slow": "lst_d03_l11_slow.mp3"
@@ -3988,42 +3988,62 @@
         {
           "line_id": "lst_d03_l12",
           "speaker": 2,
-          "french_street": "Grave, vas-y, faut pas laisser passer ça.",
-          "english": "Definitely, go for it, you can't let that slide.",
+          "french_street": "Je comprends, mais t'as des preuves non ? T'as les mails où c'est toi qui envoies l'analyse ?",
+          "english": "I get it, but you have proof, right? You've got the emails where you're the one who sent the analysis?",
           "audio_refs": {
             "fast": "lst_d03_l12_fast.mp3",
             "slow": "lst_d03_l12_slow.mp3"
+          }
+        },
+        {
+          "line_id": "lst_d03_l13",
+          "speaker": 1,
+          "french_street": "Ouais ouais, j'ai tout gardé heureusement. Bon ok, j'vais prendre rendez-vous avec les RH la semaine prochaine et j'vais amener les mails.",
+          "english": "Yeah yeah, I kept everything luckily. Ok fine, I'll make an appointment with HR next week and bring the emails.",
+          "audio_refs": {
+            "fast": "lst_d03_l13_fast.mp3",
+            "slow": "lst_d03_l13_slow.mp3"
+          }
+        },
+        {
+          "line_id": "lst_d03_l14",
+          "speaker": 2,
+          "french_street": "Voilà, c'est la bonne décision. Et franchement si Mathieu continue à se taire, c'est son problème, toi t'as rien à te reprocher.",
+          "english": "There you go, that's the right call. And honestly if Mathieu keeps staying quiet, that's his problem, you have nothing to blame yourself for.",
+          "audio_refs": {
+            "fast": "lst_d03_l14_fast.mp3",
+            "slow": "lst_d03_l14_slow.mp3"
           }
         }
       ],
       "questions": [
         {
-          "question": "Why was Emma annoyed about the meeting?",
+          "question": "Why is Emma especially upset about last week's meeting with the director?",
           "options": [
-            "It lasted over three hours",
-            "The client was not invited",
-            "It was scheduled for early in the morning",
-            "It was called with only one day's notice and she had plans"
+            "Her boss scheduled it at five-thirty on a Friday",
+            "She was not allowed into the meeting room",
+            "Mathieu took credit for her work in front of the director",
+            "Her boss presented her analysis as his own without crediting her"
           ],
           "answer_index": 3
         },
         {
-          "question": "What did Emma's boss do regarding her project?",
+          "question": "What does Emma decide to do by the end of the conversation?",
           "options": [
-            "He presented it as his own idea to the client",
-            "He cancelled it in front of the client",
-            "He gave the credit to Théo",
-            "He asked Emma to redo it from scratch"
+            "Make an appointment with HR and bring her emails as proof",
+            "Ask Mathieu to back her up as a witness",
+            "Confront her boss directly in the next meeting",
+            "Start looking for a new job immediately"
           ],
           "answer_index": 0
         },
         {
-          "question": "What does Emma decide to do at the end of the conversation?",
+          "question": "How many times this month has Emma's boss called a last-minute end-of-day meeting?",
           "options": [
-            "Quit her job immediately",
-            "Talk to HR about the situation",
-            "Confront her boss directly",
-            "Ask Théo to back her up"
+            "Once",
+            "Three times",
+            "Twice",
+            "Every week"
           ],
           "answer_index": 1
         }
@@ -4050,13 +4070,13 @@
       ],
       "rate_fast": 1.3,
       "rate_slow": 0.9,
-      "est_duration_sec": 55,
+      "est_duration_sec": 96,
       "lines": [
         {
           "line_id": "lst_d04_l01",
           "speaker": 1,
-          "french_street": "T'as vu le mariage de Sophie ce week-end ? C'était ouf.",
-          "english": "Did you see Sophie's wedding this weekend? It was crazy.",
+          "french_street": "Oh là là Hugo, t'as vu le mariage de Sophie samedi ? J'en reviens pas, franchement c'était ouf.",
+          "english": "Oh wow Hugo, did you see Sophie's wedding on Saturday? I can't get over it, honestly it was insane.",
           "audio_refs": {
             "fast": "lst_d04_l01_fast.mp3",
             "slow": "lst_d04_l01_slow.mp3"
@@ -4065,8 +4085,8 @@
         {
           "line_id": "lst_d04_l02",
           "speaker": 2,
-          "french_street": "Ouf comment ? Bien ou... ?",
-          "english": "Crazy how? Good or...?",
+          "french_street": "Carrément, mais alors le discours du frère… j'suis resté bouche bée. Il a sorti quoi, dix minutes sur l'histoire de leur chien ? Tout le monde savait plus où regarder.",
+          "english": "Totally, but the brother's speech though… I was left speechless. He went on for what, ten minutes about the story of their dog? Nobody knew where to look.",
           "audio_refs": {
             "fast": "lst_d04_l02_fast.mp3",
             "slow": "lst_d04_l02_slow.mp3"
@@ -4075,8 +4095,8 @@
         {
           "line_id": "lst_d04_l03",
           "speaker": 1,
-          "french_street": "Les deux. La robe elle était magnifique, vraiment, j'suis restée bouche bée.",
-          "english": "Both. The dress was gorgeous, honestly, I was speechless.",
+          "french_street": "Dix minutes c'est gentil, moi j'ai compté, c'était au moins le quart d'heure. Et en plus il bégayait parce qu'il avait déjà bu, c'était gênant à mourir.",
+          "english": "Ten minutes is being generous, I counted, it was at least fifteen. And on top of that he was stumbling over his words because he'd already been drinking, it was painfully awkward.",
           "audio_refs": {
             "fast": "lst_d04_l03_fast.mp3",
             "slow": "lst_d04_l03_slow.mp3"
@@ -4085,8 +4105,8 @@
         {
           "line_id": "lst_d04_l04",
           "speaker": 2,
-          "french_street": "Et les discours ? J'entendais que c'était long.",
-          "english": "And the speeches? I heard they went on forever.",
+          "french_street": "Ah ouais le cousin aussi hein, Théo je crois ? Il avait déjà une bouteille de rosé dans le nez avant même le dîner. Il a renversé son verre sur la robe de la mère de Sophie, genre direct.",
+          "english": "Oh yeah the cousin too right, Théo I think? He already had a bottle of rosé in him before dinner even started. He knocked his glass over onto Sophie's mum's dress, like straight away.",
           "audio_refs": {
             "fast": "lst_d04_l04_fast.mp3",
             "slow": "lst_d04_l04_slow.mp3"
@@ -4095,8 +4115,8 @@
         {
           "line_id": "lst_d04_l05",
           "speaker": 1,
-          "french_street": "Son père a parlé genre vingt minutes, carrément. Tout le monde s'endormait.",
-          "english": "Her dad spoke like twenty minutes, seriously. Everyone was falling asleep.",
+          "french_street": "N'importe quoi ce mec. Mais sinon la robe de Sophie elle était vraiment trop belle, j'sais pas si t'as vu, elle avait des petits détails brodés dans le dos, c'était magnifique.",
+          "english": "What an idiot, that guy. But aside from that Sophie's dress was seriously gorgeous, I don't know if you noticed, she had these little embroidered details on the back, it was beautiful.",
           "audio_refs": {
             "fast": "lst_d04_l05_fast.mp3",
             "slow": "lst_d04_l05_slow.mp3"
@@ -4105,8 +4125,8 @@
         {
           "line_id": "lst_d04_l06",
           "speaker": 2,
-          "french_street": "N'importe quoi. Et le cousin, c'est vrai ce qu'on m'a dit ?",
-          "english": "That's ridiculous. And the cousin, is what I heard true?",
+          "french_street": "Ouais j'ai vu ça, elle était canon. Par contre le DJ par contre… grave la loose. Il a mis du Macarena à minuit, j'te jure j'ai cru rêver.",
+          "english": "Yeah I saw that, she looked amazing. But the DJ on the other hand… total disaster. He put on the Macarena at midnight, I swear I thought I was dreaming.",
           "audio_refs": {
             "fast": "lst_d04_l06_fast.mp3",
             "slow": "lst_d04_l06_slow.mp3"
@@ -4115,8 +4135,8 @@
         {
           "line_id": "lst_d04_l07",
           "speaker": 1,
-          "french_street": "Lequel ? Maxime ? Il était complètement bourré à dix-neuf heures, t'imagines.",
-          "english": "Which one? Maxime? He was completely wasted by seven p.m., can you believe it.",
+          "french_street": "Ça me saoule ce genre de DJ, y'a genre mille chansons dans le monde et il sort le Macarena… Et après il a enchaîné sur du Patrick Sébastien, j'pouvais plus.",
+          "english": "That kind of DJ drives me crazy, there are like a thousand songs in the world and he pulls out the Macarena… And then he went straight into Patrick Sébastien, I couldn't take it anymore.",
           "audio_refs": {
             "fast": "lst_d04_l07_fast.mp3",
             "slow": "lst_d04_l07_slow.mp3"
@@ -4125,8 +4145,8 @@
         {
           "line_id": "lst_d04_l08",
           "speaker": 2,
-          "french_street": "Non ! Il a fait quoi ?",
-          "english": "No way! What did he do?",
+          "french_street": "Pfff carrément. Mais bon les mariés ils avaient l'air trop heureux donc chais pas, on va pas faire la fine bouche non plus.",
+          "english": "Pfff totally. But well the couple looked so happy so I don't know, we can't really complain either.",
           "audio_refs": {
             "fast": "lst_d04_l08_fast.mp3",
             "slow": "lst_d04_l08_slow.mp3"
@@ -4135,8 +4155,8 @@
         {
           "line_id": "lst_d04_l09",
           "speaker": 1,
-          "french_street": "Il a renversé le gâteau. Enfin, une partie. Sophie était grave énervée.",
-          "english": "He knocked over the cake. Well, part of it. Sophie was really furious.",
+          "french_street": "C'est vrai ça, Sophie elle pleurait pendant les vœux, c'était vraiment touchant. Et Thomas il lisait son texte et sa voix elle tremblait, j'ai failli pleurer moi aussi.",
+          "english": "That's true, Sophie was crying during the vows, it was really touching. And Thomas was reading his text and his voice was trembling, I nearly cried too.",
           "audio_refs": {
             "fast": "lst_d04_l09_fast.mp3",
             "slow": "lst_d04_l09_slow.mp3"
@@ -4145,8 +4165,8 @@
         {
           "line_id": "lst_d04_l10",
           "speaker": 2,
-          "french_street": "Ça me saoule pour elle, le jour de son mariage quoi.",
-          "english": "That's so annoying for her, on her wedding day.",
+          "french_street": "Ouais ça c'était bien. Dis, et Théo à la fin, il est devenu où ? Parce que j'l'ai plus vu après le dessert.",
+          "english": "Yeah that part was good. Hey, and Théo at the end, what happened to him? Because I didn't see him after dessert.",
           "audio_refs": {
             "fast": "lst_d04_l10_fast.mp3",
             "slow": "lst_d04_l10_slow.mp3"
@@ -4155,8 +4175,8 @@
         {
           "line_id": "lst_d04_l11",
           "speaker": 1,
-          "french_street": "Ouais. Et après le DJ a mis que des vieux trucs, personne dansait.",
-          "english": "Yeah. And then the DJ played nothing but old stuff, nobody was dancing.",
+          "french_street": "On l'a mis dans un taxi vers vingt-deux heures, il tenait plus debout. Sa copine était morte de honte, elle s'excusait auprès de tout le monde.",
+          "english": "They put him in a taxi around ten o'clock, he couldn't stand up anymore. His girlfriend was dying of embarrassment, she was apologising to everyone.",
           "audio_refs": {
             "fast": "lst_d04_l11_fast.mp3",
             "slow": "lst_d04_l11_slow.mp3"
@@ -4165,8 +4185,8 @@
         {
           "line_id": "lst_d04_l12",
           "speaker": 2,
-          "french_street": "Chais pas comment Sophie elle a géré tout ça.",
-          "english": "I have no idea how Sophie handled all that.",
+          "french_street": "Pauvre elle franchement. Bon au moins le repas il était vraiment top, le traiteur il a assuré. Ce magret de canard j'en rêve encore.",
+          "english": "Poor her honestly. Well at least the food was really great, the caterer delivered. I'm still dreaming about that duck breast.",
           "audio_refs": {
             "fast": "lst_d04_l12_fast.mp3",
             "slow": "lst_d04_l12_slow.mp3"
@@ -4175,8 +4195,8 @@
         {
           "line_id": "lst_d04_l13",
           "speaker": 1,
-          "french_street": "Elle était souriante quand même, respect. Mais moi j'peux te dire, j'rentre pas avant minuit pour ça.",
-          "english": "She kept smiling though, fair play to her. But I'm telling you, I'm not staying past midnight for that kind of thing.",
+          "french_street": "Ouais le magret c'était dingue. Bref c'était un mariage mémorable hein, mais pour des raisons très… variées.",
+          "english": "Yeah the duck was insane. Anyway it was a memorable wedding right, but for very… varied reasons.",
           "audio_refs": {
             "fast": "lst_d04_l13_fast.mp3",
             "slow": "lst_d04_l13_slow.mp3"
@@ -4185,8 +4205,8 @@
         {
           "line_id": "lst_d04_l14",
           "speaker": 2,
-          "french_street": "Ouais grave, on rentre ensemble la prochaine fois.",
-          "english": "Yeah totally, we'll leave together next time.",
+          "french_street": "C'est le moins qu'on puisse dire. J'espère que Sophie elle a pas trop vu la galère, elle méritait que ce soit parfait.",
+          "english": "That's putting it mildly. I hope Sophie didn't see too much of the chaos, she deserved it to be perfect.",
           "audio_refs": {
             "fast": "lst_d04_l14_fast.mp3",
             "slow": "lst_d04_l14_slow.mp3"
@@ -4195,32 +4215,32 @@
       ],
       "questions": [
         {
-          "question": "Why was Sophie angry during the reception?",
+          "question": "What did the cousin Théo do that embarrassed everyone during the reception?",
           "options": [
-            "The DJ played the wrong first dance song",
-            "Her father's speech was too long",
-            "The flowers were the wrong color",
-            "Her cousin Maxime knocked over the cake"
+            "He gave a fifteen-minute speech about a dog",
+            "He argued with the DJ",
+            "He fell asleep on the dance floor",
+            "He knocked his glass of rosé onto Sophie's mother's dress"
           ],
           "answer_index": 3
         },
         {
-          "question": "How long did Sophie's father speak during his speech?",
+          "question": "What did the DJ play at midnight that shocked Manon and Hugo?",
           "options": [
-            "About five minutes",
-            "Nearly an hour",
-            "Around twenty minutes",
-            "Just a few minutes"
+            "Patrick Sébastien",
+            "A slow love song",
+            "The Macarena",
+            "A techno set"
           ],
           "answer_index": 2
         },
         {
-          "question": "What was the problem with the DJ?",
+          "question": "What happened to Théo by the end of the evening?",
           "options": [
-            "He played only old songs and no one danced",
-            "He arrived very late",
-            "He was too loud and people complained",
-            "He left before the end of the evening"
+            "He was put in a taxi around 10 p.m. because he couldn't stand up",
+            "He was asked to leave by the groom",
+            "He drove himself home despite being drunk",
+            "He stayed until the very end of the party"
           ],
           "answer_index": 0
         }
@@ -4247,13 +4267,13 @@
       ],
       "rate_fast": 1.3,
       "rate_slow": 0.9,
-      "est_duration_sec": 53,
+      "est_duration_sec": 85,
       "lines": [
         {
           "line_id": "lst_d05_l01",
           "speaker": 1,
-          "french_street": "Putain, j'suis épuisée. Le déménagement c'était un désastre total.",
-          "english": "God, I'm exhausted. The move was a complete disaster.",
+          "french_street": "Putain Thomas, j'te jure, le déménagement d'hier c'était un désastre total. J'sais même pas par où commencer.",
+          "english": "Oh my god Thomas, I'm telling you, yesterday's move was a complete disaster. I don't even know where to start.",
           "audio_refs": {
             "fast": "lst_d05_l01_fast.mp3",
             "slow": "lst_d05_l01_slow.mp3"
@@ -4262,8 +4282,8 @@
         {
           "line_id": "lst_d05_l02",
           "speaker": 2,
-          "french_street": "Grave ? T'as eu des problèmes ?",
-          "english": "Really? You had problems?",
+          "french_street": "Attends, ça s'est pas bien passé ? T'avais pas loué un camion et tout ?",
+          "english": "Wait, it didn't go well? Hadn't you rented a van and everything?",
           "audio_refs": {
             "fast": "lst_d05_l02_fast.mp3",
             "slow": "lst_d05_l02_slow.mp3"
@@ -4272,8 +4292,8 @@
         {
           "line_id": "lst_d05_l03",
           "speaker": 1,
-          "french_street": "Déjà le camion était trop petit. Y'a la moitié des cartons qui rentraient pas.",
-          "english": "First of all the van was too small. Half the boxes didn't fit.",
+          "french_street": "Ouais, j'avais loué un camion, sauf que le mec il m'a filé un modèle trop petit. Genre y'avait pas la moitié de mes affaires qui rentraient, c'était n'importe quoi.",
+          "english": "Yeah, I'd rented a van, except the guy gave me a model that was too small. Like, not even half my stuff could fit in it, it was ridiculous.",
           "audio_refs": {
             "fast": "lst_d05_l03_fast.mp3",
             "slow": "lst_d05_l03_slow.mp3"
@@ -4282,8 +4302,8 @@
         {
           "line_id": "lst_d05_l04",
           "speaker": 2,
-          "french_street": "N'importe quoi. T'avais pas vérifié avant ?",
-          "english": "That's ridiculous. You hadn't checked beforehand?",
+          "french_street": "Grave ? Et t'as fait quoi alors, t'as dû faire plusieurs voyages ?",
+          "english": "Seriously? And what did you do then, you had to make several trips?",
           "audio_refs": {
             "fast": "lst_d05_l04_fast.mp3",
             "slow": "lst_d05_l04_slow.mp3"
@@ -4292,8 +4312,8 @@
         {
           "line_id": "lst_d05_l05",
           "speaker": 1,
-          "french_street": "Chais pas, on pensait que ça suffirait. Et après on a essayé de monter le canapé...",
-          "english": "I dunno, we thought it'd be enough. And then we tried to carry up the sofa...",
+          "french_street": "Bah ouais, trois allers-retours avec ce camion de merde. Mais le pire c'est le canapé — on a essayé de le monter dans l'escalier et il a coincé à mi-étage. On a passé genre une heure là-dessus.",
+          "english": "Well yeah, three round trips with that crappy van. But the worst part was the sofa — we tried to bring it up the stairwell and it got stuck halfway up. We spent like an hour on that.",
           "audio_refs": {
             "fast": "lst_d05_l05_fast.mp3",
             "slow": "lst_d05_l05_slow.mp3"
@@ -4302,8 +4322,8 @@
         {
           "line_id": "lst_d05_l06",
           "speaker": 2,
-          "french_street": "Oh non, il est passé pas ?",
-          "english": "Oh no, it didn't fit?",
+          "french_street": "Carrément une heure ? Mais c'est qui « on » ? Kévin il était là pour t'aider ?",
+          "english": "A whole hour? But who's 'we'? Was Kévin there to help you?",
           "audio_refs": {
             "fast": "lst_d05_l06_fast.mp3",
             "slow": "lst_d05_l06_slow.mp3"
@@ -4312,8 +4332,8 @@
         {
           "line_id": "lst_d05_l07",
           "speaker": 1,
-          "french_street": "Bloqué dans la cage d'escalier pendant deux heures. Carrément.",
-          "english": "Stuck in the stairwell for two hours. Literally.",
+          "french_street": "Ah Kévin... il avait promis d'être là à neuf heures. J'l'ai appelé à dix heures, à onze heures — rien. Il s'est pointé à quatorze heures avec un café à la main comme si c'était normal.",
+          "english": "Oh, Kévin... he'd promised to be there at nine. I called him at ten, at eleven — nothing. He showed up at two in the afternoon with a coffee in his hand like it was completely normal.",
           "audio_refs": {
             "fast": "lst_d05_l07_fast.mp3",
             "slow": "lst_d05_l07_slow.mp3"
@@ -4322,8 +4342,8 @@
         {
           "line_id": "lst_d05_l08",
           "speaker": 2,
-          "french_street": "Haha, et Kévin il était là pour aider ?",
-          "english": "Haha, and was Kévin there to help?",
+          "french_street": "Non, il a pas fait ça. Ça me saoule rien que d'entendre ça. Et il t'a donné une excuse au moins ?",
+          "english": "No, he didn't do that. Just hearing that drives me crazy. And did he at least give you an excuse?",
           "audio_refs": {
             "fast": "lst_d05_l08_fast.mp3",
             "slow": "lst_d05_l08_slow.mp3"
@@ -4332,8 +4352,8 @@
         {
           "line_id": "lst_d05_l09",
           "speaker": 1,
-          "french_street": "Kévin... il s'est pointé à la fin, quand tout était fini.",
-          "english": "Kévin... he showed up at the end, when everything was done.",
+          "french_street": "Il m'a dit qu'il avait « mal dormi ». J'te jure, j'l'ai regardé et j'ai rien dit parce que j'étais trop fatiguée pour me battre. Mais c'est fini, hein.",
+          "english": "He told me he'd 'slept badly'. I'm telling you, I just looked at him and said nothing because I was too tired to argue. But we're done, seriously.",
           "audio_refs": {
             "fast": "lst_d05_l09_fast.mp3",
             "slow": "lst_d05_l09_slow.mp3"
@@ -4342,8 +4362,8 @@
         {
           "line_id": "lst_d05_l10",
           "speaker": 2,
-          "french_street": "Ça me saoule ce mec. Il avait quoi comme excuse ?",
-          "english": "That guy drives me crazy. What was his excuse?",
+          "french_street": "Honnêtement c'est nul de sa part. Et le canapé alors, vous avez réussi à le faire monter à la fin ?",
+          "english": "Honestly that's really bad of him. And the sofa, did you manage to get it up in the end?",
           "audio_refs": {
             "fast": "lst_d05_l10_fast.mp3",
             "slow": "lst_d05_l10_slow.mp3"
@@ -4352,8 +4372,8 @@
         {
           "line_id": "lst_d05_l11",
           "speaker": 1,
-          "french_street": "Soi-disant il avait raté son bus. J'y crois pas une seconde.",
-          "english": "Apparently he missed his bus. I don't believe it for a second.",
+          "french_street": "Au bout d'une heure on a abandonné et on l'a laissé dans la cave pour l'instant. J'sais pas encore comment je vais gérer ça.",
+          "english": "After an hour we gave up and left it in the basement for now. I still don't know how I'm going to deal with that.",
           "audio_refs": {
             "fast": "lst_d05_l11_fast.mp3",
             "slow": "lst_d05_l11_slow.mp3"
@@ -4362,8 +4382,8 @@
         {
           "line_id": "lst_d05_l12",
           "speaker": 2,
-          "french_street": "T'as bien fait de pas l'attendre. Du coup t'as dormi là-bas ce soir ?",
-          "english": "Good thing you didn't wait for him. So did you sleep there last night?",
+          "french_street": "T'as pensé à démonter les pieds ? Des fois ça change tout avec les escaliers étroits.",
+          "english": "Did you think about taking off the legs? Sometimes it makes all the difference in narrow stairwells.",
           "audio_refs": {
             "fast": "lst_d05_l12_fast.mp3",
             "slow": "lst_d05_l12_slow.mp3"
@@ -4372,8 +4392,8 @@
         {
           "line_id": "lst_d05_l13",
           "speaker": 1,
-          "french_street": "Ouais, sur un matelas par terre entourée de cartons. Trop le rêve.",
-          "english": "Yeah, on a mattress on the floor surrounded by boxes. Living the dream.",
+          "french_street": "Chais pas pourquoi on a même pas pensé à ça sur le moment. On était tellement à bout que... ouais, j'vais essayer ce week-end.",
+          "english": "I have no idea why we didn't even think of that at the time. We were so exhausted that... yeah, I'll try that this weekend.",
           "audio_refs": {
             "fast": "lst_d05_l13_fast.mp3",
             "slow": "lst_d05_l13_slow.mp3"
@@ -4382,42 +4402,52 @@
         {
           "line_id": "lst_d05_l14",
           "speaker": 2,
-          "french_street": "Allez, ce week-end j'viens t'aider à tout déballer.",
-          "english": "Come on, this weekend I'll come help you unpack everything.",
+          "french_street": "Si t'as besoin d'un coup de main samedi, hésite pas, moi j'suis dispo. Contrairement à certains.",
+          "english": "If you need a hand on Saturday, don't hesitate, I'm free. Unlike some people.",
           "audio_refs": {
             "fast": "lst_d05_l14_fast.mp3",
             "slow": "lst_d05_l14_slow.mp3"
+          }
+        },
+        {
+          "line_id": "lst_d05_l15",
+          "speaker": 1,
+          "french_street": "Haha, merci Thomas, vraiment. T'es trop sympa. Au moins toi t'es fiable.",
+          "english": "Haha, thank you Thomas, genuinely. You're so kind. At least you're reliable.",
+          "audio_refs": {
+            "fast": "lst_d05_l15_fast.mp3",
+            "slow": "lst_d05_l15_slow.mp3"
           }
         }
       ],
       "questions": [
         {
-          "question": "Why did the move take longer than expected at the stairwell?",
+          "question": "Why did Inès have to make three round trips with the van?",
           "options": [
-            "The elevator was broken",
-            "The boxes were too heavy to carry up",
-            "The sofa got stuck for two hours",
-            "The stairwell door was locked"
+            "She forgot half her boxes at the old apartment",
+            "The van broke down twice during the move",
+            "The van was too small to fit all her belongings at once",
+            "The road was blocked and she had to take a longer route"
           ],
           "answer_index": 2
         },
         {
-          "question": "What excuse did Kévin give for arriving late?",
+          "question": "What time did Kévin finally show up?",
           "options": [
-            "He missed his bus",
-            "He forgot the moving date",
-            "He had to work overtime",
-            "His car broke down"
+            "2 p.m.",
+            "11 a.m.",
+            "9 a.m.",
+            "5 p.m."
           ],
           "answer_index": 0
         },
         {
-          "question": "What does Thomas offer to do at the end of the conversation?",
+          "question": "Where did Inès and her helpers leave the sofa after failing to move it upstairs?",
           "options": [
-            "Lend Inès a bigger van next time",
-            "Come help her unpack that weekend",
-            "Call Kévin to apologize on her behalf",
-            "Help her return the sofa to the store"
+            "On the pavement outside",
+            "In the basement",
+            "In the van overnight",
+            "In the stairwell landing"
           ],
           "answer_index": 1
         }
@@ -4444,13 +4474,13 @@
       ],
       "rate_fast": 1.3,
       "rate_slow": 0.9,
-      "est_duration_sec": 51,
+      "est_duration_sec": 84,
       "lines": [
         {
           "line_id": "lst_d06_l01",
           "speaker": 1,
-          "french_street": "T'as vu j'me suis retrouvée aux urgences hier soir ?",
-          "english": "Did you know I ended up in the ER last night?",
+          "french_street": "Putain Karim, j'ai passé cinq heures aux urgences hier soir pour une cheville tordue, cinq heures !",
+          "english": "Oh my god Karim, I spent five hours in the ER last night for a twisted ankle, five hours!",
           "audio_refs": {
             "fast": "lst_d06_l01_fast.mp3",
             "slow": "lst_d06_l01_slow.mp3"
@@ -4459,8 +4489,8 @@
         {
           "line_id": "lst_d06_l02",
           "speaker": 2,
-          "french_street": "Quoi sérieux ? T'es blessée ?",
-          "english": "What, seriously? Are you hurt?",
+          "french_street": "Sérieux ? T'as attendu cinq heures juste pour une cheville ? C'est n'importe quoi...",
+          "english": "Seriously? You waited five hours just for an ankle? That's insane...",
           "audio_refs": {
             "fast": "lst_d06_l02_fast.mp3",
             "slow": "lst_d06_l02_slow.mp3"
@@ -4469,8 +4499,8 @@
         {
           "line_id": "lst_d06_l03",
           "speaker": 1,
-          "french_street": "J'me suis tordu la cheville en descendant du bus, c'était nul.",
-          "english": "I twisted my ankle getting off the bus, it was awful.",
+          "french_street": "Ouais carrément, et encore, quand j'suis arrivée y'avait genre vingt personnes avant moi dans la salle d'attente. J'me suis dit ok ça va être long.",
+          "english": "Yeah totally, and when I got there there were like twenty people ahead of me in the waiting room. I told myself, okay this is gonna take a while.",
           "audio_refs": {
             "fast": "lst_d06_l03_fast.mp3",
             "slow": "lst_d06_l03_slow.mp3"
@@ -4479,8 +4509,8 @@
         {
           "line_id": "lst_d06_l04",
           "speaker": 2,
-          "french_street": "Oh là, et c'était comment aux urgences ?",
-          "english": "Oh no, and what was it like at the ER?",
+          "french_street": "T'étais toute seule au moins ou quelqu'un t'avait accompagnée ?",
+          "english": "Were you alone at least or did someone come with you?",
           "audio_refs": {
             "fast": "lst_d06_l04_fast.mp3",
             "slow": "lst_d06_l04_slow.mp3"
@@ -4489,8 +4519,8 @@
         {
           "line_id": "lst_d06_l05",
           "speaker": 1,
-          "french_street": "Un enfer. Y'avait genre quarante personnes qui attendaient déjà.",
-          "english": "A nightmare. There were like forty people already waiting.",
+          "french_street": "Toute seule, j'ai appelé ma sœur mais elle pouvait pas se déplacer. Donc j'suis restée là à boiter jusqu'au guichet d'abord pour faire l'admission.",
+          "english": "All alone, I called my sister but she couldn't make it. So I limped my way to the desk first to do the admission.",
           "audio_refs": {
             "fast": "lst_d06_l05_fast.mp3",
             "slow": "lst_d06_l05_slow.mp3"
@@ -4499,8 +4529,8 @@
         {
           "line_id": "lst_d06_l06",
           "speaker": 2,
-          "french_street": "Carrément, et t'as attendu longtemps ?",
-          "english": "Seriously, and did you wait long?",
+          "french_street": "Et le tri, ça s'est passé comment ? Ils t'ont vue rapidement au moins ?",
+          "english": "And the triage, how did that go? Did they see you quickly at least?",
           "audio_refs": {
             "fast": "lst_d06_l06_fast.mp3",
             "slow": "lst_d06_l06_slow.mp3"
@@ -4509,8 +4539,8 @@
         {
           "line_id": "lst_d06_l07",
           "speaker": 1,
-          "french_street": "Cinq heures. Cinq heures pour une bande et deux radios, c'est n'importe quoi.",
-          "english": "Five hours. Five hours for a bandage and two X-rays, it's insane.",
+          "french_street": "Pff, une heure pour voir l'infirmière du tri, elle m'a tâté la cheville deux secondes et elle m'a dit c'est probablement pas cassé, allez rasseoir vous.",
+          "english": "Pfft, one hour to see the triage nurse, she pressed on my ankle for two seconds and told me it's probably not broken, go sit back down.",
           "audio_refs": {
             "fast": "lst_d06_l07_fast.mp3",
             "slow": "lst_d06_l07_slow.mp3"
@@ -4519,8 +4549,8 @@
         {
           "line_id": "lst_d06_l08",
           "speaker": 2,
-          "french_street": "Cinq heures ! Et c'était quoi le verdict ?",
-          "english": "Five hours! And what was the verdict?",
+          "french_street": "Elle t'a dit vous ? Aux urgences ils tutoyent pas ?",
+          "english": "She said vous to you? Don't they use tu in the ER?",
           "audio_refs": {
             "fast": "lst_d06_l08_fast.mp3",
             "slow": "lst_d06_l08_slow.mp3"
@@ -4529,8 +4559,8 @@
         {
           "line_id": "lst_d06_l09",
           "speaker": 1,
-          "french_street": "Rien de cassé, juste une entorse. J'suis rentrée à deux heures du mat.",
-          "english": "Nothing broken, just a sprain. I got home at two in the morning.",
+          "french_street": "Nan, là c'était vouvoiement total, t'es plus dans la rue hein. Bref, j'me suis rassise et j'ai attendu encore trois heures avant qu'un médecin me voie vraiment.",
+          "english": "No, there it was full formal address, you're not on the street anymore. Anyway, I sat back down and waited another three hours before a doctor actually saw me.",
           "audio_refs": {
             "fast": "lst_d06_l09_fast.mp3",
             "slow": "lst_d06_l09_slow.mp3"
@@ -4539,8 +4569,8 @@
         {
           "line_id": "lst_d06_l10",
           "speaker": 2,
-          "french_street": "Ça me saoule pour toi, t'aurais pu aller chez un médecin de garde non ?",
-          "english": "That's so frustrating for you — couldn't you have gone to an on-call doctor?",
+          "french_street": "Trois heures de plus... ça me saoule rien que d'imaginer. T'avais même pas de quoi te distraire ?",
+          "english": "Three more hours... that drives me crazy just imagining it. You didn't even have anything to keep you busy?",
           "audio_refs": {
             "fast": "lst_d06_l10_fast.mp3",
             "slow": "lst_d06_l10_slow.mp3"
@@ -4549,8 +4579,8 @@
         {
           "line_id": "lst_d06_l11",
           "speaker": 1,
-          "french_street": "Chais pas, j'avais trop mal, j'ai paniqué.",
-          "english": "I don't know, I was in too much pain, I panicked.",
+          "french_street": "Mon téléphone à quarante pour cent, j'ai regardé le plafond la moitié du temps. Et à côté de moi y'avait un mec qui toussait sans arrêt, j'espère que j'ai rien chopé.",
+          "english": "My phone at forty percent, I stared at the ceiling half the time. And next to me there was a guy coughing non-stop, I hope I didn't catch anything.",
           "audio_refs": {
             "fast": "lst_d06_l11_fast.mp3",
             "slow": "lst_d06_l11_slow.mp3"
@@ -4559,8 +4589,8 @@
         {
           "line_id": "lst_d06_l12",
           "speaker": 2,
-          "french_street": "Ouais grave, et maintenant t'as une attelle ou quoi ?",
-          "english": "Yeah fair enough, and now do you have a brace or something?",
+          "french_street": "Grave, t'avais vraiment pas de chance. Et au final le médecin il a fait quoi ?",
+          "english": "For real, you really were unlucky. And in the end what did the doctor do?",
           "audio_refs": {
             "fast": "lst_d06_l12_fast.mp3",
             "slow": "lst_d06_l12_slow.mp3"
@@ -4569,8 +4599,8 @@
         {
           "line_id": "lst_d06_l13",
           "speaker": 1,
-          "french_street": "Non juste du strapping et des anti-douleurs. J'peux même pas mettre mes chaussures.",
-          "english": "No just strapping and painkillers. I can't even put my shoes on.",
+          "french_street": "Il m'a fait une radio, rien de cassé comme prévu, et il m'a mis un bandage. Genre dix minutes de consultation pour cinq heures d'attente, j'hallucine.",
+          "english": "He did an X-ray, nothing broken as expected, and he put a bandage on it. Like ten minutes of actual care for five hours of waiting, I can't believe it.",
           "audio_refs": {
             "fast": "lst_d06_l13_fast.mp3",
             "slow": "lst_d06_l13_slow.mp3"
@@ -4579,42 +4609,52 @@
         {
           "line_id": "lst_d06_l14",
           "speaker": 2,
-          "french_street": "Oh la vache. Bon repose-toi sérieux.",
-          "english": "Oh wow. Seriously, get some rest.",
+          "french_street": "Dix minutes... c'est vraiment le système D. T'aurais pas pu aller chez un médecin de garde plutôt ?",
+          "english": "Ten minutes... it's really the bare-minimum system. Couldn't you have just gone to an on-call doctor instead?",
           "audio_refs": {
             "fast": "lst_d06_l14_fast.mp3",
             "slow": "lst_d06_l14_slow.mp3"
+          }
+        },
+        {
+          "line_id": "lst_d06_l15",
+          "speaker": 1,
+          "french_street": "Chais pas, j'avais trop peur que ce soit cassé donc j'voulais la radio direct. Mais la prochaine fois j'essaie le médecin de garde, c'est sûr.",
+          "english": "I don't know, I was too scared it was broken so I wanted the X-ray right away. But next time I'm trying the on-call doctor for sure.",
+          "audio_refs": {
+            "fast": "lst_d06_l15_fast.mp3",
+            "slow": "lst_d06_l15_slow.mp3"
           }
         }
       ],
       "questions": [
         {
-          "question": "Why did Léa go to the ER?",
+          "question": "How long did Léa wait before the triage nurse saw her?",
           "options": [
-            "She fell off her bike",
-            "She twisted her ankle getting off a bus",
-            "She broke her wrist at work",
-            "She had a bad fall at home"
+            "About thirty minutes",
+            "About one hour",
+            "About two hours",
+            "About three hours"
           ],
           "answer_index": 1
         },
         {
-          "question": "How long did Léa wait at the ER?",
+          "question": "Why was Léa alone at the ER?",
           "options": [
-            "Two hours",
-            "Three hours",
-            "Five hours",
-            "All night"
+            "She didn't want company",
+            "It was too late to call anyone",
+            "Her sister couldn't come",
+            "Her phone had already died"
           ],
           "answer_index": 2
         },
         {
-          "question": "What was the doctor's conclusion?",
+          "question": "What did the doctor's examination reveal?",
           "options": [
-            "She had a sprain and nothing was broken",
-            "She had a fracture",
-            "She needed surgery",
-            "She had two broken bones"
+            "Nothing broken",
+            "A torn ligament",
+            "A hairline fracture",
+            "A dislocated bone"
           ],
           "answer_index": 0
         }
@@ -4641,13 +4681,13 @@
       ],
       "rate_fast": 1.3,
       "rate_slow": 0.9,
-      "est_duration_sec": 46,
+      "est_duration_sec": 84,
       "lines": [
         {
           "line_id": "lst_d07_l01",
           "speaker": 1,
-          "french_street": "Alors, ces vacances ? T'as l'air crevée.",
-          "english": "So, how were the holidays? You look exhausted.",
+          "french_street": "Alors, ces vacances ? T'as l'air crevée quand même.",
+          "english": "So, how were the holidays? You look wrecked, to be honest.",
           "audio_refs": {
             "fast": "lst_d07_l01_fast.mp3",
             "slow": "lst_d07_l01_slow.mp3"
@@ -4656,8 +4696,8 @@
         {
           "line_id": "lst_d07_l02",
           "speaker": 2,
-          "french_street": "Grave. Déjà, ma valise est arrivée trois jours après moi.",
-          "english": "Totally. For starters, my suitcase arrived three days after I did.",
+          "french_street": "Crevée, c'est le mot. Déjà à l'aller, la compagnie a perdu ma valise. J'ai attendu genre deux heures à l'aéroport, et au final on m'a dit qu'elle était à Barcelone. Barcelone ! Moi j'allais à Lisbonne.",
+          "english": "Wrecked is the word. First off, on the way there, the airline lost my suitcase. I waited like two hours at the airport, and in the end they told me it was in Barcelona. Barcelona! And I was going to Lisbon.",
           "audio_refs": {
             "fast": "lst_d07_l02_fast.mp3",
             "slow": "lst_d07_l02_slow.mp3"
@@ -4666,8 +4706,8 @@
         {
           "line_id": "lst_d07_l03",
           "speaker": 1,
-          "french_street": "Non ? T'as fait quoi pendant trois jours ?",
-          "english": "No way? What did you do for three days?",
+          "french_street": "Non, c'est pas vrai. Et t'as récupéré tes affaires quand, du coup ?",
+          "english": "No way. And when did you actually get your stuff back?",
           "audio_refs": {
             "fast": "lst_d07_l03_fast.mp3",
             "slow": "lst_d07_l03_slow.mp3"
@@ -4676,8 +4716,8 @@
         {
           "line_id": "lst_d07_l04",
           "speaker": 2,
-          "french_street": "J'ai tout racheté sur place, ça m'a coûté une fortune.",
-          "english": "I bought everything again over there, it cost me a fortune.",
+          "french_street": "Trois jours après. Trois jours à porter les mêmes fringues, franchement c'était n'importe quoi. J'ai dû acheter un maillot de bain en urgence parce que le mien était dans la valise évidemment.",
+          "english": "Three days later. Three days in the same clothes, honestly it was a joke. I had to buy a swimsuit in a rush because mine was obviously in the suitcase.",
           "audio_refs": {
             "fast": "lst_d07_l04_fast.mp3",
             "slow": "lst_d07_l04_slow.mp3"
@@ -4686,8 +4726,8 @@
         {
           "line_id": "lst_d07_l05",
           "speaker": 1,
-          "french_street": "N'importe quoi. Et le logement, c'était bien ?",
-          "english": "That's insane. And the place you stayed, was it nice?",
+          "french_street": "Carrément galère. Et la location alors, ça ressemblait aux photos au moins ?",
+          "english": "Total nightmare. And the rental — did it at least look like the photos?",
           "audio_refs": {
             "fast": "lst_d07_l05_fast.mp3",
             "slow": "lst_d07_l05_slow.mp3"
@@ -4696,8 +4736,8 @@
         {
           "line_id": "lst_d07_l06",
           "speaker": 2,
-          "french_street": "Alors ça... les photos, c'était carrément pas la réalité.",
-          "english": "Oh man... the photos were absolutely nothing like reality.",
+          "french_street": "Ah non, pas du tout. Sur les photos t'avais genre une belle terrasse avec vue sur la mer. En vrai y'avait une minuscule terrasse qui donnait sur un parking. J'suis restée là à fixer le parking pendant dix jours.",
+          "english": "Oh no, not at all. In the photos there was like a nice terrace with a sea view. In reality there was a tiny terrace looking onto a car park. I spent ten days staring at a car park.",
           "audio_refs": {
             "fast": "lst_d07_l06_fast.mp3",
             "slow": "lst_d07_l06_slow.mp3"
@@ -4706,8 +4746,8 @@
         {
           "line_id": "lst_d07_l07",
           "speaker": 1,
-          "french_street": "C'était nul ?",
-          "english": "Was it rubbish?",
+          "french_street": "Ça me saoule rien que d'entendre ça. T'as pas contacté le proprio ?",
+          "english": "That drives me mad just hearing it. Didn't you contact the owner?",
           "audio_refs": {
             "fast": "lst_d07_l07_fast.mp3",
             "slow": "lst_d07_l07_slow.mp3"
@@ -4716,8 +4756,8 @@
         {
           "line_id": "lst_d07_l08",
           "speaker": 2,
-          "french_street": "Vue mer sur les photos, vue parking dans la vraie vie.",
-          "english": "Sea view in the photos, car park view in real life.",
+          "french_street": "Si, j'lui ai envoyé un message le premier jour. Il m'a répondu que les photos étaient 'représentatives', tu vois le délire. J'savais même pas quoi répondre.",
+          "english": "Yeah, I messaged him on the first day. He replied that the photos were 'representative', can you believe it. I didn't even know what to say back.",
           "audio_refs": {
             "fast": "lst_d07_l08_fast.mp3",
             "slow": "lst_d07_l08_slow.mp3"
@@ -4726,8 +4766,8 @@
         {
           "line_id": "lst_d07_l09",
           "speaker": 1,
-          "french_street": "Ça me saoule rien que d'entendre ça.",
-          "english": "That drives me mad just hearing it.",
+          "french_street": "N'importe quoi ce mec. T'as laissé un avis au moins ?",
+          "english": "What a joke, that guy. Did you at least leave a review?",
           "audio_refs": {
             "fast": "lst_d07_l09_fast.mp3",
             "slow": "lst_d07_l09_slow.mp3"
@@ -4736,8 +4776,8 @@
         {
           "line_id": "lst_d07_l10",
           "speaker": 2,
-          "french_street": "Ouais mais bon, chais pas... on s'en fout en fait, on a trop rigolé quand même.",
-          "english": "Yeah but honestly, I don't know... we didn't care in the end, we laughed so much anyway.",
+          "french_street": "Grave, j'ai tout détaillé. La vue parking, la valise, tout. Y'a déjà deux autres personnes qui ont liké mon avis donc j'suis contente.",
+          "english": "Absolutely, I spelled everything out. The car park view, the suitcase, all of it. Two other people have already liked my review so I'm happy about that.",
           "audio_refs": {
             "fast": "lst_d07_l10_fast.mp3",
             "slow": "lst_d07_l10_slow.mp3"
@@ -4746,8 +4786,8 @@
         {
           "line_id": "lst_d07_l11",
           "speaker": 1,
-          "french_street": "T'as demandé un remboursement au moins ?",
-          "english": "Did you ask for a refund at least?",
+          "french_street": "Bien fait. Mais attends, t'as quand même dit que c'était bien non, malgré tout ça ?",
+          "english": "Serves him right. But hang on, you still said it was good, didn't you, despite all that?",
           "audio_refs": {
             "fast": "lst_d07_l11_fast.mp3",
             "slow": "lst_d07_l11_slow.mp3"
@@ -4756,8 +4796,8 @@
         {
           "line_id": "lst_d07_l12",
           "speaker": 2,
-          "french_street": "J'ai essayé, y'a personne qui répond. J'laisse tomber.",
-          "english": "I tried, nobody answers. I'm just dropping it.",
+          "french_street": "Ouais carrément, parce que la ville elle était dingue. On a mangé des trucs incroyables, on a visité des coins que j'connaissais pas du tout, et le dernier soir on a trouvé un petit resto sur le port, franchement j'en reviens pas encore.",
+          "english": "Yeah totally, because the city itself was amazing. We ate incredible food, we visited spots I'd never been to, and on the last evening we found a little restaurant by the harbour — honestly I'm still not over it.",
           "audio_refs": {
             "fast": "lst_d07_l12_fast.mp3",
             "slow": "lst_d07_l12_slow.mp3"
@@ -4766,8 +4806,8 @@
         {
           "line_id": "lst_d07_l13",
           "speaker": 1,
-          "french_street": "Sage décision. La prochaine fois t'évites ce site.",
-          "english": "Wise move. Next time you avoid that website.",
+          "french_street": "C'est ça les vacances hein, même quand ça part en vrille ça reste des souvenirs.",
+          "english": "That's holidays for you — even when it goes sideways, they're still memories.",
           "audio_refs": {
             "fast": "lst_d07_l13_fast.mp3",
             "slow": "lst_d07_l13_slow.mp3"
@@ -4776,8 +4816,8 @@
         {
           "line_id": "lst_d07_l14",
           "speaker": 2,
-          "french_street": "Carrément. On réserve un hôtel, point.",
-          "english": "Absolutely. We're booking a hotel, full stop.",
+          "french_street": "Exactement. Bon par contre j'vais checker deux fois les avis avant de réserver la prochaine fois, hein.",
+          "english": "Exactly. Though I'm definitely going to check reviews twice before booking next time, that's for sure.",
           "audio_refs": {
             "fast": "lst_d07_l14_fast.mp3",
             "slow": "lst_d07_l14_slow.mp3"
@@ -4786,32 +4826,32 @@
       ],
       "questions": [
         {
-          "question": "How long after Emma arrived did her suitcase show up?",
+          "question": "Where did the airline send Emma's suitcase by mistake?",
           "options": [
-            "The same day",
-            "Three days later",
-            "One day later",
-            "A week later"
+            "Madrid",
+            "Barcelona",
+            "Paris",
+            "Lisbon"
           ],
           "answer_index": 1
         },
         {
-          "question": "What was wrong with the rental accommodation?",
+          "question": "What did the rental terrace actually overlook, instead of the sea?",
           "options": [
-            "The sea view in the photos was actually a car park view",
-            "It was much smaller than advertised",
-            "It had no hot water",
-            "It was in a completely different location"
+            "A car park",
+            "A garden",
+            "A building site",
+            "Another apartment block"
           ],
           "answer_index": 0
         },
         {
-          "question": "What does Max decide to do about getting a refund?",
+          "question": "What did Emma do after her holiday to warn other travellers?",
           "options": [
-            "She plans to call the company again tomorrow",
-            "She has already received a partial refund",
-            "She gives up because no one answers",
-            "She asks a friend to help her file a complaint"
+            "She called the platform's customer service",
+            "She reported the owner to tourism authorities",
+            "She posted a detailed review online",
+            "She messaged the owner again"
           ],
           "answer_index": 2
         }

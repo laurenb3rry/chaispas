@@ -1,0 +1,30 @@
+{
+  "passages_kept": 60,
+  "passages_failed": [],
+  "by_style": {
+    "email": 6,
+    "event": 6,
+    "fiction": 6,
+    "news": 6,
+    "opinion": 6,
+    "recipe": 6,
+    "review": 6,
+    "social": 6,
+    "texto": 6,
+    "travel": 6
+  },
+  "by_tier": {
+    "0": 8,
+    "1": 18,
+    "2": 20,
+    "3": 14
+  },
+  "errors": [],
+  "warnings": [
+    "rd_travel_05: gloss keys not found in body (pruned): ['dès que']",
+    "rd_social_03: gloss keys not found in body (pruned): [\"j'vais\"]",
+    "rd_email_01: 77 words (tier 1 target 80-120)",
+    "rd_event_06: 104 words (tier 2 target 110-160)",
+    "rd_event_06: gloss coverage 69% (missed: ['contact@galerielumiere', 'fr', 'galerielumiere', 'juin', 'mois', 'par', 'rue', 'seront', 'toute', 'vendredi'])"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "pack_version": 2,
+  "built_at": "2026-07-15T03:37:46+00:00",
+  "content": {
+    "learn": {
+      "conjugation": {
+        "nodes": 21,
+        "drills": 375,
+        "verbs": 20
+      },
+      "vocab": {
+        "nodes": 40,
+        "drills": 1571,
+        "words": 1000
+      },
+      "grammar": {
+        "nodes": 15,
+        "drills": 300,
+        "canonical_examples": 105
+      }
+    },
+    "speak": {
+      "scenarios": 12,
+      "variants": 36,
+      "dialogue_nodes": 851,
+      "user_turns": 432,
+      "branch_points": 84
+    },
+    "listen": {
+      "episodes": 30,
+      "by_level": {
+        "A": 7,
+        "B": 8,
+        "C": 8,
+        "D": 7
+      },
+      "lines": 315,
+      "questions": 90,
+      "est_fast_audio_sec": 1409
+    },
+    "read": {
+      "passages": 60,
+      "by_style": {
+        "email": 6,
+        "event": 6,
+        "fiction": 6,
+        "news": 6,
+        "opinion": 6,
+        "recipe": 6,
+        "review": 6,
+        "social": 6,
+        "texto": 6,
+        "travel": 6
+      },
+      "by_tier": {
+        "0": 8,
+        "1": 18,
+        "2": 20,
+        "3": 14
+      },
+      "words": 7097,
+      "gloss_entries": 3063,
+      "questions": 154
+    }
+  },
+  "audio": {
+    "learn": {
+      "files": 8619,
+      "bytes": 118292352,
+      "missing": 0,
+      "orphans": 0
+    },
+    "speak": {
+      "files": 2134,
+      "bytes": 51909120,
+      "missing": 0,
+      "orphans": 0
+    },
+    "listen": {
+      "files": 691,
+      "bytes": 42428736,
+      "missing": 0,
+      "orphans": 0
+    },
+    "english_prompts": {
+      "files": 3637,
+      "bytes": 62021568,
+      "missing": 0,
+      "orphans": 0
+    }
+  },
+  "notes": {
+    "read_audio": "none by design — passage TTS deferred (PLAN2 §3.6)",
+    "street_audio": "BACKFILL: regenerate street variants with ElevenLabs",
+    "generation_model": "claude-sonnet-4-6",
+    "tts": "Google WaveNet fr-FR (French); Standard en-US (English prompts)"
+  }
+}
