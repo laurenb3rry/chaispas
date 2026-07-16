@@ -17,6 +17,9 @@ final class AudioPlayer: NSObject, AVAudioPlayerDelegate {
 
     private var player: AVAudioPlayer?
     private var continuation: CheckedContinuation<Void, Never>?
+    /// Bumped by every play/stop; a load that finishes after being superseded
+    /// must not start playback.
+    private var generation = 0
 
     func configureSession() {
         try? AVAudioSession.sharedInstance().setCategory(.playback)
@@ -38,18 +41,25 @@ final class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     /// file returns immediately — the drill flow degrades to text-only.
     func play(fileName: String, from location: Location = .v1) async {
         stop()
-        guard let url = Self.url(fileName: fileName, in: location),
-              let player = try? AVAudioPlayer(contentsOf: url)
-        else { return }
-        self.player = player
-        player.delegate = self
+        generation += 1
+        let gen = generation
+        guard let url = Self.url(fileName: fileName, in: location) else { return }
+        // The first AVAudioPlayer init after a cold CoreAudio can block for
+        // tens of seconds (the phase-8 root cause) — never on the main thread.
+        let loaded = await Task.detached(priority: .userInitiated) {
+            try? AVAudioPlayer(contentsOf: url)
+        }.value
+        guard let loaded, gen == generation else { return }  // superseded
+        player = loaded
+        loaded.delegate = self
         await withCheckedContinuation { (c: CheckedContinuation<Void, Never>) in
             continuation = c
-            if !player.play() { finish() }
+            if !loaded.play() { finish() }
         }
     }
 
     func stop() {
+        generation += 1
         player?.stop()
         player = nil
         finish()

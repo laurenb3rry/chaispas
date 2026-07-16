@@ -138,7 +138,7 @@ struct GrammarPlayerView: View {
                                             variant: variant), key: key)
         } label: {
             Text(text)
-                .font(DSType.french)
+                .font(DSType.frenchCompact)
                 .foregroundStyle(playingKey == key ? DSColor.accent : baseColor)
                 .multilineTextAlignment(.leading)
                 .contentShape(Rectangle())

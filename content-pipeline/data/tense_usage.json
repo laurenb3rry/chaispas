@@ -3,7 +3,7 @@
   "tenses": {
     "present": {
       "label": "Présent",
-      "note": "French has one present where English has three. Je mange covers 'I eat', 'I'm eating', and 'I do eat' — there is no -ing form to build, so the présent works harder than its English cousin. It also reaches into the future whenever a time word does the pointing.",
+      "note": "French has one present where English has three. Je mange covers 'I eat', 'I'm eating', and 'I do eat'. There is no -ing form to build. Add a time word and it covers the near future too.",
       "contrasts": [
         {
           "a_french": "Je travaille.",

@@ -18,7 +18,8 @@ import argparse
 import json
 
 from genlib import (EXPLANATION_SCHEMA, HERE, STREET_REGISTER_BRIEF, VOICE_SPEC,
-                    call_claude, exemplar_block, exemplar_explanation, load_output,
+                    call_claude, exemplar_block, exemplar_explanation,
+                    flatten_sections, load_output, load_prior_explanations,
                     load_v1_graph, make_client, save_output, v1_concept_summaries)
 
 LESSONS_PATH = HERE / "data" / "grammar_lessons.json"
@@ -46,7 +47,7 @@ V1 CURRICULUM (grammar the learner already has — lean on it, don't re-teach it
 TASK — return a JSON object with three keys:
 
 1. {EXPLANATION_SCHEMA}
-   - Grammar lessons get the fullest treatment: 4-6 sections, total word count across headers, bodies and bullets between 180 and 300 — treat 300 as a hard ceiling and cut any section that doesn't teach something new. Density beats length.
+   - Grammar lessons get the fullest treatment: 4-6 sections, total word count across headers, bodies and bullets between 140 and 280 — treat 280 as a hard ceiling and cut any section that doesn't teach something new. Density beats length.
    - Every focus point above must be taught somewhere in the sections; the street angle gets its own section or is woven in — never bolted on as an afterthought.
 
 {exemplar_block('grammar')}
@@ -104,8 +105,11 @@ Street angle: {street_angle}
 ITS CANONICAL EXAMPLES (already fixed — your explanation should set them up, not contradict them):
 {examples}
 
+SOURCE MATERIAL — the previous explanation. It carries the essential teaching points: keep every fact, compress and re-chunk the delivery into the register below. Do not copy its sentences; do not drop a teaching point.
+{prior}
+
 {schema}
-- Grammar lessons get the fullest treatment: 4-6 sections, total word count across headers, bodies and bullets between 180 and 300 — treat 300 as a hard ceiling. Density beats length.
+- Grammar lessons get the fullest treatment: 4-6 sections, total word count across headers, bodies and bullets between 140 and 280 — treat 280 as a hard ceiling. Density beats length.
 - Every focus point above must be taught somewhere in the sections.
 
 {exemplars}
@@ -113,13 +117,14 @@ ITS CANONICAL EXAMPLES (already fixed — your explanation should set them up, n
 Return ONLY a JSON object: {{"explanation": [ ...sections... ]}}"""
 
 
-def regen_explanation(client, lesson, node):
+def regen_explanation(client, lesson, node, prior):
     examples = "\n".join(f"  {e['formal']} / street: {e['street']} ({e['english']})"
                          for e in node.get("canonical_examples", []))
     prompt = EXPLANATION_ONLY_PROMPT.format(
         voice=VOICE_SPEC, title=lesson["title"],
         focus="\n".join(f"- {b}" for b in lesson["focus"]),
         street_angle=lesson["street_angle"], examples=examples,
+        prior=prior or "(none available — teach from the focus points)",
         schema=EXPLANATION_SCHEMA, exemplars=exemplar_block("grammar"))
     gen = call_claude(client, prompt, label=lesson["id"])
     if not isinstance(gen, dict) or not isinstance(gen.get("explanation"), list):
@@ -146,6 +151,7 @@ def main():
 
     if args.explanations_only:
         lessons_by_id = {l["id"]: l for l in lessons}
+        priors = load_prior_explanations("grammar")
         for node in out["nodes"]:
             nid = node["id"]
             if args.lesson and nid not in args.lesson:
@@ -158,7 +164,8 @@ def main():
             if args.dry_run:
                 continue
             node["explanation"] = exemplar_explanation(nid) \
-                or regen_explanation(client, lessons_by_id[nid], node)
+                or regen_explanation(client, lessons_by_id[nid], node,
+                                     flatten_sections(priors.get(nid)))
             save_output(OUT_PATH, out)
         print(f"\nexplanations refreshed; {len(out['nodes'])} lessons in {OUT_PATH.name}")
         return

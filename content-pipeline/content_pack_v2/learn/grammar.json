@@ -11,42 +11,54 @@
       "title": "Gender & articles: le, la, un, une",
       "explanation": [
         {
-          "header": "Learn the article as part of the word",
-          "body": "French nouns never appear naked — every noun carries le or la, and the article is where French stores gender. Learn le café and la rue as single units and gender never becomes a separate memorization project; it rides along for free."
-        },
-        {
-          "header": "The system",
-          "body": "Four words cover almost everything, and both definite articles collapse to l' before a vowel — that's why you hear l'eau and l'hôtel.",
-          "bullets": [
-            "le / la — the (l' before a vowel: l'eau, l'école)",
-            "un / une — a",
-            "les — the, plural, both genders; des is the plural of un/une"
-          ]
-        },
-        {
-          "header": "Endings predict gender",
-          "body": "Gender looks arbitrary, but a word's ending predicts it with high reliability. These two rules alone cover thousands of words — including every -tion cognate you got for free: situation, solution, réservation are all la.",
-          "bullets": [
-            "-tion, -sion, -té → la (la situation, la liberté)",
-            "-age, -ment, -eau → le (le message, le moment, le gâteau)",
-            "exceptions exist (le problème, la plage) — collect them as they come, don't study them"
-          ]
-        },
-        {
-          "header": "Why it's low-stakes",
-          "body": "A wrong article almost never breaks understanding — un grande café still gets you a large coffee. French children get gender wrong for years and nobody stops them mid-sentence. Get it right where the ending tells you, shrug where it doesn't, and keep talking."
-        },
-        {
-          "header": "On the street",
-          "body": "Fast French drops ne and swallows syllables, but the article survives everything — it is glued to the noun at any speed. That makes it a parsing cue: when speech blurs, the le or la you catch tells you a noun just went by.",
+          "header": "Always learn the article",
+          "body": "Every French noun is either le or la. That article is where French stores gender, so learn the two as one unit.",
           "examples": [
             {
-              "french": "T'as vu la meuf ?",
-              "english": "Did you see the girl?"
+              "french": "le café, la rue",
+              "english": "the coffee, the street — gender learned automatically"
+            }
+          ]
+        },
+        {
+          "header": "The four articles",
+          "body": "Le and la both collapse to l' before a vowel sound. Les and des cover all plurals regardless of gender.",
+          "bullets": [
+            "le / la — the (singular): le métro, la fille",
+            "l' — the (before a vowel): l'eau, l'école",
+            "un / une — a (singular): un café, une table",
+            "les — the (plural); des — a/some (plural)"
+          ]
+        },
+        {
+          "header": "Endings that predict gender",
+          "body": "Two rules cover thousands of words. Exceptions exist — collect them as you meet them.",
+          "bullets": [
+            "-tion, -sion, -té → la: la situation, la solution, la liberté",
+            "-age, -ment, -eau → le: le message, le moment, le gâteau"
+          ]
+        },
+        {
+          "header": "Wrong gender is a shrug",
+          "body": "A wrong article almost never blocks understanding. Get it right where the ending tells you, guess everywhere else, and keep talking.",
+          "examples": [
+            {
+              "french": "un grande café",
+              "english": "wrong gender — you still get a large coffee"
+            }
+          ]
+        },
+        {
+          "header": "Articles survive street speed",
+          "body": "Fast French drops ne and swallows syllables, but the article stays glued to its noun. It's your signal that a noun just went by.",
+          "examples": [
+            {
+              "french": "T'as vu la fille qui parle français ?",
+              "english": "Did you see the girl who speaks French?"
             },
             {
               "french": "J'ai pris le métro.",
-              "english": "I took the métro."
+              "english": "I took the metro."
             }
           ]
         }
@@ -352,17 +364,17 @@
       "explanation": [
         {
           "header": "Plural lives in the article",
-          "body": "Written French adds -s to nouns and adjectives, but that -s is silent. The word doing the work in speech is the article: le becomes les, un becomes des. Train your ear on that switch — the noun itself sounds identical in singular and plural.",
+          "body": "Written French adds -s to nouns, but that -s is silent. The article does the work: le becomes les, un becomes des.",
           "examples": [
             {
               "french": "J'veux des amis.",
-              "english": "I want some friends. (amis sounds like ami)"
+              "english": "I want some friends. (amis sounds exactly like ami)"
             }
           ]
         },
         {
-          "header": "des means 'some' before a noun",
-          "body": "Des is the plural of un/une. English often drops 'some' entirely, but French keeps des — leave it out and the sentence sounds clipped and odd.",
+          "header": "Always use des before nouns",
+          "body": "Des is the plural of un/une. Drop it and the sentence sounds clipped and wrong.",
           "examples": [
             {
               "french": "J'ai vu des trucs blancs.",
@@ -375,8 +387,8 @@
           ]
         },
         {
-          "header": "Adjectives agree — usually silently",
-          "body": "Adjectives match the gender and number of their noun: petit, petite, petits, petites. In most cases this changes only the spelling, not the sound. The plural -s on petits is as silent as the one on amis.",
+          "header": "Adjective agreement is mostly silent",
+          "body": "Adjectives match gender and number: petit, petite, petits, petites. The plural -s on petits is as silent as the one on cafés.",
           "examples": [
             {
               "french": "Les petits cafés sont bons.",
@@ -385,12 +397,12 @@
           ]
         },
         {
-          "header": "When agreement is audible",
-          "body": "Some adjectives end in a consonant that is silent in the masculine but pronounced in the feminine — because adding -e wakes the consonant up. This is the one case where agreement actually changes what you hear.",
+          "header": "When agreement changes the sound",
+          "body": "Some masculine adjectives end in a silent consonant. Adding feminine -e wakes that consonant up.",
           "bullets": [
-            "petit → petite (the t sounds in the feminine)",
-            "bon → bonne (the n sounds; the vowel shifts too)",
-            "blanc → blanche (the c becomes /ʃ/)"
+            "petit → petite — the t sounds",
+            "bon → bonne — the n sounds; vowel shifts too",
+            "blanc → blanche — the c becomes /ʃ/"
           ],
           "examples": [
             {
@@ -404,8 +416,14 @@
           ]
         },
         {
-          "header": "On the street: hear le/les first",
-          "body": "Fast spoken French compresses everything, but the article survives. Catching le versus les — or un versus des — is your fastest signal that a singular or plural noun just passed. Noun endings won't help you; the article always will."
+          "header": "Train your ear on the article",
+          "body": "Noun endings won't signal plural in speech — the article always will. Catching le vs. les and un vs. des is your fastest cue.",
+          "examples": [
+            {
+              "french": "un ami → des amis",
+              "english": "a friend → some friends (noun unchanged; article flips)"
+            }
+          ]
         }
       ],
       "canonical_examples": [
@@ -687,18 +705,22 @@
       "title": "Adjective placement: before or after?",
       "explanation": [
         {
-          "header": "The default: adjective after",
-          "body": "In French, adjectives almost always follow the noun. This is the reverse of English, and it's simply where French settled historically. When you don't know where an adjective goes, put it after — you'll be right most of the time.",
+          "header": "Default: adjective goes after",
+          "body": "Put the adjective after the noun. That's the reverse of English, and it's right the vast majority of the time.",
           "examples": [
             {
-              "french": "Un café noir. / T'as une question difficile ?",
-              "english": "A black coffee. / Do you have a difficult question?"
+              "french": "Un café noir.",
+              "english": "A black coffee."
+            },
+            {
+              "french": "T'as une question difficile ?",
+              "english": "Do you have a difficult question?"
             }
           ]
         },
         {
           "header": "The before-club: nine adjectives",
-          "body": "A small group of the most common adjectives in the language always go before the noun. Because you use them constantly, they quickly become automatic.",
+          "body": "These nine go before the noun, always. They're the most frequent adjectives in the language, so they become automatic fast.",
           "bullets": [
             "bon / bonne — good",
             "petit / petite — small",
@@ -712,30 +734,44 @@
           ]
         },
         {
-          "header": "Before-club in real sentences",
-          "body": "Seeing them in place is more useful than seeing them listed. Notice the adjective sits between the article and the noun every time.",
+          "header": "Before-club in place",
+          "body": "The adjective sits between the article and the noun every time.",
           "examples": [
             {
-              "french": "C'est une bonne idée. / J'veux un petit café.",
-              "english": "It's a good idea. / I want a small coffee."
+              "french": "C'est une bonne idée.",
+              "english": "It's a good idea."
             },
             {
-              "french": "C'est une grande femme.",
-              "english": "She's a great woman."
+              "french": "J'veux un petit café.",
+              "english": "I want a small coffee."
             }
           ]
         },
         {
-          "header": "Meaning can shift with position",
-          "body": "A few before-club adjectives change meaning depending on side. Un grand homme means a great man; un homme grand means a tall man. This happens with a handful of words and is worth knowing, but it's a detail — position and meaning together come clear from context."
+          "header": "Position can shift meaning",
+          "body": "A handful of before-club adjectives change meaning by side. Context usually makes it clear.",
+          "examples": [
+            {
+              "french": "C'est une grande femme.",
+              "english": "She's a great woman."
+            },
+            {
+              "french": "C'est une femme grande.",
+              "english": "She's a tall woman."
+            }
+          ]
         },
         {
           "header": "Street French: before-club as intensifiers",
-          "body": "In spoken French, before-club adjectives — especially gros, petit, and vrai — get used heavily to punch up a noun, the way English speakers load up 'total' or 'real'. They're not describing size so much as degree.",
+          "body": "Spoken French uses gros, petit, and vrai to punch up a noun — not to describe size, but degree. Think of them like 'total' or 'real' in English.",
           "examples": [
             {
-              "french": "C'est un gros problème. / C'est une vraie galère, chais pas.",
-              "english": "It's a serious problem. / It's a real nightmare, I don't know."
+              "french": "C'est un gros problème.",
+              "english": "It's a serious problem."
+            },
+            {
+              "french": "C'est une vraie galère, chais pas.",
+              "english": "It's a real nightmare, I don't know."
             }
           ]
         }
@@ -1017,8 +1053,8 @@
       "title": "Prepositions: à, de, en, au, chez",
       "explanation": [
         {
-          "header": "Two jobs: direction and origin",
-          "body": "à and de are the busiest prepositions in French. à marks where you're going or where you are; de marks where something comes from or who it belongs to. Everything else in this lesson builds on that pair.",
+          "header": "à and de: the core pair",
+          "body": "à marks direction or location. de marks origin or belonging.",
           "examples": [
             {
               "french": "Je vais au café.",
@@ -1032,18 +1068,18 @@
         },
         {
           "header": "Mandatory contractions with le and les",
-          "body": "à and de cannot sit next to le or les — French fuses them every time, no exceptions. The contractions are phonetic: saying à le out loud is awkward in French the same way saying 'to the the café' would be in English.",
+          "body": "à and de never sit directly before le or les — French fuses them, no exceptions.",
           "bullets": [
-            "à + le → au (au café, au bar)",
-            "à + les → aux (aux toilettes)",
-            "de + le → du (le plat du jour, le menu du restaurant)",
-            "de + les → des (la fin des vacances)",
-            "à la and de la stay as they are — only le and les trigger the fusion"
+            "à + le → au: au café, au bar",
+            "à + les → aux: aux toilettes",
+            "de + le → du: le plat du jour",
+            "de + les → des: la fin des vacances",
+            "à la and de la stay unchanged — only le and les fuse"
           ]
         },
         {
-          "header": "Countries and cities work differently",
-          "body": "Countries have grammatical gender; cities don't. Use en before feminine countries (most of them) and à before cities. When the country is masculine, use au instead of en.",
+          "header": "Countries vs. cities",
+          "body": "Countries have grammatical gender; cities don't. Use en before feminine countries (most of them), au before masculine countries, and à before any city.",
           "examples": [
             {
               "french": "Elle est en France, à Paris.",
@@ -1056,8 +1092,8 @@
           ]
         },
         {
-          "header": "chez means someone's space",
-          "body": "chez covers 'at someone's place' or 'at a professional's practice' — anywhere defined by the person rather than a building name. It always takes a person or pronoun, never a thing.",
+          "header": "chez = someone's space",
+          "body": "chez means 'at someone's place or practice' — anywhere defined by a person, not a building. It always takes a person or pronoun, never a thing.",
           "examples": [
             {
               "french": "J'suis chez moi.",
@@ -1070,12 +1106,12 @@
           ]
         },
         {
-          "header": "On the street",
-          "body": "Prepositions don't drop in spoken French — au, du, chez stay intact at any speed. What changes is everything around them: je becomes j', nous becomes on, tu becomes t'. The preposition is the stable anchor in a fast sentence.",
+          "header": "Prepositions on the street",
+          "body": "au, du, aux, chez never drop in fast speech — they stay intact. What contracts is everything around them: je → j', tu → t', nous → on.",
           "examples": [
             {
               "french": "T'as vu le menu du resto ?",
-              "english": "Did you see the menu of the restaurant?"
+              "english": "Did you see the restaurant's menu?"
             },
             {
               "french": "On va aux toilettes.",
@@ -1367,17 +1403,17 @@
       "title": "Question forms: the full toolkit",
       "explanation": [
         {
-          "header": "Three ways to ask",
-          "body": "French has three question registers and you need all three — one to produce naturally, one to understand in formal contexts, and one to recognise in writing.",
+          "header": "Three registers, one job",
+          "body": "French has three question forms. You'll produce two; you'll only recognise the third.",
           "bullets": [
-            "Intonation only — spoken default, no word order change",
-            "Est-ce que — neutral, works everywhere, nothing inverted",
+            "Intonation — spoken default, no word order change",
+            "Est-ce que — neutral, works anywhere",
             "Inversion (viens-tu ?) — formal/written; recognise it, don't produce it"
           ]
         },
         {
-          "header": "Intonation questions: the real default",
-          "body": "In spoken French, a rising voice at the end turns any statement into a question. Word order stays exactly the same as a statement — French doesn't rearrange the sentence the way English does.",
+          "header": "Intonation: the real default",
+          "body": "Keep statement word order. Raise your voice at the end. That's it.",
           "examples": [
             {
               "french": "Tu viens ?",
@@ -1390,8 +1426,8 @@
           ]
         },
         {
-          "header": "Est-ce que: neutral and reliable",
-          "body": "Drop est-ce que before a normal statement and you have a question that works in any situation — not formal, not slangy. It's the register you use with your boss, with strangers, or when you want to sound clear.",
+          "header": "Est-ce que: safe in any situation",
+          "body": "Put est-ce que before a normal statement and you have a question. Use it with strangers, at work, or when intonation alone feels unclear.",
           "examples": [
             {
               "french": "Est-ce que tu viens ?",
@@ -1404,8 +1440,8 @@
           ]
         },
         {
-          "header": "Question words",
-          "body": "These seven words pair with either est-ce que or the street pattern below.",
+          "header": "The seven question words",
+          "body": "These pair with est-ce que or the street pattern below.",
           "bullets": [
             "quoi — what",
             "où — where",
@@ -1417,8 +1453,8 @@
           ]
         },
         {
-          "header": "Street French: word at the end",
-          "body": "Casual spoken French moves the question word to the end of the sentence instead of the front. The sentence stays in statement order; the question word tags on after. This is the pattern you'll hear constantly — it's not lazy speech, it's the actual spoken norm.",
+          "header": "Street French: word goes last",
+          "body": "Casual speech keeps statement order and tags the question word at the end. This is the spoken norm, not lazy speech.",
           "examples": [
             {
               "french": "Tu fais quoi ?",
@@ -1429,18 +1465,18 @@
               "english": "When does he arrive?"
             },
             {
-              "french": "Ça coûte combien ?",
-              "english": "How much does it cost?"
-            },
-            {
               "french": "C'est qui lui ?",
               "english": "Who is he?"
+            },
+            {
+              "french": "Ça coûte combien ?",
+              "english": "How much does it cost?"
             }
           ]
         },
         {
           "header": "Inversion: recognise, don't produce",
-          "body": "Viens-tu ? and Où allez-vous ? are grammatically correct but belong to formal writing, official speeches, and teachers demonstrating grammar. No one expects you to produce inversion in conversation — your job is to hear it and understand it without freezing.",
+          "body": "Viens-tu ? is grammatically correct but belongs to formal writing and official speech. Hear it, understand it, move on.",
           "examples": [
             {
               "french": "Viens-tu ? → Tu viens ?",
@@ -1750,8 +1786,14 @@
       "title": "Beyond pas: jamais, rien, plus, personne",
       "explanation": [
         {
-          "header": "Same slot as pas",
-          "body": "French negation has two parts: ne before the verb and a negative word after it. Pas is just the most common option in that second slot. Swap it out for jamais, rien, plus, or personne and the structure stays exactly the same.",
+          "header": "Swap pas for four words",
+          "body": "Negation is always ne + one negative word after the verb. Pas is just the most common choice — replace it with jamais, rien, plus, or personne and nothing else changes.",
+          "bullets": [
+            "jamais — never",
+            "rien — nothing / not anything",
+            "plus — no more / not anymore",
+            "personne — nobody / not anyone"
+          ],
           "examples": [
             {
               "french": "Je ne vais jamais là-bas.",
@@ -1764,18 +1806,8 @@
           ]
         },
         {
-          "header": "What each word means",
-          "body": "Four words, four meanings — none of them require a double negative in English even though French keeps two negative markers.",
-          "bullets": [
-            "jamais — never: il vient jamais",
-            "rien — nothing / not anything: j'ai rien dit",
-            "plus — no more / not anymore: elle veut plus rien",
-            "personne — nobody / not anyone: y'a jamais personne ici"
-          ]
-        },
-        {
-          "header": "Ne drops in speech — always",
-          "body": "In spoken French, ne disappears with every one of these words, not just with pas. This is the rule in conversation, not a shortcut. If you keep the ne, you sound like a formal document.",
+          "header": "Ne drops — every time",
+          "body": "In speech, ne disappears with all four words, not just with pas. Keeping ne marks you as formal writing, not conversation.",
           "examples": [
             {
               "french": "J'vais jamais là-bas. / Il vient jamais. / J'ai rien dit.",
@@ -1784,8 +1816,8 @@
           ]
         },
         {
-          "header": "The silent s in plus",
-          "body": "When plus means 'no more', its s is silent — j'en peux plus sounds like 'plu'. This distinguishes it from plus meaning 'more' (e.g. plus vite, where the s is heard). Context usually makes it obvious, but the pronunciation is the reliable signal.",
+          "header": "Plus: silent s, one meaning",
+          "body": "When plus means 'no more', the s is silent — it sounds like plu. When plus means 'more' (plus vite), the s is heard. Pronunciation is the reliable signal.",
           "examples": [
             {
               "french": "J'en peux plus.",
@@ -1795,21 +1827,25 @@
         },
         {
           "header": "Rien and personne as subjects",
-          "body": "Rien and personne can move to the front of the sentence as subjects. When they do, ne stays glued to the verb in writing, but drops in speech the same as anywhere else.",
+          "body": "Both words can move to the front as subjects. In writing, ne stays on the verb; in speech, it drops as usual.",
           "examples": [
             {
-              "french": "Personne sait. (written: Personne ne sait.)",
+              "french": "Personne sait.  (written: Personne ne sait.)",
               "english": "Nobody knows."
             }
           ]
         },
         {
-          "header": "Stacking negatives",
-          "body": "French can stack jamais with personne or rien in one sentence — something English can't do grammatically. Both words sit in the same post-verb zone, and ne (or its absence) covers the whole thing.",
+          "header": "Stacking two negatives",
+          "body": "French can combine jamais with personne or rien in one sentence. Both sit after the verb; one ne covers the whole thing — or none does in speech.",
           "examples": [
             {
-              "french": "Y'a jamais personne ici. / Elle veut plus rien.",
-              "english": "There's never anyone here. / She doesn't want anything anymore."
+              "french": "Y'a jamais personne ici.",
+              "english": "There's never anyone here."
+            },
+            {
+              "french": "Elle veut plus rien.",
+              "english": "She doesn't want anything anymore."
             }
           ]
         }
@@ -2110,20 +2146,16 @@
       "title": "Object pronoun order: me le, te la, le lui",
       "explanation": [
         {
-          "header": "Two pronouns, one fixed order",
-          "body": "When a verb takes both a direct and an indirect object pronoun, they stack in a fixed sequence. The sequence depends on which pronouns are involved — there are two different rules, not one.",
+          "header": "Two pronouns, two rules",
+          "body": "When two object pronouns stack, the order is fixed — but there are two separate rules, not one.",
           "bullets": [
-            "me / te / nous / vous come BEFORE le / la / les — tu me le donnes",
-            "le / la / les come BEFORE lui / leur — je le lui dis"
+            "me / te / nous / vous come BEFORE le / la / les",
+            "le / la / les come BEFORE lui / leur"
           ]
         },
         {
-          "header": "Why two different rules?",
-          "body": "French keeps person pronouns (me, te, nous, vous) close to the verb because they refer to people already in the conversation. But lui and leur are third-person and behave differently — they yield to le/la/les. The split feels arbitrary until you notice the pattern: first-person and second-person pronouns win the front slot; lui/leur always sit behind the direct object."
-        },
-        {
-          "header": "The whole cluster sits before the verb",
-          "body": "Both pronouns land together, immediately before the conjugated verb — or before the infinitive if there are two verbs. In a compound tense like passé composé, they sit before the auxiliary.",
+          "header": "me/te first: the person-pronoun rule",
+          "body": "First- and second-person pronouns take the front slot. Le/la/les follow them.",
           "examples": [
             {
               "french": "Il me le donne.",
@@ -2132,20 +2164,26 @@
             {
               "french": "Tu peux me le donner ?",
               "english": "Can you give it to me?"
-            },
-            {
-              "french": "Il me l'a dit.",
-              "english": "He told me. (me + le contracts to m'l' before the auxiliary a)"
-            },
-            {
-              "french": "Je le lui dis.",
-              "english": "I'm telling him."
             }
           ]
         },
         {
-          "header": "Elision: le/la shrink before vowels",
-          "body": "When le or la precedes a verb starting with a vowel — including the auxiliary a or ai — it contracts to l'. This is the same elision rule as with articles; the pronoun behaves identically.",
+          "header": "le/la first: the lui/leur rule",
+          "body": "With third-person indirect objects, the direct object wins the front slot. Lui and leur always sit behind it.",
+          "examples": [
+            {
+              "french": "Je le lui dis.",
+              "english": "I'm telling him."
+            },
+            {
+              "french": "On doit le leur donner.",
+              "english": "We have to give it to them."
+            }
+          ]
+        },
+        {
+          "header": "The cluster sits before the verb",
+          "body": "Both pronouns land together, immediately before the conjugated verb — or before the auxiliary in compound tenses. Le and la contract to l' before a vowel.",
           "examples": [
             {
               "french": "Il me l'a dit.",
@@ -2158,8 +2196,8 @@
           ]
         },
         {
-          "header": "Street speech: the cluster compresses",
-          "body": "At normal spoken speed, the pronoun cluster collapses — vowels drop, consonants merge. Your immediate goal is recognition; producing the compressed forms will come with exposure.",
+          "header": "Street speech crushes the cluster",
+          "body": "At normal speed, vowels drop and consonants merge. Focus on recognition first; production follows with exposure.",
           "examples": [
             {
               "french": "Il m'le donne.",
@@ -2167,11 +2205,7 @@
             },
             {
               "french": "J't'l'ai dit.",
-              "english": "I told you. (je te l'ai → j't'l'ai — three words crushed into one pulse)"
-            },
-            {
-              "french": "J'le lui dis.",
-              "english": "I'm telling him. (je le → j'le)"
+              "english": "I told you. (je te l'ai → one pulse)"
             }
           ]
         }
@@ -2490,22 +2524,22 @@
       "title": "y & en: the two little pronouns, deep dive",
       "explanation": [
         {
-          "header": "What these two pronouns do",
-          "body": "French hates repeating a noun phrase that the listener already tracks. Y and en are the two pronouns that handle that job for specific grammatical slots: y covers à + thing or place, and en covers de + thing plus anything involving a quantity.",
+          "header": "What y and en do",
+          "body": "French drops a noun once the listener already knows it. Y and en are the two pronouns that cover specific grammatical slots for that job.",
           "examples": [
             {
               "french": "Tu penses à ce problème ? — J'y pense.",
-              "english": "Are you thinking about that problem? — I'm thinking about it."
+              "english": "Thinking about that problem? — I'm thinking about it."
             },
             {
               "french": "Tu veux du café ? — J'en veux.",
-              "english": "Do you want some coffee? — I want some."
+              "english": "Want some coffee? — I want some."
             }
           ]
         },
         {
-          "header": "Y: replaces à + thing or place",
-          "body": "When the verb takes à — penser à, aller à, croire à — y replaces the whole à + noun chunk. Place works the same way: à Paris, au bureau, là-bas all become y. The pronoun sits directly before the verb.",
+          "header": "Y replaces à + thing or place",
+          "body": "Any verb that takes à — penser à, aller à, croire à — gets y instead. Places work the same: à Paris, au bureau all become y.",
           "examples": [
             {
               "french": "J'y vais.",
@@ -2518,17 +2552,13 @@
           ]
         },
         {
-          "header": "En: replaces de + thing and quantities",
-          "body": "En replaces de + noun (parler de, avoir besoin de, venir de) and, critically, it carries any number or quantity word along with it — the number follows the verb rather than disappearing.",
+          "header": "En replaces de + thing and quantities",
+          "body": "En replaces de + noun for verbs like parler de or avoir besoin de. With numbers or quantity words, the number stays after the verb — it doesn't disappear.",
           "bullets": [
-            "de + noun → en: Tu parles de ça ? J'en parle.",
-            "number/quantity stays after verb: J'en veux deux. J'en ai plein."
+            "de + noun → en: Tu parles de ça ? — J'en parle.",
+            "number follows verb: J'en veux deux. / J'en ai plein."
           ],
           "examples": [
-            {
-              "french": "Il y en a trois. → Y'en a trois.",
-              "english": "There are three of them."
-            },
             {
               "french": "J'en veux deux.",
               "english": "I want two of them."
@@ -2536,40 +2566,30 @@
           ]
         },
         {
-          "header": "Fixed expressions you need immediately",
-          "body": "Several of the most common spoken chunks are frozen around y or en. Don't analyze them — absorb them as single units, because their internal logic isn't always transparent from the modern language.",
+          "header": "Fixed expressions: absorb as chunks",
+          "body": "Some common phrases are frozen around y or en. Their internal logic isn't always transparent — learn them whole.",
           "bullets": [
-            "Ça y est ! — That's it, done, finally.",
+            "Ça y est ! — That's it, done.",
             "On y va ! — Let's go.",
             "J'en peux plus. — I can't take it anymore.",
             "T'en fais pas. — Don't worry about it."
-          ],
-          "examples": [
-            {
-              "french": "Ça y est, j'ai compris !",
-              "english": "Got it, finally!"
-            },
-            {
-              "french": "J'en peux plus. → J'en peux plus.",
-              "english": "I'm done. I can't anymore."
-            }
           ]
         },
         {
           "header": "Street: y'a and y'en a",
-          "body": "Il y a shrinks to y'a in everyday speech, and il y en a shrinks to y'en a. These two forms are the spoken existentials — you'll hear them dozens of times a day to say what exists, what's left, what's available. The negative y'en a plus (nothing left) is equally constant.",
+          "body": "Il y a shrinks to y'a; il y en a shrinks to y'en a. These are the spoken existentials — you'll hear them dozens of times a day.",
           "examples": [
             {
-              "french": "Y'a rien. (Il n'y a rien.)",
-              "english": "There's nothing."
+              "french": "Y'a rien.",
+              "english": "There's nothing. (Il n'y a rien.)"
             },
             {
-              "french": "Y'en a plus. (Il n'y en a plus.)",
-              "english": "There's none left."
+              "french": "Y'en a trois.",
+              "english": "There are three of them. (Il y en a trois.)"
             },
             {
-              "french": "Y'en a trois. (Il y en a trois.)",
-              "english": "There are three of them."
+              "french": "Y'en a plus.",
+              "english": "There's none left. (Il n'y en a plus.)"
             }
           ]
         }
@@ -2879,7 +2899,7 @@
       "explanation": [
         {
           "header": "The basic frame",
-          "body": "French comparatives work the same way in any direction: drop plus, moins, or aussi in front of the adjective, then use que to introduce what you're comparing to. The adjective still agrees in gender and number as normal.",
+          "body": "Put plus, moins, or aussi before the adjective. Use que to introduce what you're comparing to. The adjective still agrees in gender and number normally.",
           "examples": [
             {
               "french": "C'est plus cher qu'à Paris.",
@@ -2896,16 +2916,16 @@
           ]
         },
         {
-          "header": "Two irregular forms",
-          "body": "Bon and bien each have their own comparative — you can't use plus with them. Meilleur replaces plus bon; mieux replaces plus bien. Meilleur is an adjective so it agrees; mieux never changes.",
+          "header": "Two irregulars: bon and bien",
+          "body": "Never say plus bon or plus bien — both have their own forms. Meilleur is an adjective and agrees; mieux never changes.",
           "bullets": [
-            "bon (adjective) → meilleur/meilleure: Ce resto est meilleur que l'autre.",
-            "bien (adverb) → mieux: C'est mieux ici."
+            "bon → meilleur/meilleure: Ce resto est meilleur que l'autre.",
+            "bien → mieux: C'est mieux ici."
           ]
         },
         {
           "header": "Superlatives",
-          "body": "Add le, la, or les before plus or moins and you get the superlative. The article matches the noun it belongs to, and the adjective keeps its normal position relative to that noun.",
+          "body": "Add le, la, or les before plus or moins. The article matches the noun's gender and number.",
           "examples": [
             {
               "french": "C'est carrément la solution la plus simple.",
@@ -2915,7 +2935,7 @@
         },
         {
           "header": "The plus pronunciation trap",
-          "body": "French has two unrelated words spelled plus, and they sound different. When plus means 'more' (comparative or superlative), the s is always pronounced. When plus means 'no more' or 'not any more' in a negative, the s is silent. Same sentence, different meanings — context separates them.",
+          "body": "Plus meaning 'more' has a pronounced s. Plus meaning 'no more' in a negative has a silent s. One sentence can contain both.",
           "examples": [
             {
               "french": "J'en veux plus — c'est plus intéressant là-bas.",
@@ -2924,12 +2944,12 @@
           ]
         },
         {
-          "header": "On the street",
-          "body": "Spoken French leans heavily on c'est as the carrier for comparisons — it's shorter and more natural than constructing a full subject-verb phrase. Carrément (absolutely, totally) regularly intensifies superlatives in casual speech.",
+          "header": "How street French compares",
+          "body": "Spoken French uses c'est as the default carrier for comparisons — it's shorter than a full subject-verb phrase. Carrément intensifies superlatives in casual speech.",
           "bullets": [
             "c'est mieux — preferred over il est mieux in most spoken contexts",
             "c'est moins cher — the go-to for price comparisons",
-            "c'est carrément plus simple — carrément pushes emphasis without raising your voice"
+            "c'est carrément plus simple — carrément adds emphasis without sounding stiff"
           ]
         }
       ],
@@ -3220,8 +3240,8 @@
       "title": "Imperatives: commands without a subject",
       "explanation": [
         {
-          "header": "Drop the subject entirely",
-          "body": "A command has no subject because the person you're talking to is obvious. French simply removes it. The verb is all you need.",
+          "header": "Drop the subject",
+          "body": "A command has no subject. The person you're talking to is obvious, so the verb stands alone.",
           "examples": [
             {
               "french": "Tu viens → Viens !",
@@ -3234,28 +3254,36 @@
           ]
         },
         {
-          "header": "-er verbs lose the s in tu-form",
-          "body": "In normal present tense, tu manges has an s. In the imperative that s disappears: mange ! This applies to every -er verb, including aller. The reason is historical and there's no logic to recover — just know that if it ends in -er, the tu command ends in a bare -e.",
+          "header": "-er verbs: drop the s",
+          "body": "In the tu-form command, -er verbs lose their final s. There's no logic to recover — just apply it every time.",
           "examples": [
             {
-              "french": "Mange ! / Vas-y !",
-              "english": "Eat! / Go on then! (aller keeps the s only before y)"
+              "french": "Tu manges → Mange !",
+              "english": "You eat → Eat!"
+            },
+            {
+              "french": "Exception: vas-y (aller keeps the s before y)",
+              "english": "Go on then!"
             }
           ]
         },
         {
           "header": "Pronouns attach after the verb",
-          "body": "In a positive command, object pronouns move after the verb and connect with a hyphen. Me becomes moi in that position.",
+          "body": "In a positive command, object pronouns move behind the verb with a hyphen. Me becomes moi in that position.",
           "examples": [
             {
-              "french": "Attends-moi ! / Dis-moi.",
-              "english": "Wait for me! / Tell me."
+              "french": "Attends-moi !",
+              "english": "Wait for me!"
+            },
+            {
+              "french": "Dis-moi.",
+              "english": "Tell me."
             }
           ]
         },
         {
           "header": "Negative commands",
-          "body": "Wrap the verb in ne … pas to negate a command. In spoken French, ne drops constantly — you'll hear touche pas ça far more than ne touche pas ça. Both are correct; knowing both lets you understand and choose.",
+          "body": "Wrap the verb in ne … pas. In speech, ne drops constantly — know both forms.",
           "examples": [
             {
               "french": "Ne touche pas ça ! → Touche pas ça !",
@@ -3263,26 +3291,30 @@
             },
             {
               "french": "Ne t'inquiète pas. → T'inquiète.",
-              "english": "Don't worry. (street: the pas drops too — the whole phrase shrinks to t'inquiète)"
+              "english": "Don't worry. (street: pas drops too)"
             }
           ]
         },
         {
           "header": "Softening a command",
-          "body": "A bare imperative is direct but not rude — context does a lot. Adding s'il te plaît (informal) or s'il vous plaît (formal/plural) softens it where needed.",
+          "body": "A bare imperative isn't rude, but s'il te plaît (informal) or s'il vous plaît (formal/plural) softens it when needed.",
           "examples": [
             {
-              "french": "Vas-y, s'il te plaît ! / Allez-y, s'il vous plaît !",
+              "french": "Vas-y, s'il te plaît !",
               "english": "Go on then, please!"
+            },
+            {
+              "french": "Allez-y, s'il vous plaît !",
+              "english": "Go on then, please! (formal/plural)"
             }
           ]
         },
         {
           "header": "Street commands you'll hear constantly",
-          "body": "Real spoken French runs on a short list of imperatives. These turn up in almost every conversation — recognising them as commands is half the battle.",
+          "body": "These short imperatives appear in almost every conversation. Recognising them fast is half the work.",
           "bullets": [
             "Vas-y — go ahead / come on / go for it",
-            "Attends — wait (also: hold on a sec)",
+            "Attends — wait / hold on",
             "Arrête — stop it",
             "Laisse tomber — forget it / drop it",
             "T'inquiète — don't worry (ne and pas both gone)"
@@ -3573,21 +3605,27 @@
       "explanation": [
         {
           "header": "What a reflexive verb does",
-          "body": "A reflexive verb means the subject acts on itself — or, with two people, on each other. French makes this visible with a small pronoun that sits between the subject and the verb. Remove that pronoun and you lose the meaning entirely: lever means to raise; se lever means to get (oneself) up."
-        },
-        {
-          "header": "The four pronouns",
-          "body": "The pronoun matches the subject, always placed directly before the verb.",
-          "bullets": [
-            "je me lève — I get up",
-            "tu te lèves — you get up",
-            "il/elle/on se lève — he/she/one gets up",
-            "nous nous levons / vous vous levez — we/you get up"
+          "body": "The subject acts on itself. A small pronoun between subject and verb marks this — remove it and the meaning changes.",
+          "examples": [
+            {
+              "french": "lever = to raise / se lever = to get up",
+              "english": "The pronoun changes the meaning entirely."
+            }
           ]
         },
         {
-          "header": "Two core sets to own",
-          "body": "Daily-routine verbs and social verbs between them cover most of what you'll actually say.",
+          "header": "The four pronouns",
+          "body": "Each pronoun matches its subject and sits directly before the verb.",
+          "bullets": [
+            "je me lève — I get up",
+            "tu te lèves — you get up",
+            "il / elle / on se lève — he / she / one gets up",
+            "nous nous levons / vous vous levez — we / you get up"
+          ]
+        },
+        {
+          "header": "Two sets to own",
+          "body": "Routine verbs and social verbs cover most of what you'll say.",
           "bullets": [
             "Routine: se lever, se réveiller, se doucher, s'habiller, se coucher",
             "Social: se voir, s'appeler, se retrouver, se parler"
@@ -3604,36 +3642,32 @@
           ]
         },
         {
-          "header": "Reciprocal meaning",
-          "body": "With on, nous, or plural subjects, the same construction expresses 'each other'. On se voit doesn't mean everyone looks at themselves — it means the people involved see each other. Context makes it clear.",
+          "header": "Reciprocal meaning with on",
+          "body": "With on or a plural subject, the construction means 'each other'. Context makes the direction clear.",
           "examples": [
             {
               "french": "On se voit demain.",
               "english": "We'll see each other tomorrow."
-            },
-            {
-              "french": "On s'est vus hier — ça faisait longtemps.",
-              "english": "We saw each other yesterday — it had been a long time."
             }
           ]
         },
         {
           "header": "Passé composé: always être",
-          "body": "Reflexive verbs use être, not avoir, in the passé composé — so the past participle agrees with the subject. Add -e for feminine, -s for plural. The pronoun stays before être, not before the participle.",
+          "body": "Reflexive verbs take être, not avoir. The past participle agrees with the subject: add -e for feminine, -s for plural.",
           "examples": [
             {
-              "french": "Je me suis levé tard ce matin.",
-              "english": "I got up late this morning. (speaker is male)"
+              "french": "J'me suis levé tard ce matin.",
+              "english": "I got up late this morning. (male speaker)"
             },
             {
-              "french": "On s'est vus hier.",
-              "english": "We saw each other yesterday. (-s because the subject is plural)"
+              "french": "On s'est vus hier — ça faisait longtemps.",
+              "english": "We saw each other yesterday — it had been a long time. (-s because plural)"
             }
           ]
         },
         {
-          "header": "Street: me barely survives",
-          "body": "In spoken French, je me contracts almost universally to j'me — and in fast speech that second e drops too, giving j'm'. This is not slang; it is simply how the mouth works at normal speed. The same pressure applies to te when it follows a vowel.",
+          "header": "Street: me almost never survives",
+          "body": "Je me contracts to j'me universally in spoken French. In fast speech the second e drops too: j'm'. This isn't slang — it's just normal mouth speed.",
           "examples": [
             {
               "french": "J'me lève à sept heures.",
@@ -3949,8 +3983,8 @@
       "title": "Partitives: du, de la, des — 'some'",
       "explanation": [
         {
-          "header": "French requires 'some' — English drops it",
-          "body": "In English you can say 'I want bread' and skip 'some'. French cannot. Every time a noun refers to an unspecified quantity of something, the partitive article is obligatory — drop it and the sentence sounds broken.",
+          "header": "French requires 'some'",
+          "body": "English drops 'some' freely. French can't — skipping the partitive breaks the sentence.",
           "examples": [
             {
               "french": "J'veux du pain. / Y'a du café et des frites.",
@@ -3959,18 +3993,18 @@
           ]
         },
         {
-          "header": "How the three forms work",
-          "body": "The partitive is built from de + the definite article, so it follows gender and number exactly like le/la/les does.",
+          "header": "Three forms, one logic",
+          "body": "The partitive is de + the definite article. Gender and number drive the choice.",
           "bullets": [
-            "du (= de + le) — masculine singular: du pain, du café",
-            "de la — feminine singular: de la bière",
-            "de l' — before a vowel sound, either gender: de l'eau, de l'argent",
+            "du (de + le) — masculine: du pain, du café",
+            "de la — feminine: de la bière",
+            "de l' — before a vowel, either gender: de l'eau",
             "des — plural: des frites, des trucs"
           ]
         },
         {
-          "header": "Negation collapses everything to de",
-          "body": "After a negative, all four partitive forms reduce to plain de (or d' before a vowel). The logic: negation cancels the quantity entirely, so the article that marks quantity disappears too.",
+          "header": "Negation collapses to de",
+          "body": "After any negative, all four forms shrink to plain de. Negation cancels the quantity, so the quantity marker disappears.",
           "examples": [
             {
               "french": "J'ai pas de pain. / Y'a plus d'lait.",
@@ -3979,8 +4013,8 @@
           ]
         },
         {
-          "header": "Quantities also take plain de",
-          "body": "Any expression that states a measure — beaucoup de, un peu de, trop de, assez de — follows the same rule as negation: the article drops and you get bare de. The quantity word is already doing the job the article would do.",
+          "header": "Quantity words also take de",
+          "body": "Beaucoup de, un peu de, trop de — all drop the article. The quantity word already carries the job.",
           "examples": [
             {
               "french": "Y'a beaucoup d'monde et trop d'trucs à faire.",
@@ -3989,8 +4023,8 @@
           ]
         },
         {
-          "header": "The café frame",
-          "body": "Ordering food or drink is where partitives come up most. Je prends and je voudrais both take a partitive directly: je prends du café, je voudrais de l'eau. Use these two frames to anchor the whole system in something practical.",
+          "header": "Ordering at a café",
+          "body": "Je prends and je voudrais take a partitive directly. These two frames cover most real-life use.",
           "examples": [
             {
               "french": "On va prendre d'la bière au café — on a pas beaucoup d'temps.",
@@ -3999,8 +4033,8 @@
           ]
         },
         {
-          "header": "Street French: partitives survive, but compress",
-          "body": "Fast speech never drops the partitive — that would be a grammar error, not a style choice. What it does do is glue de to the noun when a vowel follows: d'lait, d'eau, d'monde. The article is still there; it's just swallowed into the noun at speed.",
+          "header": "Street French: de compresses, never drops",
+          "body": "Fast speech never removes the partitive — that's a grammar error, not a style choice. Before a vowel, de glues into the noun: d'lait, d'eau, d'monde.",
           "examples": [
             {
               "french": "J'voudrais d'l'eau, s'il vous plaît.",
@@ -4307,8 +4341,8 @@
       "title": "il faut & impersonal expressions",
       "explanation": [
         {
-          "header": "What impersonal means here",
-          "body": "Il faut doesn't refer to any person — il is a dummy subject, like 'it' in 'it's raining'. That's why the same form works for everyone: you, me, all of us. No conjugation to choose, no subject to match.",
+          "header": "Il is a dummy subject",
+          "body": "Il faut has no real subject — il is like 'it' in 'it's raining'. One fixed form covers everyone: you, me, all of us.",
           "examples": [
             {
               "french": "Il faut partir.",
@@ -4318,15 +4352,15 @@
         },
         {
           "header": "Two structures, one verb",
-          "body": "Faut takes either an infinitive (action) or a noun (thing needed). The meaning shifts naturally.",
+          "body": "Faut takes an infinitive for obligation or a noun for what's needed.",
           "bullets": [
-            "il faut + infinitive → obligation: il faut voir ça (you have to see that)",
-            "il faut + noun → necessity: il faut une réservation (we need a reservation), il faut du temps (it takes time)"
+            "faut + infinitive → obligation: il faut voir ça (you have to see that)",
+            "faut + noun → necessity: il faut une réservation (we need a reservation)"
           ]
         },
         {
           "header": "Faut vs. tu dois for advice",
-          "body": "Tu dois is direct and slightly heavy — it points a finger. Faut is impersonal, so it lands softer, more like general wisdom than a personal accusation. That's why native speakers default to faut when giving advice.",
+          "body": "Tu dois points at one person and feels heavy. Faut is impersonal, so it lands like general wisdom.",
           "examples": [
             {
               "french": "Faut pas faire ça.",
@@ -4336,16 +4370,16 @@
         },
         {
           "header": "The impersonal family",
-          "body": "Faut isn't alone — several impersonal expressions work the same way: no subject to choose, fixed form, drop straight into a sentence.",
+          "body": "Faut isn't alone. These expressions work the same way: fixed form, no subject to pick.",
           "bullets": [
-            "il vaut mieux + infinitive — il vaut mieux attendre (it's better to wait)",
-            "ça prend — ça prend du temps (it takes time)",
-            "il reste — il reste du pain (there's some bread left)"
+            "il vaut mieux + infinitive: il vaut mieux attendre (it's better to wait)",
+            "ça prend: ça prend du temps (it takes time)",
+            "il reste: il reste du pain (there's some bread left)"
           ]
         },
         {
           "header": "The past: fallait",
-          "body": "To push faut into the past, swap it for fallait — nothing else changes. It covers 'should have' and 'had to'.",
+          "body": "Swap faut for fallait to go into the past. Nothing else changes. It covers 'had to' and 'should have'.",
           "examples": [
             {
               "french": "Fallait le dire.",
@@ -4355,11 +4389,10 @@
         },
         {
           "header": "Street French: il drops",
-          "body": "In real spoken French, the il disappears entirely — faut alone carries the sentence. This isn't sloppy; it's the norm. Vaut mieux loses its il the same way. Keep the il in writing; lose it in speech.",
+          "body": "In spoken French, il disappears entirely. This is the norm, not laziness. Keep il in writing; drop it in speech.",
           "bullets": [
             "il faut partir → faut partir",
-            "il faut voir ça → faut voir ça",
-            "il ne faut pas → faut pas (ne also drops)",
+            "il ne faut pas faire ça → faut pas faire ça (ne drops too)",
             "il vaut mieux attendre → vaut mieux attendre"
           ]
         }
@@ -4642,18 +4675,14 @@
       "title": "Time & date expressions",
       "explanation": [
         {
-          "header": "How French states the time",
-          "body": "The frame is always il est + number + heures. Minutes after the hour are added directly; two special phrases handle the quarters.",
+          "header": "Telling the time",
+          "body": "The frame is always il est + number + heures. Three fixed phrases handle the quarters.",
           "bullets": [
-            "et quart — quarter past (il est neuf heures et quart)",
-            "et demie — half past (il est trois heures et demie)",
-            "moins le quart — quarter to the next hour (il est huit heures moins le quart)"
+            "et quart — quarter past: il est neuf heures et quart",
+            "et demie — half past: il est trois heures et demie",
+            "moins le quart — quarter to: il est huit heures moins le quart"
           ],
           "examples": [
-            {
-              "french": "Il est trois heures et demie.",
-              "english": "It's three thirty."
-            },
             {
               "french": "Il est huit heures moins le quart — j'dois partir.",
               "english": "It's quarter to eight — I have to leave."
@@ -4661,8 +4690,8 @@
           ]
         },
         {
-          "header": "Schedules use 24-hour time",
-          "body": "Written timetables, official announcements, and workplace calendars all run on the 24-hour clock. You don't need to produce it in casual speech, but you'll see and hear it constantly, so learn to read it fast: just subtract 12 for any hour above 12.",
+          "header": "24-hour clock for schedules",
+          "body": "Official schedules always use 24-hour time. You won't need it in casual talk, but you'll see it constantly. Subtract 12 from any hour above 12.",
           "examples": [
             {
               "french": "La réunion est à quatorze heures trente.",
@@ -4671,17 +4700,16 @@
           ]
         },
         {
-          "header": "Days and months are lowercase, article-free",
-          "body": "Unlike English, French never capitalises days or months. More usefully: you never need un or le in front of them when stating a day or month alone — lundi means 'on Monday' or 'Monday', and en janvier means 'in January'. Adding le lundi shifts the meaning to 'every Monday'.",
+          "header": "Days and months: lowercase, no article",
+          "body": "French never capitalises days or months. You also drop the article — lundi alone means 'on Monday'. Le lundi shifts the meaning to 'every Monday'.",
           "bullets": [
             "Days: lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche",
-            "Months: janvier, février, mars, avril, mai, juin… — all lowercase",
-            "en + month: en mars, en octobre"
+            "Months with en: en janvier, en mars, en octobre — all lowercase"
           ]
         },
         {
-          "header": "Anchor words for daily scheduling",
-          "body": "These words sit in front of any verb or standalone as complete chunks — learn them as a set because they cover almost every temporal reference in real conversation.",
+          "header": "Anchor words for daily time",
+          "body": "These seven words cover almost every time reference in real conversation. Learn them as a fixed set.",
           "bullets": [
             "aujourd'hui — today",
             "demain — tomorrow",
@@ -4693,16 +4721,12 @@
             {
               "french": "J'l'ai vu hier matin.",
               "english": "I saw him yesterday morning."
-            },
-            {
-              "french": "On va sortir ce soir.",
-              "english": "We're going out this evening."
             }
           ]
         },
         {
-          "header": "à pins a time to an event",
-          "body": "Use à before any clock time or time-anchor word to mean 'at' for appointments and departures. French compresses this into chunks — à demain is a full sentence meaning 'see you tomorrow', because the à already implies 'until' or 'at our next meeting'.",
+          "header": "À pins a time to an event",
+          "body": "Use à before any clock time or anchor word for appointments. À demain is a complete sentence — the à implies 'until we meet at that time'.",
           "examples": [
             {
               "french": "À demain !",
@@ -4711,8 +4735,8 @@
           ]
         },
         {
-          "header": "depuis for duration that's still running",
-          "body": "English says 'I have lived here for two years' — past tense, because it started in the past. French sees the situation as present and uses depuis with the present tense. If you use the past tense with depuis, French speakers will understand you've stopped doing the thing.",
+          "header": "Depuis: duration still running",
+          "body": "English uses the past tense for 'I've lived here for two years'. French sees it as present and uses depuis with the present tense. Past tense + depuis signals the action has stopped.",
           "examples": [
             {
               "french": "J'habite ici depuis deux ans.",
@@ -4721,12 +4745,12 @@
           ]
         },
         {
-          "header": "Street time is chunk territory",
-          "body": "Schedule talk compresses heavily in spoken French. À toute (short for à toute à l'heure) means 'see you soon'; c'est quand ? ('when is it?') is the default for asking about any event. These chunks are not sloppy speech — they are the normal register for any time-related exchange.",
+          "header": "Street time: schedule chunks",
+          "body": "Spoken time talk compresses into fixed chunks. These aren't sloppy — they're the normal register.",
           "bullets": [
-            "à toute — see you soon (drops à l'heure entirely)",
-            "à demain / à lundi — see you tomorrow / Monday",
-            "c'est quand ? — when is it?"
+            "à toute — see you soon (à toute à l'heure, shortened)",
+            "à lundi — see you Monday",
+            "c'est quand ? — when is it? (default for any event)"
           ]
         }
       ],
@@ -5000,18 +5024,18 @@
       "title": "Pointing & owning: ce, cette, mon, ton, son",
       "explanation": [
         {
-          "header": "Ce / cette / ces: this and that",
-          "body": "French uses the same word for both 'this' and 'that' — context handles the distance. The form changes only to match the noun's gender and number.",
+          "header": "Ce / cette / ces: this or that",
+          "body": "French uses the same word for both 'this' and 'that' — context handles distance. The form tracks the noun's gender and number only.",
           "bullets": [
             "ce + masculine singular: ce mec, ce truc",
             "cette + feminine singular: cette table, cette meuf",
             "ces + any plural: ces gens, ces trucs",
-            "cet + masculine singular starting with a vowel or silent h: cet après-midi, cet homme — the extra t keeps vowels from crashing"
+            "cet + masculine singular before a vowel: cet après-midi, cet homme"
           ]
         },
         {
           "header": "Add -là to point harder",
-          "body": "When you want to stress 'that one right there' — or contrast two things — tack -là onto the noun. It costs nothing and sounds natural at any register.",
+          "body": "Tack -là onto the noun to mean 'that one right there' or to contrast two things. It works at every register.",
           "examples": [
             {
               "french": "J'veux ce truc-là.",
@@ -5025,7 +5049,7 @@
         },
         {
           "header": "Possessives track the noun, not the owner",
-          "body": "This is the one rule that trips almost everyone: mon/ton/son agrees with the thing owned, not with who owns it. Sa voiture means 'his car' or 'her car' — sa is feminine because voiture is feminine, full stop.",
+          "body": "This trips most learners. Mon / ton / son agrees with the thing owned, not with who owns it.",
           "examples": [
             {
               "french": "Sa voiture, c'est pas possible.",
@@ -5034,8 +5058,8 @@
           ]
         },
         {
-          "header": "The three sets you use most",
-          "body": "Singular forms split by gender; plural doesn't bother.",
+          "header": "The three core sets",
+          "body": "Singular splits by gender; plural doesn't. Notre / votre / leur follow the same logic — pick them up as you hear them.",
           "bullets": [
             "mon / ma / mes — my",
             "ton / ta / tes — your (informal)",
@@ -5043,18 +5067,18 @@
           ]
         },
         {
-          "header": "Mon before any feminine vowel noun",
-          "body": "Ma becomes mon before a feminine noun starting with a vowel — spoken French refuses the vowel collision. The noun is still feminine; only the possessive shifts form.",
+          "header": "Mon before feminine vowel nouns",
+          "body": "Ma becomes mon before a feminine noun starting with a vowel. The noun stays feminine; only the possessive changes to avoid a vowel clash.",
           "examples": [
             {
               "french": "Mon amie — elle lui a parlé.",
-              "english": "My friend — she spoke to him. (amie is feminine; mon replaces ma to avoid the clash)"
+              "english": "My friend — she spoke to him. (amie is feminine; mon replaces ma)"
             }
           ]
         },
         {
-          "header": "On the street",
-          "body": "Demonstratives are how spoken French points and comments — ce mec, cette meuf, ce truc-là are all over casual speech. Notre / votre / leur work the same way as the others but come up less in conversation; pick them up as you hear them.",
+          "header": "Street French: pointing and commenting",
+          "body": "Demonstratives carry casual speech. Ce mec, cette meuf, ce truc-là appear constantly in real conversation.",
           "examples": [
             {
               "french": "Ce mec, c'est pas normal.",
@@ -5341,8 +5365,8 @@
       "title": "c'est vs il est",
       "explanation": [
         {
-          "header": "Two verbs, one job each",
-          "body": "French splits 'to be' between c'est and il/elle est, and each one has a clear lane. C'est points at something — identifying it, naming it, labelling it. Il/elle est describes something already in focus — adding a quality to a person or thing you've already named.",
+          "header": "Two verbs, two lanes",
+          "body": "C'est identifies — it names or labels something. Il/elle est describes — it adds a quality to something already named.",
           "examples": [
             {
               "french": "C'est Marie. Elle est sympa.",
@@ -5351,96 +5375,50 @@
           ]
         },
         {
-          "header": "C'est for nouns, names, pronouns",
-          "body": "Whenever you're answering 'what is this?' or 'who is that?', use c'est. It introduces a noun, a name, or a stressed pronoun. The thing you're pointing at hasn't been named yet — c'est does the naming.",
+          "header": "C'est with nouns, names, pronouns",
+          "body": "Use c'est whenever you're naming or pointing at something for the first time. It takes a noun, a name, or a stressed pronoun.",
           "bullets": [
-            "c'est + noun: C'est un café, c'est la solution",
-            "c'est + name: C'est Marie, c'est Paul",
-            "c'est + stressed pronoun: C'est moi, c'est toi, c'est lui"
-          ],
+            "noun: C'est mon frère",
+            "name: C'est Marie",
+            "stressed pronoun: C'est moi, c'est lui"
+          ]
+        },
+        {
+          "header": "Il/elle est with bare adjectives",
+          "body": "Once a person or thing is already named, attach a bare adjective with il est or elle est. The adjective agrees with their gender.",
           "examples": [
             {
-              "french": "C'est mon frère.",
-              "english": "That's my brother."
-            },
-            {
-              "french": "C'est moi.",
-              "english": "It's me."
+              "french": "C'est Marie. Elle est sympa.",
+              "english": "That's Marie. She's nice."
             }
           ]
         },
         {
-          "header": "Il/elle est for adjectives after naming",
-          "body": "Once a person or thing is already on the table, use il est or elle est to attach a bare adjective to them. The adjective agrees with the gender of what was named — that's why it's elle est sympa for a woman and il est sympa for a man.",
+          "header": "C'est for situation judgments",
+          "body": "When you're commenting on a situation — not a named person — use c'est, even with an adjective. There's no specific he or she; c'est points at the whole thing.",
           "examples": [
             {
-              "french": "Tu connais Paul ? Il est sympa.",
-              "english": "Do you know Paul? He's nice."
-            },
-            {
-              "french": "La fille qui parle — elle est française.",
-              "english": "The girl who's talking — she's French."
+              "french": "C'est difficile, chais pas.",
+              "english": "That's difficult, I don't know."
             }
           ]
         },
         {
-          "header": "C'est for general judgments",
-          "body": "When you're commenting on a situation rather than describing a named person or thing, use c'est — even with an adjective. Here c'est doesn't refer to any specific he or she; it points at the whole situation. This is why c'est difficile and c'est bon don't use il.",
-          "examples": [
-            {
-              "french": "C'est difficile.",
-              "english": "It's difficult. (the situation)"
-            },
-            {
-              "french": "C'est bon.",
-              "english": "It's good. / That's fine."
-            }
-          ]
-        },
-        {
-          "header": "Professions: the article flips the frame",
-          "body": "With professions, both frames are possible but they mean subtly different things. Il/elle est + bare profession treats the job like an adjective — a category, not a full noun phrase. Once you add an article (un, une), you've made it a noun phrase, so c'est takes over. The article is the signal.",
+          "header": "Professions: the article decides",
+          "body": "No article means the job is a category — use elle/il est. Add an article and it becomes a noun phrase — use c'est.",
           "bullets": [
-            "bare profession → elle est médecin, il est prof",
-            "article + profession → c'est un médecin, c'est une prof"
+            "bare: Elle est médecin",
+            "with article: C'est une médecin"
           ]
         },
         {
-          "header": "Default to c'est when unsure",
-          "body": "If you're unsure which to use, c'est is almost always safe in spoken French. Native speakers lean on it heavily — il est is more common in writing and formal speech. Getting the distinction right matters most for professions and for bare adjectives after a named person.",
-          "examples": [
-            {
-              "french": "C'est intéressant.",
-              "english": "That's interesting."
-            },
-            {
-              "french": "C'est important.",
-              "english": "That's important."
-            }
-          ]
-        },
-        {
-          "header": "C'est carrying more load on the street",
-          "body": "In casual speech, c'est takes on extra work that written French would handle differently. It anchors questions, reactions, and verdicts. C'est pas is the standard everyday negation — ne drops completely.",
+          "header": "Street French: c'est carries more",
+          "body": "In speech, c'est handles questions, verdicts, and negation. Ne drops completely — c'est pas is standard.",
           "bullets": [
-            "identity question: c'est qui ? (who is it?)",
-            "what-is-this: c'est quoi ça ? (what's that?)",
-            "verdict: c'est mort (it's dead / no chance)",
-            "negation: c'est pas possible, c'est pas grave"
-          ],
-          "examples": [
-            {
-              "french": "C'est qui ?",
-              "english": "Who is it?"
-            },
-            {
-              "french": "C'est pas grave.",
-              "english": "It's not serious. / No worries."
-            },
-            {
-              "french": "C'est quoi ça ?",
-              "english": "What's that?"
-            }
+            "identity question: C'est qui ?",
+            "what-is-this: C'est quoi ça ?",
+            "verdict: C'est mort",
+            "negation: C'est pas possible"
           ]
         }
       ],
@@ -5734,8 +5712,8 @@
       "title": "Just did / doing right now: venir de & être en train de",
       "explanation": [
         {
-          "header": "Two frames, frozen infinitive",
-          "body": "French uses venir de + infinitive for 'just did' and être en train de + infinitive for 'doing right now'. In both cases only the first verb conjugates — venir or être changes for person and tense, the infinitive after de stays exactly as it appears in a dictionary.",
+          "header": "Two frames, one rule",
+          "body": "French uses a frame + infinitive instead of a special tense. Only the first verb conjugates — the infinitive after de never changes.",
           "examples": [
             {
               "french": "Je viens de manger. / Je suis en train de manger.",
@@ -5744,58 +5722,55 @@
           ]
         },
         {
-          "header": "Why frames, not tenses",
-          "body": "English encodes recency and ongoing action inside the tense ('I just ate', 'I'm eating'). French keeps its tense system separate and uses these wrapper frames instead. The frame carries all the meaning; you only need to drop your verb into it as an infinitive.",
+          "header": "Venir de: just did",
+          "body": "Venir de + infinitive places an action right before now. English hides this in tense; French makes it explicit.",
           "examples": [
             {
-              "french": "Il vient de partir.",
-              "english": "He just left."
-            },
-            {
-              "french": "On est en train de travailler.",
-              "english": "We're in the middle of working."
+              "french": "Je viens de manger. — Il vient de partir.",
+              "english": "I just ate. — He just left."
             }
           ]
         },
         {
-          "header": "The past versions for storytelling",
-          "body": "Put venir or être into the imparfait and you get the past equivalents. These work exactly as they do in imparfait storytelling you already know — background states and ongoing situations.",
+          "header": "Être en train de: right now",
+          "body": "Être en train de + infinitive means you're in the middle of something. Use it to flag active, ongoing action.",
+          "examples": [
+            {
+              "french": "Je suis en train de travailler. — On est en train de manger — on te rappelle.",
+              "english": "I'm in the middle of working. — We're in the middle of eating — we'll call you back."
+            }
+          ]
+        },
+        {
+          "header": "Past versions for storytelling",
+          "body": "Put venir or être into the imparfait for background past equivalents. This follows the same imparfait logic you already know.",
           "bullets": [
-            "je venais de partir — I had just left",
-            "j'étais en train de manger — I was in the middle of eating"
-          ],
-          "examples": [
-            {
-              "french": "Il venait de partir quand t'as appelé.",
-              "english": "He had just left when you called."
-            }
+            "venais de + infinitive → had just: elle venait d'arriver quand il a commencé à pleuvoir",
+            "étais en train de + infinitive → was in the middle of: j'étais en train de payer quand le système est tombé en panne"
           ]
         },
         {
-          "header": "The timeline with futur proche",
-          "body": "You now have three frames that map the full timeline around any moment. Combine them and a French speaker can pinpoint exactly where an action sits.",
+          "header": "The full timeline",
+          "body": "These two frames plus futur proche cover every position around a moment.",
           "bullets": [
             "je viens de manger — just did (past edge)",
             "je suis en train de manger — doing right now",
             "je vais manger — about to (futur proche)"
+          ],
+          "examples": [
+            {
+              "french": "J'viens d'le faire — j'vais partir.",
+              "english": "I just did it — I'm about to leave."
+            }
           ]
         },
         {
           "header": "Street: compress, never drop",
-          "body": "Fast speech squeezes the frame but never removes it — the meaning would be lost without it. Je becomes j', tu es becomes chuis or j'suis, and il vient de contracts the de before a consonant-starting infinitive.",
-          "examples": [
-            {
-              "french": "J'viens d'arriver.",
-              "english": "I just got here."
-            },
-            {
-              "french": "Chuis en train de manger, attends.",
-              "english": "I'm in the middle of eating, hold on."
-            },
-            {
-              "french": "Il vient d'partir.",
-              "english": "He just left."
-            }
+          "body": "Fast speech shortens the frame but never removes it — without it, the meaning disappears.",
+          "bullets": [
+            "je → j' : j'viens de manger",
+            "je suis / tu es → chuis / j'suis : chuis en train de manger",
+            "de before consonant → d' : il vient d'partir"
           ]
         }
       ],
@@ -6099,17 +6074,17 @@
       "title": "Futur simple: when it beats futur proche",
       "explanation": [
         {
-          "header": "How to build the form",
-          "body": "Take the infinitive and glue on -ai, -as, -a, -ez, -ont. That's the whole rule for regular verbs. For -re verbs, drop the final e first: prendre → prendr-, then add the endings.",
+          "header": "Build the form: regular verbs",
+          "body": "Take the infinitive and add -ai, -as, -a, -ez, -ont. For -re verbs, drop the final e first.",
           "bullets": [
-            "parler → parlerai, parleras, parlera, parlerez, parleront",
-            "finir → finirai, finiras, finira, finirez, finiront",
-            "prendre → prendrai, prendras, prendra, prendrez, prendront"
+            "parler → je parlerai, tu parleras, il parlera",
+            "finir → je finirai, tu finiras, il finira",
+            "prendre → prendr- → je prendrai, tu prendras, il prendra"
           ]
         },
         {
           "header": "Eight irregular stems",
-          "body": "The stem changes, but the endings stay exactly the same. These eight cover almost every irregular you'll meet in real speech.",
+          "body": "The stem changes; the endings stay identical. These eight cover nearly every irregular you'll hear.",
           "bullets": [
             "être → ser- (je serai)",
             "avoir → aur- (t'auras)",
@@ -6123,41 +6098,45 @@
         },
         {
           "header": "When futur simple wins",
-          "body": "Futur proche is the spoken default for plans; futur simple adds distance or weight. It's the natural tense for promises and formal commitments, for events that feel remote or uncertain, and it's required after quand when the when-clause is in the future.",
+          "body": "Futur proche is the spoken default for plans. Futur simple adds distance or weight — use it for promises and uncertain futures.",
           "examples": [
             {
-              "french": "Je t'appellerai ce soir. (promise)",
-              "english": "I'll call you tonight."
+              "french": "Je rentre demain. (plan)",
+              "english": "I'm heading back tomorrow. → futur proche"
             },
             {
-              "french": "Quand tu seras là, on commencera.",
-              "english": "When you're there, we'll start."
+              "french": "J'te rappellerai ce soir. (promise)",
+              "english": "I'll call you tonight. → futur simple"
             }
           ]
         },
         {
           "header": "Quand forces futur simple",
-          "body": "In English, 'when you arrive' uses a present tense. In French, if the action is in the future, both the quand-clause and the main clause must use futur simple — the present tense is not allowed there. This is one rule worth knowing explicitly.",
+          "body": "After quand when the event is in the future, use futur simple in both clauses — present tense is not allowed there.",
           "examples": [
             {
-              "french": "Quand il aura l'argent, il partira.",
-              "english": "When he has the money, he'll leave."
+              "french": "Quand t'seras là, j'commencerai.",
+              "english": "When you're there, I'll start."
+            },
+            {
+              "french": "Quand il aura l'argent, il pourra partir.",
+              "english": "When he has the money, he'll be able to leave."
             }
           ]
         },
         {
           "header": "Fixed forms: the street survivors",
-          "body": "Spoken French leans hard on futur proche for everyday plans. But futur simple survives in fixed phrases that have been worn smooth by use — these you'll hear constantly and should lock in whole.",
+          "body": "Spoken French leans on futur proche for everyday plans. Futur simple survives in a handful of fixed phrases — learn these whole.",
           "bullets": [
-            "on verra — we'll see (dismissive or genuine)",
+            "on verra — we'll see",
             "ça ira — it'll be fine",
             "tu verras — you'll see",
-            "j'te dirai — I'll let you know / I'll tell you"
+            "j'te dirai — I'll let you know"
           ],
           "examples": [
             {
-              "french": "— T'inquiète, ça ira. — On verra.",
-              "english": "— Don't worry, it'll be fine. — We'll see."
+              "french": "Chais pas, faudra voir — j'te dirai.",
+              "english": "I don't know, we'll have to see — I'll let you know."
             }
           ]
         }
@@ -6439,25 +6418,39 @@
       "title": "Survival subjunctive: il faut que + the forms you'll hear",
       "explanation": [
         {
-          "header": "What it is, honestly",
-          "body": "After certain phrases — most importantly il faut que ('I/you/we have to') — French switches the next verb into a second set of forms called the subjunctive. Textbooks make this a mountain. In speech it is a toll booth: a handful of trigger phrases, and a handful of verbs whose subjunctive you will actually hear."
-        },
-        {
-          "header": "Why it exists",
-          "body": "The subjunctive marks that an action is wanted, required, or doubted rather than stated as fact. Je sais qu'il vient — fact, normal form. Il faut qu'il vienne — requirement, subjunctive. You are not describing the world; you are pushing on it. That is the entire concept.",
+          "header": "What the subjunctive does",
+          "body": "After certain triggers, French switches the next verb to signal wanting, requiring, or doubting — not stating fact.",
           "examples": [
             {
-              "french": "Je sais qu'il vient. / Il faut qu'il vienne.",
-              "english": "I know he's coming. / He has to come."
+              "french": "Je sais qu'il vient.",
+              "english": "I know he's coming. (fact)"
+            },
+            {
+              "french": "Il faut qu'il vienne.",
+              "english": "He has to come. (requirement)"
             }
           ]
         },
         {
-          "header": "The eight forms that matter",
-          "body": "For most verbs the subjunctive sounds identical to the present you already know (il faut que tu manges). Only a few very common verbs have audibly different forms — own these eight and you are covered:",
+          "header": "Il faut que: the one trigger to own",
+          "body": "Il faut que + subjunctive handles obligation. In conversation it largely replaces devoir — treat it as a frame you drop verbs into.",
+          "examples": [
+            {
+              "french": "Faut que j'y aille.",
+              "english": "I've got to go."
+            },
+            {
+              "french": "Faut qu'on parte.",
+              "english": "We need to leave."
+            }
+          ]
+        },
+        {
+          "header": "The 8 forms that sound different",
+          "body": "Most verbs sound identical to the present you already know. Only these eight common verbs have audibly distinct subjunctive forms — learn them, and you're covered.",
           "bullets": [
             "être → sois / soit — faut que tu sois là",
-            "avoir → aies / ait — faut qu'il ait le temps",
+            "avoir → aies / ait — faut qu'elle ait le temps",
             "aller → aille — faut que j'aille",
             "faire → fasse — faut qu'on fasse ça",
             "pouvoir → puisse — pour que tu puisses venir",
@@ -6467,22 +6460,38 @@
           ]
         },
         {
-          "header": "One trigger does most of the work",
-          "body": "Il faut que + subjunctive is the spoken workhorse for obligation — in conversation it largely replaces devoir. Learn it as a frame you drop verbs into, not as grammar to assemble.",
+          "header": "Most verbs: no audible change",
+          "body": "If a verb isn't on that list, its subjunctive sounds like the present. You're already saying it correctly.",
           "examples": [
             {
-              "french": "Faut que j'y aille.",
-              "english": "I've got to go. (the #1 way to leave anywhere)"
-            },
-            {
-              "french": "Faut qu'on parle.",
-              "english": "We need to talk."
+              "french": "Il faut que tu manges.",
+              "english": "You need to eat. (sounds like the present)"
             }
           ]
         },
         {
-          "header": "On the street",
-          "body": "The il drops — faut que j'aille, faut pas que t'oublies — and que elides to qu' before a vowel. If you keep one sentence from this lesson, keep faut que j'y aille; you will use it every day you are in France."
+          "header": "Street French: how it actually sounds",
+          "body": "Il drops to faut que, and que elides to qu' before a vowel. The whole structure collapses into one fast chunk.",
+          "examples": [
+            {
+              "french": "Faut que tu saches que c'est pas possible.",
+              "english": "You need to know that it's not possible."
+            },
+            {
+              "french": "Pour que tu puisses venir, faut que t'aies le temps.",
+              "english": "So that you can come, you need to have the time."
+            }
+          ]
+        },
+        {
+          "header": "One sentence to keep",
+          "body": "Faut que j'y aille is the most useful exit line in French. You will use it every day.",
+          "examples": [
+            {
+              "french": "Bon, faut que j'y aille.",
+              "english": "Right, I've got to go."
+            }
+          ]
         }
       ],
       "canonical_examples": [
@@ -6756,22 +6765,46 @@
       "title": "Si clauses: real ifs and imagined ifs",
       "explanation": [
         {
-          "header": "Two kinds of si clause",
-          "body": "Si can mean two different things depending on tense. Use présent after si to say something real or likely; use imparfait to imagine something that isn't true right now. The tense after si is the signal — the result clause follows automatically.",
+          "header": "Two kinds of si",
+          "body": "The tense after si tells you everything. Présent = real or likely. Imparfait = imagined, not true right now.",
           "examples": [
             {
-              "french": "Si t'as le temps, on y va.",
-              "english": "If you have time, we'll go."
+              "french": "Si t'es libre, on peut manger ici.",
+              "english": "If you're free, we can eat here. (real)"
             },
             {
-              "french": "Si j'avais le temps, je viendrais.",
-              "english": "If I had time, I'd come."
+              "french": "S'il faisait beau, on irait à la plage.",
+              "english": "If it was nice out, we'd go to the beach. (imagined)"
             }
           ]
         },
         {
-          "header": "The rule French children chant",
-          "body": "Futur and conditionnel never follow si directly — ever. Si + futur and si + conditionnel are simply not French sentences. The conditionnel lives in the result clause, not in the si clause.",
+          "header": "Real si: présent → présent or futur",
+          "body": "Use si + présent for anything that could actually happen. The result clause uses présent or futur proche — both work.",
+          "examples": [
+            {
+              "french": "Si j'peux, j'viens.",
+              "english": "If I can, I'll come."
+            },
+            {
+              "french": "Si y'a un café, on y va.",
+              "english": "If there's a café, we'll go."
+            }
+          ]
+        },
+        {
+          "header": "Hypothetical si: imparfait → conditionnel",
+          "body": "Use si + imparfait for things that aren't true now. The result clause uses the conditionnel.",
+          "examples": [
+            {
+              "french": "Si j'avais l'argent, j'voudrais aller à Paris.",
+              "english": "If I had the money, I'd want to go to Paris."
+            }
+          ]
+        },
+        {
+          "header": "Never futur or conditionnel after si",
+          "body": "This is the rule French children memorise. Futur and conditionnel only appear in the result clause, never after si.",
           "bullets": [
             "✗ Si je viendrai… — impossible",
             "✗ Si j'aurais le temps… — impossible",
@@ -6779,45 +6812,22 @@
           ]
         },
         {
-          "header": "si on + imparfait = a proposal",
-          "body": "When si on is followed by the imparfait with a question intonation, it becomes a soft suggestion — the French equivalent of 'how about we…'. There's no separate result clause; the si clause does all the work.",
+          "header": "Si on + imparfait = a suggestion",
+          "body": "Si on followed by imparfait, said with rising intonation, is how you propose plans. There's no result clause — the si clause does it all.",
           "examples": [
             {
-              "french": "Si on allait au café ?",
-              "english": "How about we go to the café?"
-            },
-            {
-              "french": "Si on mangeait ici ?",
-              "english": "How about we eat here?"
+              "french": "Si on allait au resto ?",
+              "english": "How about we go to the restaurant?"
             }
           ]
         },
         {
-          "header": "si elides only before il",
-          "body": "Si shortens to s' before il and ils because French avoids two vowels colliding. Before elle, elle, or any other word starting with a vowel, si stays si — no elision.",
+          "header": "Elision and street compression",
+          "body": "Si elides to s' only before il and ils. Before elle, on, or anything else, si stays si — no elision.",
           "bullets": [
-            "s'il te plaît — before il ✓",
-            "s'il pleut — before il ✓",
-            "si elle vient — before elle, no elision ✓",
-            "si on y va — before on, no elision ✓"
-          ]
-        },
-        {
-          "header": "Street compression in si clauses",
-          "body": "The si clause compresses exactly like any spoken French — si fuses with the pronouns around it but otherwise follows the same reduction rules you already know. The grammar doesn't change; only the sound does.",
-          "examples": [
-            {
-              "french": "Si t'as pas l'temps, chais pas…",
-              "english": "If you don't have time, I dunno…"
-            },
-            {
-              "french": "Si j'peux venir, j'viens.",
-              "english": "If I can come, I'll come."
-            },
-            {
-              "french": "Si y'a du monde, on part.",
-              "english": "If there are a lot of people, we'll leave."
-            }
+            "s'il te plaît, s'il pleut — elision before il ✓",
+            "si elle appelle, si on y va — no elision ✓",
+            "Street: si t'as → si j'peux → si y'a — same compression rules as all spoken French"
           ]
         }
       ],
@@ -7117,62 +7127,60 @@
       "explanation": [
         {
           "header": "Quick reset: qui and que",
-          "body": "One line to anchor what you know: qui is the subject of its clause, que is the object. Dont and où fill two more slots — de + noun, and place/time.",
+          "body": "Qui is the subject of its clause. Que is the object. Dont and où fill two more slots.",
           "examples": [
             {
-              "french": "le mec qui parle / le mec que je connais",
-              "english": "the guy who's talking / the guy I know"
+              "french": "Le mec qui parle / le mec que je connais.",
+              "english": "The guy who's talking / the guy I know."
             }
           ]
         },
         {
-          "header": "où: place and time",
-          "body": "Où covers both 'where' and 'when' in relative clauses — French uses the same word for both. English switches to 'when' for time; French doesn't.",
+          "header": "Où: place and time",
+          "body": "Où covers both 'where' and 'when' in relative clauses. English switches to 'when' for time; French stays with où.",
           "examples": [
             {
               "french": "Le café où on va est sympa.",
               "english": "The café we go to is nice."
             },
             {
-              "french": "Le jour où je suis arrivé, il faisait beau.",
+              "french": "Le jour où j'suis arrivé, il faisait beau.",
               "english": "The day when I arrived, the weather was nice."
             }
           ]
         },
         {
-          "header": "dont: whenever the verb takes de",
-          "body": "Dont replaces de + a noun. The verb in the relative clause tells you which pronoun to use: if that verb normally takes de, you need dont — not que, not qui.",
+          "header": "Dont: whenever the verb takes de",
+          "body": "Dont replaces de + a noun. The verb inside the relative clause tells you to use it.",
           "bullets": [
-            "parler de quelqu'un → le mec dont je t'ai parlé (the guy I told you about)",
-            "avoir besoin de quelque chose → ce dont j'ai besoin (what I need)",
-            "se souvenir de → le film dont je me souviens (the film I remember)"
+            "parler de → le mec dont j't'ai parlé (the guy I told you about)",
+            "avoir besoin de → ce dont j'ai besoin (what I need)",
+            "se souvenir de → le film dont j'me souviens (the film I remember)"
           ]
         },
         {
           "header": "The verb picks the pronoun",
-          "body": "This is the practical rule: look at the verb inside the relative clause and ask what preposition it takes normally. De → dont. No preposition, object → que. Subject → qui. Là → où.",
+          "body": "Look at the verb in the relative clause. Ask what preposition it normally takes. That decides the pronoun.",
+          "bullets": [
+            "Subject → qui",
+            "Object, no preposition → que",
+            "Verb takes de → dont",
+            "Place or time → où"
+          ],
           "examples": [
             {
               "french": "C'est le boulot dont j'ai besoin.",
               "english": "It's the job I need. (avoir besoin DE)"
-            },
-            {
-              "french": "C'est la meuf dont je t'avais parlé.",
-              "english": "That's the girl I'd told you about. (parler DE)"
             }
           ]
         },
         {
-          "header": "Street storytelling: these forms survive",
-          "body": "Unlike ne-drop or on-for-nous, relatives don't simplify in speech — le jour où, la meuf dont j'te parlais come out intact even in fast street French. They show up constantly in storytelling, so recognising them matters as much as producing them.",
+          "header": "Relatives survive in street French",
+          "body": "Unlike ne-drop or on-for-nous, relatives don't simplify in speech. They're everywhere in storytelling — recognising them matters as much as producing them.",
           "examples": [
             {
-              "french": "Du coup, le café où on va — t'as vu comme c'est chaud pour se garer ?",
-              "english": "So, the café we go to — you see how rough parking is?"
-            },
-            {
-              "french": "La meuf dont j'te parlais, bah, j'l'ai vue hier.",
-              "english": "The girl I was telling you about — well, I saw her yesterday."
+              "french": "La meuf dont j'te parlais, elle est venue hier.",
+              "english": "The girl I was telling you about came yesterday."
             }
           ]
         }
@@ -7474,67 +7482,69 @@
       "title": "Verb + preposition patterns: essayer de, commencer à",
       "explanation": [
         {
-          "header": "Three groups, one rule",
-          "body": "When two verbs chain in French, only the first verb conjugates — the second stays as an infinitive. Which preposition sits between them depends entirely on the first verb. Learn each verb with its preposition as one unit: vouloir-direct, commencer-à, essayer-de.",
+          "header": "Two verbs: one conjugates",
+          "body": "When verbs chain, only the first one conjugates. The second stays as a bare infinitive. Which preposition sits between them depends entirely on the first verb — learn each verb with its preposition as one unit.",
+          "examples": [
+            {
+              "french": "J'veux manger.",
+              "english": "I want to eat. (vouloir: no preposition)"
+            },
+            {
+              "french": "J'commence à comprendre.",
+              "english": "I'm starting to understand. (commencer: needs à)"
+            },
+            {
+              "french": "J'essaie de dormir.",
+              "english": "I'm trying to sleep. (essayer: needs de)"
+            }
+          ]
+        },
+        {
+          "header": "Group 1: direct infinitive",
+          "body": "These verbs take the infinitive with no preposition at all.",
           "bullets": [
-            "Direct (no preposition): vouloir, pouvoir, aller, aimer, devoir",
-            "à-verbs: commencer à, apprendre à, réussir à, arriver à",
-            "de-verbs: essayer de, arrêter de, décider de, oublier de, venir de, éviter de"
+            "vouloir, pouvoir, devoir, aller, aimer"
           ]
         },
         {
           "header": "The à team",
-          "body": "These verbs all express effort toward a result, which is why French marks them with à — a directional preposition. The pattern is verb + à + infinitive; once you hear the à, you know an infinitive follows.",
+          "body": "These verbs need à before the infinitive. They all express effort or movement toward a result.",
+          "bullets": [
+            "commencer à, apprendre à, réussir à, arriver à"
+          ],
           "examples": [
             {
-              "french": "J'arrive pas à dormir.",
-              "english": "I can't manage to sleep."
-            },
-            {
-              "french": "Il commence à comprendre.",
-              "english": "He's starting to understand."
-            },
-            {
-              "french": "T'as réussi à le faire ?",
-              "english": "Did you manage to do it?"
+              "french": "J'arrive pas à finir.",
+              "english": "I can't manage to finish."
             }
           ]
         },
         {
           "header": "The de team",
-          "body": "These verbs treat the second action as a separate object — something tried, stopped, forgotten, or avoided — so French uses de, which here marks a detachment. The pattern is verb + de + infinitive.",
+          "body": "These verbs need de before the infinitive. They treat the second action as a separate object — something tried, stopped, or avoided.",
+          "bullets": [
+            "essayer de, arrêter de, décider de, oublier de, venir de, éviter de"
+          ],
           "examples": [
             {
-              "french": "J'essaie de partir tôt.",
-              "english": "I'm trying to leave early."
-            },
-            {
-              "french": "Elle a décidé de rester.",
-              "english": "She decided to stay."
-            },
-            {
-              "french": "J'ai oublié de payer.",
-              "english": "I forgot to pay."
+              "french": "Elle a décidé de partir.",
+              "english": "She decided to leave."
             }
           ]
         },
         {
           "header": "avant de + infinitive",
-          "body": "Before doing something in French, use avant de + infinitive. The second verb never conjugates — it's always the bare infinitive, no matter who the subject is.",
+          "body": "Before doing something, use avant de + bare infinitive. The second verb never conjugates, whoever the subject is.",
           "examples": [
             {
               "french": "Appelle-moi avant de partir.",
-              "english": "Call me before you leave."
-            },
-            {
-              "french": "J'mange avant de sortir.",
-              "english": "I'm eating before going out."
+              "english": "Call me before leaving."
             }
           ]
         },
         {
           "header": "Prepositions in fast speech",
-          "body": "In spoken French, à stays as-is, but de elides to d' before a vowel sound — the same rule as any other de in the language. Neither preposition disappears; they just compress. The infinitive after them never changes.",
+          "body": "À stays as-is. De elides to d' before a vowel — same rule as always. Neither preposition disappears; they just compress.",
           "examples": [
             {
               "french": "J'essaie d'appeler.",
@@ -7543,10 +7553,6 @@
             {
               "french": "J'arrête de fumer.",
               "english": "I'm quitting smoking."
-            },
-            {
-              "french": "J'arrive pas à ouvrir ça.",
-              "english": "I can't get this open."
             }
           ]
         }
@@ -7848,18 +7854,8 @@
       "title": "Two pronouns at once: je te le dis",
       "explanation": [
         {
-          "header": "Why two pronouns stack",
-          "body": "French lets you replace both the direct and indirect object in one go: instead of 'donne le livre à Marie', you say 'donne-le-lui'. The verb stays in place; the pronouns cluster in front of it in a fixed order.",
-          "examples": [
-            {
-              "french": "Je te le dis.",
-              "english": "I'm telling you (it)."
-            }
-          ]
-        },
-        {
-          "header": "The order, memorised as a slot chain",
-          "body": "There are five slots, left to right. In practice you only ever fill two at once — one from the left side and one from the right.",
+          "header": "Two pronouns, fixed order",
+          "body": "French lets you replace both objects at once. The pronouns stack before the verb in five slots, always left to right.",
           "bullets": [
             "slot 1 — me / te / nous / vous",
             "slot 2 — le / la / les",
@@ -7869,33 +7865,19 @@
           ]
         },
         {
-          "header": "The pairs that do all the work",
-          "body": "You can't combine two from the same slot, and some combinations are simply unnatural. Five pairs cover nearly everything you'll say or hear.",
+          "header": "Five pairs do all the work",
+          "body": "You only ever fill two slots at once. These five pairs cover almost everything you'll say or hear.",
           "bullets": [
-            "me + le → me le (il me le donne — he gives it to me)",
-            "te + le → te le (je te le dis — I'm telling you)",
-            "le + lui → le lui (je le lui explique — I explain it to him)",
-            "me + en → m'en (donne-m'en — give me some)",
-            "y + en → y en (y en a — there's some)"
+            "me + le → me le : il me le donne (he gives it to me)",
+            "te + le → te le : je te le dis (I'm telling you)",
+            "le + lui → le lui : je le lui explique (I explain it to him)",
+            "me + en → m'en : donne-m'en (give me some)",
+            "y + en → y en : y en a (there's some)"
           ]
         },
         {
-          "header": "Passé composé wraps around them",
-          "body": "In a compound tense the pronouns go between the subject and the auxiliary, exactly as with a single pronoun — because the auxiliary is the conjugated verb here. The past participle comes after.",
-          "examples": [
-            {
-              "french": "Il me l'a donné.",
-              "english": "He gave it to me."
-            },
-            {
-              "french": "Je te l'ai dit.",
-              "english": "I told you."
-            }
-          ]
-        },
-        {
-          "header": "y en a — the most common double",
-          "body": "Il y en a (there is/are some) contracts to y'en a in speech. It's the single most frequent double-pronoun form in French, so learn it as a chunk before anything else.",
+          "header": "Y en a — learn this first",
+          "body": "Il y en a (there is/are some) is the single most common double-pronoun form in French. Learn it as a chunk.",
           "examples": [
             {
               "french": "Y'en a plus.",
@@ -7908,8 +7890,22 @@
           ]
         },
         {
-          "header": "Street: elision welds the block",
-          "body": "In fast speech the pronouns fuse into one continuous sound block before the verb — you stop hearing gaps between them. That block behaves as a unit: catch any part of it and you know where the verb is.",
+          "header": "Passé composé: pronouns before the auxiliary",
+          "body": "In compound tenses, both pronouns go between the subject and the auxiliary avoir or être. The past participle follows after.",
+          "examples": [
+            {
+              "french": "Il me l'a donné.",
+              "english": "He gave it to me."
+            },
+            {
+              "french": "Je te l'ai déjà dit.",
+              "english": "I already told you."
+            }
+          ]
+        },
+        {
+          "header": "Street: pronouns fuse into one block",
+          "body": "In fast speech, elision welds the pronouns and verb into a single sound block. Catch any part of it and you know where the verb is.",
           "examples": [
             {
               "french": "J'te l'dis.",
@@ -7920,8 +7916,8 @@
               "english": "He gave it to me."
             },
             {
-              "french": "Y'en a plus.",
-              "english": "There's none left."
+              "french": "Y'en a plus, j'peux te l'dire.",
+              "english": "There's none left, I can tell you that."
             }
           ]
         }
@@ -8239,21 +8235,21 @@
       "explanation": [
         {
           "header": "The neutral degree ladder",
-          "body": "Four words scale adjectives in standard French, and they all sit directly before the adjective — the position never moves. Think of them as a volume knob going from quiet to loud.",
+          "body": "Four words scale adjectives in standard French. They all sit directly before the adjective — position never moves.",
           "bullets": [
-            "un peu — a little (un peu fatigué)",
-            "assez — fairly (assez bien)",
-            "très — very (très bien)",
-            "vraiment — really (vraiment bien)"
+            "un peu — a little: un peu fatigué",
+            "assez — fairly: assez bien",
+            "très — very: très bien",
+            "vraiment — really: vraiment bien"
           ]
         },
         {
           "header": "trop is the spoken très",
-          "body": "In formal French, trop means 'too much' — trop chaud means dangerously hot. In speech, under-40 French uses trop exactly where textbooks say très. The literal meaning fades; the intensity stays. You will hear almost no très in casual conversation.",
+          "body": "In formal French, trop means 'too much'. In casual speech, under-40s use it exactly where textbooks say très — the excess meaning fades, the intensity stays.",
           "examples": [
             {
-              "french": "C'est trop bien.",
-              "english": "That's so good."
+              "french": "C'est très bien. → C'est trop bien.",
+              "english": "It's really good."
             },
             {
               "french": "J'suis trop fatigué.",
@@ -8262,18 +8258,18 @@
           ]
         },
         {
-          "header": "The street ladder: grave, carrément, vachement, hyper",
-          "body": "These four words are the real spoken scale — they replace très and vraiment for anyone who wants to sound like they actually live in France. They all follow the same rule: degree word directly before the adjective.",
+          "header": "The street ladder",
+          "body": "These replace très and vraiment in real spoken French. Same rule: degree word directly before the adjective.",
           "bullets": [
-            "grave — c'est grave bien (that's seriously good)",
-            "carrément — c'est carrément nul (that's completely rubbish)",
-            "vachement — c'est vachement bon (it's really good)",
-            "hyper / super — j'suis hyper content, c'est super cool"
+            "grave — seriously: elle est grave fatiguée",
+            "carrément — completely: c'est carrément pas possible",
+            "vachement — really: c'est vachement tard",
+            "hyper / super — really: j'suis hyper content, c'est super cool"
           ]
         },
         {
           "header": "grave and carrément as full answers",
-          "body": "Both words double as one-word reactions to a yes/no question. There is no adjective in play — the word carries the full force of 'absolutely' or 'totally' on its own. You already saw these in the chunks_reactions lesson; now you know why they work: they are just degree words turned up all the way.",
+          "body": "Both words work as one-word replies to a yes/no question. No adjective needed — the word carries 'absolutely' on its own.",
           "examples": [
             {
               "french": "Tu viens ce soir ? — Carrément.",
@@ -8287,15 +8283,11 @@
         },
         {
           "header": "Placement never moves",
-          "body": "In French, a degree word scales exactly what follows it — put it anywhere else and the sentence breaks. This holds for every item on both ladders: un peu, très, trop, grave, carrément all land immediately before the adjective or adverb they modify. There is no exception to hunt for.",
+          "body": "Every word on both ladders lands immediately before what it scales. There are no exceptions.",
           "examples": [
             {
-              "french": "C'est carrément pas possible.",
-              "english": "That's completely not possible."
-            },
-            {
-              "french": "J'suis un peu fatigué.",
-              "english": "I'm a little tired."
+              "french": "J'y suis allé, c'était grave bien — j'suis hyper content d'y être allé.",
+              "english": "I went, it was seriously great — I'm really happy I went."
             }
           ]
         }
@@ -8592,73 +8584,65 @@
       "explanation": [
         {
           "header": "Du coup: the default connector",
-          "body": "Du coup means 'so' or 'as a result' and is the most common spoken connector in French. It chains any two thoughts — cause and effect, change of plan, simple next step — without needing a logical relationship as tight as English 'therefore'. If you use it roughly every four sentences, you already sound more fluent.",
+          "body": "Du coup means 'so'. It chains any two thoughts, and it fills half the gaps in real speech.",
           "examples": [
             {
-              "french": "J'avais faim, du coup j'ai mangé.",
-              "english": "I was hungry, so I ate."
-            },
-            {
-              "french": "T'as pas répondu, du coup j'suis parti.",
-              "english": "You didn't answer, so I left."
+              "french": "J'étais fatigué, du coup j'suis rentré.",
+              "english": "I was tired, so I went home."
             }
           ]
         },
         {
-          "header": "Donc vs alors: same word, different job",
-          "body": "Donc closes logic — it draws a conclusion. Alors moves a story forward or, when stretched as alors…, buys thinking time while you find your next word. They often look interchangeable but the rhythm is different: donc lands; alors floats.",
+          "header": "Donc concludes, alors moves",
+          "body": "Both mean 'so'. Donc draws a conclusion; alors pushes the story forward, or buys time as alors…",
           "examples": [
             {
-              "french": "T'as rien mangé, donc t'as faim — c'est normal.",
-              "english": "You ate nothing, so you're hungry — makes sense."
+              "french": "Donc, c'est décidé.",
+              "english": "So, it's decided."
             },
             {
-              "french": "Alors… j'sais pas, chais pas quoi dire.",
-              "english": "So… I don't know, I don't know what to say."
+              "french": "Alors, on fait quoi ?",
+              "english": "So, what do we do?"
             }
           ]
         },
         {
-          "header": "Passke, mais, par contre: cause and contrast",
-          "body": "Parce que — 'because' — collapses to passke in real speech; spelling doesn't change, pronunciation does. Mais is a blunt contrast. Par contre ('on the other hand') is softer and extremely common in spoken French for qualifying what you just said.",
+          "header": "Because and but",
+          "body": "Parce que is 'because' — everyone says it passke. For contrast you have three strengths:",
           "bullets": [
-            "passke = parce que — 'J'peux pas venir passke j'dois bosser.'",
-            "mais — direct opposition: 'J'veux venir, mais j'peux pas.'",
-            "par contre — soft qualifier: 'C'est bien, par contre c'est chaud.'"
+            "mais — but (blunt): mais c'est cher",
+            "par contre — on the other hand (softer): par contre, c'est loin",
+            "même si — even if (concedes): même si t'as raison"
           ]
         },
         {
-          "header": "Sequencing a story: d'abord to bref",
-          "body": "D'abord (first), après or ensuite (then/next), and bref (long story short) are the scaffold of any spoken anecdote. Bref is especially useful: it signals you're cutting the rest and landing the point, which is exactly what fast, confident speakers do.",
+          "header": "Telling a story",
+          "body": "D'abord starts, après and ensuite continue, bref lands it. Bref cuts the rest: 'long story short'.",
           "examples": [
             {
-              "french": "D'abord on est allés au resto, après y'avait plus de place, du coup on a mangé chez moi — bref, c'était bien.",
-              "english": "First we went to the restaurant, then there were no tables left, so we ate at mine — anyway, it was good."
+              "french": "Bref, on est rentrés.",
+              "english": "Anyway, we went home."
             }
           ]
         },
         {
           "header": "En fait: the correction word",
-          "body": "En fait means 'actually' and almost always opens a correction or a reframe of what was just said or assumed. It doesn't mean 'in fact' in the formal sense — it signals 'wait, here's the real picture'. Use it at the start of a sentence.",
+          "body": "En fait means 'actually'. It opens a correction of what was just said or assumed.",
           "examples": [
             {
-              "french": "En fait, c'est pas si grave.",
-              "english": "Actually, it's not that serious."
-            },
-            {
-              "french": "En fait j'voulais pas y aller.",
-              "english": "Actually I didn't want to go."
+              "french": "En fait, c'est pas ça.",
+              "english": "Actually, that's not it."
             }
           ]
         },
         {
-          "header": "Street: connectors as fluency signals",
-          "body": "These words are what fills the gaps between sentences in real speech. A hesitation that sounds fluent in French is alors… or du coup… not silence. Passke replaces parce que, bref cuts any story short — using them correctly signals you are processing in French, not translating.",
-          "bullets": [
-            "du coup — every 4 sentences, any register",
-            "passke — always in speech; parce que only in writing",
-            "bref — ends any story; can stand alone as a one-word summary",
-            "alors… (stretched) — thinking pause, same job as 'um' but sounds intentional"
+          "header": "This is what fluency sounds like",
+          "body": "Connectors buy thinking time. A fluent hesitation is du coup… or alors…, not silence.",
+          "examples": [
+            {
+              "french": "Du coup… on y va ?",
+              "english": "So… shall we go?"
+            }
           ]
         }
       ],

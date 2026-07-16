@@ -23,7 +23,7 @@ struct ExplanationSectionsView: View {
                         .lineSpacing(4)
 
                     if let bullets = section.bullets, !bullets.isEmpty {
-                        VStack(alignment: .leading, spacing: DSSpacing.sm) {
+                        VStack(alignment: .leading, spacing: DSSpacing.xs + 2) {
                             ForEach(bullets, id: \.self) { bullet in
                                 HStack(alignment: .firstTextBaseline, spacing: DSSpacing.sm) {
                                     Circle()
@@ -41,23 +41,18 @@ struct ExplanationSectionsView: View {
                     }
 
                     if let examples = section.examples, !examples.isEmpty {
-                        VStack(alignment: .leading, spacing: DSSpacing.md) {
+                        // reading-scale pairs, set quiet — no border chrome
+                        VStack(alignment: .leading, spacing: DSSpacing.sm) {
                             ForEach(examples, id: \.self) { pair in
-                                VStack(alignment: .leading, spacing: 2) {
+                                VStack(alignment: .leading, spacing: 1) {
                                     Text(pair.french)
-                                        .font(DSType.french)
+                                        .font(DSType.frenchCompact)
                                         .foregroundStyle(DSColor.textPrimary)
                                     Text(pair.english)
                                         .font(DSType.caption)
                                         .foregroundStyle(DSColor.textSecondary)
                                 }
                             }
-                        }
-                        .padding(.leading, DSSpacing.md)
-                        .overlay(alignment: .leading) {
-                            Rectangle()
-                                .fill(DSColor.textSecondary.opacity(0.25))
-                                .frame(width: 2)
                         }
                         .padding(.top, DSSpacing.xs)
                     }

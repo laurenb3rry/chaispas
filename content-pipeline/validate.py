@@ -390,13 +390,45 @@ BANNED_VOICE = re.compile(
     r"\b(weaponiz\w*|unfair advantage|vip|superpowers?|game.?changers?|magic\w*"
     r"|secret weapons?|cheat codes?|hacks?)\b", re.IGNORECASE)
 
-# Structured explanation budgets (phase 10b): (min_sections, max_sections,
+# Structured explanation budgets: (min_sections, max_sections,
 # warn-above/below word bounds, hard error ceiling). Bands sit above the
-# prompt targets (160 / 320) because the model reliably overshoots ~20%.
+# prompt targets because the model reliably overshoots ~20%. Floors dropped
+# for the 10c digestibility register (compressed, chunked).
 EXPLANATION_BUDGETS = {
     "verb": (2, 4, (None, 200), 260),
-    "grammar": (4, 7, (170, 380), 480),
+    "grammar": (4, 7, (120, 340), 440),
 }
+
+# 10c digestibility lint: section bodies are 1-2 short sentences.
+SENTENCE_WORDS_WARN = 18   # spec says ~15; warn above this
+SENTENCE_WORDS_ERROR = 26
+BODY_SENTENCES_WARN = 2    # bodies over 2 sentences warn; over 3 error
+
+
+def split_sentences(text):
+    # split only before a capital, so embedded French ("Ça va ? runs on
+    # aller") doesn't count as a sentence boundary
+    return [s for s in re.split(r"(?<=[.!?…])\s+(?=[A-ZÀ-ÖÙ-Ü])", text.strip()) if s]
+
+
+def lint_digestibility(node, sections, report):
+    nid = node["id"]
+    for i, s in enumerate(sections, 1):
+        body_sentences = split_sentences(str(s.get("body", "")))
+        if len(body_sentences) > BODY_SENTENCES_WARN + 1:
+            report["errors"].append(
+                f"{nid}: section {i} body has {len(body_sentences)} sentences (spec 1-2)")
+        elif len(body_sentences) > BODY_SENTENCES_WARN:
+            report["warnings"].append(
+                f"{nid}: section {i} body has {len(body_sentences)} sentences (spec 1-2)")
+        for sent in body_sentences:
+            n = len(sent.split())
+            if n > SENTENCE_WORDS_ERROR:
+                report["errors"].append(
+                    f"{nid}: section {i} sentence of {n} words (spec ~15): \"{sent[:60]}…\"")
+            elif n > SENTENCE_WORDS_WARN:
+                report["warnings"].append(
+                    f"{nid}: section {i} sentence of {n} words (spec ~15)")
 
 
 def explanation_text(sections):
@@ -436,6 +468,7 @@ def validate_explanation(node, kind, report):
     banned = sorted({m.group(0).lower() for m in BANNED_VOICE.finditer(explanation_text(sections))})
     if banned:
         report["errors"].append(f"{nid}: banned voice phrases {banned} — regenerate")
+    lint_digestibility(node, sections, report)
 
 
 def validate_tense_usage(data, report):

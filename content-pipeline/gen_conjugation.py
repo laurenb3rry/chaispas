@@ -24,7 +24,8 @@ import json
 import unicodedata
 
 from genlib import (EXPLANATION_SCHEMA, HERE, STREET_REGISTER_BRIEF, VOICE_SPEC,
-                    call_claude, exemplar_block, exemplar_explanation, load_output,
+                    call_claude, exemplar_block, exemplar_explanation,
+                    flatten_sections, load_output, load_prior_explanations,
                     load_v1_graph, make_client, save_output, v1_concept_summaries)
 
 VERBS_PATH = HERE / "data" / "verbs.json"
@@ -260,6 +261,9 @@ FORMS:
 {forms}
 Street notes: {street_notes}
 
+SOURCE MATERIAL — the previous explanation. It carries the essential teaching points: keep every fact, compress and re-chunk the delivery into the register below. Do not copy its sentences; do not drop a teaching point.
+{prior}
+
 {schema}
 - 2-4 sections; total word count across headers, bodies and bullets <= 160 — treat 160 as a hard ceiling. Density beats length.
 - Teach usage: when this verb gets chosen, the mistakes an English speaker makes with it, what actually gets said in real speech. Never etymology for its own sake.
@@ -269,10 +273,11 @@ Street notes: {street_notes}
 Return ONLY a JSON object: {{"explanation": [ ...sections... ]}}"""
 
 
-def regen_explanation(client, label, forms_text, street_notes):
+def regen_explanation(client, label, forms_text, street_notes, prior):
     prompt = EXPLANATION_ONLY_PROMPT.format(
         voice=VOICE_SPEC, label=label, forms=forms_text,
         street_notes=street_notes, schema=EXPLANATION_SCHEMA,
+        prior=prior or "(none available — teach from the forms and street notes)",
         exemplars=exemplar_block("verb"))
     gen = call_claude(client, prompt, label=label)
     if not isinstance(gen, dict) or not isinstance(gen.get("explanation"), list):
@@ -280,7 +285,7 @@ def regen_explanation(client, label, forms_text, street_notes):
     return gen["explanation"]
 
 
-def refresh_existing_node(node, specs_by_id, client, dry_run):
+def refresh_existing_node(node, specs_by_id, client, dry_run, priors):
     """Rebuild spec-derived fields (incl. the corrected imparfait table) and
     replace the explanation; drills are never touched."""
     nid = node["id"]
@@ -306,7 +311,8 @@ def refresh_existing_node(node, specs_by_id, client, dry_run):
         print(f"[dry ] would regenerate explanation for {nid}")
         return
     node["explanation"] = exemplar_explanation(nid) \
-        or regen_explanation(client, label, forms_text, street_notes)
+        or regen_explanation(client, label, forms_text, street_notes,
+                             flatten_sections(priors.get(nid)))
 
 
 def load_tense_usage():
@@ -337,6 +343,7 @@ def main():
 
     if args.explanations_only:
         specs_by_id = {f"conj_{slug(v['infinitive'])}": v for v in data["verbs"]}
+        priors = load_prior_explanations("conjugation")
         for node in out["nodes"]:
             label = node.get("infinitive", "politesse")
             if wanted and slug(label).lower() not in wanted:
@@ -346,7 +353,7 @@ def main():
                 print(f"[skip] {node['id']} (already structured; --force to redo)")
                 continue
             print(f"[expl] {node['id']}")
-            refresh_existing_node(node, specs_by_id, client, args.dry_run)
+            refresh_existing_node(node, specs_by_id, client, args.dry_run, priors)
             if not args.dry_run:
                 save_output(OUT_PATH, out)
         print(f"\nexplanations refreshed; {len(out['nodes'])} nodes in {OUT_PATH.name}")

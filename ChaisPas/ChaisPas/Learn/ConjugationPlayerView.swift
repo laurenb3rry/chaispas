@@ -169,14 +169,14 @@ struct ConjugationPlayerView: View {
                             .font(DSType.caption)
                             .foregroundStyle(DSColor.textSecondary)
                             .gridColumnAlignment(.leading)
-                            .padding(.vertical, DSSpacing.md)
+                            .padding(.vertical, DSSpacing.sm + 2)
 
                         formCell(text: form.formal,
                                  fileName: ContentPackV2.tableAudio(
                                     nodeId: node.id, tense: selectedTense, person: person),
                                  key: "\(selectedTense)_\(person)_formal",
                                  baseColor: DSColor.textPrimary)
-                            .padding(.vertical, DSSpacing.md)
+                            .padding(.vertical, DSSpacing.sm + 2)
 
                         if let street = form.street, street != form.formal {
                             formCell(text: street,
@@ -185,7 +185,7 @@ struct ConjugationPlayerView: View {
                                         person: person, street: true),
                                      key: "\(selectedTense)_\(person)_street",
                                      baseColor: DSColor.accent)
-                                .padding(.vertical, DSSpacing.md)
+                                .padding(.vertical, DSSpacing.sm + 2)
                         } else {
                             Color.clear
                                 .gridCellUnsizedAxes([.horizontal, .vertical])
@@ -230,7 +230,7 @@ struct ConjugationPlayerView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.vertical, DSSpacing.md)
+                .padding(.vertical, DSSpacing.sm + 2)
                 if form.id != forms.last?.id {
                     RowDivider()
                 }
@@ -246,7 +246,7 @@ struct ConjugationPlayerView: View {
                           baseColor: Color) -> some View {
         Button { play(fileName, key: key) } label: {
             Text(text)
-                .font(DSType.french)
+                .font(DSType.tableForm)
                 // long forms (vous avez été) shrink a touch rather than
                 // wrap — a wrapped cell breaks the table's row rhythm
                 .lineLimit(1)
@@ -264,9 +264,9 @@ struct ConjugationPlayerView: View {
                 .tracking(1.2)
                 .foregroundStyle(DSColor.textSecondary)
             Text(notes)
-                .font(DSType.body)
+                .font(DSType.frenchCompact)
                 .foregroundStyle(DSColor.accent)
-                .lineSpacing(4)
+                .lineSpacing(3)
         }
         .padding(.top, DSSpacing.sm)
     }

@@ -12,8 +12,8 @@
       "english": "to be",
       "explanation": [
         {
-          "header": "Where English says 'be' — mostly",
-          "body": "Être covers what someone is, how something is, and where things are. But French draws the line differently than English: age, hunger, thirst, heat, and cold all belong to avoir. Translating 'I am hungry' word for word is the number-one être mistake.",
+          "header": "What être covers",
+          "body": "Être handles identity, description, and location. Age, hunger, thirst, and temperature use avoir instead — translating those word for word is the top mistake.",
           "examples": [
             {
               "french": "Je suis fatigué. On est au café.",
@@ -26,18 +26,22 @@
           ]
         },
         {
-          "header": "Four forms carry conversation",
-          "body": "Suis, es, est, sont do nearly all the spoken work. You already use est constantly — c'est is just ce + est, so every c'est sentence you've built was être practice. And on est handles 'we are'; nous sommes doesn't get said.",
+          "header": "Four forms do the work",
+          "body": "Suis, es, est, and sont cover almost all spoken use. On est replaces nous sommes completely in conversation.",
+          "bullets": [
+            "c'est = ce + est — every c'est you say is already être",
+            "nous sommes: exists in writing, rarely said aloud"
+          ],
           "examples": [
             {
-              "french": "C'est bon. Elle est là. Ils sont où ?",
-              "english": "It's good. She's here. Where are they?"
+              "french": "C'est bon. Ils sont où ?",
+              "english": "It's good. Where are they?"
             }
           ]
         },
         {
-          "header": "On the street",
-          "body": "Je suis compresses to j'suis, often down to one syllable — chuis. Tu es is nearly always t'es.",
+          "header": "Street contractions",
+          "body": "Je suis shortens to j'suis, then often to one syllable: chuis. Tu es is nearly always t'es.",
           "examples": [
             {
               "french": "Chuis là. T'es prêt ?",
@@ -46,8 +50,8 @@
           ]
         },
         {
-          "header": "The past you'll actually use",
-          "body": "Reach for the imparfait first: states and descriptions are background, and c'était is how you review anything — a meal, a film, a weekend. The passé composé j'ai été exists, but mostly for one-off events.",
+          "header": "Which past tense to use",
+          "body": "Use imparfait for states and descriptions — c'était covers almost every review of a meal, film, or weekend. Passé composé exists but fits only one-off events.",
           "examples": [
             {
               "french": "C'était super. T'étais où ?",
@@ -394,42 +398,62 @@
       "english": "to have",
       "explanation": [
         {
-          "header": "Where English says 'am' — sometimes",
-          "body": "Avoir means 'to have', but French assigns several states to it that English puts under 'be': age, hunger, thirst, fear, luck, and need. Translating those with être is the most common English-speaker mistake.",
+          "header": "Avoir vs 'to be'",
+          "body": "Avoir means 'to have', but French uses it where English uses 'be': age, hunger, thirst, fear, luck, need. Using être there is the most common English-speaker error.",
           "examples": [
             {
-              "french": "J'ai vingt ans. T'as faim ? Il a besoin de rien.",
-              "english": "I'm twenty. Are you hungry? He doesn't need anything."
+              "french": "J'ai vingt ans.",
+              "english": "I'm twenty."
+            },
+            {
+              "french": "T'as faim ? Il a besoin de rien.",
+              "english": "Are you hungry? He doesn't need anything."
             }
           ]
         },
         {
-          "header": "il y a — the one fixed phrase",
-          "body": "Il y a means 'there is / there are' and, with a time expression, 'ago'. In speech it collapses to y'a almost every time. Learn it as a fixed chunk — y'a pas means 'there isn't any' and y'a rien means 'there's nothing'.",
+          "header": "Il y a — fixed chunk",
+          "body": "Il y a means 'there is/are' and, with a time expression, 'ago'. In speech it's almost always y'a.",
           "examples": [
             {
-              "french": "Y'a du monde. Y'a deux jours.",
-              "english": "There's a crowd. Two days ago."
+              "french": "Y'a du monde.",
+              "english": "There's a crowd."
+            },
+            {
+              "french": "Y'a deux jours.",
+              "english": "Two days ago."
+            },
+            {
+              "french": "Y'a pas. Y'a rien.",
+              "english": "There isn't any. There's nothing."
             }
           ]
         },
         {
-          "header": "Street forms: what actually gets said",
-          "body": "Tu as becomes t'as in nearly every spoken sentence — keeping the full form sounds formal or slow. J'ai stays j'ai; it's already short enough.",
+          "header": "Street form: t'as",
+          "body": "Tu as becomes t'as in nearly every spoken sentence. Keeping the full form sounds stiff. J'ai stays j'ai — it's already short.",
           "examples": [
             {
-              "french": "T'as vu ça ? T'as eu de la chance.",
-              "english": "Did you see that? You were lucky."
+              "french": "T'as vu ça ?",
+              "english": "Did you see that?"
+            },
+            {
+              "french": "T'as eu de la chance.",
+              "english": "You were lucky."
             }
           ]
         },
         {
-          "header": "Avoir as a building block",
-          "body": "Most French past tenses are built with avoir + past participle. Once you control j'ai, t'as, il a, on a, vous avez, ils ont, you can form the passé composé of hundreds of verbs immediately.",
+          "header": "Avoir builds the past",
+          "body": "Most French past tenses are avoir + past participle. Control these six present forms and you unlock the passé composé of hundreds of verbs immediately.",
           "examples": [
             {
-              "french": "On a mangé. Ils ont rien dit. T'as eu peur ?",
-              "english": "We ate. They said nothing. Were you scared?"
+              "french": "On a mangé. Ils ont rien dit.",
+              "english": "We ate. They said nothing."
+            },
+            {
+              "french": "T'as eu peur ?",
+              "english": "Were you scared?"
             }
           ]
         }
@@ -766,50 +790,50 @@
       "english": "to go",
       "explanation": [
         {
-          "header": "The most irregular verb you need",
-          "body": "Aller is fully irregular — vais, vas, va, allez, vont share nothing with the infinitive. Learn the six forms cold, because aller runs through daily French constantly: movement, greetings, near-future plans.",
+          "header": "One verb, two jobs",
+          "body": "Aller means 'to go'. It also builds the future: aller + infinitive is spoken French for 'going to'.",
           "examples": [
             {
-              "french": "On va au cinéma ce soir.",
-              "english": "We're going to the cinema tonight."
+              "french": "On va au café.",
+              "english": "We're going to the café."
+            },
+            {
+              "french": "On va manger.",
+              "english": "We're going to eat."
             }
           ]
         },
         {
-          "header": "Ça va does serious work",
-          "body": "Ça va is simultaneously a question and an answer — and the default French greeting. It covers how things are going, not just physical movement.",
+          "header": "Three forms, one sound",
+          "body": "Vais, vas, and va cover je, tu, il, and on. Everything you say daily sounds like 'va'.",
+          "examples": [
+            {
+              "french": "je vais, tu vas, il va, on va",
+              "english": "then: vous allez, ils vont"
+            }
+          ]
+        },
+        {
+          "header": "The greetings verb",
+          "body": "Ça va ? runs on aller. French asks how you're going, not how you are.",
           "examples": [
             {
               "french": "Ça va ? — Ça va.",
               "english": "How's it going? — Fine."
             },
             {
-              "french": "Ça va pas du tout.",
-              "english": "Things are not going well at all."
+              "french": "J'y vais.",
+              "english": "I'm off."
             }
           ]
         },
         {
-          "header": "Near future: skip the real future tense",
-          "body": "Aller + infinitive is how French handles upcoming events in everyday speech. The inflected future tense (j'irai) exists but sounds formal; je vais aller or on va faire is what you actually hear.",
+          "header": "The past takes être",
+          "body": "Aller is a movement verb, so the past uses être: je suis allé. Street says j'suis allé.",
           "examples": [
             {
-              "french": "J'vais appeler. On va voir.",
-              "english": "I'm going to call. We'll see."
-            }
-          ]
-        },
-        {
-          "header": "Passé composé needs être",
-          "body": "Aller takes être as its auxiliary, not avoir — so the past participle agrees with the subject. English speakers forget this and write j'ai allé, which is wrong. Add -e for feminine, -s for plural.",
-          "bullets": [
-            "je suis allé / je suis allée",
-            "on est allés (mixed or male group), on est allées (all female)"
-          ],
-          "examples": [
-            {
-              "french": "T'es allé où ? — J'suis allée chez ma sœur.",
-              "english": "Where did you go? — I went to my sister's place."
+              "french": "On est allés au resto hier.",
+              "english": "We went to the restaurant yesterday."
             }
           ]
         }
@@ -1158,18 +1182,30 @@
       "english": "to do / to make",
       "explanation": [
         {
-          "header": "Irregular but inescapable",
-          "body": "Faire is the verb for doing and making — two English verbs, one French one. The forms are irregular and must be memorised, but the spoken core is small: fais, fait, and font cover nearly everything.",
+          "header": "One verb, two English ones",
+          "body": "Faire covers both 'do' and 'make'. When you'd use either English verb, faire is the French one.",
           "examples": [
             {
-              "french": "Je fais la vaisselle. On fait quoi ce soir ?",
-              "english": "I'm doing the dishes. What are we doing tonight?"
+              "french": "Je fais la vaisselle.",
+              "english": "I'm doing the dishes."
+            },
+            {
+              "french": "On fait quoi ce soir ?",
+              "english": "What are we making/doing tonight?"
             }
           ]
         },
         {
-          "header": "The question you'll hear constantly",
-          "body": "Tu fais quoi ? is the standard spoken question — no inversion, no est-ce que. English speakers waste time constructing formal questions; just drop quoi at the end.",
+          "header": "Irregular — learn the core three",
+          "body": "Faire is irregular. Memorise fais, fait, and font — they cover almost everything you'll say.",
+          "bullets": [
+            "je/tu fais, il/on fait, ils font",
+            "vous faites is the odd one out — nothing else ends -aites"
+          ]
+        },
+        {
+          "header": "Ask questions with quoi",
+          "body": "Tu fais quoi ? is the default spoken question. No inversion, no est-ce que — just drop quoi at the end.",
           "examples": [
             {
               "french": "Tu fais quoi là ? — Je fais rien.",
@@ -1178,26 +1214,16 @@
           ]
         },
         {
-          "header": "Faire triggers other verbs",
-          "body": "Faire + infinitive means to have something done or to make someone do it. This construction trips English speakers because French uses no extra word — faire does the whole job.",
+          "header": "Faire + infinitive",
+          "body": "Faire + infinitive means 'make someone do' or 'get something done'. French needs no extra word; faire carries both meanings alone.",
           "examples": [
             {
               "french": "Il fait pleurer tout le monde.",
               "english": "He makes everyone cry."
             },
             {
-              "french": "Je vais faire réparer ça.",
+              "french": "J'vais faire réparer ça.",
               "english": "I'm going to get that fixed."
-            }
-          ]
-        },
-        {
-          "header": "On the street",
-          "body": "Je fais drops to j'fais. The imparfait stem stays fais- throughout, so je faisais and ils faisaient sound nearly identical — the endings are swallowed.",
-          "examples": [
-            {
-              "french": "J'fais comme je peux. On faisait ça tout le temps.",
-              "english": "I do what I can. We used to do that all the time."
             }
           ]
         }
@@ -1542,38 +1568,42 @@
       "english": "to want",
       "explanation": [
         {
-          "header": "What vouloir actually does",
-          "body": "Vouloir expresses want or desire. Follow it with an infinitive for an action, or a noun for a thing. Never insert 'de' or 'que' between vouloir and the infinitive — that's the reflex English pulls from 'want to'.",
+          "header": "What vouloir does",
+          "body": "Vouloir means 'to want'. Put an infinitive after it for an action, or a noun for a thing. No 'de' or 'que' between vouloir and the infinitive — English pulls that reflex, French doesn't.",
           "examples": [
             {
-              "french": "Je veux partir. Tu veux un café ?",
-              "english": "I want to leave. You want a coffee?"
+              "french": "J'veux partir.",
+              "english": "I want to leave."
+            },
+            {
+              "french": "Tu veux un café ?",
+              "english": "You want a coffee?"
             }
           ]
         },
         {
-          "header": "The stem breaks in the middle",
-          "body": "Je, tu, il, ils take the veu- stem; vous keeps the full voul-. This split is irregular but consistent — the same shape appears every time you use this tense.",
+          "header": "The stem splits in the middle",
+          "body": "Je, tu, il, ils use veu-. Vous keeps the full voul-. Irregular, but it's the same split every time.",
           "examples": [
             {
-              "french": "j'veux, tu veux, il veut — but vous voulez, ils veulent",
+              "french": "j'veux, tu veux, il veut, ils veulent — vs — vous voulez",
               "english": "two stems, one verb"
             }
           ]
         },
         {
-          "header": "Politeness lives in the conditional",
-          "body": "Je veux said straight sounds blunt in French, the way 'I want' can in English. In any request to someone unfamiliar, swap in je voudrais. The table here covers the indicative; the conditional is the next unit.",
+          "header": "Blunt vs. polite",
+          "body": "Je veux straight to someone you don't know sounds blunt. Swap in je voudrais for any request to a stranger or server.",
           "examples": [
             {
               "french": "J'veux de l'eau. → Je voudrais de l'eau.",
-              "english": "I want water. → I'd like some water. (softer, use this to a server)"
+              "english": "I want water. → I'd like some water."
             }
           ]
         },
         {
-          "header": "Which past tense fits",
-          "body": "Use passé composé for a specific decision or attempt: j'ai voulu means 'I tried to' or 'I decided to'. Use imparfait for an ongoing state of wanting in the background of a story.",
+          "header": "Which past tense to pick",
+          "body": "Passé composé = a specific decision or attempt. Imparfait = ongoing background want.",
           "examples": [
             {
               "french": "J'ai voulu partir, mais j'ai raté le bus.",
@@ -1924,8 +1954,8 @@
       "english": "to be able to / can",
       "explanation": [
         {
-          "header": "Pouvoir means 'can' or 'be able to'",
-          "body": "Use it to say you're able to do something or have permission to. It always precedes an infinitive — no 'à' or 'de' in between. That missing preposition is the standard English-speaker slip.",
+          "header": "Can, able, permitted",
+          "body": "Pouvoir means 'can' or 'be able to'. It covers both ability and permission. It always takes an infinitive directly — no preposition between them.",
           "examples": [
             {
               "french": "Je peux venir demain.",
@@ -1938,18 +1968,22 @@
           ]
         },
         {
-          "header": "Irregular present, but patterned",
-          "body": "The stem splits: peux/peux/peut/peuvent for the singular and third-plural, pouvez for vous. The x ending on je and tu is the same oddity you see in vouloir — it replaced an older 's'. Learn the pair together.",
+          "header": "Irregular present: spot the pattern",
+          "body": "The stem splits. Singular and ils use peux/peut/peuvent; vous gets pouvez. The x on je and tu mirrors vouloir — learn them as a pair.",
           "examples": [
             {
-              "french": "Tu peux répéter ? Ils peuvent pas venir.",
-              "english": "Can you repeat that? They can't come."
+              "french": "Tu peux répéter ?",
+              "english": "Can you repeat that?"
+            },
+            {
+              "french": "Ils peuvent pas venir.",
+              "english": "They can't come."
             }
           ]
         },
         {
-          "header": "Street: j'peux pas is everywhere",
-          "body": "Je drops its vowel in fast speech — j'peux, j'pouvais. The string j'peux pas (I can't) is one of the most frequent refusals in spoken French; hear it, copy it, own it.",
+          "header": "Street: j'peux pas",
+          "body": "Je drops its vowel in fast speech: j'peux, j'pouvais. J'peux pas is one of the most common refusals in spoken French — hear it and copy it.",
           "examples": [
             {
               "french": "J'peux pas ce soir, désolé.",
@@ -1962,8 +1996,8 @@
           ]
         },
         {
-          "header": "Which past tense to choose",
-          "body": "Use the passé composé (j'ai pu) for a specific moment when you managed — or failed — to do something. Use the imparfait (je pouvais) for ongoing ability in the past, the way things used to be.",
+          "header": "Passé composé vs. imparfait",
+          "body": "Use j'ai pu for a specific moment you managed — or failed — to do something. Use je pouvais for ongoing past ability.",
           "examples": [
             {
               "french": "J'ai pu lui parler hier.",
@@ -2320,46 +2354,58 @@
       "english": "to have to / must",
       "explanation": [
         {
-          "header": "Obligation, not just 'must'",
-          "body": "Devoir covers must, have to, and should — one verb where English uses three. The key split: strong obligation uses the present, softer 'should' leans on the conditional (you'll see that later), and past obligation almost always lands in the imparfait.",
+          "header": "Must, have to, should — one verb",
+          "body": "Devoir covers all three. The tense does the work: present = strong obligation, imparfait = 'was supposed to', conditional = soft 'should' (covered later).",
           "examples": [
             {
-              "french": "Je dois partir. On devait l'appeler.",
-              "english": "I have to leave. We were supposed to call him."
+              "french": "Je dois partir.",
+              "english": "I have to leave."
+            },
+            {
+              "french": "On devait l'appeler.",
+              "english": "We were supposed to call him."
             }
           ]
         },
         {
           "header": "Devoir also means 'must have'",
-          "body": "English speakers miss this use: devoir + infinitive expresses logical deduction. Il doit être fatigué doesn't mean he's obligated to be tired — it means he must be tired. Context separates obligation from deduction.",
+          "body": "Devoir + infinitive expresses logical deduction, not just obligation. Context tells you which reading applies.",
           "examples": [
+            {
+              "french": "Il doit être fatigué.",
+              "english": "He must be tired. (deduction, not obligation)"
+            },
             {
               "french": "T'as dû te tromper.",
               "english": "You must have made a mistake."
+            }
+          ]
+        },
+        {
+          "header": "Two forms to memorise",
+          "body": "Doivent and dû are the stumbling points. Dû always carries the circumflex — it separates it from the article du.",
+          "examples": [
+            {
+              "french": "Ils doivent bosser.",
+              "english": "They have to work."
             },
             {
-              "french": "Il doit être dans les embouteillages.",
-              "english": "He must be stuck in traffic."
+              "french": "J'ai dû attendre.",
+              "english": "I had to wait."
             }
           ]
         },
         {
-          "header": "The irregular forms to lock in",
-          "body": "Doivent (ils) and dû (past participle — always with the circumflex) are the two stumbling points. The circumflex on dû exists only to distinguish it from the article du — without it, spelling would be ambiguous.",
+          "header": "Street speech",
+          "body": "Je dois compresses to j'dois in fast speech. For future obligation, j'vais devoir is more natural than je devrai.",
           "examples": [
             {
-              "french": "Ils doivent bosser. J'ai dû attendre.",
-              "english": "They have to work. I had to wait."
-            }
-          ]
-        },
-        {
-          "header": "On the street",
-          "body": "Je dois compresses to j'dois in fast speech. For future obligation, j'vais devoir is more natural than the full future tense je devrai.",
-          "examples": [
+              "french": "J'dois y aller.",
+              "english": "I've gotta go."
+            },
             {
-              "french": "J'dois y aller. On va devoir patienter.",
-              "english": "I've gotta go. We're going to have to wait."
+              "french": "On va devoir patienter.",
+              "english": "We're going to have to wait."
             }
           ]
         }
@@ -2713,21 +2759,17 @@
       "explanation": [
         {
           "header": "Savoir vs. connaître",
-          "body": "French splits 'to know' in two. Savoir is for facts, information, and abilities — things you can state or do. Connaître is for familiarity with a person or place. English speakers collapse both into 'know', which causes real errors.",
+          "body": "French splits 'to know' in two. Savoir covers facts, information, and skills. Connaître covers familiarity with people and places.",
           "examples": [
             {
-              "french": "Je sais qu'il est parti. Je sais nager.",
-              "english": "I know he left. I know how to swim."
-            },
-            {
-              "french": "Je connais Paris. Je connais Marie.",
-              "english": "I know Paris. I know Marie. (connaître, not savoir)"
+              "french": "Je sais qu'il est parti. / Je connais Marie.",
+              "english": "I know he left. / I know Marie."
             }
           ]
         },
         {
-          "header": "Ability without 'how to'",
-          "body": "Savoir + infinitive means you have the skill — no 'comment' needed. Adding 'comment' isn't wrong but sounds bookish. The short form is what French speakers actually say.",
+          "header": "Skill without 'how to'",
+          "body": "Savoir + infinitive means you have the ability. Drop 'comment' — adding it sounds bookish.",
           "examples": [
             {
               "french": "Elle sait conduire. Tu sais cuisiner ?",
@@ -2736,18 +2778,18 @@
           ]
         },
         {
-          "header": "The app's name lives here",
-          "body": "Je sais pas drops the ne (standard spoken French), compresses to j'sais pas, then the j' fuses with sais into chais pas — the phrase you hear constantly and the name of this course. The spelling 'chais' just captures how it sounds; it's not a separate word.",
+          "header": "The app's name, explained",
+          "body": "Je sais pas drops the ne in normal speech, compresses to j'sais pas, then fuses into chais pas. The spelling captures the sound — it's not a separate word.",
           "examples": [
             {
-              "french": "Chais pas. → J'sais pas. → Je ne sais pas.",
-              "english": "I don't know. (street → casual → formal)"
+              "french": "Je ne sais pas → j'sais pas → chais pas",
+              "english": "I don't know → casual → street"
             }
           ]
         },
         {
-          "header": "Past tense: su for sudden knowledge",
-          "body": "The passé composé j'ai su means you found something out at a specific moment. For a state of knowing that was ongoing, use the imparfait je savais.",
+          "header": "Su vs. savais",
+          "body": "J'ai su means you found something out at a specific moment. Je savais means you were in an ongoing state of knowing.",
           "examples": [
             {
               "french": "J'ai su la vérité hier.",
@@ -3101,8 +3143,8 @@
       "english": "to say / to tell",
       "explanation": [
         {
-          "header": "Irregular but very frequent",
-          "body": "Dire is irregular in one spot only: vous dites, not vous disez. Every other irregular -re verb takes vous -ez, so this sticks out — memorise it as a single exception. The rest of the present tense is stable.",
+          "header": "One exception to memorise",
+          "body": "Dire is irregular in exactly one spot: vous dites, not vous disez. Every other irregular -re verb uses -ez, so this one stands alone — learn it cold.",
           "examples": [
             {
               "french": "Vous dites quoi ?",
@@ -3111,8 +3153,8 @@
           ]
         },
         {
-          "header": "What dire actually covers",
-          "body": "Dire means 'say' or 'tell'. English speakers hit trouble when 'tell' takes a person: in French, that person is an indirect object, so you need a pronoun like lui or leur, not a preposition.",
+          "header": "'Say' vs 'tell' in French",
+          "body": "Dire covers both. The trap: when 'tell' has a person after it, French uses an indirect pronoun — lui or leur — not a preposition.",
           "examples": [
             {
               "french": "Je lui dis la vérité.",
@@ -3126,7 +3168,7 @@
         },
         {
           "header": "On dit for general statements",
-          "body": "Where English uses 'you say', 'they say', or 'people say', French uses on dit. It's the standard way to quote common expressions or report what's generally accepted.",
+          "body": "Where English says 'you say', 'they say', or 'people say', French says on dit.",
           "examples": [
             {
               "french": "On dit 'bonne chance' avant un exam.",
@@ -3135,12 +3177,16 @@
           ]
         },
         {
-          "header": "On the street",
-          "body": "Je dis drops its vowel to j'dis in fast speech. The past j'ai dit is short and common — dit never changes form in the passé composé regardless of who's speaking.",
+          "header": "Street speech shortcuts",
+          "body": "Je dis drops its vowel to j'dis in fast speech. In the passé composé, dit never changes form — no matter who's speaking.",
           "examples": [
             {
-              "french": "J'dis pas ça. T'as dit quoi ?",
-              "english": "I'm not saying that. What did you say?"
+              "french": "J'dis pas ça.",
+              "english": "I'm not saying that."
+            },
+            {
+              "french": "T'as dit quoi ?",
+              "english": "What did you say?"
             }
           ]
         }
@@ -3487,28 +3533,32 @@
       "english": "to see",
       "explanation": [
         {
-          "header": "voir means see and meet",
-          "body": "English splits 'see' and 'meet/visit a person', but voir handles both. Using rencontrer where voir belongs is the main English-speaker error.",
+          "header": "See and meet — one verb",
+          "body": "Voir covers both 'to see' and 'to see/meet a person'. Using rencontrer where voir belongs is the main English-speaker error.",
           "examples": [
             {
-              "french": "Je vois le médecin demain. On se voit ce soir ?",
-              "english": "I'm seeing the doctor tomorrow. Shall we meet up tonight?"
+              "french": "Je vois le médecin demain.",
+              "english": "I'm seeing the doctor tomorrow."
+            },
+            {
+              "french": "On se voit ce soir ?",
+              "english": "Shall we meet up tonight?"
             }
           ]
         },
         {
           "header": "The stem splits once",
-          "body": "Most forms use voi-, but vous and ils break: voyez, voient. The imparfait keeps voy- throughout — voyais, voyait, voyiez — and that's actually the regular -ais pattern applied to voy-.",
+          "body": "Most forms use voi-. Vous and ils break to voy-: voyez, voient. The imparfait stays on voy- throughout.",
           "examples": [
             {
-              "french": "Ils voient tout. Vous voyez ce que je veux dire ?",
-              "english": "They see everything. You see what I mean?"
+              "french": "Ils voient tout. / Vous voyiez ça ?",
+              "english": "They see everything. / You were seeing that?"
             }
           ]
         },
         {
-          "header": "vu is the past you'll use most",
-          "body": "The passé composé j'ai vu covers one-off events. T'as vu is also a street-level filler meaning roughly 'you know?' or 'right?' — you'll hear it constantly at sentence edges.",
+          "header": "Vu: the past you'll use most",
+          "body": "J'ai vu covers one-off events. T'as vu also works as a street filler meaning 'you know?' or 'right?' — you'll hear it at sentence edges constantly.",
           "examples": [
             {
               "french": "T'as vu le film ? — Ouais, j'ai vu ça hier, t'as vu.",
@@ -3517,8 +3567,8 @@
           ]
         },
         {
-          "header": "On the street",
-          "body": "Je drops to j' before vois and voyais. Tu vois alone, mid-sentence, works exactly like 'you know' — pure filler, not a real question.",
+          "header": "Street forms",
+          "body": "Je drops to j' before vois and voyais. Tu vois alone, mid-sentence, is pure filler — not a real question.",
           "examples": [
             {
               "french": "J'vois pas ce qu'il veut, tu vois.",
@@ -3870,38 +3920,42 @@
       "english": "to take",
       "explanation": [
         {
-          "header": "What prendre actually covers",
-          "body": "Prendre means 'take', but French uses it where English reaches for other verbs: ordering food, catching transport, making a turn. When you order at a bar or buy a ticket, prendre is the verb.",
+          "header": "Prendre covers more than 'take'",
+          "body": "French uses prendre where English picks different verbs: ordering food, catching transport, making a turn.",
           "examples": [
             {
-              "french": "Je prends un café. On prend le métro.",
-              "english": "I'll have a coffee. We're taking the metro."
+              "french": "Je prends un café.",
+              "english": "I'll have a coffee."
+            },
+            {
+              "french": "On prend le métro.",
+              "english": "We're taking the metro."
             }
           ]
         },
         {
-          "header": "Why the forms look uneven",
-          "body": "Prendre is irregular: the stem shrinks to prend- for the singular and on, then doubles the n in ils — ils prennent. That double-n changes the vowel before it, so prennent sounds like 'pren' not 'prahn'.",
+          "header": "Irregular stem: watch the n",
+          "body": "Singular and on use prend-. Ils doubles the n — and that changes the vowel sound.",
           "examples": [
             {
               "french": "il prend / ils prennent",
-              "english": "he takes / they take — different sounds"
+              "english": "'prahn' / 'pren' — different sounds"
             }
           ]
         },
         {
-          "header": "Past tense: one irregular form",
-          "body": "The past participle is pris — memorise it once, then it stays constant across every subject. Use it for completed grabs, trips, decisions.",
+          "header": "One irregular past participle",
+          "body": "The past participle is pris. Memorise it once — it stays the same for every subject.",
           "examples": [
             {
-              "french": "T'as pris quoi ? J'ai pris le train.",
-              "english": "What did you have/take? I took the train."
+              "french": "T'as pris quoi ? — J'ai pris le train.",
+              "english": "What did you have? — I took the train."
             }
           ]
         },
         {
-          "header": "On the street",
-          "body": "Je drops its e before prends and prenais, giving j'prends and j'prenais. This happens because spoken French avoids two consecutive vowel sounds where it can.",
+          "header": "Street speech drops the e",
+          "body": "Je loses its e before prends and prenais. Spoken French avoids two vowel sounds in a row.",
           "examples": [
             {
               "french": "J'prends ça. J'vais prendre le bus.",
@@ -4249,8 +4303,22 @@
       "english": "to come",
       "explanation": [
         {
-          "header": "Être, not avoir, in the past",
-          "body": "Venir takes être in the passé composé, so the past participle agrees with the subject. English speakers default to avoir — that's the mistake. If the subject is feminine, add -e; plural, add -s.",
+          "header": "Two stems in the present",
+          "body": "Venir splits: vien- for je, tu, il, ils — ven- for vous. That split is the only hard thing; endings are standard.",
+          "examples": [
+            {
+              "french": "je viens / ils viennent — but vous venez",
+              "english": "note the double-n in viennent: that's the stem shift"
+            }
+          ]
+        },
+        {
+          "header": "Past needs être, not avoir",
+          "body": "English speakers reach for avoir — wrong. Venir takes être, so the past participle agrees with the subject.",
+          "bullets": [
+            "Feminine subject → add -e: elle est venue",
+            "Plural subject → add -s: ils sont venus"
+          ],
           "examples": [
             {
               "french": "Elle est venue hier. Ils sont venus ensemble.",
@@ -4259,32 +4327,22 @@
           ]
         },
         {
-          "header": "A stem that splits in two",
-          "body": "The present tense uses two stems: vien- for je, tu, il, ils and ven- for nous and vous. That split is the only hard thing here — the endings are standard -ir endings.",
+          "header": "Which past tense, which future",
+          "body": "Use passé composé for a specific arrival. Use imparfait for repeated past coming. Use futur proche for plans — that's almost always how French handles near-future movement.",
           "examples": [
             {
-              "french": "je viens / on vient / ils viennent — but vous venez",
-              "english": "the double-n in ils viennent shows the stem shift"
+              "french": "Il venait tous les étés. → On va venir ce soir.",
+              "english": "He used to come every summer. → We're coming tonight."
             }
           ]
         },
         {
-          "header": "On the street",
-          "body": "Je viens drops to j'viens in speech. Tu viens ? said alone is an invitation — no verb de besoin, no extra words.",
+          "header": "Street register",
+          "body": "Je viens drops to j'viens in speech. Tu viens ? alone is an invitation — nothing else needed.",
           "examples": [
             {
               "french": "T'es venu ou pas ? J'viens, attends.",
               "english": "Did you come or not? I'm coming, hang on."
-            }
-          ]
-        },
-        {
-          "header": "When to use which tense",
-          "body": "Use the passé composé for a specific trip or arrival. Use the imparfait for habitual past coming — every Sunday, as a kid. Use futur proche for plans, which is almost always how French speakers talk about near-future movement.",
-          "examples": [
-            {
-              "french": "Il venait tous les étés. On va venir ce soir.",
-              "english": "He used to come every summer. We're coming tonight."
             }
           ]
         }
@@ -4626,17 +4684,17 @@
       "english": "to put / to put on",
       "explanation": [
         {
-          "header": "What mettre actually covers",
-          "body": "Mettre means to put, but it stretches further than English 'put'. You use it to put on clothes, to turn on a device, and to start something playing. English speakers miss these uses and reach for the wrong verb.",
+          "header": "Mettre goes further than 'put'",
+          "body": "Mettre means 'put', but English speakers miss two extra uses: putting on clothes and turning on a device or media.",
           "bullets": [
-            "put something somewhere: mettre les clés sur la table",
+            "put somewhere: mettre les clés sur la table",
             "put on clothing: mettre un manteau",
             "turn on / start: mettre la télé, mettre de la musique"
           ]
         },
         {
-          "header": "The irregular stem, tamed",
-          "body": "The present drops to a single-t stem: met-. That makes je mets, tu mets, il met all sound identical. Only mettez and mettent restore the double-t from the infinitive.",
+          "header": "One-t stem in the present",
+          "body": "The stem drops to met- for je, tu, il. Those three forms sound identical. Only mettez and mettent keep the double-t.",
           "examples": [
             {
               "french": "Tu mets quoi comme veste ?",
@@ -4649,8 +4707,8 @@
           ]
         },
         {
-          "header": "The past: mis",
-          "body": "The past participle is mis — irregular, so learn it once. Past tense questions about where you left something or how long you took are where mis earns its keep.",
+          "header": "Past participle: mis",
+          "body": "Mis is irregular — learn it once. It appears often in questions about time taken or where something was left.",
           "examples": [
             {
               "french": "T'as mis combien de temps ?",
@@ -4663,8 +4721,8 @@
           ]
         },
         {
-          "header": "On the street",
-          "body": "Je mets drops its vowel: j'mets. In fast speech you'll also hear j'mets ça là for 'I'll put that there', often replacing a whole description of action.",
+          "header": "Street: j'mets",
+          "body": "Je mets drops its vowel to j'mets. You'll hear j'mets ça là as a quick stand-in for a whole description of action.",
           "examples": [
             {
               "french": "J'mets le son, OK ?",
@@ -5004,26 +5062,26 @@
       "english": "to speak / to talk",
       "explanation": [
         {
-          "header": "The -er blueprint",
-          "body": "Parler is the model for every regular -er verb — about 80% of French verbs. Learn this shape and you know the default pattern for everything from écouter to travailler. Drop the -er, then add the endings.",
+          "header": "The default verb shape",
+          "body": "Parler is the model for regular -er verbs — about 80% of French. Drop -er, add the endings.",
           "bullets": [
-            "Infinitive stem: parl-",
+            "Stem: parl-",
             "Endings: -e, -es, -e, -e, -ez, -ent"
           ]
         },
         {
-          "header": "One spoken form covers five",
-          "body": "Je parle, tu parles, il parle, on parle, ils parlent are five spellings of the same sound: parl. Only vous parlez sounds different. In real conversation you follow context and subject pronouns, not sound, to track who's speaking.",
+          "header": "Five spellings, one sound",
+          "body": "Je/tu/il/on/ils all sound like parl. Only vous parlez sounds different. Context and pronouns tell you who's speaking.",
           "examples": [
             {
-              "french": "Il parle vite. Ils parlent vite.",
-              "english": "He speaks fast. They speak fast. — identical out loud"
+              "french": "Il parle vite. / Ils parlent vite.",
+              "english": "He speaks fast. / They speak fast. — identical out loud."
             }
           ]
         },
         {
-          "header": "Choosing your past tense",
-          "body": "Passé composé for a finished event; imparfait for ongoing habit or background. English speakers overuse the passé composé because 'I talked' feels like one clean thing — but 'we always talked' or 'she was talking' both need the imparfait.",
+          "header": "Picking your past tense",
+          "body": "Passé composé = finished event. Imparfait = habit or background. English speakers overuse passé composé — 'we always talked' needs imparfait.",
           "examples": [
             {
               "french": "J'ai parlé au médecin ce matin.",
@@ -5036,12 +5094,16 @@
           ]
         },
         {
-          "header": "Street contractions worth knowing",
-          "body": "J'vais parler and t'as parlé are standard spoken compression — the full forms sound formal in casual conversation.",
+          "header": "Street contractions",
+          "body": "J'vais parler and t'as parlé are standard casual speech. The full forms sound stiff in conversation.",
           "examples": [
             {
-              "french": "T'as parlé à qui ? J'vais parler à lui demain.",
-              "english": "Who did you talk to? I'm going to talk to him tomorrow."
+              "french": "T'as parlé à qui ?",
+              "english": "Who did you talk to?"
+            },
+            {
+              "french": "J'vais parler à lui demain.",
+              "english": "I'm going to talk to him tomorrow."
             }
           ]
         }
@@ -5382,27 +5444,27 @@
       "explanation": [
         {
           "header": "Aimer is stronger than 'like'",
-          "body": "Bare aimer means love for people and strong preference for things. Add bien to soften it to ordinary liking. English speakers skip bien and accidentally declare love for coffee.",
+          "body": "Bare aimer means love for people, strong preference for things. Add bien to dial it back to ordinary liking.",
           "examples": [
             {
-              "french": "J'aime bien ce quartier. J'aime Marie.",
-              "english": "I like this neighbourhood. I love Marie."
+              "french": "J'aime Marie. / J'aime bien ce quartier.",
+              "english": "I love Marie. / I like this neighbourhood."
             }
           ]
         },
         {
-          "header": "One pronunciation, correct spelling",
-          "body": "J'aime is elision — required French, not slang. The -ent on ils aiment is silent, so j'aime and ils aiment sound identical. Context tells them apart.",
+          "header": "One spelling mistake to avoid",
+          "body": "Ils aiment ends in silent -ent, so j'aime and ils aiment sound identical. Context separates them.",
           "examples": [
             {
               "french": "j'aime / tu aimes / il aime / ils aiment",
-              "english": "four spellings, two sounds: aim and aimez"
+              "english": "two sounds: 'aim' and 'aimez'"
             }
           ]
         },
         {
-          "header": "Street forms to recognise",
-          "body": "Tu drops to t' before a vowel in fast speech, so t'aimes, t'as aimé, t'aimais are what you'll hear. Je vais aimer compresses to j'vais aimer.",
+          "header": "Street forms you'll hear",
+          "body": "Tu drops to t' before a vowel in fast speech. Je vais aimer compresses to j'vais aimer.",
           "examples": [
             {
               "french": "T'aimes ça ? T'as aimé le film ?",
@@ -5411,12 +5473,16 @@
           ]
         },
         {
-          "header": "Which past tense, when",
-          "body": "Use passé composé for a finished reaction — you saw something, you liked it or you didn't. Use imparfait for an ongoing state in the past: what you used to like or what you liked throughout a period.",
+          "header": "Passé composé vs imparfait",
+          "body": "Use passé composé for a finished reaction. Use imparfait for an ongoing state or habit in the past.",
           "examples": [
             {
-              "french": "J'ai aimé la soirée. J'aimais bien ce café avant.",
-              "english": "I liked the evening. I used to like that café."
+              "french": "J'ai aimé la soirée.",
+              "english": "I liked the evening. (it's over)"
+            },
+            {
+              "french": "J'aimais bien ce café avant.",
+              "english": "I used to like that café."
             }
           ]
         }
@@ -5756,30 +5822,30 @@
       "english": "to buy",
       "explanation": [
         {
-          "header": "The stem change, explained",
-          "body": "Acheter has a silent e in the stem. When the ending adds no pronounced vowel, French props that e up with an accent grave — è — so the syllable stays audible. When the ending is already pronounced, like in vous achetez, the stem doesn't need help.",
+          "header": "The stem-change rule",
+          "body": "Acheter has a silent e in its stem. When the ending adds no vowel sound, French adds è so that syllable stays audible.",
           "bullets": [
             "è in: j'achète, tu achètes, il achète, ils achètent",
-            "plain e in: nous achetons (not in this course), vous achetez"
+            "plain e in: vous achetez (ending already voiced)"
           ]
         },
         {
-          "header": "What acheter actually covers",
-          "body": "Use acheter any time money changes hands for goods. The error English speakers make is reaching for prendre — 'I'll take this' in a shop is j'achète ça, not je prends ça, unless you literally mean grabbing it.",
+          "header": "Acheter, not prendre",
+          "body": "Use acheter whenever money changes hands for goods. English speakers default to prendre ('take') in shops — that's the mistake.",
           "examples": [
             {
-              "french": "J'achète ce truc.",
-              "english": "I'm buying this thing."
+              "french": "J'achète ça.",
+              "english": "I'm buying this. (not je prends ça)"
             },
             {
-              "french": "On a acheté des clopes au bureau de tabac.",
+              "french": "On a acheté des clopes au tabac.",
               "english": "We bought cigarettes at the tabac."
             }
           ]
         },
         {
-          "header": "On the street",
-          "body": "T'achètes replaces tu achètes completely in casual speech. J'vais acheter is the default for 'I'm going to buy' — a plan, an intention, something imminent.",
+          "header": "Street forms",
+          "body": "T'achètes fully replaces tu achètes in casual speech. J'vais acheter is the default for any near-future plan.",
           "examples": [
             {
               "french": "T'achètes quoi ?",
@@ -5792,12 +5858,12 @@
           ]
         },
         {
-          "header": "Which past tense to pick",
-          "body": "Nearly every real purchase is a completed event, so passé composé dominates. Imparfait fits repeated habit only.",
+          "header": "Which past tense",
+          "body": "Real purchases are completed events — passé composé dominates. Imparfait is for repeated past habit only.",
           "examples": [
             {
-              "french": "J'ai acheté ça hier. / T'as acheté ça où ?",
-              "english": "I bought that yesterday. / Where'd you buy that?"
+              "french": "T'as acheté ça où ?",
+              "english": "Where'd you buy that?"
             },
             {
               "french": "Avant, j'achetais tout en ligne.",
@@ -6134,28 +6200,36 @@
       "english": "to eat",
       "explanation": [
         {
-          "header": "A mostly regular -er verb",
-          "body": "Manger follows the standard -er pattern with one small fix: French keeps a soft g sound throughout, so whenever an ending would harden the g, an e stays in to protect it. That's why the imparfait gives you je mangeais, not je mangais.",
+          "header": "Mostly regular, one fix",
+          "body": "Manger follows the standard -er pattern. French keeps the g soft, so an e stays before any ending that would harden it.",
           "examples": [
             {
-              "french": "je mangeais, tu mangeais, il mangeait",
-              "english": "the e holds the soft g in every imparfait form"
+              "french": "je mangeais ✓ / je mangais ✗",
+              "english": "the e protects the soft g in every imparfait form"
             }
           ]
         },
         {
-          "header": "Which tense to reach for",
-          "body": "Use the passé composé for a finished meal; use the imparfait for habits or interrupted eating. The futur proche covers any plan, near or far.",
+          "header": "Which tense, which meaning",
+          "body": "Passé composé = meal is done. Imparfait = habit or interrupted eating. Futur proche = any plan.",
           "examples": [
             {
-              "french": "J'ai mangé à midi. Je mangeais quand il a appelé. On va manger où ?",
-              "english": "I ate at noon. I was eating when he called. Where are we going to eat?"
+              "french": "J'ai mangé à midi.",
+              "english": "I ate at noon."
+            },
+            {
+              "french": "Je mangeais quand il a appelé.",
+              "english": "I was eating when he called."
+            },
+            {
+              "french": "On va manger où ?",
+              "english": "Where are we going to eat?"
             }
           ]
         },
         {
-          "header": "On mange ? as an invitation",
-          "body": "Rising intonation on on mange ? turns it into 'shall we eat?' — common and natural. The present tense doubles as a near-future invitation in spoken French.",
+          "header": "On mange ? as an invite",
+          "body": "Rising intonation turns on mange ? into 'shall we eat?' Present tense doubles as a near-future invitation in spoken French.",
           "examples": [
             {
               "french": "On mange ? — Ouais, j'ai faim.",
@@ -6165,11 +6239,15 @@
         },
         {
           "header": "Street forms to recognise",
-          "body": "T'as mangé compresses tu as; j'vais manger drops the e from je. Both are normal in casual speech — not sloppy, just fast.",
+          "body": "T'as mangé compresses tu as. J'vais manger drops the e from je. Both are normal fast speech, not errors.",
           "examples": [
             {
-              "french": "T'as mangé ce matin ? J'vais manger un truc vite fait.",
-              "english": "Did you eat this morning? I'm going to grab something quick."
+              "french": "T'as mangé ce matin ?",
+              "english": "Did you eat this morning?"
+            },
+            {
+              "french": "J'vais manger un truc vite fait.",
+              "english": "I'm going to grab something quick."
             }
           ]
         }
@@ -6507,38 +6585,46 @@
       "english": "to leave",
       "explanation": [
         {
-          "header": "Partir means leaving, not taking",
-          "body": "Partir is about the person going — it never takes an object. English 'leave' can take one ('I'm leaving the house'), but partir can't. For that, use quitter. Partir just says you're gone.",
+          "header": "Partir vs quitter",
+          "body": "Partir means you're leaving — it never takes an object. If you name a place you're leaving, use quitter instead.",
           "examples": [
             {
-              "french": "Je pars. / Je quitte la maison.",
-              "english": "I'm leaving. / I'm leaving the house."
+              "french": "Je pars.",
+              "english": "I'm leaving."
+            },
+            {
+              "french": "Je quitte la maison.",
+              "english": "I'm leaving the house."
             }
           ]
         },
         {
-          "header": "The -ir pattern here is irregular",
-          "body": "Most -ir verbs keep a stem like finiss-, but partir drops down to par- in the singular. The plural restores the t: ils partent. The singular has no ending sound at all — je pars, tu pars, il part are all one syllable: par.",
+          "header": "Irregular singular stem",
+          "body": "Most -ir verbs keep a long stem, but partir shrinks to par- in the singular. The plural restores the t.",
           "examples": [
             {
-              "french": "Il part à midi. Ils partent demain.",
-              "english": "He's leaving at noon. They're leaving tomorrow."
+              "french": "Il part à midi. / Ils partent demain.",
+              "english": "He's leaving at noon. / They're leaving tomorrow."
             }
           ]
         },
         {
-          "header": "Passé composé uses être",
-          "body": "Partir takes être, not avoir, in the passé composé — so the past participle agrees with the subject. Feminine adds -e, mixed or masculine plural adds -s.",
+          "header": "Past needs être",
+          "body": "Partir uses être in the passé composé, so the past participle agrees with the subject. Add -e for feminine, -s for plural.",
           "examples": [
             {
-              "french": "Elle est partie tôt. On est partis sans toi.",
-              "english": "She left early. We left without you."
+              "french": "Elle est partie tôt.",
+              "english": "She left early."
+            },
+            {
+              "french": "On est partis sans toi.",
+              "english": "We left without you."
             }
           ]
         },
         {
-          "header": "On part ? is a full sentence",
-          "body": "On part ? with rising intonation is the standard spoken way to say 'shall we go?' — short, natural, used constantly. J'vais partir and on va partir cover any near-future plan.",
+          "header": "On part ? in real speech",
+          "body": "On part ? with rising intonation means 'shall we go?' — it's the everyday way to suggest leaving.",
           "examples": [
             {
               "french": "On part ? — Ouais, j'vais partir dans cinq minutes.",
@@ -6880,32 +6966,44 @@
       "english": "to finish",
       "explanation": [
         {
-          "header": "The -ir pattern that actually repeats",
-          "body": "Finir is the model for regular -ir verbs. The key move: plural forms grow an -iss- block that singular forms don't have. That block is predictable — once you see it here, you own it for choisir, réfléchir, remplir, and dozens more.",
+          "header": "The -iss- rule",
+          "body": "Finir is the model regular -ir verb. Plural forms add -iss-; singular forms don't.",
           "examples": [
             {
-              "french": "je finis / nous finissons — il choisit / ils choisissent",
+              "french": "il finit / ils finissent",
               "english": "singular: no -iss- / plural: -iss- every time"
+            },
+            {
+              "french": "il choisit / ils choisissent",
+              "english": "same rule, different verb"
             }
           ]
         },
         {
-          "header": "Which tense to reach for",
-          "body": "Use passé composé for a finished event: j'ai fini. Use imparfait for an ongoing or repeated past state: je finissais toujours tard. English speakers often default to passé composé for both — that's the mistake.",
+          "header": "Passé composé vs. imparfait",
+          "body": "Use passé composé for one finished event. Use imparfait for repeated or ongoing past action. English speakers overuse passé composé — that's the one mistake to avoid.",
           "examples": [
             {
-              "french": "J'ai fini le rapport hier. Je finissais toujours à minuit.",
-              "english": "I finished the report yesterday. I always finished at midnight."
+              "french": "J'ai fini le rapport hier.",
+              "english": "I finished the report yesterday."
+            },
+            {
+              "french": "Je finissais toujours à minuit.",
+              "english": "I always finished at midnight."
             }
           ]
         },
         {
-          "header": "Street use: c'est fini",
-          "body": "C'est fini is the phrase you'll hear constantly — relationships, arguments, a film, leftover pizza. It's not conjugated for person; it just means 'it's over' or 'it's done'. Futur proche contracts in speech: j'vais finir, not je vais finir.",
+          "header": "Street speech",
+          "body": "C'est fini means 'it's over' or 'it's done' — for anything, not conjugated for person. Futur proche contracts: j'vais finir, not je vais finir.",
           "examples": [
             {
-              "french": "C'est fini entre eux. J'vais finir ça ce soir.",
-              "english": "It's over between them. I'm going to finish that tonight."
+              "french": "C'est fini entre eux.",
+              "english": "It's over between them."
+            },
+            {
+              "french": "J'vais finir ça ce soir.",
+              "english": "I'm going to finish that tonight."
             }
           ]
         }
@@ -7238,18 +7336,18 @@
       "english": "to give",
       "explanation": [
         {
-          "header": "A clean -er verb, no surprises",
-          "body": "Donner is fully regular. Learn the endings here and every other regular -er verb costs you nothing extra. The one spoken fact worth knowing: je donne, tu donnes, il donne, and ils donnent all sound identical — the written -s and -nt are silent.",
+          "header": "Fully regular, no surprises",
+          "body": "Donner is a clean -er verb. Every regular -er verb you learn later follows the same endings.",
           "examples": [
             {
-              "french": "Je donne mon numéro. Ils donnent quoi ?",
-              "english": "I'm giving my number. What are they giving?"
+              "french": "je donne / tu donnes / ils donnent",
+              "english": "all three sound identical — the -s and -nt are silent"
             }
           ]
         },
         {
-          "header": "When donner gets chosen",
-          "body": "Use donner for handing something over, giving information, or producing a result. English speakers sometimes reach for offrir (to offer as a gift) when donner is right — donner covers everyday giving, offrir is for wrapped presents.",
+          "header": "When to use donner",
+          "body": "Use donner for everyday giving: handing something over, sharing information, or producing a result. Reserve offrir for wrapped gifts.",
           "examples": [
             {
               "french": "Tu me donnes l'adresse ?",
@@ -7263,7 +7361,7 @@
         },
         {
           "header": "Street forms to recognise",
-          "body": "Donne-moi is the direct imperative — short, normal, not rude by itself. J'vais donner is how futur proche sounds at speed; the full je vais is there in writing but the vowel drops in real speech.",
+          "body": "Donne-moi is the direct imperative — short and neutral, not rude. J'vais donner is futur proche at real speed; the vowel drops.",
           "examples": [
             {
               "french": "Donne-moi deux minutes.",
@@ -7276,8 +7374,8 @@
           ]
         },
         {
-          "header": "Past tense: passé composé first",
-          "body": "Donner takes avoir, and the past participle donné is regular. Reach for j'ai donné for completed handovers. Imparfait — je donnais — covers repeated past giving: 'I used to give', 'I was giving every week'.",
+          "header": "Past: two tenses, one participle",
+          "body": "Donner takes avoir in the past. Passé composé covers completed handovers; imparfait covers repeated or ongoing past giving.",
           "examples": [
             {
               "french": "T'as donné ton avis ?",
@@ -7635,8 +7733,8 @@
       "title": "Politeness conditionals: je voudrais, je pourrais, il faudrait",
       "explanation": [
         {
-          "header": "Why these forms sound polite",
-          "body": "Every form here is the conditional tense — French's built-in softener. The conditional adds distance between what you want and what you're demanding, which is exactly what politeness is. English does the same thing: 'I want' is abrupt; 'I would like' isn't.",
+          "header": "Why conditional = polite",
+          "body": "Every form here is the conditional tense. It adds distance between what you want and what you're demanding — that distance is politeness.",
           "examples": [
             {
               "french": "Je veux un café. → Je voudrais un café.",
@@ -7645,13 +7743,13 @@
           ]
         },
         {
-          "header": "Choosing the right form",
-          "body": "Voudrais and aimerais are near-synonyms at a counter or in a restaurant; either works. Pourrais asks for permission or makes a suggestion — it's 'could I' not 'would I like'. Faudrait states what needs to happen without pointing at anyone.",
+          "header": "Pick the right form",
+          "body": "Each form does a different job. Mixing them up sounds odd.",
           "bullets": [
-            "voudrais / aimerais — ordering, requesting something for yourself",
-            "pourrais / pourriez — asking permission, offering a suggestion",
-            "faudrait — 'we'd need to', 'one would have to'",
-            "ce serait / ça serait — evaluating an option: 'that would be...'"
+            "voudrais / aimerais — ordering or requesting something for yourself",
+            "pourrais / pourriez — asking permission or making a suggestion",
+            "faudrait — 'we'd need to', without pointing at anyone",
+            "ce serait / ça serait — evaluating an option: 'that would be…'"
           ],
           "examples": [
             {
@@ -7662,7 +7760,7 @@
         },
         {
           "header": "Street forms drop syllables",
-          "body": "Il faudrait loses its subject in speech — faudrait alone is standard in conversation. Ce serait shifts to ça serait because ça is the default spoken pronoun for 'it/that'. Neither is sloppy; both are expected.",
+          "body": "Il faudrait loses its subject in speech; faudrait alone is standard. Ce serait shifts to ça serait — ça is the default spoken pronoun for 'it/that'. Neither is sloppy; both are expected.",
           "examples": [
             {
               "french": "Faudrait partir. Ça serait bien.",
@@ -7671,8 +7769,8 @@
           ]
         },
         {
-          "header": "The English-speaker trap",
-          "body": "Don't translate 'can I' as je peux — in a polite request je pourrais is the natural choice, just as 'could I' is softer than 'can I'. Using je veux in a shop or restaurant reads as rude; voudrais costs nothing to swap in.",
+          "header": "Two English-speaker traps",
+          "body": "Don't use je veux in a shop — it reads as rude. Don't translate 'can I' as je peux; je pourrais is the polite default, just as 'could I' is softer than 'can I'.",
           "examples": [
             {
               "french": "Je pourrais avoir l'addition ? J'aimerais voir la carte.",
@@ -7957,8 +8055,8 @@
       "english": "to believe / to think",
       "explanation": [
         {
-          "header": "What croire actually covers",
-          "body": "Croire means both 'to believe' and 'to think/reckon' — it carries opinion as much as belief. Use it where English says 'I think so', 'I don't think so', or 'Do you think...?' Don't reach for penser every time; croire is what people actually say.",
+          "header": "Believe or think — same word",
+          "body": "Croire covers both 'to believe' and 'to think/reckon'. Don't default to penser — croire is what people actually say.",
           "examples": [
             {
               "french": "J'crois que c'est possible.",
@@ -7971,26 +8069,30 @@
           ]
         },
         {
-          "header": "The stem shift: croi- vs croy-",
-          "body": "All irregular -re verbs in this family swap their stem before endings that need a vowel. Croi- handles je/tu/il/ils; croy- appears whenever the ending starts with a vowel — croyez, croyais, croyaient. That single spelling rule covers the whole table.",
+          "header": "croi- vs croy-: one rule",
+          "body": "The stem is croi- before consonants, croy- before vowels. That one rule covers every irregular form.",
           "bullets": [
             "croi-: je crois, tu crois, il croit, ils croient",
             "croy-: vous croyez, je croyais, il croyait, ils croyaient"
           ]
         },
         {
-          "header": "j'crois pas — the ready-made phrase",
-          "body": "J'crois pas is spoken French for 'I don't think so' — it's a filler-level reaction, not a full sentence. Pair it with que for a clause: j'crois pas que c'est grave.",
+          "header": "j'crois pas — ready to use",
+          "body": "J'crois pas means 'I don't think so' — reaction-level, no full sentence needed. Add que for a clause.",
           "examples": [
             {
               "french": "J'crois pas. / J'crois que oui.",
               "english": "I don't think so. / I think so."
+            },
+            {
+              "french": "J'crois pas que c'est grave.",
+              "english": "I don't think it's serious."
             }
           ]
         },
         {
-          "header": "Past tense: which one and why",
-          "body": "The passé composé j'ai cru covers a finished moment of believing. The imparfait je croyais describes a background state — something you believed for a stretch of time. Because opinions are usually ongoing states, croyais is the more natural past in storytelling.",
+          "header": "Which past tense?",
+          "body": "Opinions are usually ongoing states, so imparfait (croyais) is more natural in storytelling. Use passé composé for a single finished moment of believing.",
           "examples": [
             {
               "french": "Je croyais que c'était vrai.",
@@ -7998,7 +8100,7 @@
             },
             {
               "french": "J'ai cru ce qu'il m'a dit.",
-              "english": "I believed what he told me. (single moment)"
+              "english": "I believed what he told me. (one moment)"
             }
           ]
         }
@@ -8342,12 +8444,12 @@
       "english": "to think",
       "explanation": [
         {
-          "header": "penser que vs penser à",
-          "body": "penser que introduces a thought or opinion — j'pense que c'est bon. penser à means to have someone or something on your mind. Mixing the two is the main English-speaker slip.",
+          "header": "que vs à — get this right",
+          "body": "Penser que introduces an opinion. Penser à means someone or something is on your mind. Swapping them is the main English-speaker error.",
           "examples": [
             {
-              "french": "J'pense que c'est possible.",
-              "english": "I think it's possible."
+              "french": "J'pense que c'est bon.",
+              "english": "I think it's good."
             },
             {
               "french": "Je pense à toi.",
@@ -8356,8 +8458,8 @@
           ]
         },
         {
-          "header": "j'pense opens every opinion",
-          "body": "In real speech j'pense que is as automatic as 'I think' in English. The ne in je ne pense pas disappears entirely — you'll only ever hear j'pense pas.",
+          "header": "J'pense opens every opinion",
+          "body": "In real speech, j'pense que is as automatic as 'I think'. Negation drops ne entirely — you'll only hear j'pense pas.",
           "examples": [
             {
               "french": "J'pense que c'est chaud.",
@@ -8370,8 +8472,8 @@
           ]
         },
         {
-          "header": "Regular -er: one spoken stem",
-          "body": "All six present forms share the stem pens-. Four of them — je, tu, il, ils — sound identical: pense. Only pensez and pensons (→ on pense) differ audibly, so context carries the meaning.",
+          "header": "One spoken stem, four identical sounds",
+          "body": "All six present forms use pens-. Je, tu, il, and ils all sound like pense — context tells them apart.",
           "examples": [
             {
               "french": "Il pense quoi ? On pense pareil.",
@@ -8380,8 +8482,8 @@
           ]
         },
         {
-          "header": "Past and future are straightforward",
-          "body": "The participle is pensé — drop -er, add -é. Futur proche is j'vais penser, imparfait is je pensais. None of these have irregularities.",
+          "header": "Past and future: no surprises",
+          "body": "Participle is pensé — drop -er, add -é. Futur proche and imparfait are fully regular.",
           "examples": [
             {
               "french": "T'as pensé à ça ? J'pensais que t'étais là.",
@@ -8727,8 +8829,8 @@
       "english": "to pass / to stop by",
       "explanation": [
         {
-          "header": "Two auxiliaries, one verb",
-          "body": "Passer uses être in the passé composé when it means moving through or stopping by with no object — je suis passé. Switch to avoir the moment it takes a direct object — j'ai passé une bonne soirée. The object is the trigger.",
+          "header": "Two auxiliaries, one trigger",
+          "body": "Passer takes être when no direct object follows. Add a direct object and it switches to avoir.",
           "examples": [
             {
               "french": "Il est passé ce matin.",
@@ -8741,21 +8843,39 @@
           ]
         },
         {
-          "header": "The meanings worth knowing",
-          "body": "Passer covers passing by, dropping in, and spending time — three distinct English verbs. Context decides which reading. Passer also slots into fixed chunks you'll hear constantly.",
-          "bullets": [
-            "j'passe te voir = I'll drop in on you",
-            "ça passe = it's acceptable / it fits",
-            "ça va passer = it'll pass (pain, a phase)"
+          "header": "Three English verbs, one French",
+          "body": "Passer covers passing by, dropping in, and spending time. Context decides the meaning.",
+          "examples": [
+            {
+              "french": "Je passe devant chez toi.",
+              "english": "I'm passing by your place."
+            },
+            {
+              "french": "J'ai passé une bonne soirée.",
+              "english": "I had a good evening."
+            }
           ]
         },
         {
-          "header": "Street form is simple",
-          "body": "Je passe compresses to j'passe; je suis passé to j'suis passé. The rest follows the standard ne-drop and t'es rules you already have.",
+          "header": "Fixed chunks you'll hear daily",
+          "body": "These three phrases are ready-made. Learn them whole.",
+          "bullets": [
+            "j'passe te voir — I'll drop in on you",
+            "ça passe — it's acceptable / it fits",
+            "ça va passer — it'll pass (pain, a phase)"
+          ]
+        },
+        {
+          "header": "Street forms",
+          "body": "Je drops its vowel before a consonant cluster. The rest follows standard ne-drop rules.",
           "examples": [
             {
               "french": "J'passe demain, ça te va ?",
-              "english": "I'll stop by tomorrow, does that work for you?"
+              "english": "I'll stop by tomorrow, does that work?"
+            },
+            {
+              "french": "J'suis passé hier soir.",
+              "english": "I stopped by last night."
             }
           ]
         }
@@ -9088,8 +9208,8 @@
       "english": "to arrive / to manage / to happen",
       "explanation": [
         {
-          "header": "Three meanings, one verb",
-          "body": "Arriver means to arrive, but also to happen (ça arrive) and to manage to do something (arriver à + infinitive). The third meaning catches English speakers off guard — j'arrive pas à dormir has nothing to do with travel.",
+          "header": "Three meanings, not one",
+          "body": "Arriver means to arrive, to happen, and to manage to do something. The third meaning trips up English speakers every time.",
           "examples": [
             {
               "french": "J'arrive pas à ouvrir ça.",
@@ -9102,22 +9222,30 @@
           ]
         },
         {
-          "header": "Être, not avoir, in the past",
-          "body": "Like aller and partir, arriver uses être in the passé composé. That means the past participle agrees with the subject — arrivée for a woman, arrivés for a group.",
+          "header": "The past takes être",
+          "body": "Like aller and partir, arriver uses être in the passé composé. The past participle agrees with the subject.",
+          "bullets": [
+            "woman: elle est arrivée",
+            "group: on est arrivés"
+          ],
           "examples": [
             {
-              "french": "Elle est arrivée en retard. On est arrivés.",
-              "english": "She arrived late. We arrived."
+              "french": "Elle est arrivée en retard.",
+              "english": "She arrived late."
             }
           ]
         },
         {
-          "header": "The one form you'll say constantly",
-          "body": "J'arrive ! means 'coming!' — you'll say it every time someone calls you. On the street, j'arrive pas à is the everyday replacement for je ne peux pas when something just won't work.",
+          "header": "Two phrases you'll use daily",
+          "body": "J'arrive ! means 'coming!' — say it every time someone calls you. J'arrive pas à replaces je ne peux pas when something just won't work.",
           "examples": [
             {
-              "french": "J'arrive ! — J'arrive pas à me lever.",
-              "english": "Coming! — I can't manage to get up."
+              "french": "J'arrive !",
+              "english": "Coming!"
+            },
+            {
+              "french": "J'arrive pas à me lever.",
+              "english": "I can't manage to get up."
             }
           ]
         }
@@ -9452,8 +9580,8 @@
       "english": "to stay",
       "explanation": [
         {
-          "header": "The false friend that bites everyone",
-          "body": "Rester means to stay, not to rest. English 'rest' is se reposer. Translating 'I'm staying home' as je me repose is the first mistake; the second is reaching for rester when you mean to rest.",
+          "header": "Rester means stay, not rest",
+          "body": "This is a false friend. 'To rest' is se reposer — a different verb entirely.",
           "examples": [
             {
               "french": "Je reste à la maison.",
@@ -9466,18 +9594,18 @@
           ]
         },
         {
-          "header": "Il reste — a second job",
-          "body": "In the third person, rester also means 'there is/are ... left'. This impersonal use is everywhere in daily speech and has nothing to do with staying anywhere.",
+          "header": "Il reste = there's ... left",
+          "body": "In third person, rester means 'there is/are ... left'. This has nothing to do with staying.",
           "examples": [
             {
-              "french": "Il reste du pain ? Il en reste deux.",
-              "english": "Is there any bread left? There are two left."
+              "french": "Il reste du pain ? — Il en reste deux.",
+              "english": "Is there any bread left? — There are two left."
             }
           ]
         },
         {
-          "header": "Passé composé needs être",
-          "body": "Rester takes être as its auxiliary, so the past participle agrees with the subject. This is the same group as partir, arriver, and aller — verbs of position change or, here, position held.",
+          "header": "Past tense takes être",
+          "body": "Rester uses être, not avoir. The past participle agrees with the subject.",
           "examples": [
             {
               "french": "Elle est restée. On est restés.",
@@ -9486,8 +9614,8 @@
           ]
         },
         {
-          "header": "Street forms",
-          "body": "Je compresses before a consonant: j'reste, j'restais, j'vais rester. Tu es resté becomes t'es resté in real speech.",
+          "header": "Street contractions",
+          "body": "Je drops its e before a consonant. Tu es resté collapses to t'es resté in real speech.",
           "examples": [
             {
               "french": "J'reste là. T'es resté combien de temps ?",
@@ -9832,7 +9960,7 @@
       "explanation": [
         {
           "header": "No preposition after aider",
-          "body": "English helps people; French helps them too, directly. Aider takes its object with no preposition. Adding 'à' before a person is the reflex error English speakers make. Reserve 'aider à + infinitive' only when saying what task you're helping with.",
+          "body": "Aider takes its object directly — no 'à' before a person. Add 'à + infinitive' only when naming the task.",
           "examples": [
             {
               "french": "Tu peux m'aider ?",
@@ -9845,32 +9973,40 @@
           ]
         },
         {
-          "header": "Regular -er: the spoken core",
-          "body": "Drop -er, add the endings. In speech, je/tu/il/on all sound identical: aide. You distinguish them by pronoun alone. The -ent in ils aident is silent.",
+          "header": "Regular -er, four spellings one sound",
+          "body": "Drop -er, add the endings. Je, tu, il, and on all sound identical: aide. The -ent in ils aident is silent.",
           "examples": [
             {
-              "french": "j'aide, t'aides, il aide, on aide — same sound",
+              "french": "j'aide, t'aides, il aide, on aide",
               "english": "four spellings, one pronunciation"
             }
           ]
         },
         {
-          "header": "On the street",
-          "body": "Tu aides contracts to t'aides. The imperative aide ! is the quickest way to ask for help; pair it with moi for emphasis. For polite requests, tu peux m'aider ? is what you actually hear — not inversion.",
+          "header": "Street forms and real requests",
+          "body": "Tu aides contracts to t'aides. Real spoken requests use tu peux m'aider ?, not inversion.",
           "examples": [
             {
-              "french": "Aide-moi ! / T'as aidé quelqu'un ?",
-              "english": "Help me! / Did you help someone?"
+              "french": "Aide-moi !",
+              "english": "Help me!"
+            },
+            {
+              "french": "T'as aidé quelqu'un ?",
+              "english": "Did you help someone?"
             }
           ]
         },
         {
-          "header": "Picking the right past tense",
-          "body": "Use passé composé for a completed act of helping. Use imparfait for ongoing or repeated help in the past — a job, a habit, a background state.",
+          "header": "Passé composé vs. imparfait",
+          "body": "Use passé composé for a completed act. Use imparfait for repeated or ongoing help in the past.",
           "examples": [
             {
-              "french": "Il m'a aidé hier. Il m'aidait tout le temps.",
-              "english": "He helped me yesterday. He was always helping me."
+              "french": "Il m'a aidé hier.",
+              "english": "He helped me yesterday."
+            },
+            {
+              "french": "Il m'aidait tout le temps.",
+              "english": "He was always helping me."
             }
           ]
         }
@@ -10221,27 +10357,31 @@
       "explanation": [
         {
           "header": "No preposition — ever",
-          "body": "Regarder takes its object directly, no 'at' required. English 'look at' and 'watch' both map to regarder. Adding 'à' after regarder is the main English-speaker error.",
+          "body": "English says 'look at' or 'watch'. French says regarder + object, nothing in between. Adding 'à' after regarder is the classic English-speaker error.",
           "examples": [
             {
-              "french": "Je regarde la télé. Il regarde le ciel.",
-              "english": "I'm watching TV. He's looking at the sky."
+              "french": "Je regarde la télé.",
+              "english": "I'm watching TV."
+            },
+            {
+              "french": "Il regarde le ciel.",
+              "english": "He's looking at the sky."
             }
           ]
         },
         {
-          "header": "One sound, four people",
-          "body": "Je, tu, il, and on all sound identical — regarde. The -ent of ils regardent is also silent. You only hear a new ending at vous regardez.",
+          "header": "Four spellings, one sound",
+          "body": "Je, tu, il, and on all sound identical. The -ent in ils regardent is also silent — you only hear a new ending at vous regardez.",
           "examples": [
             {
-              "french": "j'regarde, tu regardes, il regarde, on regarde — même son.",
+              "french": "j'regarde / tu regardes / il regarde / on regarde",
               "english": "four spellings, one sound"
             }
           ]
         },
         {
-          "header": "Regarde alone = 'look'",
-          "body": "As a standalone command between friends, regarde ! means 'look!' or 'check this out.' It works as a filler-level attention-getter, the way English speakers say 'look—' before making a point.",
+          "header": "Regarde ! as attention-getter",
+          "body": "Alone, regarde ! means 'look!' or 'check this out.' Friends use it constantly, also to open a point — like English 'look—' before an argument.",
           "examples": [
             {
               "french": "Regarde, c'est pas possible.",
@@ -10250,12 +10390,16 @@
           ]
         },
         {
-          "header": "Past: passé composé, not imparfait",
-          "body": "Use j'ai regardé for a completed viewing — you watched a film, a match, an episode. Use je regardais for the background state — what was on, what you were in the middle of watching when something else happened.",
+          "header": "Passé composé vs imparfait",
+          "body": "Use j'ai regardé for a finished viewing. Use je regardais for background — what was on when something else happened.",
           "examples": [
             {
-              "french": "J'ai regardé le film. Je regardais la télé quand il est arrivé.",
-              "english": "I watched the film. I was watching TV when he arrived."
+              "french": "J'ai regardé le film.",
+              "english": "I watched the film."
+            },
+            {
+              "french": "Je regardais la télé quand il est arrivé.",
+              "english": "I was watching TV when he arrived."
             }
           ]
         }
@@ -10592,8 +10736,8 @@
       "english": "to find",
       "explanation": [
         {
-          "header": "What trouver actually covers",
-          "body": "Trouver means to find a thing and to find (think) something is a certain way. The opinion use trips English speakers: 'I find it interesting' is j'trouve ça intéressant, not a form of penser or croire. Both meanings run through the same verb.",
+          "header": "Two meanings, one verb",
+          "body": "Trouver means to find a thing and to find/think something is a certain way. English speakers reach for penser — don't.",
           "examples": [
             {
               "french": "J'trouve pas mes clés.",
@@ -10606,32 +10750,40 @@
           ]
         },
         {
-          "header": "One form does most of the work",
-          "body": "Trouve covers je, il, and on in speech — three subjects, one pronunciation. The -ent ending of ils trouvent is silent, so ils trouvent and il trouve sound identical. Context tells you which.",
+          "header": "Three subjects, one sound",
+          "body": "On trouve, il trouve, and ils trouvent are identical out loud. Context tells you which is which.",
           "examples": [
             {
-              "french": "On trouve, il trouve, ils trouvent — same sound.",
-              "english": "three subjects, one spoken form"
+              "french": "on trouve / il trouve / ils trouvent",
+              "english": "same pronunciation, three subjects"
             }
           ]
         },
         {
-          "header": "Street form: j'trouve que",
-          "body": "J'trouve que is your second opinion frame after j'crois que. J'trouve pas covers both 'I don't think so' and 'I can't find it'. Tu trouves ? alone means 'you think so?' — a complete sentence in French conversation.",
+          "header": "Street opinion frames",
+          "body": "J'trouve que is your second opinion opener after j'crois que. Tu trouves ? alone means 'you think so?'",
           "examples": [
             {
               "french": "J'trouve que c'est chaud. — Tu trouves ?",
               "english": "I think it's rough. — You think so?"
+            },
+            {
+              "french": "J'trouve pas.",
+              "english": "I don't think so. / I can't find it."
             }
           ]
         },
         {
           "header": "Past and near future",
-          "body": "The passé composé is j'ai trouvé — fully regular, no surprises. Reach for the imparfait when setting a scene: je trouvais ça bien describes an ongoing past opinion. Futur proche je vais trouver works for plans and reassurances.",
+          "body": "Passé composé is j'ai trouvé — fully regular. Use imparfait for past opinions; futur proche for plans.",
           "examples": [
             {
-              "french": "J'ai trouvé. On va trouver une solution.",
-              "english": "I found it. We'll find a solution."
+              "french": "J'ai trouvé.",
+              "english": "I found it."
+            },
+            {
+              "french": "Je trouvais ça bien. On va trouver une solution.",
+              "english": "I used to think it was good. We'll find a solution."
             }
           ]
         }
@@ -10979,18 +11131,18 @@
       "english": "to wait (for)",
       "explanation": [
         {
-          "header": "The -re family opens here",
-          "body": "Attendre is your first regular -re verb; entendre and perdre follow the same shape exactly. Drop the -re, then add -s, -s, nothing, -ez, -ent. In speech that means one sound — attend — covers je, tu, il, and on.",
+          "header": "Your first -re verb",
+          "body": "Drop -re, add -s, -s, nothing, -ez, -ent. Entendre and perdre follow the exact same pattern.",
           "examples": [
             {
-              "french": "j'attends, t'attends, il attend, on attend",
-              "english": "four spellings, one sound"
+              "french": "j'attends, tu attends, il attend, on attend",
+              "english": "four spellings, one sound: 'attend'"
             }
           ]
         },
         {
-          "header": "No 'for'",
-          "body": "English waits FOR things; French waits them directly. Attendre takes its object with no preposition, and inserting a 'pour' is the classic English-speaker error.",
+          "header": "No preposition after attendre",
+          "body": "French waits things directly. Adding 'pour' is the classic English-speaker error.",
           "examples": [
             {
               "french": "J'attends le bus.",
@@ -11003,8 +11155,8 @@
           ]
         },
         {
-          "header": "The word you'll hear alone",
-          "body": "Attends ! by itself is the universal 'hang on' — filler-level frequent between friends. The past is regular too: j'ai attendu.",
+          "header": "Attends ! alone means 'hang on'",
+          "body": "Said solo, it's filler-level frequent between friends. The past is fully regular: j'ai attendu.",
           "examples": [
             {
               "french": "Attends, j'arrive.",
@@ -11354,18 +11506,16 @@
       "english": "to call",
       "explanation": [
         {
-          "header": "The double-l pattern",
-          "body": "Appeler doubles the l when the ending is silent — j'appelle, il appelle, ils appellent — and keeps one l when the ending is pronounced: vous appelez. The spelling tracks stress, not randomness: the double l forces the open [ɛ] sound you need before a silent ending.",
-          "examples": [
-            {
-              "french": "j'appelle, tu appelles, il appelle / vous appelez",
-              "english": "double l (silent ending) / single l (ending pronounced)"
-            }
+          "header": "The double-l rule",
+          "body": "Appeler doubles the l when the ending is silent, keeps one l when the ending is pronounced. Double l forces the open [ɛ] sound the silent ending needs.",
+          "bullets": [
+            "Silent ending → double l: j'appelle, tu appelles, ils appellent",
+            "Pronounced ending → single l: vous appelez"
           ]
         },
         {
-          "header": "Present does near-future work",
-          "body": "Je t'appelle means 'I'll call you' just as often as 'I'm calling you.' English speakers over-reach for the futur proche here — in real speech, the present handles it.",
+          "header": "Present covers near future",
+          "body": "Je t'appelle means 'I'll call you' as often as 'I'm calling you.' Don't reach for futur proche — the present already handles it.",
           "examples": [
             {
               "french": "Je t'appelle ce soir.",
@@ -11374,12 +11524,16 @@
           ]
         },
         {
-          "header": "Street forms to lock in",
-          "body": "Tu appelles compresses to t'appelles. J'appelle stays two syllables but the je is often swallowed in fast speech. The passé composé is fully regular: j'ai appelé, t'as appelé.",
+          "header": "Street forms to know",
+          "body": "Tu appelles compresses to t'appelles. The passé composé is fully regular.",
           "examples": [
             {
-              "french": "T'appelles comment ? J'ai appelé, t'as pas répondu.",
-              "english": "What's your name? I called, you didn't answer."
+              "french": "T'appelles comment ?",
+              "english": "What's your name?"
+            },
+            {
+              "french": "J'ai appelé, t'as pas répondu.",
+              "english": "I called, you didn't answer."
             }
           ]
         }
@@ -11721,11 +11875,11 @@
       "explanation": [
         {
           "header": "Connaître vs savoir",
-          "body": "Connaître means knowing through familiarity — people, places, things you have direct experience of. Savoir means knowing a fact or knowing how to do something. English uses 'know' for both, which is why French learners constantly mix them up.",
+          "body": "Connaître = familiarity with people, places, things. Savoir = facts or how-to. English uses one word for both, so this trips up every learner.",
           "examples": [
             {
               "french": "Je connais Paris. Je sais qu'il fait froid.",
-              "english": "I know Paris (I've been there). I know it's cold."
+              "english": "I know Paris (I've been). I know it's cold (fact)."
             },
             {
               "french": "Tu connais Marie ? Tu sais où elle habite ?",
@@ -11734,40 +11888,40 @@
           ]
         },
         {
-          "header": "The spelling jump at il",
-          "body": "The stem is connais- throughout the present, but il/elle gets a circumflex: connaît. That accent is the only written irregularity in the present. Every other tense is built on connaiss- and stays consistent.",
+          "header": "One spelling oddity",
+          "body": "The present stem is connais- throughout — except il/elle gets a circumflex: connaît. That's the only irregularity.",
           "examples": [
             {
               "french": "je connais / il connaît / ils connaissent",
-              "english": "the three written shapes of the present"
+              "english": "three written shapes, one pronunciation pattern"
             }
           ]
         },
         {
-          "header": "On the street",
-          "body": "J'connais is the spoken norm. The negative j'connais pas does the work of 'I don't know' for people and places — chais pas covers facts. Use j'connais pas when someone asks if you know a person, a bar, a neighbourhood.",
+          "header": "Street speech",
+          "body": "J'connais is the spoken norm. J'connais pas covers 'I don't know' for people and places — use chais pas for facts.",
           "examples": [
             {
               "french": "J'connais pas ce resto.",
               "english": "I don't know that restaurant."
             },
             {
-              "french": "T'as connu quelqu'un là-bas ?",
-              "english": "Did you meet anyone there?"
+              "french": "Tu connais ?",
+              "english": "You know it? — the standard recommendation opener."
             }
           ]
         },
         {
-          "header": "Imparfait: the knowing that was",
-          "body": "Because connaître describes a state of familiarity, it sits naturally in the imparfait — ongoing background knowledge. Use the passé composé only when the meeting or discovery is a single completed event.",
+          "header": "Imparfait vs passé composé",
+          "body": "Connaître describes a state, so imparfait is the default. Use passé composé only for the moment of meeting or discovery.",
           "examples": [
             {
               "french": "Je connaissais bien ce quartier.",
-              "english": "I knew that neighbourhood well. (ongoing state)"
+              "english": "I knew that neighbourhood well. (ongoing)"
             },
             {
               "french": "J'ai connu Marie à Paris.",
-              "english": "I met Marie in Paris. (the moment it happened)"
+              "english": "I met Marie in Paris. (single event)"
             }
           ]
         }
@@ -12108,8 +12262,8 @@
       "english": "to wear / to carry",
       "explanation": [
         {
-          "header": "One verb, two English meanings",
-          "body": "Porter covers both 'to wear' and 'to carry' — French doesn't split them. Context does the work: a vêtement (garment) makes it wear, a sac makes it carry. English speakers often reach for mettre (to put on) when describing what someone is wearing right now — that's natural but different; porter means they have it on.",
+          "header": "Wear and carry — one verb",
+          "body": "Porter covers both. Context decides which meaning: a garment means wear, a bag means carry.",
           "examples": [
             {
               "french": "Il porte un manteau noir.",
@@ -12122,36 +12276,40 @@
           ]
         },
         {
-          "header": "The -er pattern, predictable",
-          "body": "Porter is fully regular -er. In speech, je/tu/il/on all sound identical — port. Only vous portez and ils portent sound different, and ils portent only if a vowel follows (liaison). That one spoken stem is your anchor.",
+          "header": "Don't reach for mettre",
+          "body": "English speakers use mettre (to put on) when they mean porter. Mettre is the action; porter is the result — having it on.",
           "examples": [
             {
-              "french": "j'porte, tu portes, il porte, on porte — same sound",
-              "english": "four spellings, one spoken form"
+              "french": "Elle met son manteau. → Elle porte son manteau.",
+              "english": "She puts on her coat. → She's wearing her coat."
             }
           ]
         },
         {
-          "header": "ça se porte — the phrase to own",
-          "body": "The reflexive ça se porte means 'people wear that' or 'that's in style' — you'll hear it whenever someone defends a fashion choice. It's a ready-made sentence that also shows you how French uses se porter impersonally.",
+          "header": "One spoken stem",
+          "body": "Je, tu, il, on all sound identical: port. Only vous portez and ils portent differ.",
           "examples": [
             {
-              "french": "Le beige, ça se porte beaucoup.",
-              "english": "Beige is worn a lot these days."
+              "french": "j'porte, tu portes, il porte, on porte",
+              "english": "four spellings, one sound"
             }
           ]
         },
         {
-          "header": "Street reductions to internalize",
-          "body": "Je drops to j' before a consonant: j'porte, j'portais, j'vais porter. Tu + vowel contracts as always: t'as porté. Ne disappears: j'porte jamais de cravate.",
+          "header": "Street forms to own",
+          "body": "Je drops its e before a consonant. Ne disappears in negation. T'as porté is the street passé composé for tu.",
           "examples": [
             {
-              "french": "J'porte jamais de cravate.",
-              "english": "I never wear a tie."
+              "french": "J'porte jamais de noir.",
+              "english": "I never wear black."
             },
             {
               "french": "T'as porté quoi hier ?",
               "english": "What did you wear yesterday?"
+            },
+            {
+              "french": "Le beige, ça se porte beaucoup.",
+              "english": "Beige is very much in style."
             }
           ]
         }
@@ -12488,8 +12646,8 @@
       "english": "to go out / to leave",
       "explanation": [
         {
-          "header": "Sortir vs partir — the split",
-          "body": "Both mean 'to leave' but partition the job differently. Sortir means going out of an enclosed space — a room, a building, your house, your routine. Partir means leaving a place or person behind. When English says 'go out tonight', French reaches for sortir every time.",
+          "header": "Sortir vs partir",
+          "body": "Both translate as 'to leave', but they don't overlap. Sortir = out of an enclosed space or your routine. Partir = leaving a place or person behind.",
           "examples": [
             {
               "french": "Je sors du bureau à six heures.",
@@ -12502,28 +12660,32 @@
           ]
         },
         {
-          "header": "The sors/sort split",
-          "body": "Drop the -tir and its stem consonant for je/tu (je sors, tu sors), keep the t for il/on/ils (il sort, ils sortent). The endings are identical to partir — if you know one, you know the other.",
+          "header": "The sors / sort split",
+          "body": "Drop -tir and the stem consonant for je/tu. Keep the t for il, on, ils. This is identical to partir.",
           "examples": [
             {
-              "french": "Il sort. Ils sortent. On sort.",
-              "english": "He's leaving. They go out. We're heading out."
+              "french": "je sors, tu sors / il sort, on sort, ils sortent",
+              "english": "I leave, you leave / he leaves, we leave, they leave"
             }
           ]
         },
         {
-          "header": "It takes être in the past",
-          "body": "Like all movement verbs in this family, sortir builds its passé composé with être, not avoir. The participle is sorti, and it agrees with the subject in writing.",
+          "header": "Past takes être",
+          "body": "Sortir builds its passé composé with être, not avoir. The participle is sorti; it agrees with the subject in writing.",
           "examples": [
             {
-              "french": "J'suis sorti hier soir. On est sortis ensemble.",
-              "english": "I went out last night. We went out together."
+              "french": "J'suis sorti hier soir.",
+              "english": "I went out last night."
+            },
+            {
+              "french": "On est sortis ensemble.",
+              "english": "We went out together."
             }
           ]
         },
         {
-          "header": "Sortir avec quelqu'un",
-          "body": "This fixed phrase means 'to date someone' — you'll hear it constantly. Context always makes it clear whether it means 'going out with' in the physical or romantic sense.",
+          "header": "Sortir avec = to date",
+          "body": "Sortir avec quelqu'un means 'to date someone'. Context makes the sense clear.",
           "examples": [
             {
               "french": "T'es sorti avec elle longtemps ?",
@@ -12865,8 +13027,8 @@
       "english": "to understand",
       "explanation": [
         {
-          "header": "Prendre family — same forms",
-          "body": "Comprendre is prendre with a prefix, so the forms are identical. The irregular stem compren- shortens to comprenn- in ils comprennent — double n, one extra syllable. That's the only surprise.",
+          "header": "It's just prendre with a prefix",
+          "body": "Comprendre is prendre plus a prefix — the forms are identical. The one surprise: ils comprennent doubles the n and adds a syllable.",
           "examples": [
             {
               "french": "je comprends, il comprend, ils comprennent",
@@ -12875,18 +13037,18 @@
           ]
         },
         {
-          "header": "No object needed — or wanted",
-          "body": "English often adds 'it' or 'that': 'I don't understand it.' French drops the object unless it's specific. J'comprends pas alone is the survival phrase — lean on it.",
+          "header": "Drop the object",
+          "body": "English adds 'it' or 'that'; French drops it unless the object is specific. J'comprends pas is the survival phrase — use it as-is.",
           "examples": [
             {
-              "french": "J'comprends pas. Je comprends la situation.",
-              "english": "I don't understand. I understand the situation."
+              "french": "J'comprends pas. / Je comprends la situation.",
+              "english": "I don't understand. / I understand the situation."
             }
           ]
         },
         {
-          "header": "Compris as a standalone chunk",
-          "body": "The past participle compris doubles as a spoken check: compris ? means 'got it?' and c'est compris means 'understood.' Both are higher-frequency than any full sentence with comprendre.",
+          "header": "Compris stands alone",
+          "body": "The past participle compris works as a spoken check. These two chunks are higher-frequency than any full sentence.",
           "examples": [
             {
               "french": "C'est compris ? — Ouais, compris.",
@@ -12895,13 +13057,13 @@
           ]
         },
         {
-          "header": "Tense choice in real use",
-          "body": "Present for the live moment, imparfait for ongoing past states ('I wasn't understanding anything'), passé composé for the click of sudden understanding, futur proche for reassurance.",
-          "examples": [
-            {
-              "french": "J'comprenais rien. Là j'ai compris. Ça va aller, tu vas comprendre.",
-              "english": "I wasn't getting anything. Now I got it. It'll be fine, you'll understand."
-            }
+          "header": "Pick the right tense",
+          "body": "Each tense maps to a specific moment.",
+          "bullets": [
+            "Present → live moment: j'comprends pas",
+            "Imparfait → ongoing past state: je comprenais rien",
+            "Passé composé → sudden click: là j'ai compris",
+            "Futur proche → reassurance: tu vas comprendre"
           ]
         }
       ],
@@ -13247,18 +13409,18 @@
       "english": "to hear",
       "explanation": [
         {
-          "header": "Attendre's twin — same shape",
-          "body": "Entendre is a regular -re verb. Drop the -re, add -s, -s, nothing, -ez, -ent. The stem entend covers je, tu, il, and on in speech — one syllable, four spellings.",
+          "header": "Regular -re, no surprises",
+          "body": "Entendre follows the standard -re pattern: drop the -re, add -s, -s, nothing, -ez, -ent. The spoken stem entend covers je, tu, il, and on — one sound, four spellings.",
           "examples": [
             {
               "french": "j'entends, t'entends, il entend, on entend",
-              "english": "four spellings, one spoken stem"
+              "english": "four spellings, one spoken stem: entend"
             }
           ]
         },
         {
           "header": "Hear vs. listen — different verbs",
-          "body": "Entendre is passive — sound reaches you. Écouter is active — you direct your attention. English 'listen' is écouter; English 'hear' is entendre. Mixing them is the main mistake.",
+          "body": "Entendre is passive — sound reaches you. Écouter is active — you direct your attention. Swapping them is the main English-speaker mistake.",
           "examples": [
             {
               "french": "J'entends la musique mais j'écoute pas.",
@@ -13267,8 +13429,8 @@
           ]
         },
         {
-          "header": "No 'for', no extra preposition",
-          "body": "Like attendre, entendre takes its object directly — no preposition between verb and noun. The past participle is entendu; the imparfait stem is entend-.",
+          "header": "No preposition, direct object",
+          "body": "Like its twin attendre, entendre takes its object directly — no preposition between verb and noun.",
           "examples": [
             {
               "french": "T'as entendu ça ?",
@@ -13281,8 +13443,8 @@
           ]
         },
         {
-          "header": "The street phrase to know now",
-          "body": "J'entends rien is the go-to for 'I can't hear anything' — on calls, in loud places, everywhere. Rien alone drops the ne; no other change needed.",
+          "header": "Street phrase: j'entends rien",
+          "body": "J'entends rien means 'I can't hear anything' — on calls, in loud places, everywhere. Rien drops the ne; nothing else changes.",
           "examples": [
             {
               "french": "J'entends rien, tu peux parler plus fort ?",
@@ -13630,12 +13792,12 @@
       "english": "to ask (for)",
       "explanation": [
         {
-          "header": "Not 'demand' — just 'ask'",
-          "body": "Demander is a false friend. It means to ask or to ask for, never to demand. English speakers either avoid it or reach for it when they mean 'command'. Use it any time you'd say 'ask' in English.",
+          "header": "False friend: ask, not demand",
+          "body": "Demander means 'to ask' or 'to ask for'. Never use it to mean 'to demand'.",
           "examples": [
             {
-              "french": "Je demande l'addition.",
-              "english": "I'm asking for the bill. (no 'pour')"
+              "french": "J'demande l'addition.",
+              "english": "I'm asking for the bill."
             },
             {
               "french": "Il a demandé de l'aide.",
@@ -13645,17 +13807,21 @@
         },
         {
           "header": "No preposition for the thing",
-          "body": "Like attendre, demander takes its object directly — no 'pour'. To name the person you're asking, add 'à': demander à quelqu'un. Both facts in one sentence: je demande à Paul l'addition.",
+          "body": "The thing you're asking for goes straight after the verb — no 'pour'. To name the person, add 'à'.",
           "examples": [
             {
               "french": "J'lui demande l'heure.",
               "english": "I'm asking him the time."
+            },
+            {
+              "french": "Je demande à Paul l'addition.",
+              "english": "I'm asking Paul for the bill."
             }
           ]
         },
         {
-          "header": "Je me demande = I wonder",
-          "body": "The reflexive je me demande is its own idiom — it has nothing to do with asking someone. It's high-frequency in casual speech and worth locking in as a chunk.",
+          "header": "J'me demande = I wonder",
+          "body": "The reflexive j'me demande is its own fixed chunk. It means 'I wonder', not 'I ask myself'.",
           "examples": [
             {
               "french": "J'me demande si c'est possible.",
@@ -13664,12 +13830,12 @@
           ]
         },
         {
-          "header": "Street form is predictable",
-          "body": "Demander is fully regular -er. On the street: je demande → j'demande, je demandais → j'demandais, je vais demander → j'vais demander. No surprises.",
+          "header": "Street forms are predictable",
+          "body": "Demander is fully regular -er. On the street, je drops its 'e' before a consonant.",
           "examples": [
             {
-              "french": "J'demande, t'as demandé, il va demander.",
-              "english": "I ask, you asked, he's going to ask."
+              "french": "J'demande, j'demandais, j'vais demander.",
+              "english": "I ask, I was asking, I'm going to ask."
             }
           ]
         }
@@ -14004,10 +14170,10 @@
       "explanation": [
         {
           "header": "No 'for' — it's built in",
-          "body": "Chercher already means 'to look for'. Adding 'pour' is the English-speaker reflex — resist it. The object follows directly, the same way attendre takes its object without a preposition.",
+          "body": "'For' is already inside chercher. Don't add pour — the object follows directly, like with attendre.",
           "examples": [
             {
-              "french": "Je cherche la gare.",
+              "french": "J'cherche la gare.",
               "english": "I'm looking for the station."
             },
             {
@@ -14017,18 +14183,18 @@
           ]
         },
         {
-          "header": "One sound rules the present",
-          "body": "Je, tu, il, and on all collapse to the same spoken syllable: cherch. Only vous (cherchez) and ils (cherchent — same sound as the singular) differ on paper. In conversation, context and pronouns do all the disambiguation work.",
+          "header": "Present tense: one sound",
+          "body": "Je, tu, il, on, and ils all land on the same spoken syllable: cherch. Only vous sounds different.",
           "examples": [
             {
-              "french": "J'cherche, tu cherches, il cherche, on cherche — even: ils cherchent.",
-              "english": "Five spellings, one sound."
+              "french": "j'cherche / tu cherches / il cherche / on cherche / ils cherchent",
+              "english": "five spellings, one sound — then: vous cherchez"
             }
           ]
         },
         {
           "header": "Real-life opener",
-          "body": "Je cherche… is the natural way to ask for directions or find a shop assistant. It's polite, functional, and more natural than a question in many situations.",
+          "body": "Je cherche… is how you ask for directions or flag down a shop assistant. It's more natural than a direct question.",
           "examples": [
             {
               "french": "Je cherche la rue de Rivoli.",
@@ -14377,8 +14543,8 @@
       "english": "to leave / to let",
       "explanation": [
         {
-          "header": "Two jobs: leave and let",
-          "body": "Laisser does both 'leave something behind' and 'let someone do something'. English splits these between two verbs; French doesn't. The pattern for 'let' is laisser + person + infinitive — no extra word needed.",
+          "header": "Leave and let — one verb",
+          "body": "Laisser covers both 'leave something behind' and 'let someone do something'. For 'let', use laisser + person + infinitive — no extra word.",
           "examples": [
             {
               "french": "Je laisse mon sac ici.",
@@ -14391,8 +14557,8 @@
           ]
         },
         {
-          "header": "laisse tomber — learn it whole",
-          "body": "Laisse tomber is the street phrase for 'forget it / drop it'. It works on its own or in a sentence. You'll hear it constantly; internalize it as a chunk, not a translation.",
+          "header": "Learn laisse tomber whole",
+          "body": "Laisse tomber means 'forget it / drop it'. Treat it as a fixed chunk, not a translation.",
           "examples": [
             {
               "french": "Laisse tomber, c'est pas grave.",
@@ -14401,22 +14567,30 @@
           ]
         },
         {
-          "header": "Street compressions to know",
-          "body": "Je laisse becomes j'laisse in fast speech. Tu as laissé contracts to t'as laissé. Ne drops everywhere: 'tu laisses pas' is the spoken norm.",
+          "header": "Street compressions",
+          "body": "Je laisse shortens to j'laisse. Tu as laissé becomes t'as laissé. Ne drops: tu laisses pas is the spoken norm.",
           "examples": [
             {
-              "french": "J'laisse un pourboire. T'as laissé les clés ?",
-              "english": "I'm leaving a tip. Did you leave the keys?"
+              "french": "J'laisse un pourboire.",
+              "english": "I'm leaving a tip."
+            },
+            {
+              "french": "T'as laissé les clés ?",
+              "english": "Did you leave the keys?"
             }
           ]
         },
         {
-          "header": "Regular -er: nothing to memorise",
-          "body": "Laisser follows the standard -er pattern exactly. The participle laissé is predictable. If you know parler and manger, you already know this conjugation.",
+          "header": "Regular -er, nothing new",
+          "body": "Laisser follows the standard -er pattern exactly. The participle laissé is predictable.",
           "examples": [
             {
-              "french": "Il laissait toujours un message. On va laisser ça.",
-              "english": "He always left a message. We're going to leave that."
+              "french": "Il laissait toujours un message.",
+              "english": "He always left a message."
+            },
+            {
+              "french": "On va laisser ça.",
+              "english": "We're going to leave that."
             }
           ]
         }
@@ -14755,18 +14929,22 @@
       "english": "to listen (to)",
       "explanation": [
         {
-          "header": "No 'to' — ever",
-          "body": "Écouter takes its object directly. English says 'listen TO the radio'; French just says j'écoute la radio. Slipping in a pour or à is the automatic English-speaker mistake.",
+          "header": "No 'to' after écouter",
+          "body": "English says 'listen TO'; French drops that preposition entirely. Adding à or pour is the automatic English-speaker error.",
           "examples": [
             {
-              "french": "J'écoute la radio. Il écoute sa copine.",
-              "english": "I'm listening to the radio. He's listening to his girlfriend."
+              "french": "J'écoute la radio.",
+              "english": "I'm listening to the radio."
+            },
+            {
+              "french": "Il écoute sa copine.",
+              "english": "He's listening to his girlfriend."
             }
           ]
         },
         {
           "header": "Écoute as a conversation opener",
-          "body": "At the start of a sentence, écoute (or écoutez) means 'look' or 'listen' — a way to signal you're about to say something important. It's discourse glue, not literally about hearing.",
+          "body": "Écoute or écoutez at the start of a sentence means 'look' or 'listen'. It signals importance, not literal hearing.",
           "examples": [
             {
               "french": "Écoute, c'est pas possible.",
@@ -14779,12 +14957,16 @@
           ]
         },
         {
-          "header": "Street forms are regular",
-          "body": "Good news: écouter is fully regular -er, so every rule you learn here works for hundreds of other verbs. The only street adjustments are ne-drop and the t'écoutes contraction for tu.",
+          "header": "Street forms are simple",
+          "body": "Écouter is fully regular -er. Street speech only adds two changes: drop ne, and contract tu to t'.",
+          "bullets": [
+            "Standard: tu écoutes → Street: t'écoutes",
+            "Standard: tu as écouté → Street: t'as écouté"
+          ],
           "examples": [
             {
-              "french": "T'écoutes quoi ? On écoutait la radio.",
-              "english": "What are you listening to? We were listening to the radio."
+              "french": "T'écoutes quoi ?",
+              "english": "What are you listening to?"
             }
           ]
         }
@@ -15119,8 +15301,8 @@
       "english": "to lose",
       "explanation": [
         {
-          "header": "Same shape as attendre",
-          "body": "Perdre is the third regular -re verb. Drop -re, add the same endings: -s, -s, nothing, -ez, -ent. That means je perds, tu perds, il perd — three spellings, one sound in speech.",
+          "header": "Regular -re, same as attendre",
+          "body": "Drop -re, add -s, -s, nothing, -ez, -ent. Je perds, tu perds, il perd all sound identical in speech.",
           "examples": [
             {
               "french": "j'perds, tu perds, il perd, on perd",
@@ -15129,22 +15311,22 @@
           ]
         },
         {
-          "header": "Two traps: perdu vs. perdu",
-          "body": "J'ai perdu uses avoir — it's an action (you lost something). Je suis perdu uses être — it's a state (you are lost right now). English uses 'I'm lost' for both; French splits them. C'est perdu means the thing is gone for good.",
+          "header": "Avoir vs. être: two traps",
+          "body": "Use avoir for the action of losing. Use être for being in a lost state. English 'I'm lost' covers both — French doesn't.",
           "examples": [
             {
               "french": "J'ai perdu mon téléphone.",
-              "english": "I lost my phone. (action, avoir)"
+              "english": "I lost my phone. (action)"
             },
             {
-              "french": "Je suis perdu. C'est perdu.",
-              "english": "I'm lost. / It's gone."
+              "french": "Je suis perdu. / C'est perdu.",
+              "english": "I'm lost. / It's gone for good. (state)"
             }
           ]
         },
         {
-          "header": "What perdre actually covers",
-          "body": "It covers losing objects, losing time, losing a game, and losing your way. English sometimes reaches for 'miss' or 'waste' — French keeps perdre: perdre du temps is wasting time.",
+          "header": "Perdre covers more than 'lose'",
+          "body": "Where English uses 'waste' or 'miss', French keeps perdre.",
           "examples": [
             {
               "french": "On perd du temps. Il perd toujours ses clés.",
@@ -15153,9 +15335,13 @@
           ]
         },
         {
-          "header": "On the street",
-          "body": "Je drops the schwa before a consonant: j'perds, j'perdais, j'vais perdre. T'as perdu is the natural accusation between friends.",
+          "header": "Street forms",
+          "body": "Je drops its schwa before a consonant. T'as perdu is the natural accusation between friends.",
           "examples": [
+            {
+              "french": "j'perds, j'perdais, j'vais perdre",
+              "english": "spoken contractions of je"
+            },
             {
               "french": "T'as perdu quoi ?",
               "english": "What did you lose?"
@@ -15488,12 +15674,16 @@
       "english": "to hold",
       "explanation": [
         {
-          "header": "What tenir actually means",
-          "body": "Tenir means to hold, but it reaches further: tenir à something means to care about it, and the imperative tiens ! means 'here you go' or 'oh, look at that' — you'll hear it constantly in handovers and reactions. Don't reach for 'avoir' when the idea is holding or caring about.",
+          "header": "Three meanings, one verb",
+          "body": "Tenir means 'to hold'. It also means 'to care about' with à, and tiens ! signals handovers or surprise.",
           "examples": [
             {
-              "french": "Je tiens la porte. Tiens, c'est pour toi.",
-              "english": "I'm holding the door. Here you go, it's for you."
+              "french": "Je tiens la porte.",
+              "english": "I'm holding the door."
+            },
+            {
+              "french": "Tiens, c'est pour toi.",
+              "english": "Here you go, it's for you."
             },
             {
               "french": "J'tiens à ce plan.",
@@ -15502,17 +15692,17 @@
           ]
         },
         {
-          "header": "It conjugates like venir",
-          "body": "Tenir and venir share identical endings — the only difference is the auxiliary: tenir takes avoir in the passé composé, venir takes être. The stem doubles in the ils form: ils tiennent.",
+          "header": "Conjugates like venir — but avoir",
+          "body": "Tenir and venir share identical endings. The only difference: tenir takes avoir in the passé composé, not être.",
           "bullets": [
             "je/tu/il: tiens / tiens / tient",
-            "ils: tiennent (two n's, stems doubles)",
-            "past participle: tenu (avec avoir)"
+            "ils: tiennent (double n — stems doubles)",
+            "past participle: tenu (with avoir)"
           ]
         },
         {
-          "header": "Street: j'tiens, t'as tenu",
-          "body": "Je tiens drops to j'tiens in flow; tu as tenu becomes t'as tenu. The double-n in ils tiennent is already the spoken norm — no further reduction.",
+          "header": "Street reductions",
+          "body": "Je tiens drops to j'tiens in flow. Tu as tenu becomes t'as tenu. Ils tiennent already sounds natural — no further change.",
           "examples": [
             {
               "french": "J'tiens le café, t'as tenu la porte ?",
@@ -15849,8 +16039,8 @@
       "english": "to live",
       "explanation": [
         {
-          "header": "Vivre vs habiter — pick the right one",
-          "body": "Both mean 'to live', but they're not interchangeable. Habiter is purely about location — your address. Vivre adds the sense of actually experiencing a place or a life. Use vivre when location would sound thin.",
+          "header": "Vivre vs habiter",
+          "body": "Both mean 'to live', but habiter is just your address. Vivre adds the sense of experiencing a place or a life.",
           "examples": [
             {
               "french": "J'vis à Paris. / J'habite à Paris.",
@@ -15858,13 +16048,13 @@
             },
             {
               "french": "On vit bien ici.",
-              "english": "Life is good here. (habiter would sound wrong)"
+              "english": "Life is good here. (habiter sounds wrong here)"
             }
           ]
         },
         {
-          "header": "An irregular stem you can't skip",
-          "body": "The infinitive is vivre but the present stem drops to vi-: je vis, tu vis, il vit. That -s/-s/-t pattern follows the regular -re shape, so the irregularity is only the stem. Vivent keeps the full stem.",
+          "header": "Irregular stem: vi-",
+          "body": "The present stem drops from vivre to vi-. The -s/-s/-t endings are standard -re; only the stem is odd. Vivent keeps the full stem.",
           "examples": [
             {
               "french": "Il vit seul. Ils vivent ensemble.",
@@ -15873,8 +16063,8 @@
           ]
         },
         {
-          "header": "Vécu: for chapters of a life",
-          "body": "The past participle vécu is irregular — memorise it once. Use it for a defined period you lived somewhere or a phase that's over. English says 'lived' for both states and events; French uses vécu for those closed life chapters.",
+          "header": "Vécu: closed life chapters",
+          "body": "The past participle is vécu — irregular, memorise it once. Use it for a defined period that's over. English says 'lived' for both states and events; French uses vécu only for those closed phases.",
           "examples": [
             {
               "french": "J'ai vécu deux ans en France.",
@@ -16218,12 +16408,12 @@
       "english": "to try",
       "explanation": [
         {
-          "header": "Essayer needs DE before an infinitive",
-          "body": "Unlike vouloir or pouvoir, essayer links to a following verb with de. Drop the de and the sentence breaks. This is the one structural trap for English speakers.",
+          "header": "Always add DE before a verb",
+          "body": "Essayer needs de before any following infinitive. Drop it and the sentence breaks — this trips up English speakers every time.",
           "examples": [
             {
-              "french": "J'essaie de parler français.",
-              "english": "I'm trying to speak French."
+              "french": "J'essaie d'apprendre.",
+              "english": "I'm trying to learn."
             },
             {
               "french": "Il essaie de payer.",
@@ -16232,18 +16422,18 @@
           ]
         },
         {
-          "header": "The y → i spelling shift",
-          "body": "When the ending is silent — j'essaie, tu essaies, il essaie, ils essaient — the y becomes i. Where the ending is pronounced, y stays: vous essayez, j'essayais. The rule is about sound, not person.",
+          "header": "Y becomes I — sometimes",
+          "body": "When the ending is silent, y changes to i. When the ending is pronounced, y stays. It's a sound rule, not a person rule.",
           "examples": [
             {
-              "french": "j'essaie / vous essayez / ils essaient",
-              "english": "I try / you try / they try"
+              "french": "j'essaie / ils essaient / vous essayez",
+              "english": "silent ending → i / silent ending → i / pronounced ending → y"
             }
           ]
         },
         {
-          "header": "Futur proche does the heavy lifting",
-          "body": "In real speech, j'vais essayer is how you say 'I'll try' — both a promise and a soft commitment. The futur simple exists but you'll hear this form in almost every conversation.",
+          "header": "J'vais essayer = I'll try",
+          "body": "In real speech, futur proche handles 'I'll try'. It works as both a promise and a soft commitment.",
           "examples": [
             {
               "french": "J'vais essayer, chais pas si ça marche.",
@@ -16252,16 +16442,16 @@
           ]
         },
         {
-          "header": "Imparfait for repeated tries",
-          "body": "Use the imparfait when you tried something repeatedly or habitually in the past — not once, but over time. For a single finished attempt, use the passé composé.",
+          "header": "Passé composé vs imparfait",
+          "body": "One finished attempt → passé composé. Repeated or ongoing tries → imparfait.",
           "examples": [
-            {
-              "french": "J'essayais de le joindre mais c'était pas possible.",
-              "english": "I kept trying to reach him but it wasn't possible."
-            },
             {
               "french": "J'ai essayé une fois.",
               "english": "I tried once."
+            },
+            {
+              "french": "J'essayais de le joindre mais c'était pas possible.",
+              "english": "I kept trying to reach him but it wasn't possible."
             }
           ]
         }
@@ -16605,38 +16795,48 @@
       "english": "to work",
       "explanation": [
         {
-          "header": "Regular -er: nothing to memorise",
-          "body": "Travailler follows the regular -er pattern exactly — strip -er, add the endings. In speech, je/tu/il/on all sound like 'travay', and the silent -ent of ils is the only trap for reading aloud.",
+          "header": "Regular -er, nothing to memorise",
+          "body": "Strip -er from travailler, add the standard endings. The stem is travail-.",
           "examples": [
             {
-              "french": "j'travaille, t'travailles, il travaille, on travaille",
-              "english": "four spellings, one spoken sound"
+              "french": "je travaille, tu travailles, il travaille, ils travaillent",
+              "english": "four spellings — one spoken sound: 'trav-eye'"
             }
           ]
         },
         {
-          "header": "The double-L spelling",
-          "body": "The -aille ending looks unusual but is just the -er pattern on a stem ending in -ill-. Pronounce it like 'trav-eye'. No special rule is firing here.",
+          "header": "Speech collapses four forms",
+          "body": "Je, tu, il, and on all sound identical out loud. Don't pronounce the -ent on ils travaillent — it's silent.",
           "examples": [
             {
-              "french": "Je travaille demain.",
-              "english": "I'm working tomorrow."
+              "french": "J'travaille, t'travailles, il travaille, on travaille",
+              "english": "same sound, different spelling"
             }
           ]
         },
         {
-          "header": "When you'll actually use each tense",
-          "body": "Present covers today's schedule and general habit. Futur proche handles any upcoming plan. Passé composé nails a finished stint; imparfait describes what working was like as background.",
+          "header": "Which tense, which moment",
+          "body": "Each tense marks a different work moment:",
+          "bullets": [
+            "présent — today's schedule or habit: j'travaille demain",
+            "futur proche — any upcoming plan: j'vais travailler ce soir",
+            "passé composé — a finished stint: t'as travaillé hier ?",
+            "imparfait — what work was like: j'travaillais jusqu'à vingt heures"
+          ],
           "examples": [
             {
               "french": "T'as travaillé hier ? — Ouais, j'travaillais jusqu'à vingt heures.",
               "english": "Did you work yesterday? — Yeah, I was working until eight."
+            },
+            {
+              "french": "J'vais travailler ce soir.",
+              "english": "I'm going to work tonight."
             }
           ]
         },
         {
-          "header": "Street synonyms — hear, say travailler",
-          "body": "Bosser and taffer mean the same thing and are everywhere. Recognise them, but produce travailler — it lands in every register and you won't have to switch.",
+          "header": "Street synonyms: recognise only",
+          "body": "Bosser and taffer mean the same thing and are common. Recognise them; produce travailler — it works in every register.",
           "examples": [
             {
               "french": "Tu travailles où ? — J'travaille au centre.",
@@ -16971,8 +17171,8 @@
       "english": "to go home / to get back",
       "explanation": [
         {
-          "header": "Rentrer means home is implied",
-          "body": "Rentrer doesn't just mean 'to return' — it means to go back to your base, usually home. When you say je rentre, the destination is already inside the verb. Adding 'à la maison' is possible but almost never said.",
+          "header": "Home is already inside",
+          "body": "Rentrer means to go back to your base — home is implied. Never add 'à la maison'; it's almost never said.",
           "examples": [
             {
               "french": "Je rentre. C'est l'heure.",
@@ -16985,8 +17185,12 @@
           ]
         },
         {
-          "header": "Être, not avoir, in the past",
-          "body": "Like all movement-to-a-place verbs, rentrer takes être in the passé composé. That means the past participle agrees with the subject — rentré for one man, rentrés for a group.",
+          "header": "Past takes être, not avoir",
+          "body": "Rentrer is a movement-to-a-place verb, so passé composé uses être. The past participle agrees with the subject.",
+          "bullets": [
+            "one man: rentré",
+            "a group: rentrés"
+          ],
           "examples": [
             {
               "french": "Je suis rentré tard. On est rentrés ensemble.",
@@ -16995,8 +17199,8 @@
           ]
         },
         {
-          "header": "Street forms to lock in",
-          "body": "Je suis rentré compresses to j'suis rentré in speech. Tu es rentré becomes t'es rentré — the same contraction you already use for all être passé composé. Present j'rentre drops the e of je before the consonant r.",
+          "header": "Street contractions",
+          "body": "Je drops its e before the r: j'rentre. Être passé composé contracts the same way as every être verb.",
           "examples": [
             {
               "french": "J'rentre. T'es rentré à quelle heure ?",
@@ -17005,8 +17209,8 @@
           ]
         },
         {
-          "header": "Imparfait sets the scene",
-          "body": "Use the imparfait when rentrer is background — the ongoing state ('I was on my way home when…'). For a single completed trip, use the passé composé.",
+          "header": "Passé composé vs. imparfait",
+          "body": "One completed trip = passé composé. Ongoing background action = imparfait.",
           "examples": [
             {
               "french": "Je rentrais quand ça a sonné.",
@@ -17341,8 +17545,8 @@
       "english": "to start",
       "explanation": [
         {
-          "header": "One spelling trap",
-          "body": "Commencer is regular -er except the ç: the cedilla appears only before a, to keep the soft-s sound. So je commençais but je commence — the a in the imparfait ending triggers it. Everywhere else, plain c.",
+          "header": "One spelling trap: the cedilla",
+          "body": "Commencer is a regular -er verb except one thing: ç appears only before the letter a, to keep the c soft. The imparfait ending -ais starts with a, so it triggers ç. Everywhere else, plain c.",
           "examples": [
             {
               "french": "je commence / je commençais",
@@ -17351,8 +17555,8 @@
           ]
         },
         {
-          "header": "Commencer à + infinitive",
-          "body": "When commencer links to another verb, it needs à. English uses 'to' or '-ing'; French always uses à here. Drop it and the sentence is broken.",
+          "header": "Always commencer À + infinitive",
+          "body": "When commencer links to another verb, you need à. Drop it and the sentence is wrong. English uses 'to' or '-ing'; French always uses à.",
           "examples": [
             {
               "french": "Ça commence à m'énerver.",
@@ -17365,16 +17569,16 @@
           ]
         },
         {
-          "header": "What gets said on the street",
-          "body": "Je contracts before consonants: j'commence, j'commençais, j'vais commencer. Ça commence quand? is the natural word order for 'when does it start?' — inversion is formal and rare here.",
+          "header": "Street register",
+          "body": "Je contracts before a consonant. Ça commence quand? is natural word order — inversion sounds formal here.",
           "examples": [
-            {
-              "french": "Ça commence quand ?",
-              "english": "When does it start?"
-            },
             {
               "french": "J'commence à avoir faim.",
               "english": "I'm starting to get hungry."
+            },
+            {
+              "french": "Ça commence quand ?",
+              "english": "When does it start?"
             }
           ]
         }
@@ -17705,40 +17909,46 @@
       "english": "to forget",
       "explanation": [
         {
-          "header": "Regular -er, one quirk",
-          "body": "Oublier follows the standard -er pattern exactly — drop the -r for the stem, add the usual endings. The only thing to notice is the double-i in vous oubliiez (imparfait): the stem already ends in -i, then the ending adds another. It looks strange but follows the rule mechanically.",
+          "header": "Regular -er, one spelling quirk",
+          "body": "Drop the -r, add standard endings — no surprises. One exception: vous oubliiez has two i's because the stem ends in -i and the imparfait ending adds another.",
           "examples": [
             {
               "french": "j'oublie, on oublie, ils oublient",
-              "english": "present — three spellings, two sounds"
+              "english": "three spellings, two sounds"
             },
             {
               "french": "vous oubliiez",
-              "english": "imparfait — two i's, one sound"
+              "english": "two i's, one sound — looks odd, follows the rule"
             }
           ]
         },
         {
-          "header": "When to reach for it",
-          "body": "Oublier is transitive: it always takes what you forgot. English speakers sometimes say 'I forgot about it' — French drops the 'about' and uses the direct object pronoun. The passé composé is its most natural home; forgetting is almost always a one-off event, not a background state.",
+          "header": "Passé composé is its home",
+          "body": "Forgetting is almost always a one-off event, not a background state. Use passé composé by default.",
           "examples": [
             {
               "french": "J'ai oublié mon téléphone.",
               "english": "I forgot my phone."
-            },
-            {
-              "french": "J'ai oublié — no 'de' or 'à' needed after it.",
-              "english": "just verb + object"
             }
           ]
         },
         {
-          "header": "Three phrases that go everywhere",
-          "body": "These are chunk-level frequent — learn them as units.",
+          "header": "Drop 'about' — use a direct object",
+          "body": "English says 'I forgot about it.' French skips 'about' and uses the direct object pronoun directly.",
+          "examples": [
+            {
+              "french": "Je l'ai oublié.",
+              "english": "I forgot it. (not 'oublié de/à')"
+            }
+          ]
+        },
+        {
+          "header": "Three chunks to own",
+          "body": "Learn these as fixed units — they come up constantly.",
           "bullets": [
-            "j'oublie tout le temps — I always forget (self-deprecating, very common)",
-            "t'as oublié ? — did you forget? (gentle accusation between friends)",
-            "oublie ! — forget it (sharper, more dismissive than laisse tomber)"
+            "j'oublie tout le temps — I always forget (self-deprecating, everyday)",
+            "t'as oublié ? — did you forget? (friendly accusation)",
+            "oublie ! — forget it (dismissive, sharper than laisse tomber)"
           ]
         }
       ],
@@ -18075,8 +18285,8 @@
       "english": "to pay (for)",
       "explanation": [
         {
-          "header": "No 'for' — just like attendre",
-          "body": "Payer takes its object directly. English pays FOR things; French doesn't add a preposition. Inserting 'pour' after payer is the reflex to override.",
+          "header": "No 'for' after payer",
+          "body": "Payer takes its object directly. Never add pour — that's the English reflex to kill.",
           "examples": [
             {
               "french": "Je paie le café.",
@@ -18089,22 +18299,26 @@
           ]
         },
         {
-          "header": "The spelling shift in present tense",
-          "body": "The y → i swap in je/tu/il/ils (je paie, ils paient) exists because French avoids the sound 'yuh' before a silent ending. On and vous keep the y: on paie sounds identical to il paie, but vous payez keeps the y because the ending is pronounced.",
+          "header": "Y becomes I in the present",
+          "body": "Je, tu, il, ils swap y → i. On and vous keep the y.",
           "examples": [
             {
-              "french": "je paie, tu paies, il paie — but — vous payez",
-              "english": "y becomes i in the silent-ending persons only"
+              "french": "je paie, tu paies, il paie, ils paient",
+              "english": "vs. on paie → same sound; vous payez → y stays"
             }
           ]
         },
         {
-          "header": "Street: who's paying and how",
-          "body": "Two fixed street chunks are far more frequent than a bare conjugation: c'est moi qui paie (it's on me) and on paie comment ? (how are we paying?). The participle payé is completely regular — no surprises.",
+          "header": "Two street chunks to own",
+          "body": "These two phrases cover most real situations. The past participle payé is fully regular — no surprises there.",
           "examples": [
             {
-              "french": "C'est moi qui paie. On paie comment ?",
-              "english": "It's on me. How are we paying?"
+              "french": "C'est moi qui paie.",
+              "english": "It's on me."
+            },
+            {
+              "french": "On paie comment ?",
+              "english": "How are we paying?"
             },
             {
               "french": "J'vais payer par carte.",
@@ -18444,8 +18658,8 @@
       "english": "to drink",
       "explanation": [
         {
-          "header": "The stem split",
-          "body": "Boire has two stems: boi- for singular and ils, buv- for vous and the imparfait. The jump is jarring but the pattern is fixed — once you see it, every tense follows it.",
+          "header": "Two stems, fixed pattern",
+          "body": "Boire splits between boi- and buv-. The jump is irregular but consistent — once you know which form gets which stem, it holds.",
           "bullets": [
             "boi-: je bois, tu bois, il boit, ils boivent",
             "buv-: vous buvez, je buvais, il buvait, ils buvaient"
@@ -18453,7 +18667,7 @@
         },
         {
           "header": "The past participle: bu",
-          "body": "The participle bu is short and irregular — nothing to build it from, just memorise it. It pairs with avoir: j'ai bu, t'as bu, on a bu.",
+          "body": "Bu is short and irregular — memorise it. It pairs with avoir, not être.",
           "examples": [
             {
               "french": "T'as bu quoi ? On a bu un verre.",
@@ -18462,22 +18676,26 @@
           ]
         },
         {
-          "header": "What it actually covers",
-          "body": "Boire means any drinking — coffee, water, alcohol. 'Boire un verre' is the set phrase for having a drink socially. 'Tu bois quoi ?' is the standard bar opener; learn it as a chunk.",
+          "header": "What boire actually covers",
+          "body": "Boire covers all drinking — coffee, water, alcohol. Boire un verre is the fixed phrase for a social drink. Tu bois quoi ? is the standard bar opener; learn it as one chunk.",
           "examples": [
             {
               "french": "Tu bois quoi ? J'bois un café.",
-              "english": "What are you drinking? I'm having a coffee."
+              "english": "What are you having? I'm having a coffee."
             }
           ]
         },
         {
           "header": "Street reductions",
-          "body": "Je bois → j'bois, je buvais → j'buvais, je vais boire → j'vais boire. The boi- stem already starts with a consonant, so the vowel of je always drops in fast speech.",
+          "body": "The boi- stem starts with a consonant, so je always drops its vowel in fast speech.",
           "examples": [
             {
               "french": "J'bois rien le matin.",
               "english": "I don't drink anything in the morning."
+            },
+            {
+              "french": "J'buvais, j'vais boire",
+              "english": "I was drinking, I'm going to drink"
             }
           ]
         }
@@ -18802,7 +19020,7 @@
   "tense_usage": {
     "present": {
       "label": "Présent",
-      "note": "French has one present where English has three. Je mange covers 'I eat', 'I'm eating', and 'I do eat' — there is no -ing form to build, so the présent works harder than its English cousin. It also reaches into the future whenever a time word does the pointing.",
+      "note": "French has one present where English has three. Je mange covers 'I eat', 'I'm eating', and 'I do eat'. There is no -ing form to build. Add a time word and it covers the near future too.",
       "contrasts": [
         {
           "a_french": "Je travaille.",

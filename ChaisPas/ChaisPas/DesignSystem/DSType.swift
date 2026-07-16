@@ -19,6 +19,12 @@ enum DSType {
     static let stagePrompt = Font.system(size: 24, weight: .regular)
     static let stageFrench = Font.system(size: 31, weight: .medium)
     static let stageFrenchSecondary = Font.system(size: 21, weight: .medium)
+
+    /// Reference surfaces (phase 10c): French set at reading scale, not stage
+    /// scale — inline example pairs and canonical-example lines…
+    static let frenchCompact = Font.system(size: 17, weight: .medium)
+    /// …and conjugation-table cells, a step up for single forms.
+    static let tableForm = Font.system(size: 18, weight: .medium)
     /// Oversized numeral for the Today screen's due count.
     static let statNumeral = Font.system(size: 64, weight: .semibold)
 }

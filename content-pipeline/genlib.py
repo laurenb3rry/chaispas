@@ -77,13 +77,15 @@ def v1_concept_summaries(graph, max_examples=3):
 # there ship the exemplar explanation verbatim instead of a generated one.
 
 VOICE_SPEC = """VOICE (applies to every explanation):
-Write like an expert teacher writing a reference their students actually read: direct, warm, plain.
-- Explain WHY a rule exists or why French does it this way whenever there is a real reason — a learner who knows the why stops memorizing.
-- Every sentence must teach something. If a sentence only encourages, delete it.
-- Plain register: no hype metaphors (banned outright: weaponize, unfair advantage, VIP, superpower, game-changer, magic, secret weapon, hack, cheat code), no cheerleading ("You've got this!", "amazing"), no marketing rhythm.
-- Address the learner as "you". Contractions are fine. Short sentences are fine.
-- Concrete over abstract: show the form in a real sentence rather than describing it.
-- It is fine to say something is hard or irregular — say it once, then show the pattern that tames it."""
+Write like an expert teacher, at maximum digestibility: short, plain, concrete.
+- Short declarative sentences. One idea per sentence. At most ~15 words per sentence.
+- Section bodies are 1-2 sentences. Then let bullets or an example pair carry the rest. Never three consecutive sentences of prose.
+- Lead each section with the rule stated plainly. The why comes second, in one sentence.
+- Concrete over abstract: show a contrast pair instead of describing behavior.
+- Banned: unattributed metaphor ("does the pointing", "works harder than its English cousin"), hype (weaponize, unfair advantage, VIP, superpower, game-changer, magic, secret weapon, hack, cheat code), cheerleading ("You've got this!", "amazing"), and any sentence a reader would have to re-read.
+- Address the learner as "you". Contractions are fine.
+- It is fine to say something is hard or irregular — say it once, then show the pattern that tames it.
+- Keep all essential information; compress and chunk it, never pad it."""
 
 EXPLANATION_SCHEMA = """"explanation" is an ORDERED ARRAY of sections. Each section:
   {"header": "2-6 plain words", "body": "1-3 sentences", "bullets": ["optional — only for genuinely enumerable facts"], "examples": [{"french": "...", "english": "..."}]}
@@ -99,11 +101,10 @@ def exemplar_block(kind):
     """Few-shot block for the generation prompts. kind: 'verb' | 'grammar'."""
     ex = load_exemplars()
     if kind == "verb":
-        pairs = [("être — to be", ex["verb_exemplars"]["conj_etre"]),
-                 ("attendre — to wait (for)", ex["verb_exemplars"]["conj_attendre"])]
+        pairs = [("aller — to go", ex["verb_exemplars"]["conj_aller"])]
     else:
-        pairs = [("Gender & articles", ex["grammar_exemplars"]["gram_gender_articles"]),
-                 ("Survival subjunctive", ex["grammar_exemplars"]["gram_subjonctif_survival"])]
+        pairs = [("Discourse glue: du coup, donc, alors, bref",
+                  ex["grammar_exemplars"]["gram_connectors"])]
     body = "\n".join(
         f"--- exemplar: {title} ---\n{json.dumps(sections, ensure_ascii=False, indent=1)}"
         for title, sections in pairs
@@ -116,6 +117,32 @@ def exemplar_explanation(node_id):
     """The approved hand-written explanation for this node, if one exists."""
     ex = load_exemplars()
     return ex["verb_exemplars"].get(node_id) or ex["grammar_exemplars"].get(node_id)
+
+
+def flatten_sections(sections):
+    """Structured explanation → prose block, for feeding a previous version
+    back into a rewrite prompt as source material."""
+    if isinstance(sections, str):
+        return sections
+    parts = []
+    for s in sections or []:
+        seg = f"{s.get('header', '')}: {s.get('body', '')}"
+        for b in s.get("bullets") or []:
+            seg += f" • {b}"
+        for p in s.get("examples") or []:
+            seg += f" [{p.get('french', '')} = {p.get('english', '')}]"
+        parts.append(seg)
+    return "\n".join(parts)
+
+
+def load_prior_explanations(module):
+    """id → shipped explanation from the assembled pack — the 10b content a
+    10c rewrite must compress without dropping facts (phase 10c spec)."""
+    path = HERE / "content_pack_v2" / "learn" / f"{module}.json"
+    if not path.exists():
+        return {}
+    with open(path) as f:
+        return {n["id"]: n.get("explanation") for n in json.load(f)["nodes"]}
 
 
 STREET_REGISTER_BRIEF = """Street register rules (apply to every french_street field):

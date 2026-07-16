@@ -93,8 +93,15 @@ final class LibraryNavigationUITests: XCTestCase {
         header.tap()
     }
 
+    /// Back taps drop like any synthesized tap — re-tap until Home returns.
     @MainActor
     private func goBack(_ app: XCUIApplication) {
-        app.navigationBars.buttons.firstMatch.tap()
+        let home = app.buttons["recommended-today"].firstMatch
+        for _ in 0..<3 where !home.exists {
+            let back = app.navigationBars.buttons.firstMatch
+            if back.exists, back.isHittable { back.tap() }
+            _ = home.waitForExistence(timeout: 5)
+        }
+        XCTAssertTrue(home.exists, "should pop back to Home")
     }
 }

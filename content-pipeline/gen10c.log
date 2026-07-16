@@ -1,0 +1,106 @@
+=== 10c v2: conjugation (with 10b source) ===
+[expl] conj_etre
+[expl] conj_avoir
+[skip] conj_aller (already structured; --force to redo)
+[expl] conj_faire
+[expl] conj_vouloir
+[expl] conj_pouvoir
+[expl] conj_devoir
+[expl] conj_savoir
+[expl] conj_dire
+[expl] conj_voir
+[expl] conj_prendre
+[expl] conj_venir
+[expl] conj_mettre
+[expl] conj_parler
+[expl] conj_aimer
+[expl] conj_acheter
+[expl] conj_manger
+[expl] conj_partir
+[expl] conj_finir
+[expl] conj_donner
+[expl] conj_politesse_conditionnel
+[expl] conj_croire
+[expl] conj_penser
+[expl] conj_passer
+[expl] conj_arriver
+[expl] conj_rester
+[expl] conj_aider
+[expl] conj_regarder
+[expl] conj_trouver
+[expl] conj_attendre
+[expl] conj_appeler
+[expl] conj_connaitre
+[expl] conj_porter
+[expl] conj_sortir
+[expl] conj_comprendre
+[expl] conj_entendre
+[expl] conj_demander
+[expl] conj_chercher
+[expl] conj_laisser
+[expl] conj_ecouter
+[expl] conj_perdre
+[expl] conj_tenir
+[expl] conj_vivre
+[expl] conj_essayer
+[expl] conj_travailler
+[expl] conj_rentrer
+[expl] conj_commencer
+[expl] conj_oublier
+[expl] conj_payer
+[expl] conj_boire
+
+explanations refreshed; 50 nodes in learn_conjugation.json
+=== 10c v2: grammar (with 10b source) ===
+[expl] gram_gender_articles
+[expl] gram_plurals_agreement
+[expl] gram_adjective_placement
+[expl] gram_prepositions
+[expl] gram_questions_deep
+[expl] gram_negation_variants
+[expl] gram_object_pronoun_order
+[expl] gram_y_en_deep
+[expl] gram_comparatives
+[expl] gram_imperatives
+[expl] gram_reflexives_deep
+[expl] gram_partitives
+[expl] gram_il_faut
+[expl] gram_time_date
+[expl] gram_demonstratives_possessives
+[expl] gram_cest_vs_il_est
+[expl] gram_venir_de_en_train
+[expl] gram_futur_simple
+[expl] gram_subjonctif_survival
+[expl] gram_si_clauses
+[expl] gram_relatives_dont_ou
+[expl] gram_verb_prepositions
+[expl] gram_double_pronouns
+[expl] gram_intensifiers
+[skip] gram_connectors (already structured; --force to redo)
+
+explanations refreshed; 25 lessons in learn_grammar.json
+=== validate ===
+combined DAG OK (25 v1 + 115 v2 nodes)
+conjugation: 50 nodes, 895 drills kept, 3 dropped, 2 errors, 464 warnings -> learn_conjugation_validated.json
+  ERROR conj_comprendre: section 4 body has 4 sentences (spec 1-2)
+  ERROR conj_travailler: section 3 body has 4 sentences (spec 1-2)
+  warn  conj_etre_004: vocabulary outside known set: ['prêts']
+  warn  conj_etre_006: vocabulary outside known set: ['normaux']
+  warn  conj_etre_007: vocabulary outside known set: ['journée', 'taf', 'travail']
+  warn  conj_etre_009: vocabulary outside known set: ['trouvé']
+  warn  conj_etre_010: vocabulary outside known set: ['hier', 'soir']
+vocab: 40 nodes, 1571 drills kept, 6 dropped, 0 errors, 1076 warnings -> learn_vocab_validated.json
+  warn  vocab_pack_01_002: vocabulary outside known set: ['parfait']
+  warn  vocab_pack_01_003: vocabulary outside known set: ['minute']
+  warn  vocab_pack_01_009: vocabulary outside known set: ['bonne', 'pense']
+  warn  vocab_pack_01_010: vocabulary outside known set: ['crois']
+  warn  vocab_pack_01_012: vocabulary outside known set: ['pense']
+grammar: 25 nodes, 500 drills kept, 0 dropped, 1 errors, 184 warnings -> learn_grammar_validated.json
+  ERROR gram_prepositions: section 2 sentence of 33 words (spec ~15): "à and de can't sit next to le or les — French fuses them eve…"
+  warn  gram_gender_articles_006: vocabulary outside known set: ['possibilité']
+  warn  gram_gender_articles_012: vocabulary outside known set: ['moment']
+  warn  gram_gender_articles_017: vocabulary outside known set: ['prendre']
+  warn  gram_plurals_agreement_005: vocabulary outside known set: ['petit']
+  warn  gram_plurals_agreement_006: vocabulary outside known set: ['petite']
+full detail in validation_report_v2.json
+=== EXIT 1 ===

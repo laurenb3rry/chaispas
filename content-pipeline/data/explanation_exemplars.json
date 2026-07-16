@@ -1,177 +1,90 @@
 {
-  "comment": "Phase 10b exemplars — APPROVED 2026-07-15 (être reworked per review: teach usage and the avoir contrast, not etymology). These are the few-shot exemplars embedded in gen_conjugation.py / gen_grammar.py prompts; the rewrites ship as-is. Explanation schema: ordered sections [{header, body, bullets?, examples?: [{french, english}]}]. Word budgets: verbs <= 160 total, grammar 180-320 total.",
+  "comment": "Phase 10c exemplars — PENDING USER GATE REVIEW. Digestibility register (the tense-usage panels are the standard): short declaratives, 1-2 sentence bodies, bullets/pairs carry detail, rule first then why. These ship verbatim AND are the few-shot exemplars in gen_conjugation.py / gen_grammar.py. The 10b exemplars (etre, attendre, gender_articles, subjonctif) were removed — those units regenerate through the model like everything else.",
 
-  "voice_spec": "Write like an expert teacher writing a reference their students actually read: direct, warm, plain. Explain WHY a rule exists or why French does it this way whenever there is a real reason — a learner who knows the why stops memorizing. Every sentence must teach something; if a sentence only encourages, delete it. Plain register: no hype metaphors (banned: weaponize, unfair advantage, VIP, superpower, game-changer, magic, secret weapon, hack), no cheerleading ('You've got this!', 'amazing'), no marketing rhythm. Address the learner as 'you'; contractions are fine; short sentences are fine. Concrete over abstract: show the form in a real sentence rather than describing it. It is fine to say something is hard or irregular — say it once, then show the pattern that tames it.",
+  "voice_note": "Register target from device review: the 'When to use it' tense panels. What was wrong with 10b: textbook-dense paragraphs, unattributed metaphor, sentences needing a re-read.",
 
   "verb_exemplars": {
-    "conj_etre": [
+    "conj_aller": [
       {
-        "header": "Where English says 'be' — mostly",
-        "body": "Être covers what someone is, how something is, and where things are. But French draws the line differently than English: age, hunger, thirst, heat, and cold all belong to avoir. Translating 'I am hungry' word for word is the number-one être mistake.",
+        "header": "One verb, two jobs",
+        "body": "Aller means 'to go'. It also builds the future: aller + infinitive is spoken French for 'going to'.",
         "examples": [
-          { "french": "Je suis fatigué. On est au café.", "english": "I'm tired. We're at the café." },
-          { "french": "J'ai faim. J'ai trente ans.", "english": "I'm hungry. I'm thirty. (avoir, not être)" }
+          { "french": "On va au café.", "english": "We're going to the café." },
+          { "french": "On va manger.", "english": "We're going to eat." }
         ]
       },
       {
-        "header": "Four forms carry conversation",
-        "body": "Suis, es, est, sont do nearly all the spoken work. You already use est constantly — c'est is just ce + est, so every c'est sentence you've built was être practice. And on est handles 'we are'; nous sommes doesn't get said.",
+        "header": "Three forms, one sound",
+        "body": "Vais, vas, and va cover je, tu, il, and on. Everything you say daily sounds like 'va'.",
         "examples": [
-          { "french": "C'est bon. Elle est là. Ils sont où ?", "english": "It's good. She's here. Where are they?" }
+          { "french": "je vais, tu vas, il va, on va", "english": "then: vous allez, ils vont" }
         ]
       },
       {
-        "header": "On the street",
-        "body": "Je suis compresses to j'suis, often down to one syllable — chuis. Tu es is nearly always t'es.",
+        "header": "The greetings verb",
+        "body": "Ça va ? runs on aller. French asks how you're going, not how you are.",
         "examples": [
-          { "french": "Chuis là. T'es prêt ?", "english": "I'm here. You ready?" }
+          { "french": "Ça va ? — Ça va.", "english": "How's it going? — Fine." },
+          { "french": "J'y vais.", "english": "I'm off." }
         ]
       },
       {
-        "header": "The past you'll actually use",
-        "body": "Reach for the imparfait first: states and descriptions are background, and c'était is how you review anything — a meal, a film, a weekend. The passé composé j'ai été exists, but mostly for one-off events.",
+        "header": "The past takes être",
+        "body": "Aller is a movement verb, so the past uses être: je suis allé. Street says j'suis allé.",
         "examples": [
-          { "french": "C'était super. T'étais où ?", "english": "It was great. Where were you?" }
-        ]
-      }
-    ],
-    "conj_attendre": [
-      {
-        "header": "The -re family opens here",
-        "body": "Attendre is your first regular -re verb; entendre and perdre follow the same shape exactly. Drop the -re, then add -s, -s, nothing, -ez, -ent. In speech that means one sound — attend — covers je, tu, il, and on.",
-        "examples": [
-          { "french": "j'attends, t'attends, il attend, on attend", "english": "four spellings, one sound" }
-        ]
-      },
-      {
-        "header": "No 'for'",
-        "body": "English waits FOR things; French waits them directly. Attendre takes its object with no preposition, and inserting a 'pour' is the classic English-speaker error.",
-        "examples": [
-          { "french": "J'attends le bus.", "english": "I'm waiting for the bus." },
-          { "french": "Tu attends quelqu'un ?", "english": "Are you waiting for someone?" }
-        ]
-      },
-      {
-        "header": "The word you'll hear alone",
-        "body": "Attends ! by itself is the universal 'hang on' — filler-level frequent between friends. The past is regular too: j'ai attendu.",
-        "examples": [
-          { "french": "Attends, j'arrive.", "english": "Hang on, I'm coming." }
+          { "french": "On est allés au resto hier.", "english": "We went to the restaurant yesterday." }
         ]
       }
     ]
   },
 
   "grammar_exemplars": {
-    "gram_gender_articles": [
+    "gram_connectors": [
       {
-        "header": "Learn the article as part of the word",
-        "body": "French nouns never appear naked — every noun carries le or la, and the article is where French stores gender. Learn le café and la rue as single units and gender never becomes a separate memorization project; it rides along for free."
-      },
-      {
-        "header": "The system",
-        "body": "Four words cover almost everything, and both definite articles collapse to l' before a vowel — that's why you hear l'eau and l'hôtel.",
-        "bullets": [
-          "le / la — the (l' before a vowel: l'eau, l'école)",
-          "un / une — a",
-          "les — the, plural, both genders; des is the plural of un/une"
-        ]
-      },
-      {
-        "header": "Endings predict gender",
-        "body": "Gender looks arbitrary, but a word's ending predicts it with high reliability. These two rules alone cover thousands of words — including every -tion cognate you got for free: situation, solution, réservation are all la.",
-        "bullets": [
-          "-tion, -sion, -té → la (la situation, la liberté)",
-          "-age, -ment, -eau → le (le message, le moment, le gâteau)",
-          "exceptions exist (le problème, la plage) — collect them as they come, don't study them"
-        ]
-      },
-      {
-        "header": "Why it's low-stakes",
-        "body": "A wrong article almost never breaks understanding — un grande café still gets you a large coffee. French children get gender wrong for years and nobody stops them mid-sentence. Get it right where the ending tells you, shrug where it doesn't, and keep talking."
-      },
-      {
-        "header": "On the street",
-        "body": "Fast French drops ne and swallows syllables, but the article survives everything — it is glued to the noun at any speed. That makes it a parsing cue: when speech blurs, the le or la you catch tells you a noun just went by.",
+        "header": "Du coup: the default connector",
+        "body": "Du coup means 'so'. It chains any two thoughts, and it fills half the gaps in real speech.",
         "examples": [
-          { "french": "T'as vu la meuf ?", "english": "Did you see the girl?" },
-          { "french": "J'ai pris le métro.", "english": "I took the métro." }
+          { "french": "J'étais fatigué, du coup j'suis rentré.", "english": "I was tired, so I went home." }
         ]
-      }
-    ],
-    "gram_subjonctif_survival": [
-      {
-        "header": "What it is, honestly",
-        "body": "After certain phrases — most importantly il faut que ('I/you/we have to') — French switches the next verb into a second set of forms called the subjunctive. Textbooks make this a mountain. In speech it is a toll booth: a handful of trigger phrases, and a handful of verbs whose subjunctive you will actually hear."
       },
       {
-        "header": "Why it exists",
-        "body": "The subjunctive marks that an action is wanted, required, or doubted rather than stated as fact. Je sais qu'il vient — fact, normal form. Il faut qu'il vienne — requirement, subjunctive. You are not describing the world; you are pushing on it. That is the entire concept.",
+        "header": "Donc concludes, alors moves",
+        "body": "Both mean 'so'. Donc draws a conclusion; alors pushes the story forward, or buys time as alors…",
         "examples": [
-          { "french": "Je sais qu'il vient. / Il faut qu'il vienne.", "english": "I know he's coming. / He has to come." }
+          { "french": "Donc, c'est décidé.", "english": "So, it's decided." },
+          { "french": "Alors, on fait quoi ?", "english": "So, what do we do?" }
         ]
       },
       {
-        "header": "The eight forms that matter",
-        "body": "For most verbs the subjunctive sounds identical to the present you already know (il faut que tu manges). Only a few very common verbs have audibly different forms — own these eight and you are covered:",
+        "header": "Because and but",
+        "body": "Parce que is 'because' — everyone says it passke. For contrast you have three strengths:",
         "bullets": [
-          "être → sois / soit — faut que tu sois là",
-          "avoir → aies / ait — faut qu'il ait le temps",
-          "aller → aille — faut que j'aille",
-          "faire → fasse — faut qu'on fasse ça",
-          "pouvoir → puisse — pour que tu puisses venir",
-          "savoir → sache — faut que tu saches",
-          "venir → vienne — faut qu'elle vienne",
-          "prendre → prenne — faut que je prenne le train"
+          "mais — but (blunt): mais c'est cher",
+          "par contre — on the other hand (softer): par contre, c'est loin",
+          "même si — even if (concedes): même si t'as raison"
         ]
       },
       {
-        "header": "One trigger does most of the work",
-        "body": "Il faut que + subjunctive is the spoken workhorse for obligation — in conversation it largely replaces devoir. Learn it as a frame you drop verbs into, not as grammar to assemble.",
+        "header": "Telling a story",
+        "body": "D'abord starts, après and ensuite continue, bref lands it. Bref cuts the rest: 'long story short'.",
         "examples": [
-          { "french": "Faut que j'y aille.", "english": "I've got to go. (the #1 way to leave anywhere)" },
-          { "french": "Faut qu'on parle.", "english": "We need to talk." }
+          { "french": "Bref, on est rentrés.", "english": "Anyway, we went home." }
         ]
       },
       {
-        "header": "On the street",
-        "body": "The il drops — faut que j'aille, faut pas que t'oublies — and que elides to qu' before a vowel. If you keep one sentence from this lesson, keep faut que j'y aille; you will use it every day you are in France."
+        "header": "En fait: the correction word",
+        "body": "En fait means 'actually'. It opens a correction of what was just said or assumed.",
+        "examples": [
+          { "french": "En fait, c'est pas ça.", "english": "Actually, that's not it." }
+        ]
+      },
+      {
+        "header": "This is what fluency sounds like",
+        "body": "Connectors buy thinking time. A fluent hesitation is du coup… or alors…, not silence.",
+        "examples": [
+          { "french": "Du coup… on y va ?", "english": "So… shall we go?" }
+        ]
       }
     ]
-  },
-
-  "new_verb_paradigm_sample": {
-    "infinitive": "attendre",
-    "english": "to wait (for)",
-    "family": "re_regular",
-    "tier": 1,
-    "rank": 29,
-    "aux": "avoir",
-    "participle": "attendu",
-    "je_reduction": false,
-    "present": {
-      "je": "attends",
-      "tu": "attends",
-      "il": "attend",
-      "on": "attend",
-      "vous": "attendez",
-      "ils": "attendent"
-    },
-    "imparfait_stem": "attend",
-    "street_notes": "j'attends is already elided in formal French; tu attends → t'attends. Attends ! alone is the universal 'hang on'. attendre takes its object with no preposition — j'attends le bus, never 'pour'."
-  },
-
-  "new_lesson_spec_sample": {
-    "id": "gram_subjonctif_survival",
-    "title": "Survival subjunctive: il faut que + the forms you'll hear",
-    "tier": 3,
-    "prereq_ids": ["gram_il_faut"],
-    "focus": [
-      "The concept in one line: wanted/required/doubted actions take a second verb form after que",
-      "il faut que as the workhorse trigger — the spoken replacement for devoir",
-      "The 8 audibly-different forms: sois/soit, aies/ait, aille, fasse, puisse, sache, vienne, prenne",
-      "Most verbs sound identical to the present — the subjunctive is smaller than it looks",
-      "Fixed survival frames: faut que j'y aille, faut qu'on parte, pour que tu puisses"
-    ],
-    "street_angle": "il drops (faut que j'aille), que elides (faut qu'on...); the whole structure is chunk-like in fast speech."
   }
 }
