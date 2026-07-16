@@ -15,15 +15,21 @@ enum ContentPackImporter {
         "Grammar", "Scenarios", "Episodes", "Passages", "Saving",
     ]
 
-    /// Cheap check (fetchCounts only) for whether `importIfNeeded` would do
-    /// anything — lets launch skip the loading screen on populated stores.
-    /// Errs on the side of true: the import path owns error handling.
+    /// Cheap check (fetchCounts + one small manifest read) for whether
+    /// `importIfNeeded` would do anything — lets launch skip the loading
+    /// screen on populated stores. Errs on the side of true: the import path
+    /// owns error handling.
     static func needsWork(context: ModelContext) -> Bool {
         do {
+            // Learn content grows across pack updates (phase 10b added verbs
+            // and lessons) — a store behind the manifest needs the upsert.
+            let manifest = try? ContentPackV2.loadManifest().content.learn
+            let packDrills = (manifest?.conjugation.drills ?? 0)
+                + (manifest?.vocab.drills ?? 0) + (manifest?.grammar.drills ?? 0)
             return try context.fetchCount(FetchDescriptor<ConceptNode>()) == 0
                 || context.fetchCount(FetchDescriptor<Sentence>()) == 0
                 || context.fetchCount(FetchDescriptor<Sentence>(
-                    predicate: #Predicate { $0.packVersion == 2 })) == 0
+                    predicate: #Predicate { $0.packVersion == 2 })) < packDrills
                 || context.fetchCount(FetchDescriptor<Scenario>()) == 0
                 || context.fetchCount(FetchDescriptor<ListenEpisode>()) == 0
                 || context.fetchCount(FetchDescriptor<Passage>()) == 0
@@ -164,15 +170,21 @@ enum ContentPackImporter {
         }
     }
 
-    /// Learn nodes and their drills import together, guarded by the drill
-    /// count: they land in the same save, so either both exist or neither.
+    /// Learn content upserts by id (phase 10b): pack updates add verbs and
+    /// lessons, and rewrite explanations on existing units. Existing nodes get
+    /// their content fields refreshed (never `introduced`); existing drills
+    /// are left completely untouched — their FSRS state is user data. Missing
+    /// nodes/drills are inserted.
     private static func importV2LearnIfNeeded(
         context: ModelContext, report: (Int) -> Void
     ) throws {
-        let v2DrillCount = try context.fetchCount(FetchDescriptor<Sentence>(
-            predicate: #Predicate { $0.packVersion == 2 }
-        ))
-        guard v2DrillCount == 0 else { return }
+        let existingNodes = Dictionary(
+            try context.fetch(FetchDescriptor<ConceptNode>()).map { ($0.id, $0) },
+            uniquingKeysWith: { a, _ in a }
+        )
+        let existingSentenceIds = Set(
+            try context.fetch(FetchDescriptor<Sentence>()).map(\.id)
+        )
 
         for (offset, module) in ContentPackV2.LearnModule.allCases.enumerated() {
             report(2 + offset)
@@ -181,17 +193,26 @@ enum ContentPackImporter {
                     assertionFailure("Unknown v2 concept type: \(node.type)")
                     continue
                 }
-                context.insert(ConceptNode(
-                    id: node.id,
-                    type: type,
-                    tier: node.tier,
-                    prereqIds: node.prereqIds,
-                    title: node.title,
-                    explanationText: node.explanation ?? "",
-                    examples: node.canonicalExamples ?? [],
-                    streetMapping: node.streetNotes ?? ""
-                ))
-                for drill in node.drills {
+                if let existing = existingNodes[node.id] {
+                    existing.tier = node.tier
+                    existing.prereqIds = node.prereqIds
+                    existing.title = node.title
+                    existing.explanationText = node.explanationPlainText
+                    existing.examples = node.canonicalExamples ?? []
+                    existing.streetMapping = node.streetNotes ?? ""
+                } else {
+                    context.insert(ConceptNode(
+                        id: node.id,
+                        type: type,
+                        tier: node.tier,
+                        prereqIds: node.prereqIds,
+                        title: node.title,
+                        explanationText: node.explanationPlainText,
+                        examples: node.canonicalExamples ?? [],
+                        streetMapping: node.streetNotes ?? ""
+                    ))
+                }
+                for drill in node.drills where !existingSentenceIds.contains(drill.id) {
                     context.insert(Sentence(
                         id: drill.id,
                         conceptIds: drill.conceptIds,

@@ -2,24 +2,13 @@ import SwiftUI
 
 /// A mode player that isn't built yet (PLAN2 phase 9: the library is fully
 /// browsable ahead of the players landing). Every stub names its phase.
+/// The Learn players landed in phase 10; these fall away one by one.
 struct ModeStub: Identifiable {
     let title: String
     let phase: Int
     let blurb: String
     var id: String { title }
 
-    static let conjugation = ModeStub(
-        title: "Conjugation", phase: 10,
-        blurb: "Verb tables with per-form audio — t'as, not just tu as — then a drill run through the same reveal-and-grade choreography as Construction."
-    )
-    static let vocabulary = ModeStub(
-        title: "Vocabulary", phase: 10,
-        blurb: "The pack's 25 words with audio, swipeable, then drilled inside sentences — never as bare word lists."
-    )
-    static let grammar = ModeStub(
-        title: "Grammar", phase: 10,
-        blurb: "A short explanation in the Michel Thomas voice, canonical examples with audio, then a drill run."
-    )
     static let speak = ModeStub(
         title: "Speak", phase: 11,
         blurb: "A branching dialogue: the other side talks street-fast, you answer out loud, and branch points steer where it goes."

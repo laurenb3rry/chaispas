@@ -1,0 +1,99 @@
+{
+  "comment": "Phase 10b: tense-level usage guidance rendered per tense tab in the conjugation player. Hand-authored, shared across all verbs. PENDING USER GATE REVIEW. Schema: {label, note, contrasts: [{a_french, a_english, b_french, b_english, point}]}.",
+  "tenses": {
+    "present": {
+      "label": "Présent",
+      "note": "French has one present where English has three. Je mange covers 'I eat', 'I'm eating', and 'I do eat' — there is no -ing form to build, so the présent works harder than its English cousin. It also reaches into the future whenever a time word does the pointing.",
+      "contrasts": [
+        {
+          "a_french": "Je travaille.",
+          "a_english": "I work.",
+          "b_french": "Je travaille, là.",
+          "b_english": "I'm working right now.",
+          "point": "One form carries both English presents — context does the rest."
+        },
+        {
+          "a_french": "On mange à huit heures.",
+          "a_english": "We're eating at eight.",
+          "b_french": "On va manger bientôt.",
+          "b_english": "We're going to eat soon.",
+          "point": "With a concrete time, the présent covers the near future on its own."
+        }
+      ]
+    },
+    "passe_compose": {
+      "label": "Passé composé",
+      "note": "The tense for events: things that happened, finished, and moved the story forward. It answers 'what happened?'. Built from avoir or être plus the participle — which is why the contraction lands on the auxiliary (t'as mangé), not the verb.",
+      "contrasts": [
+        {
+          "a_french": "J'ai mangé à midi.",
+          "a_english": "I ate at noon.",
+          "b_french": "Je mangeais quand t'as appelé.",
+          "b_english": "I was eating when you called.",
+          "point": "Event vs background: the passé composé is the thing that happened; the imparfait is what was already going on."
+        },
+        {
+          "a_french": "Il a plu hier soir.",
+          "a_english": "It rained last night.",
+          "b_french": "Il pleuvait tout le week-end.",
+          "b_english": "It was raining all weekend.",
+          "point": "A bounded event takes passé composé; an unbounded backdrop takes imparfait."
+        },
+        {
+          "a_french": "Ça a été ?",
+          "a_english": "Did it go okay?",
+          "b_french": "C'était bien ?",
+          "b_english": "Was it good?",
+          "point": "Same verb, different question: outcome as an event vs description of how it was."
+        }
+      ]
+    },
+    "imparfait": {
+      "label": "Imparfait",
+      "note": "The tense for background: how things were, what used to happen, what was mid-flight when the event hit. If the passé composé is the photo, the imparfait is the scenery it was taken in. English gives you two reliable signals: 'was …-ing' and 'used to'.",
+      "contrasts": [
+        {
+          "a_french": "Je regardais un film.",
+          "a_english": "I was watching a film.",
+          "b_french": "J'ai regardé un film.",
+          "b_english": "I watched a film.",
+          "point": "Mid-action vs completed: the imparfait leaves the film running."
+        },
+        {
+          "a_french": "On allait au café tous les matins.",
+          "a_english": "We used to go to the café every morning.",
+          "b_french": "On est allés au café ce matin.",
+          "b_english": "We went to the café this morning.",
+          "point": "Habit in the past is imparfait territory; the one-time trip is an event."
+        },
+        {
+          "a_french": "C'était comment ?",
+          "a_english": "What was it like?",
+          "b_french": "Qu'est-ce qui s'est passé ?",
+          "b_english": "What happened?",
+          "point": "Descriptions and states live in the imparfait; happenings live in the passé composé."
+        }
+      ]
+    },
+    "futur_proche": {
+      "label": "Futur proche",
+      "note": "Aller + infinitive is how spoken French handles the future — plans, predictions, things about to happen. It is the English 'going to', built the same way, and in conversation it covers nearly everything the written future tense does. If you can conjugate aller, you can say anything in the future.",
+      "contrasts": [
+        {
+          "a_french": "Je vais partir demain.",
+          "a_english": "I'm going to leave tomorrow.",
+          "b_french": "Je partirai demain.",
+          "b_english": "I will leave tomorrow.",
+          "point": "Same meaning; the futur proche is the spoken norm, the futur simple reads as written or formal register."
+        },
+        {
+          "a_french": "Ça va aller.",
+          "a_english": "It's going to be okay.",
+          "b_french": "On va voir.",
+          "b_english": "We'll see.",
+          "point": "The everyday reassurance phrases are all futur proche — fixed frames worth owning whole."
+        }
+      ]
+    }
+  }
+}

@@ -385,6 +385,81 @@ def v2_base_lexicon(v1_nodes):
     return lex
 
 
+# Phase 10b voice lint: hype metaphors the voice spec bans outright.
+BANNED_VOICE = re.compile(
+    r"\b(weaponiz\w*|unfair advantage|vip|superpowers?|game.?changers?|magic\w*"
+    r"|secret weapons?|cheat codes?|hacks?)\b", re.IGNORECASE)
+
+# Structured explanation budgets (phase 10b): (min_sections, max_sections,
+# warn-above/below word bounds, hard error ceiling). Bands sit above the
+# prompt targets (160 / 320) because the model reliably overshoots ~20%.
+EXPLANATION_BUDGETS = {
+    "verb": (2, 4, (None, 200), 260),
+    "grammar": (4, 7, (170, 380), 480),
+}
+
+
+def explanation_text(sections):
+    parts = []
+    for s in sections:
+        parts.append(str(s.get("header", "")))
+        parts.append(str(s.get("body", "")))
+        parts.extend(str(b) for b in s.get("bullets") or [])
+    return " ".join(parts)
+
+
+def validate_explanation(node, kind, report):
+    """Phase 10b: explanations are ordered section arrays in a plain expert
+    voice. Shape problems and banned phrases are errors; budget drift warns."""
+    nid = node["id"]
+    sections = node.get("explanation")
+    if not isinstance(sections, list) or not sections:
+        report["errors"].append(f"{nid}: explanation must be a non-empty section array")
+        return
+    n_lo, n_hi, (w_lo, w_hi), w_err = EXPLANATION_BUDGETS[kind]
+    if not n_lo <= len(sections) <= n_hi:
+        report["warnings"].append(
+            f"{nid}: {len(sections)} explanation sections (spec {n_lo}-{n_hi})")
+    for i, s in enumerate(sections, 1):
+        if not str(s.get("header", "")).strip() or not str(s.get("body", "")).strip():
+            report["errors"].append(f"{nid}: explanation section {i} missing header/body")
+        for pair in s.get("examples") or []:
+            if not str(pair.get("french", "")).strip() or not str(pair.get("english", "")).strip():
+                report["errors"].append(
+                    f"{nid}: explanation section {i} example missing french/english")
+    words = len(explanation_text(sections).split())
+    if words > w_err:
+        report["errors"].append(f"{nid}: explanation {words} words (hard cap {w_err})")
+    elif (w_hi and words > w_hi) or (w_lo and words < w_lo):
+        report["warnings"].append(
+            f"{nid}: explanation {words} words (spec {w_lo or 0}-{w_hi})")
+    banned = sorted({m.group(0).lower() for m in BANNED_VOICE.finditer(explanation_text(sections))})
+    if banned:
+        report["errors"].append(f"{nid}: banned voice phrases {banned} — regenerate")
+
+
+def validate_tense_usage(data, report):
+    """The conjugation file carries shared tense-usage guidance (phase 10b)."""
+    usage = data.get("tense_usage")
+    if not isinstance(usage, dict):
+        report["errors"].append("conjugation: missing top-level tense_usage")
+        return
+    for tense in V2_TENSES:
+        entry = usage.get(tense)
+        if not entry or not str(entry.get("note", "")).strip() \
+                or not str(entry.get("label", "")).strip():
+            report["errors"].append(f"tense_usage.{tense}: missing label/note")
+            continue
+        contrasts = entry.get("contrasts") or []
+        if not 2 <= len(contrasts) <= 3:
+            report["warnings"].append(
+                f"tense_usage.{tense}: {len(contrasts)} contrasts (spec 2-3)")
+        for i, c in enumerate(contrasts, 1):
+            for field in ("a_french", "a_english", "b_french", "b_english", "point"):
+                if not str(c.get(field, "")).strip():
+                    report["errors"].append(f"tense_usage.{tense} contrast {i}: missing {field}")
+
+
 def check_drill_fields(drill, node_id):
     problems = []
     for field in ("id", "english", "french_formal", "french_street"):
@@ -420,6 +495,7 @@ def verb_form_tokens(node):
 
 def validate_v2_conjugation(node, base_lex, report):
     """Returns kept drills. Structural problems -> errors; vocab -> warnings."""
+    validate_explanation(node, "verb", report)
     if node.get("family") == "politesse":
         form_tokens = set()
         for f in node.get("forms", []):
@@ -489,11 +565,7 @@ def validate_v2_vocab(node, base_lex, report):
 
 
 def validate_v2_grammar(node, base_lex, report):
-    n_words = len(node.get("explanation", "").split())
-    if n_words > 260:
-        report["errors"].append(f"{node['id']}: explanation {n_words} words (spec <= 200)")
-    elif n_words > 200:
-        report["warnings"].append(f"{node['id']}: explanation {n_words} words (spec <= 200)")
+    validate_explanation(node, "grammar", report)
     n_ex = len(node.get("canonical_examples", []))
     if not 6 <= n_ex <= 8:
         report["errors"].append(f"{node['id']}: {n_ex} canonical examples (spec 6-8)")
@@ -559,6 +631,8 @@ def validate_v2(strict):
         report = {"errors": [], "warnings": [], "dropped": []}
         validated_nodes = []
         drills_kept = 0
+        if module == "conjugation":
+            validate_tense_usage(data, report)
         for node in data["nodes"]:
             kept = checkers[module](node, base_lex, report)
             vn = dict(node)
@@ -567,9 +641,12 @@ def validate_v2(strict):
             validated_nodes.append(vn)
 
         out_path = HERE / f"learn_{module}_validated.json"
+        # carry every top-level key through (tense_usage rides with conjugation)
+        validated = {k: v for k, v in data.items() if k != "nodes"}
+        validated.setdefault("version", 2)
+        validated["nodes"] = validated_nodes
         with open(out_path, "w") as f:
-            json.dump({"version": data.get("version", 2), "nodes": validated_nodes},
-                      f, ensure_ascii=False, indent=2)
+            json.dump(validated, f, ensure_ascii=False, indent=2)
 
         full_report[module] = {
             "nodes": len(validated_nodes),

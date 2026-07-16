@@ -33,14 +33,29 @@ enum SessionPlanner {
         (s.conceptIds.count, s.frenchFormal.split(separator: " ").count)
     }
 
-    /// The concept types the v1 Construction session drills. Pack v2 adds
-    /// conjugation/vocab_pack/grammar nodes (several with no prereqs, so
-    /// instantly unlocked), but their drills live in the v2 pack and belong
-    /// to the Learn players — keep them out of this session until phase 10
-    /// rehomes Construction under Learn.
+    /// The concept types the v1 Construction session drills. This filter is
+    /// permanent design, not a stopgap: Construction is the v1 MT session
+    /// rehomed under Learn, and the v2 conjugation/vocab_pack/grammar nodes
+    /// are drilled by their own Learn players (`makeDrillRun`).
     static let v1Types: Set<ConceptType> = [
         .construction, .chunk, .vocabCluster, .register, .constructionRegister,
     ]
+
+    /// Pool for a Learn unit's drill run (PLAN2 §5.1): every drill generated
+    /// for the unit, in the same easiest → hardest order the Construction
+    /// ladder uses, so the ~70% rung controller works unchanged. Among equal
+    /// difficulty, earlier-due first, so scheduled reviews surface before
+    /// fresh material. (The fully FSRS-aware daily composition is phase 14.)
+    static func makeDrillRun(unit: ConceptNode, context: ModelContext) throws -> [Sentence] {
+        let unitId = unit.id
+        return try context.fetch(FetchDescriptor<Sentence>(
+            predicate: #Predicate { $0.targetConceptId == unitId }
+        ))
+        .sorted {
+            let (a, b) = (difficulty($0), difficulty($1))
+            return (a.0, a.1, $0.fsrsDue, $0.id) < (b.0, b.1, $1.fsrsDue, $1.id)
+        }
+    }
 
     static func makePlan(context: ModelContext, now: Date = .now) throws -> SessionPlan {
         let nodes = try context.fetch(FetchDescriptor<ConceptNode>())

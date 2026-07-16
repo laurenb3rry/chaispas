@@ -2,9 +2,10 @@
 //  LibraryNavigationUITests.swift
 //  ChaisPasUITests
 //
-//  Phase 9 acceptance: from Home, every mode index is reachable and shows
-//  real store content; stubbed players present the coming-in-phase-N sheet;
-//  Construction remains a real (non-stubbed) entry.
+//  Phase 9 acceptance (updated in phase 10): from Home, every mode index is
+//  reachable and shows real store content; Learn rows open real players;
+//  still-stubbed modes present the coming-in-phase-N sheet; Construction
+//  remains a real (non-stubbed) entry.
 //
 
 import XCTest
@@ -36,12 +37,14 @@ final class LibraryNavigationUITests: XCTestCase {
         }
         XCTAssertTrue(onLearnIndex, "Learn index should list the pack's verbs")
 
-        // A stubbed player: verb row → coming-in-phase-10 sheet, dismissable.
+        // A real Learn player (phase 10): verb row → conjugation table with
+        // its drill CTA, closable. (Full drill runs live in LearnModeUITests.)
         firstVerb.tap()
-        let stubLabel = app.staticTexts["COMING IN PHASE 10"].firstMatch
-        XCTAssertTrue(stubLabel.waitForExistence(timeout: 5))
-        app.buttons["D'accord"].firstMatch.tap()
-        XCTAssertTrue(stubLabel.waitForNonExistence(timeout: 5))
+        let startDrill = app.buttons["Start the drill"].firstMatch
+        XCTAssertTrue(startDrill.waitForExistence(timeout: 10),
+                      "verb row should open the conjugation player")
+        app.buttons["player-close"].firstMatch.tap()
+        XCTAssertTrue(startDrill.waitForNonExistence(timeout: 5))
 
         // Construction is not stubbed — the real session entry must exist.
         // (The full session run lives in SessionFlowUITests.)

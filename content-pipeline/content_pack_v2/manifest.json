@@ -1,12 +1,12 @@
 {
   "pack_version": 2,
-  "built_at": "2026-07-15T03:37:46+00:00",
+  "built_at": "2026-07-16T06:46:17+00:00",
   "content": {
     "learn": {
       "conjugation": {
-        "nodes": 21,
-        "drills": 375,
-        "verbs": 20
+        "nodes": 50,
+        "drills": 895,
+        "verbs": 49
       },
       "vocab": {
         "nodes": 40,
@@ -14,9 +14,9 @@
         "words": 1000
       },
       "grammar": {
-        "nodes": 15,
-        "drills": 300,
-        "canonical_examples": 105
+        "nodes": 25,
+        "drills": 500,
+        "canonical_examples": 175
       }
     },
     "speak": {
@@ -65,8 +65,8 @@
   },
   "audio": {
     "learn": {
-      "files": 8619,
-      "bytes": 118292352,
+      "files": 11806,
+      "bytes": 154850304,
       "missing": 0,
       "orphans": 0
     },
@@ -83,8 +83,8 @@
       "orphans": 0
     },
     "english_prompts": {
-      "files": 3637,
-      "bytes": 62021568,
+      "files": 4357,
+      "bytes": 72825408,
       "missing": 0,
       "orphans": 0
     }

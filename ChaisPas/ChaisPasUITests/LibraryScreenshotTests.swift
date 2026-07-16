@@ -2,8 +2,8 @@
 //  LibraryScreenshotTests.swift
 //  ChaisPasUITests
 //
-//  Visual QA helper: captures the phase-9 library surfaces (Home top and
-//  scrolled, each mode index, a coming-soon sheet). Not a functional test.
+//  Visual QA helper: captures the library surfaces (Home top and scrolled,
+//  each mode index, a Learn player intro). Not a functional test.
 //
 
 import XCTest
@@ -27,6 +27,17 @@ final class LibraryScreenshotTests: XCTestCase {
         XCTAssertTrue(home.waitForExistence(timeout: 30))
         snap("1-home-top")
 
+        // Back-chevron taps can drop mid-transition (the phase-4 gotcha in
+        // navigation clothes): re-tap until Home actually returns.
+        func popToHome() {
+            for _ in 0..<3 where !home.exists {
+                let back = app.navigationBars.buttons.firstMatch
+                if back.exists, back.isHittable { back.tap() }
+                _ = home.waitForExistence(timeout: 5)
+            }
+            XCTAssertTrue(home.exists, "should pop back to Home")
+        }
+
         app.swipeUp()
         snap("2-home-middle")
         app.swipeUp()
@@ -42,16 +53,56 @@ final class LibraryScreenshotTests: XCTestCase {
         }
         snap("4-learn-index-vocab-anchor")
 
-        // Coming-soon sheet from a vocab pack row
+        // The vocab player's word-card intro (phase 10)
         vocabRow.tap()
-        if app.staticTexts["COMING IN PHASE 10"].waitForExistence(timeout: 5) {
-            snap("5-coming-soon-sheet")
-            app.buttons["D'accord"].firstMatch.tap()
+        if app.buttons["Start the drill"].firstMatch.waitForExistence(timeout: 10) {
+            snap("5-vocab-player-intro")
+            app.buttons["player-close"].firstMatch.tap()
+            // the cover animates out; tapping nav mid-dismiss fails AX actions
+            _ = app.buttons["player-close"].firstMatch.waitForNonExistence(timeout: 5)
         }
-        app.navigationBars.buttons.firstMatch.tap()
+        popToHome()
+
+        // The conjugation table (the phase-10 typography moment): present
+        // tense, then a tense switch, then the drill stage.
+        let conjTile = app.buttons["learn-tile-conjugation"].firstMatch
+        let etreRow = app.descendants(matching: .any)["être — to be"].firstMatch
+        for _ in 0..<4 where !etreRow.exists {
+            if conjTile.exists, conjTile.isHittable { conjTile.tap() }
+            _ = etreRow.waitForExistence(timeout: 5)
+        }
+        etreRow.tap()
+        if app.buttons["Start the drill"].firstMatch.waitForExistence(timeout: 10) {
+            snap("9-conjugation-table-present")
+            app.buttons["PASSÉ COMPOSÉ"].firstMatch.tap()
+            snap("10-conjugation-table-passe-compose")
+            app.buttons["Start the drill"].firstMatch.tap()
+            _ = app.buttons["Got it"].firstMatch.waitForExistence(timeout: 15)
+            snap("11-drill-stage-revealed")
+            app.buttons["drill-close"].firstMatch.tap()
+            _ = app.buttons["drill-close"].firstMatch.waitForNonExistence(timeout: 5)
+        }
+        popToHome()
+
+        // Grammar: explanation stage, then the examples list.
+        let gramTile = app.buttons["learn-tile-grammar"].firstMatch
+        let gramRow = app.descendants(matching: .any)["Gender & articles: le, la, un, une"].firstMatch
+        for _ in 0..<4 where !gramRow.exists {
+            if gramTile.exists, gramTile.isHittable { gramTile.tap() }
+            _ = gramRow.waitForExistence(timeout: 5)
+        }
+        gramRow.tap()
+        if app.buttons["The examples"].firstMatch.waitForExistence(timeout: 10) {
+            snap("12-grammar-explanation")
+            app.buttons["The examples"].firstMatch.tap()
+            sleep(1)
+            snap("13-grammar-examples")
+            app.buttons["player-close"].firstMatch.tap()
+            _ = app.buttons["player-close"].firstMatch.waitForNonExistence(timeout: 5)
+        }
+        popToHome()
 
         // Remaining indexes
-        XCTAssertTrue(home.waitForExistence(timeout: 5))
         for (identifier, marker, name) in [
             ("home-section-speak", "A Paris café", "6-speak-index"),
             ("home-section-read", "TIER 0", "7-read-index"),
@@ -66,8 +117,7 @@ final class LibraryScreenshotTests: XCTestCase {
                 NSPredicate(format: "label CONTAINS %@", marker)
             ).firstMatch.waitForExistence(timeout: 10)
             snap(name)
-            app.navigationBars.buttons.firstMatch.tap()
-            XCTAssertTrue(home.waitForExistence(timeout: 5))
+            popToHome()
         }
     }
 }

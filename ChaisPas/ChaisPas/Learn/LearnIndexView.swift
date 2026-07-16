@@ -2,9 +2,9 @@ import SwiftData
 import SwiftUI
 
 /// Learn mode index (PLAN2 §5.1): Construction (the working v1 session),
-/// then verbs, vocab packs, and grammar lessons — all browsable now, players
-/// in phase 10. Rows carry live mastery hairlines; unmet prerequisites render
-/// as "recommended after …" captions, never locks (§8).
+/// then verbs, vocab packs, and grammar lessons, each opening its player.
+/// Rows carry live mastery hairlines; unmet prerequisites render as
+/// "recommended after …" captions, never locks (§8).
 struct LearnIndexView: View {
     @Environment(\.modelContext) private var modelContext
 
@@ -21,7 +21,7 @@ struct LearnIndexView: View {
     @State private var dueReviews = 0
     @State private var hasScrolledToFocus = false
     @State private var showingSession = false
-    @State private var comingSoon: ModeStub?
+    @State private var activeUnit: ConceptNode?
 
     var body: some View {
         ZStack {
@@ -34,13 +34,13 @@ struct LearnIndexView: View {
                             .id(LearnSection.construction)
                         nodeSection(.conjugation, title: "Conjugation",
                                     detail: "\(conjugation.count) verbs · \(masteredCount(conjugation)) mastered",
-                                    nodes: conjugation, stub: .conjugation)
+                                    nodes: conjugation)
                         nodeSection(.vocabulary, title: "Vocabulary",
                                     detail: "\(vocabPacks.count) packs · \(masteredCount(vocabPacks)) mastered",
-                                    nodes: vocabPacks, stub: .vocabulary)
+                                    nodes: vocabPacks)
                         nodeSection(.grammar, title: "Grammar",
                                     detail: "\(grammar.count) lessons · \(masteredCount(grammar)) mastered",
-                                    nodes: grammar, stub: .grammar)
+                                    nodes: grammar)
                     }
                     .padding(.horizontal, DSSpacing.margin)
                     .padding(.vertical, DSSpacing.xl)
@@ -61,7 +61,11 @@ struct LearnIndexView: View {
         }) {
             SessionView()
         }
-        .sheet(item: $comingSoon) { ComingSoonSheet(stub: $0) }
+        .fullScreenCover(item: $activeUnit, onDismiss: {
+            withAnimation(DSMotion.spring) { refresh() }
+        }) { unit in
+            LearnUnitPlayerView(unit: unit)
+        }
     }
 
     // MARK: Construction (works today — routes to the real session)
@@ -101,17 +105,17 @@ struct LearnIndexView: View {
         return parts.joined(separator: " · ")
     }
 
-    // MARK: Node sections (players stubbed until phase 10)
+    // MARK: Node sections (each row opens its unit's player)
 
     private func nodeSection(
         _ anchor: LearnSection, title: String, detail: String,
-        nodes: [ConceptNode], stub: ModeStub
+        nodes: [ConceptNode]
     ) -> some View {
         VStack(alignment: .leading, spacing: DSSpacing.sm) {
             IndexSectionHeader(title: title, detail: detail)
             VStack(spacing: 0) {
                 ForEach(nodes, id: \.id) { node in
-                    nodeRow(node, stub: stub)
+                    nodeRow(node)
                     if node.id != nodes.last?.id {
                         RowDivider()
                     }
@@ -121,8 +125,8 @@ struct LearnIndexView: View {
         .id(anchor)
     }
 
-    private func nodeRow(_ node: ConceptNode, stub: ModeStub) -> some View {
-        Button { comingSoon = stub } label: {
+    private func nodeRow(_ node: ConceptNode) -> some View {
+        Button { activeUnit = node } label: {
             HStack(spacing: DSSpacing.md) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(node.title)
@@ -181,6 +185,21 @@ struct LearnIndexView: View {
         dueReviews = (try? modelContext.fetchCount(FetchDescriptor<Sentence>(
             predicate: #Predicate { $0.fsrsStability > 0 && $0.fsrsDue <= now }
         ))) ?? 0
+    }
+}
+
+/// Routes a Learn unit to its player by concept type. Falls back to the
+/// grammar layout (title + explanation + drill) for anything unexpected —
+/// never a dead end.
+private struct LearnUnitPlayerView: View {
+    let unit: ConceptNode
+
+    var body: some View {
+        switch unit.type {
+        case .conjugation: ConjugationPlayerView(unit: unit)
+        case .vocabPack: VocabPlayerView(unit: unit)
+        default: GrammarPlayerView(unit: unit)
+        }
     }
 }
 

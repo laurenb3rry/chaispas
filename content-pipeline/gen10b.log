@@ -1,0 +1,186 @@
+=== explanations-only: conjugation ===
+[skip] conj_etre (already structured; --force to redo)
+[skip] conj_avoir (already structured; --force to redo)
+[skip] conj_aller (already structured; --force to redo)
+[expl] conj_faire
+[expl] conj_vouloir
+[expl] conj_pouvoir
+[expl] conj_devoir
+[expl] conj_savoir
+[expl] conj_dire
+[expl] conj_voir
+[expl] conj_prendre
+[expl] conj_venir
+[expl] conj_mettre
+[expl] conj_parler
+[expl] conj_aimer
+[expl] conj_acheter
+[expl] conj_manger
+[expl] conj_partir
+[expl] conj_finir
+[expl] conj_donner
+[expl] conj_politesse_conditionnel
+[skip] conj_croire (already structured; --force to redo)
+
+explanations refreshed; 22 nodes in learn_conjugation.json
+=== explanations-only: grammar ===
+[expl] gram_gender_articles
+[expl] gram_plurals_agreement
+[expl] gram_adjective_placement
+[expl] gram_prepositions
+[expl] gram_questions_deep
+[expl] gram_negation_variants
+[expl] gram_object_pronoun_order
+[expl] gram_y_en_deep
+[expl] gram_comparatives
+[expl] gram_imperatives
+[expl] gram_reflexives_deep
+[expl] gram_partitives
+[expl] gram_il_faut
+[expl] gram_time_date
+[expl] gram_demonstratives_possessives
+[skip] gram_cest_vs_il_est (already structured; --force to redo)
+
+explanations refreshed; 16 lessons in learn_grammar.json
+=== new verbs ===
+[skip] conj_etre (exists; --force to redo)
+[skip] conj_avoir (exists; --force to redo)
+[skip] conj_aller (exists; --force to redo)
+[skip] conj_faire (exists; --force to redo)
+[skip] conj_vouloir (exists; --force to redo)
+[skip] conj_pouvoir (exists; --force to redo)
+[skip] conj_devoir (exists; --force to redo)
+[skip] conj_savoir (exists; --force to redo)
+[skip] conj_dire (exists; --force to redo)
+[skip] conj_voir (exists; --force to redo)
+[skip] conj_prendre (exists; --force to redo)
+[skip] conj_venir (exists; --force to redo)
+[skip] conj_mettre (exists; --force to redo)
+[skip] conj_parler (exists; --force to redo)
+[skip] conj_aimer (exists; --force to redo)
+[skip] conj_acheter (exists; --force to redo)
+[skip] conj_manger (exists; --force to redo)
+[skip] conj_partir (exists; --force to redo)
+[skip] conj_finir (exists; --force to redo)
+[skip] conj_donner (exists; --force to redo)
+[skip] conj_croire (exists; --force to redo)
+[gen ] conj_penser
+       18 drills written
+[gen ] conj_passer
+       18 drills written
+[gen ] conj_arriver
+       18 drills written
+[gen ] conj_rester
+       18 drills written
+[gen ] conj_aider
+       18 drills written
+[gen ] conj_regarder
+       18 drills written
+[gen ] conj_trouver
+       18 drills written
+[gen ] conj_attendre
+       18 drills written
+[gen ] conj_appeler
+       18 drills written
+[gen ] conj_connaitre
+       18 drills written
+[gen ] conj_porter
+       18 drills written
+[gen ] conj_sortir
+       18 drills written
+[gen ] conj_comprendre
+       18 drills written
+[gen ] conj_entendre
+       18 drills written
+[gen ] conj_demander
+       18 drills written
+[gen ] conj_chercher
+       18 drills written
+[gen ] conj_laisser
+       18 drills written
+[gen ] conj_ecouter
+       18 drills written
+[gen ] conj_perdre
+       18 drills written
+[gen ] conj_tenir
+       18 drills written
+[gen ] conj_vivre
+       18 drills written
+[gen ] conj_essayer
+       18 drills written
+[gen ] conj_travailler
+       18 drills written
+[gen ] conj_rentrer
+       18 drills written
+[gen ] conj_commencer
+       18 drills written
+[gen ] conj_oublier
+       18 drills written
+[gen ] conj_payer
+       18 drills written
+[gen ] conj_boire
+       18 drills written
+[skip] conj_politesse_conditionnel (exists; --force to redo)
+
+Total conjugation nodes in learn_conjugation.json: 50
+=== new lessons ===
+[skip] gram_gender_articles (exists; --force to redo)
+[skip] gram_plurals_agreement (exists; --force to redo)
+[skip] gram_adjective_placement (exists; --force to redo)
+[skip] gram_prepositions (exists; --force to redo)
+[skip] gram_questions_deep (exists; --force to redo)
+[skip] gram_negation_variants (exists; --force to redo)
+[skip] gram_object_pronoun_order (exists; --force to redo)
+[skip] gram_y_en_deep (exists; --force to redo)
+[skip] gram_comparatives (exists; --force to redo)
+[skip] gram_imperatives (exists; --force to redo)
+[skip] gram_reflexives_deep (exists; --force to redo)
+[skip] gram_partitives (exists; --force to redo)
+[skip] gram_il_faut (exists; --force to redo)
+[skip] gram_time_date (exists; --force to redo)
+[skip] gram_demonstratives_possessives (exists; --force to redo)
+[gen ] gram_venir_de_en_train: Just did / doing right now: venir de & être en train de
+       7 examples, 20 drills written
+[gen ] gram_futur_simple: Futur simple: when it beats futur proche
+       7 examples, 20 drills written
+[gen ] gram_subjonctif_survival: Survival subjunctive: il faut que + the forms you'll hear
+       7 examples, 20 drills written
+[gen ] gram_si_clauses: Si clauses: real ifs and imagined ifs
+       7 examples, 20 drills written
+[gen ] gram_relatives_dont_ou: Relatives II: dont & où
+       7 examples, 20 drills written
+[gen ] gram_verb_prepositions: Verb + preposition patterns: essayer de, commencer à
+       7 examples, 20 drills written
+[gen ] gram_double_pronouns: Two pronouns at once: je te le dis
+       7 examples, 20 drills written
+[skip] gram_cest_vs_il_est (exists; --force to redo)
+[gen ] gram_intensifiers: Degree words: trop, grave, carrément
+       7 examples, 20 drills written
+[gen ] gram_connectors: Discourse glue: du coup, donc, alors, bref
+       7 examples, 20 drills written
+
+Total grammar lessons in learn_grammar.json: 25
+=== validate ===
+combined DAG OK (25 v1 + 115 v2 nodes)
+conjugation: 50 nodes, 895 drills kept, 3 dropped, 2 errors, 423 warnings -> learn_conjugation_validated.json
+  ERROR conj_rester: explanation section 4 missing header/body
+  ERROR conj_vivre: explanation section 4 missing header/body
+  warn  conj_etre_004: vocabulary outside known set: ['prêts']
+  warn  conj_etre_006: vocabulary outside known set: ['normaux']
+  warn  conj_etre_007: vocabulary outside known set: ['journée', 'taf', 'travail']
+  warn  conj_etre_009: vocabulary outside known set: ['trouvé']
+  warn  conj_etre_010: vocabulary outside known set: ['hier', 'soir']
+vocab: 40 nodes, 1571 drills kept, 6 dropped, 0 errors, 1076 warnings -> learn_vocab_validated.json
+  warn  vocab_pack_01_002: vocabulary outside known set: ['parfait']
+  warn  vocab_pack_01_003: vocabulary outside known set: ['minute']
+  warn  vocab_pack_01_009: vocabulary outside known set: ['bonne', 'pense']
+  warn  vocab_pack_01_010: vocabulary outside known set: ['crois']
+  warn  vocab_pack_01_012: vocabulary outside known set: ['pense']
+grammar: 25 nodes, 500 drills kept, 0 dropped, 0 errors, 165 warnings -> learn_grammar_validated.json
+  warn  gram_gender_articles_006: vocabulary outside known set: ['possibilité']
+  warn  gram_gender_articles_012: vocabulary outside known set: ['moment']
+  warn  gram_gender_articles_017: vocabulary outside known set: ['prendre']
+  warn  gram_plurals_agreement_005: vocabulary outside known set: ['petit']
+  warn  gram_plurals_agreement_006: vocabulary outside known set: ['petite']
+full detail in validation_report_v2.json
+=== EXIT 1 ===

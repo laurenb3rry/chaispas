@@ -136,6 +136,66 @@ struct ImporterV2Tests {
             predicate: #Predicate { $0.packVersion == 2 })) > 0)
     }
 
+    /// Phase 10b: pack updates grow Learn content (new verbs/lessons) and
+    /// rewrite explanations. A store built from an older pack must receive
+    /// the new units by id-upsert — while every piece of user state (FSRS,
+    /// drill history, mastery, introduced flags) survives untouched.
+    @Test func packGrowthUpsertsWithoutTouchingUserState() throws {
+        let context = ModelContext(try makeContainer())
+        ContentPackImporter.importIfNeeded(context: context)
+        let fullCounts = try allCounts(context)
+
+        // Simulate the pre-10b store: remove one Learn unit and its drills…
+        let removedId = try #require(
+            ContentPackV2.loadLearn(.conjugation).nodes.last?.id)
+        for node in try context.fetch(FetchDescriptor<ConceptNode>(
+            predicate: #Predicate { $0.id == removedId })) {
+            context.delete(node)
+        }
+        for drill in try context.fetch(FetchDescriptor<Sentence>(
+            predicate: #Predicate { $0.targetConceptId == removedId })) {
+            context.delete(drill)
+        }
+        // …and put live user state on a surviving v2 drill + node.
+        let survivor = try #require(try context.fetch(FetchDescriptor<Sentence>(
+            predicate: #Predicate { $0.packVersion == 2 && $0.targetConceptId != removedId }
+        )).first)
+        let due = Date.now.addingTimeInterval(86_400 * 2)
+        survivor.fsrsStability = 3.3
+        survivor.fsrsDifficulty = 6.6
+        survivor.fsrsDue = due
+        let survivorId = survivor.id
+        let touchedNode = try #require(try context.fetch(FetchDescriptor<ConceptNode>(
+            predicate: #Predicate { $0.id != removedId })).first(where: {
+                $0.type == .conjugation || $0.type == .grammar
+            }))
+        touchedNode.introduced = true
+        let touchedNodeId = touchedNode.id
+        try context.save()
+
+        #expect(ContentPackImporter.needsWork(context: context),
+                "a store behind the pack must report needing work")
+        ContentPackImporter.importIfNeeded(context: context)
+
+        // the removed unit is back, and totals match a fresh import
+        #expect(try context.fetchCount(FetchDescriptor<ConceptNode>(
+            predicate: #Predicate { $0.id == removedId })) == 1)
+        #expect(try allCounts(context) == fullCounts)
+        #expect(!ContentPackImporter.needsWork(context: context))
+
+        // user state survived the upsert byte-for-byte
+        let after = try #require(try context.fetch(FetchDescriptor<Sentence>(
+            predicate: #Predicate { $0.id == survivorId })).first)
+        #expect(after.fsrsStability == 3.3)
+        #expect(after.fsrsDifficulty == 6.6)
+        #expect(after.fsrsDue == due)
+        let nodeAfter = try #require(try context.fetch(FetchDescriptor<ConceptNode>(
+            predicate: #Predicate { $0.id == touchedNodeId })).first)
+        #expect(nodeAfter.introduced)
+        // and the refreshed explanation actually landed on existing nodes
+        #expect(!nodeAfter.explanationText.isEmpty)
+    }
+
     @Test func importedPayloadsDecodeFromTheStore() throws {
         let context = ModelContext(try makeContainer())
         ContentPackImporter.importIfNeeded(context: context)

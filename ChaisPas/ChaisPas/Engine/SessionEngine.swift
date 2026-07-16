@@ -9,6 +9,20 @@ import SwiftUI
 @MainActor
 @Observable
 final class SessionEngine {
+    /// What one engine run works through. The full MT session is Construction;
+    /// a drill run is the single-phase configuration the Learn players share
+    /// (PLAN2 §5.1): the same prompt → pause → reveal → grade choreography,
+    /// but just the ladder over one unit's drills, then the summary.
+    enum Mode {
+        case fullSession
+        case drillRun(unit: ConceptNode)
+
+        var drillRunUnit: ConceptNode? {
+            if case .drillRun(let unit) = self { return unit }
+            return nil
+        }
+    }
+
     enum Phase: Equatable {
         case warmRecall, conceptIntro, ladder, streetMirror, spontaneous, summary
 
@@ -73,6 +87,7 @@ final class SessionEngine {
     // MARK: Internals
 
     private let context: ModelContext
+    private let mode: Mode
     private let audio = AudioPlayer()
     private var plan = SessionPlan(
         warmRecall: [], newConcept: nil, targetConceptId: "",
@@ -102,8 +117,9 @@ final class SessionEngine {
     private var plannedUnits = 1
     private var logged = false
 
-    init(context: ModelContext) {
+    init(context: ModelContext, mode: Mode = .fullSession) {
         self.context = context
+        self.mode = mode
     }
 
     // MARK: Lifecycle
@@ -111,6 +127,13 @@ final class SessionEngine {
     func start() {
         audio.configureSession()
         startedAt = .now
+        switch mode {
+        case .fullSession: startFullSession()
+        case .drillRun(let unit): startDrillRun(unit: unit)
+        }
+    }
+
+    private func startFullSession() {
         plan = (try? SessionPlanner.makePlan(context: context))
             ?? SessionPlan(warmRecall: [], newConcept: nil, targetConceptId: "",
                            targetConceptTitle: "", ladderPool: [], spontaneousPool: [])
@@ -131,6 +154,23 @@ final class SessionEngine {
         }
     }
 
+    /// Single-phase configuration: ladder over the unit's drills, then done.
+    /// Opening the unit counts as introducing the concept — soft-recommend
+    /// captions elsewhere key off mastery, never off this flag.
+    private func startDrillRun(unit: ConceptNode) {
+        if !unit.introduced {
+            unit.introduced = true
+            try? context.save()
+        }
+        let pool = (try? SessionPlanner.makeDrillRun(unit: unit, context: context)) ?? []
+        plan = SessionPlan(
+            warmRecall: [], newConcept: nil, targetConceptId: unit.id,
+            targetConceptTitle: unit.title, ladderPool: pool, spontaneousPool: []
+        )
+        plannedUnits = max(min(Self.ladderLength, pool.count), 1)
+        enterLadder()
+    }
+
     /// Ends the session from any phase, logging what was completed.
     func end() {
         stepTask?.cancel()
@@ -146,7 +186,15 @@ final class SessionEngine {
     func replayAudio() {
         guard let sentence = currentSentence, drillStep == .revealed else { return }
         stepTask?.cancel()
-        stepTask = Task { await audio.play(fileName: sentence.audioRefs.formal) }
+        stepTask = Task {
+            await audio.play(fileName: sentence.audioRefs.formal,
+                             from: Self.frenchAudioLocation(of: sentence))
+        }
+    }
+
+    /// French drill audio ships in the pack the sentence came from.
+    private static func frenchAudioLocation(of sentence: Sentence) -> AudioPlayer.Location {
+        sentence.packVersion == 2 ? .v2Learn : .v1
     }
 
     /// Self-grade. BACKFILL: SFSpeechRecognizer (fr-FR, on-device) should
@@ -219,7 +267,7 @@ final class SessionEngine {
             enterLadder()
         case .ladder:
             if ladderDrilled.count >= Self.ladderLength || nextLadderSentence() == nil {
-                enterStreetMirror()
+                finishLadder()
             } else if let next = nextLadderSentence() {
                 startDrill(next)
             }
@@ -249,11 +297,20 @@ final class SessionEngine {
 
     private func enterLadder() {
         guard let first = nextLadderSentence() else {
-            enterStreetMirror()
+            finishLadder()
             return
         }
         transition { self.phase = .ladder }
         startDrill(first)
+    }
+
+    /// A drill run is just the ladder; the full session carries on into the
+    /// street mirror.
+    private func finishLadder() {
+        switch mode {
+        case .fullSession: enterStreetMirror()
+        case .drillRun: enterSummary()
+        }
     }
 
     private func enterStreetMirror() {
@@ -310,7 +367,17 @@ final class SessionEngine {
         // its length. Auto-reveal keeps the flow hands-free capable.
         let words = sentence.frenchFormal.split(separator: " ").count
         let pause = min(max(1.6 + 0.45 * Double(words), 3.0), 8.0)
+        // Drill runs speak the English prompt first (§5.1 hands-free);
+        // Construction stays as-is until its own hands-free pass.
+        let promptAudio = mode.drillRunUnit != nil ? sentence.englishAudioRef : nil
         stepTask = Task {
+            if let promptAudio {
+                await audio.play(fileName: promptAudio, from: .englishPrompts)
+                guard !Task.isCancelled else { return }
+                // The speak-pause (and the latency clock) start once the
+                // spoken prompt ends, not when the text appeared.
+                promptShownAt = .now
+            }
             try? await Task.sleep(for: .seconds(pause))
             guard !Task.isCancelled else { return }
             reveal(auto: true)
@@ -323,7 +390,10 @@ final class SessionEngine {
         latencyMs = Int(Date.now.timeIntervalSince(promptShownAt) * 1000)
         transition { self.drillStep = .revealed }
         DSHaptics.reveal()
-        stepTask = Task { await audio.play(fileName: sentence.audioRefs.formal) }
+        stepTask = Task {
+            await audio.play(fileName: sentence.audioRefs.formal,
+                             from: Self.frenchAudioLocation(of: sentence))
+        }
     }
 
     /// Nearest unused rung at-or-above the controller's position, falling

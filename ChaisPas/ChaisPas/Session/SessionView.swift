@@ -96,112 +96,9 @@ struct SessionView: View {
     }
 }
 
-// MARK: - Production drill (prompt → pause → reveal → grade)
-
-private struct DrillStageView: View {
-    let engine: SessionEngine
-    let sentence: Sentence
-
-    private var revealed: Bool { engine.drillStep != .listening }
-
-    private var gradeTint: Color? {
-        if case .graded(let correct) = engine.drillStep {
-            return correct ? DSColor.gradeSuccess : DSColor.gradeFailure
-        }
-        return nil
-    }
-
-    var body: some View {
-        VStack(spacing: 0) {
-            Spacer()
-
-            VStack(alignment: .leading, spacing: DSSpacing.xl) {
-                // The English cue: center stage while speaking, then it
-                // yields the stage to the French.
-                Text(sentence.english)
-                    .font(revealed ? DSType.englishPrompt : DSType.stagePrompt)
-                    .foregroundStyle(revealed ? DSColor.textSecondary : DSColor.textPrimary)
-
-                if revealed {
-                    VStack(alignment: .leading, spacing: DSSpacing.lg) {
-                        Text(sentence.frenchFormal)
-                            .font(DSType.stageFrench)
-                            .foregroundStyle(gradeTint ?? DSColor.textPrimary)
-                        if sentence.frenchStreet != sentence.frenchFormal {
-                            VStack(alignment: .leading, spacing: DSSpacing.xs) {
-                                Text("ON THE STREET")
-                                    .font(DSType.caption.weight(.medium))
-                                    .tracking(1.2)
-                                    .foregroundStyle(DSColor.textSecondary)
-                                Text(sentence.frenchStreet)
-                                    .font(DSType.stageFrenchSecondary)
-                                    .foregroundStyle(DSColor.accent)
-                            }
-                        }
-                    }
-                    .transition(.opacity.combined(with: .offset(y: 14)))
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, DSSpacing.margin)
-
-            Spacer()
-
-            footer
-        }
-        .contentShape(Rectangle())
-        .onTapGesture {
-            if !revealed { engine.reveal() }
-        }
-    }
-
-    @ViewBuilder
-    private var footer: some View {
-        ZStack {
-            if revealed {
-                HStack(spacing: DSSpacing.md) {
-                    Button { engine.replayAudio() } label: {
-                        Image(systemName: "speaker.wave.2")
-                            .font(.system(size: 17, weight: .medium))
-                            .foregroundStyle(DSColor.textPrimary)
-                            .frame(width: 52, height: 52)
-                            .background(DSColor.surface, in: Circle())
-                    }
-                    gradeButton("Missed it", correct: false)
-                    gradeButton("Got it", correct: true)
-                }
-                .transition(.opacity.combined(with: .offset(y: 10)))
-            } else {
-                VStack(spacing: DSSpacing.lg) {
-                    // BACKFILL: becomes a live waveform once the mic /
-                    // SFSpeechRecognizer lands (phase 5)
-                    BreathingIndicator()
-                    Text("say it in French — tap to reveal")
-                        .font(DSType.caption)
-                        .foregroundStyle(DSColor.textSecondary)
-                }
-                .transition(.opacity)
-            }
-        }
-        .padding(.horizontal, DSSpacing.margin)
-        .padding(.bottom, DSSpacing.xxl)
-        .frame(height: 110, alignment: .bottom)
-    }
-
-    private func gradeButton(_ label: String, correct: Bool) -> some View {
-        Button { engine.grade(correct: correct) } label: {
-            Text(label)
-                .font(DSType.body.weight(.medium))
-                .foregroundStyle(correct ? DSColor.background : DSColor.textPrimary)
-                .frame(maxWidth: .infinity)
-                .frame(height: 52)
-                .background(correct ? DSColor.accent : DSColor.surface, in: Capsule())
-        }
-        .disabled(engine.drillStep != .revealed)
-    }
-}
-
 // MARK: - Concept intro (MT-style framing, ≤15s read)
+// (DrillStageView and BreathingIndicator live in DrillStageView.swift,
+// shared with the Learn drill runs.)
 
 private struct ConceptIntroView: View {
     let concept: ConceptNode
@@ -391,25 +288,6 @@ private struct SummaryView: View {
                 .font(DSType.body.monospacedDigit())
                 .foregroundStyle(DSColor.textPrimary)
         }
-    }
-}
-
-// MARK: - Breathing indicator
-
-/// Quiet pulse marking "your turn to speak".
-/// BACKFILL: replace with a live mic waveform in phase 5.
-struct BreathingIndicator: View {
-    @State private var expanded = false
-
-    var body: some View {
-        Circle()
-            .fill(DSColor.accent)
-            .frame(width: 12, height: 12)
-            .scaleEffect(expanded ? 1.6 : 1)
-            .opacity(expanded ? 0.45 : 1)
-            .animation(.easeInOut(duration: 1.1).repeatForever(autoreverses: true), value: expanded)
-            .onAppear { expanded = true }
-            .frame(height: 24)
     }
 }
 

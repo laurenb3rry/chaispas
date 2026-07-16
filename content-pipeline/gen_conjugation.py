@@ -23,10 +23,12 @@ import argparse
 import json
 import unicodedata
 
-from genlib import (HERE, STREET_REGISTER_BRIEF, call_claude, load_output,
+from genlib import (EXPLANATION_SCHEMA, HERE, STREET_REGISTER_BRIEF, VOICE_SPEC,
+                    call_claude, exemplar_block, exemplar_explanation, load_output,
                     load_v1_graph, make_client, save_output, v1_concept_summaries)
 
 VERBS_PATH = HERE / "data" / "verbs.json"
+TENSE_USAGE_PATH = HERE / "data" / "tense_usage.json"
 OUT_PATH = HERE / "learn_conjugation.json"
 
 PERSONS = ["je", "tu", "il", "on", "vous", "ils"]
@@ -83,12 +85,24 @@ def compound_cell(person, aux_forms, rest, aux_je_reduction):
     return c
 
 
+def imparfait_form(stem, ending):
+    """-ger/-cer softening: the e/ç exist only to keep the stem's sound
+    before a; before i they must go (mangeais but mangiez, commençais but
+    commenciez). This fixes the 'vous mangeiez' bug shipped in v2a."""
+    if ending.startswith("i"):
+        if stem.endswith("ge"):
+            return stem[:-1] + ending
+        if stem.endswith("ç"):
+            return stem[:-1] + "c" + ending
+    return stem + ending
+
+
 def build_table(verb):
     red = verb["je_reduction"]
     table = {"present": {}, "passe_compose": {}, "imparfait": {}, "futur_proche": {}}
     for p in PERSONS:
         table["present"][p] = cell(p, verb["present"][p], red)
-        table["imparfait"][p] = cell(p, verb["imparfait_stem"] + IMPARFAIT_ENDINGS[p], red)
+        table["imparfait"][p] = cell(p, imparfait_form(verb["imparfait_stem"], IMPARFAIT_ENDINGS[p]), red)
         if verb["aux"] == "être":
             participle = verb["participle"] + ("s" if p in PLURAL_PERSONS else "")
             # être as aux: j'suis reduction rides on the être flag, not this verb's
@@ -123,9 +137,15 @@ V1 CURRICULUM (grammar and register the learner already has — prefer staying i
 
 {STREET_REGISTER_BRIEF}
 
+{VOICE_SPEC}
+
 TASK — return a JSON object with two keys:
 
-1. "explanation": an MT-style spoken framing of this verb, in English, <= 15 seconds when read aloud (roughly 40-60 words). Conversational, confidence-building, highlights the pattern that makes this verb easy (sound-alike forms, cognate hooks, the street contraction). Never a grammar lecture.
+1. {EXPLANATION_SCHEMA}
+   - 2-4 sections; total word count across headers, bodies and bullets <= 160 — treat 160 as a hard ceiling. Density beats length.
+   - Teach usage: when this verb gets chosen, the mistakes an English speaker makes with it, what actually gets said in real speech. Never etymology for its own sake.
+
+{exemplar_block('verb')}
 
 2. "drills": exactly {N_DRILLS} drill sentences exercising the forms in context. Requirements:
    - every sentence uses {verb['infinitive']} as its main event, in one of the four tenses above
@@ -150,9 +170,15 @@ V1 CURRICULUM:
 
 {street_brief}
 
+{voice}
+
 TASK — return a JSON object with two keys:
 
-1. "explanation": MT-style spoken framing in English, <= 15 seconds aloud (40-60 words): these are the magic politeness words that make every shop, café and hotel interaction smooth — one fixed form each, no conjugation to learn.
+1. {schema}
+   - 2-4 sections; total word count across headers, bodies and bullets <= 160 — treat 160 as a hard ceiling. Density beats length.
+   - The teaching point: these are fixed forms — no conjugation — and why the conditional softens a request (it frames it as hypothetical, so nobody is being ordered around).
+
+{exemplars}
 
 2. "drills": exactly 16 drill sentences. Requirements:
    - every sentence is built on one of the forms above
@@ -186,7 +212,8 @@ def node_for_verb(verb, table, gen):
         "infinitive": verb["infinitive"],
         "title": f"{verb['infinitive']} — {verb['english']}",
         "english": verb["english"],
-        "explanation": gen["explanation"].strip(),
+        # approved exemplar explanations (être, attendre) ship verbatim
+        "explanation": exemplar_explanation(nid) or gen["explanation"],
         "street_notes": verb["street_notes"],
         "aux": verb["aux"],
         "participle": verb["participle"],
@@ -215,10 +242,76 @@ def node_for_politesse(spec, gen):
         "prereq_ids": spec["prereq_ids"],
         "family": "politesse",
         "title": spec["title"],
-        "explanation": gen["explanation"].strip(),
+        "explanation": exemplar_explanation(nid) or gen["explanation"],
         "forms": spec["forms"],
         "drills": drills,
     }
+
+
+# --- phase 10b: explanation-only regeneration for units that already have
+# drills (drills, and therefore audio, must not change) -----------------------
+
+EXPLANATION_ONLY_PROMPT = """{voice}
+
+You are rewriting the learner-facing explanation for one unit of "Chais Pas", a spoken-French course with a first-class street-register layer. The unit's conjugation table and drills already exist — write ONLY the explanation that sits above the table.
+
+UNIT: {label}
+FORMS:
+{forms}
+Street notes: {street_notes}
+
+{schema}
+- 2-4 sections; total word count across headers, bodies and bullets <= 160 — treat 160 as a hard ceiling. Density beats length.
+- Teach usage: when this verb gets chosen, the mistakes an English speaker makes with it, what actually gets said in real speech. Never etymology for its own sake.
+
+{exemplars}
+
+Return ONLY a JSON object: {{"explanation": [ ...sections... ]}}"""
+
+
+def regen_explanation(client, label, forms_text, street_notes):
+    prompt = EXPLANATION_ONLY_PROMPT.format(
+        voice=VOICE_SPEC, label=label, forms=forms_text,
+        street_notes=street_notes, schema=EXPLANATION_SCHEMA,
+        exemplars=exemplar_block("verb"))
+    gen = call_claude(client, prompt, label=label)
+    if not isinstance(gen, dict) or not isinstance(gen.get("explanation"), list):
+        raise RuntimeError(f"{label}: explanation regen returned wrong shape")
+    return gen["explanation"]
+
+
+def refresh_existing_node(node, specs_by_id, client, dry_run):
+    """Rebuild spec-derived fields (incl. the corrected imparfait table) and
+    replace the explanation; drills are never touched."""
+    nid = node["id"]
+    if node.get("family") == "politesse":
+        forms_text = "\n".join(
+            f"  {f['formal']}"
+            + (f" (street: {f['street']})" if f["street"] != f["formal"] else "")
+            + f" — {f['english']}" for f in node["forms"])
+        street_notes = "il faudrait -> faudrait, ce serait -> ça serait"
+        label = "politesse"
+    else:
+        spec = specs_by_id[nid]
+        table = build_table(spec)
+        node["table"] = table
+        node["street_notes"] = spec["street_notes"]
+        node["tier"] = spec["tier"]
+        node["family"] = spec["family"]
+        forms_text = table_text(table)
+        street_notes = spec["street_notes"]
+        label = spec["infinitive"]
+
+    if dry_run:
+        print(f"[dry ] would regenerate explanation for {nid}")
+        return
+    node["explanation"] = exemplar_explanation(nid) \
+        or regen_explanation(client, label, forms_text, street_notes)
+
+
+def load_tense_usage():
+    with open(TENSE_USAGE_PATH) as f:
+        return json.load(f)["tenses"]
 
 
 def main():
@@ -227,16 +320,37 @@ def main():
                     help="only these verbs (accent-insensitive: etre, aller, 'politesse')")
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--explanations-only", action="store_true",
+                    help="phase 10b: regenerate explanations (and rebuild tables) "
+                         "for EXISTING units without touching their drills")
     args = ap.parse_args()
 
     with open(VERBS_PATH) as f:
         data = json.load(f)
     graph = load_v1_graph()
     out = load_output(OUT_PATH, "nodes")
+    out["tense_usage"] = load_tense_usage()
     done = {n["id"] for n in out["nodes"]}
 
     wanted = {slug(v).lower() for v in args.verb} if args.verb else None
     client = None if args.dry_run else make_client()
+
+    if args.explanations_only:
+        specs_by_id = {f"conj_{slug(v['infinitive'])}": v for v in data["verbs"]}
+        for node in out["nodes"]:
+            label = node.get("infinitive", "politesse")
+            if wanted and slug(label).lower() not in wanted:
+                continue
+            # resumable: structured explanations are lists, legacy are strings
+            if isinstance(node.get("explanation"), list) and not args.force:
+                print(f"[skip] {node['id']} (already structured; --force to redo)")
+                continue
+            print(f"[expl] {node['id']}")
+            refresh_existing_node(node, specs_by_id, client, args.dry_run)
+            if not args.dry_run:
+                save_output(OUT_PATH, out)
+        print(f"\nexplanations refreshed; {len(out['nodes'])} nodes in {OUT_PATH.name}")
+        return
 
     units = [("verb", v) for v in sorted(data["verbs"], key=lambda v: v["rank"])]
     units.append(("politesse", data["politesse"]))
@@ -263,7 +377,10 @@ def main():
                               f" — {f['english']}" for f in spec["forms"])
             prompt = POLITESSE_PROMPT.format(forms=forms,
                                              summaries=v1_concept_summaries(graph),
-                                             street_brief=STREET_REGISTER_BRIEF)
+                                             street_brief=STREET_REGISTER_BRIEF,
+                                             voice=VOICE_SPEC,
+                                             schema=EXPLANATION_SCHEMA,
+                                             exemplars=exemplar_block("verb"))
 
         print(f"[gen ] {nid}")
         if args.dry_run:
