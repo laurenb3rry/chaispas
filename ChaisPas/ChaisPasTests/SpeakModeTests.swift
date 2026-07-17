@@ -27,8 +27,10 @@ struct SpeakModeTests {
     }
 
     /// Polls until the engine settles in a state the "user" must act on.
+    /// Generous timeout: a freshly-booted simulator clone can stall the main
+    /// actor for seconds on cold framework inits.
     private func waitUntil(
-        _ condition: @escaping () -> Bool, timeout: TimeInterval = 10
+        _ condition: @escaping () -> Bool, timeout: TimeInterval = 30
     ) async throws {
         let deadline = Date.now.addingTimeInterval(timeout)
         while !condition() {

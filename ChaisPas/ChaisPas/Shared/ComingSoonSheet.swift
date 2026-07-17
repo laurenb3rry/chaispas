@@ -2,17 +2,13 @@ import SwiftUI
 
 /// A mode player that isn't built yet (PLAN2 phase 9: the library is fully
 /// browsable ahead of the players landing). Every stub names its phase.
-/// Learn landed in phase 10, Speak in 11; these fall away one by one.
+/// Learn landed in phase 10, Speak in 11, Listen in 12; Read is the last.
 struct ModeStub: Identifiable {
     let title: String
     let phase: Int
     let blurb: String
     var id: String { title }
 
-    static let listen = ModeStub(
-        title: "Listen", phase: 12,
-        blurb: "Cold listen at full speed, comprehension questions, transcript reveal — then an optional slow pass and shadowing."
-    )
     static let read = ModeStub(
         title: "Read", phase: 13,
         blurb: "A cleanly set page with a gloss behind every word, then comprehension questions."
@@ -59,6 +55,6 @@ struct ComingSoonSheet: View {
 
 #Preview {
     Color.black.sheet(isPresented: .constant(true)) {
-        ComingSoonSheet(stub: .listen)
+        ComingSoonSheet(stub: .read)
     }
 }

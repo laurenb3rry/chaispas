@@ -28,11 +28,13 @@ enum ContentPackImporter {
                 + (manifest?.vocab.drills ?? 0) + (manifest?.grammar.drills ?? 0)
             return try context.fetchCount(FetchDescriptor<ConceptNode>()) == 0
                 || context.fetchCount(FetchDescriptor<Sentence>()) == 0
-                // Learn drills only — scenario-line sentences (also pack 2)
-                // would mask a pack update behind their own count.
+                // Learn drills only — scenario-line and episode-question
+                // sentences (also pack 2) would mask a pack update behind
+                // their own counts.
                 || context.fetchCount(FetchDescriptor<Sentence>(
                     predicate: #Predicate {
                         $0.packVersion == 2 && !$0.id.starts(with: "scn_")
+                            && !$0.id.starts(with: "lst_")
                     })) < packDrills
                 || context.fetchCount(FetchDescriptor<Scenario>()) == 0
                 // Speak user lines drill through the one spine (phase 11) —
@@ -41,6 +43,9 @@ enum ContentPackImporter {
                 || context.fetchCount(FetchDescriptor<Sentence>(
                     predicate: #Predicate { $0.id.starts(with: "scn_") })) == 0
                 || context.fetchCount(FetchDescriptor<ListenEpisode>()) == 0
+                // Listen questions drill through the one spine (phase 12).
+                || context.fetchCount(FetchDescriptor<Sentence>(
+                    predicate: #Predicate { $0.id.starts(with: "lst_") })) == 0
                 || context.fetchCount(FetchDescriptor<Passage>()) == 0
                 || context.fetchCount(FetchDescriptor<Sentence>(
                     predicate: #Predicate { $0.targetConceptId == "" })) > 0
@@ -130,23 +135,7 @@ enum ContentPackImporter {
         try importScenariosIfNeeded(context: context)
 
         report(6)
-        if try context.fetchCount(FetchDescriptor<ListenEpisode>()) == 0 {
-            let encoder = JSONEncoder()
-            for episode in try ContentPackV2.loadEpisodes().episodes {
-                context.insert(ListenEpisode(
-                    id: episode.id,
-                    title: episode.title,
-                    level: episode.level,
-                    topic: episode.topic,
-                    speakerLabels: episode.speakers.map(\.label),
-                    durationSec: episode.estDurationSec,
-                    audioFullFast: episode.audioRefs.fullFast,
-                    audioFullSlow: episode.audioRefs.fullSlow,
-                    transcriptData: try encoder.encode(episode.lines),
-                    questionsData: try encoder.encode(episode.questions)
-                ))
-            }
-        }
+        try importEpisodesIfNeeded(context: context)
 
         report(7)
         if try context.fetchCount(FetchDescriptor<Passage>()) == 0 {
@@ -213,6 +202,62 @@ enum ContentPackImporter {
                     packVersion: 2,
                     englishAudioRef: node.audioRefs?["english_prompt"]
                         ?? "\(node.nodeId)_english.mp3"
+                ))
+            }
+        }
+    }
+
+    /// Episode rows, plus every comprehension **question** as a Sentence
+    /// (phase 12): a question grades through `MasteryModel.recordDrill` on
+    /// the comprehension axis like every other gradeable interaction. The id
+    /// scheme is `<episodeId>_qN`; `english` carries the question, the
+    /// french fields the correct option (the player renders from the episode
+    /// payload — the Sentence exists for the spine). Same guard split as
+    /// scenarios: phase-8 stores already carry ListenEpisode rows.
+    private static func importEpisodesIfNeeded(context: ModelContext) throws {
+        let needsEpisodes = try context.fetchCount(FetchDescriptor<ListenEpisode>()) == 0
+        let existingQuestionIds = Set(try context.fetch(FetchDescriptor<Sentence>(
+            predicate: #Predicate { $0.id.starts(with: "lst_") }
+        )).map(\.id))
+
+        guard needsEpisodes || existingQuestionIds.isEmpty else { return }
+
+        let encoder = JSONEncoder()
+        for episode in try ContentPackV2.loadEpisodes().episodes {
+            if needsEpisodes {
+                context.insert(ListenEpisode(
+                    id: episode.id,
+                    title: episode.title,
+                    level: episode.level,
+                    topic: episode.topic,
+                    speakerLabels: episode.speakers.map(\.label),
+                    durationSec: episode.estDurationSec,
+                    audioFullFast: episode.audioRefs.fullFast,
+                    audioFullSlow: episode.audioRefs.fullSlow,
+                    transcriptData: try encoder.encode(episode.lines),
+                    questionsData: try encoder.encode(episode.questions)
+                ))
+            }
+            for (index, question) in episode.questions.enumerated() {
+                let id = "\(episode.id)_q\(index + 1)"
+                guard !existingQuestionIds.contains(id),
+                      question.options.indices.contains(question.answerIndex)
+                else { continue }
+                let answer = question.options[question.answerIndex]
+                context.insert(Sentence(
+                    id: id,
+                    conceptIds: [],
+                    targetConceptId: episode.id,
+                    english: question.question,
+                    frenchFormal: answer,
+                    frenchStreet: answer,
+                    audioRefs: AudioRefs(
+                        formal: "\(id)_formal.mp3",
+                        streetSlow: "\(id)_street_slow.mp3",
+                        streetFast: "\(id)_street_fast.mp3"
+                    ),
+                    packVersion: 2,
+                    englishAudioRef: "\(id)_english.mp3"
                 ))
             }
         }

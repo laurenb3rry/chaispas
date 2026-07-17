@@ -33,6 +33,7 @@ struct HomeView: View {
     @State private var showingDebug = false
     @State private var comingSoon: ModeStub?
     @State private var playingScenario: Scenario?
+    @State private var playingEpisode: ListenEpisode?
 
     var body: some View {
         NavigationStack {
@@ -77,6 +78,11 @@ struct HomeView: View {
             withAnimation(DSMotion.spring) { refresh() }
         }) { scenario in
             ScenarioPlayerView(scenario: scenario)
+        }
+        .fullScreenCover(item: $playingEpisode, onDismiss: {
+            withAnimation(DSMotion.spring) { refresh() }
+        }) { episode in
+            ListenPlayerView(episode: episode)
         }
     }
 
@@ -324,7 +330,7 @@ struct HomeView: View {
     }
 
     private func episodeRow(_ episode: ListenEpisode) -> some View {
-        Button { comingSoon = .listen } label: {
+        Button { playingEpisode = episode } label: {
             HStack(spacing: DSSpacing.md) {
                 Text(episode.level)
                     .font(DSType.caption.weight(.semibold))

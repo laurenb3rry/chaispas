@@ -13,6 +13,8 @@ final class AudioPlayer: NSObject, AVAudioPlayerDelegate {
         case v2Learn
         /// content_pack_v2/speak/audio — scenario NPC and user lines.
         case v2Speak
+        /// content_pack_v2/listen/audio — episode full mixes and lines.
+        case v2Listen
         /// content_pack_v2/english_prompts — hands-free prompt audio (v1 + v2).
         case englishPrompts
     }
@@ -36,6 +38,8 @@ final class AudioPlayer: NSObject, AVAudioPlayerDelegate {
             ContentPackV2.audioURL(fileName: fileName, module: .learn)
         case .v2Speak:
             ContentPackV2.audioURL(fileName: fileName, module: .speak)
+        case .v2Listen:
+            ContentPackV2.audioURL(fileName: fileName, module: .listen)
         case .englishPrompts:
             ContentPackV2.audioURL(fileName: fileName, module: .englishPrompts)
         }
@@ -67,6 +71,30 @@ final class AudioPlayer: NSObject, AVAudioPlayerDelegate {
         player?.stop()
         player = nil
         finish()
+    }
+
+    // MARK: Long-form playback (Listen episodes)
+    //
+    // `play(fileName:)` stays suspended across a pause and resumes its await
+    // when playback actually finishes, so an episode flow can still be
+    // written as one linear async sequence around user-paced pauses.
+
+    func pause() {
+        player?.pause()
+    }
+
+    func resume() {
+        player?.play()
+    }
+
+    var isPlaying: Bool {
+        player?.isPlaying ?? false
+    }
+
+    /// Fraction played of the current file, in [0, 1]; 0 when nothing loaded.
+    var playbackProgress: Double {
+        guard let player, player.duration > 0 else { return 0 }
+        return min(max(player.currentTime / player.duration, 0), 1)
     }
 
     private func finish() {

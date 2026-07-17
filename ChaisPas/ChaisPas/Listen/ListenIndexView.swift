@@ -2,12 +2,12 @@ import SwiftData
 import SwiftUI
 
 /// Listen mode index (PLAN2 §5.4): episodes grouped by level A–D with
-/// durations and best scores. Browsable now; the staged player is phase 12.
+/// durations and best scores. Each row opens the staged player.
 struct ListenIndexView: View {
     @Query(sort: [SortDescriptor(\ListenEpisode.level), SortDescriptor(\ListenEpisode.id)])
     private var episodes: [ListenEpisode]
 
-    @State private var comingSoon: ModeStub?
+    @State private var playing: ListenEpisode?
 
     private static let levelBlurbs = [
         "A": "slower street, short exchanges",
@@ -32,7 +32,9 @@ struct ListenIndexView: View {
         }
         .toolbarBackground(DSColor.background, for: .navigationBar)
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(item: $comingSoon) { ComingSoonSheet(stub: $0) }
+        .fullScreenCover(item: $playing) { episode in
+            ListenPlayerView(episode: episode)
+        }
     }
 
     private var levels: [String] {
@@ -57,7 +59,7 @@ struct ListenIndexView: View {
     }
 
     private func episodeRow(_ episode: ListenEpisode) -> some View {
-        Button { comingSoon = .listen } label: {
+        Button { playing = episode } label: {
             HStack(spacing: DSSpacing.md) {
                 Text(episode.level)
                     .font(DSType.caption.weight(.semibold))
@@ -84,6 +86,7 @@ struct ListenIndexView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .accessibilityIdentifier("episode-\(episode.id)")
     }
 
     private func bestScoreLabel(_ episode: ListenEpisode) -> String? {

@@ -192,7 +192,7 @@ final class ScenarioEngine {
         stepTask?.cancel()
         latencyMs = max(Int(Date.now.timeIntervalSince(promptEndedAt) * 1000), 0)
         transition { self.step = .userRevealed }
-        DSHaptics.reveal()
+        if !silent { DSHaptics.reveal() }
         // The reveal models the target register: street, at street speed.
         if let fast = user.audioRefs?["street_fast"] {
             stepTask = Task { await play(fast, from: .v2Speak) }
@@ -214,7 +214,11 @@ final class ScenarioEngine {
         stepTask?.cancel()
         audio.stop()
         transition { self.step = .userGraded(correct: correct) }
-        if correct { DSHaptics.gradeSuccess() } else { DSHaptics.gradeWarning() }
+        // Cold CoreHaptics can block the main actor for seconds (the same
+        // family as the phase-8 CoreAudio stall) — silent runs skip it.
+        if !silent {
+            if correct { DSHaptics.gradeSuccess() } else { DSHaptics.gradeWarning() }
+        }
 
         recordDrill(nodeId: user.nodeId, correct: correct)
         exchangesCompleted += 1
