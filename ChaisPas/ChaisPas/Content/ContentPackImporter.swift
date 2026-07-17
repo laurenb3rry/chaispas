@@ -28,9 +28,18 @@ enum ContentPackImporter {
                 + (manifest?.vocab.drills ?? 0) + (manifest?.grammar.drills ?? 0)
             return try context.fetchCount(FetchDescriptor<ConceptNode>()) == 0
                 || context.fetchCount(FetchDescriptor<Sentence>()) == 0
+                // Learn drills only — scenario-line sentences (also pack 2)
+                // would mask a pack update behind their own count.
                 || context.fetchCount(FetchDescriptor<Sentence>(
-                    predicate: #Predicate { $0.packVersion == 2 })) < packDrills
+                    predicate: #Predicate {
+                        $0.packVersion == 2 && !$0.id.starts(with: "scn_")
+                    })) < packDrills
                 || context.fetchCount(FetchDescriptor<Scenario>()) == 0
+                // Speak user lines drill through the one spine (phase 11) —
+                // stores imported before then have Scenario rows but no
+                // scenario-line sentences.
+                || context.fetchCount(FetchDescriptor<Sentence>(
+                    predicate: #Predicate { $0.id.starts(with: "scn_") })) == 0
                 || context.fetchCount(FetchDescriptor<ListenEpisode>()) == 0
                 || context.fetchCount(FetchDescriptor<Passage>()) == 0
                 || context.fetchCount(FetchDescriptor<Sentence>(
@@ -118,19 +127,7 @@ enum ContentPackImporter {
         try importV2LearnIfNeeded(context: context, report: report)
 
         report(5)
-        if try context.fetchCount(FetchDescriptor<Scenario>()) == 0 {
-            let encoder = JSONEncoder()
-            for scenario in try ContentPackV2.loadScenarios().scenarios {
-                context.insert(Scenario(
-                    id: scenario.id,
-                    title: scenario.title,
-                    icon: scenario.icon,
-                    settingBlurb: scenario.settingBlurb,
-                    difficulty: scenario.difficulty,
-                    variantsData: try encoder.encode(scenario.variants)
-                ))
-            }
-        }
+        try importScenariosIfNeeded(context: context)
 
         report(6)
         if try context.fetchCount(FetchDescriptor<ListenEpisode>()) == 0 {
@@ -165,6 +162,57 @@ enum ContentPackImporter {
                     wordCount: passage.wordCount,
                     glossData: try encoder.encode(passage.gloss),
                     questionsData: try encoder.encode(passage.questions)
+                ))
+            }
+        }
+    }
+
+    /// Scenario rows, plus every scenario **user line** as a Sentence (phase
+    /// 11): Speak grades through `MasteryModel.recordDrill` like every other
+    /// mode — one spine, four doors. Line sentences upsert by id (guarded
+    /// separately from Scenario rows, which phase-8 stores already carry).
+    /// They never leak into other modes: Construction pools are pinned to
+    /// packVersion 1, and Learn drill runs match on Learn-node target ids.
+    private static func importScenariosIfNeeded(context: ModelContext) throws {
+        let needsScenarios = try context.fetchCount(FetchDescriptor<Scenario>()) == 0
+        let existingLineIds = Set(try context.fetch(FetchDescriptor<Sentence>(
+            predicate: #Predicate { $0.id.starts(with: "scn_") }
+        )).map(\.id))
+
+        guard needsScenarios || existingLineIds.isEmpty else { return }
+
+        let encoder = JSONEncoder()
+        for scenario in try ContentPackV2.loadScenarios().scenarios {
+            if needsScenarios {
+                context.insert(Scenario(
+                    id: scenario.id,
+                    title: scenario.title,
+                    icon: scenario.icon,
+                    settingBlurb: scenario.settingBlurb,
+                    difficulty: scenario.difficulty,
+                    variantsData: try encoder.encode(scenario.variants)
+                ))
+            }
+            for node in scenario.variants.flatMap(\.nodes)
+            where node.speaker == "user" && !existingLineIds.contains(node.nodeId) {
+                context.insert(Sentence(
+                    id: node.nodeId,
+                    // The pack carries no concept tagging for scenario lines,
+                    // so mastery EMA has nothing to update — the DrillEvent
+                    // and the line's own FSRS state are the record.
+                    conceptIds: [],
+                    targetConceptId: scenario.id,
+                    english: node.english,
+                    frenchFormal: node.frenchFormal ?? node.frenchStreet,
+                    frenchStreet: node.frenchStreet,
+                    audioRefs: AudioRefs(
+                        formal: node.audioRefs?["formal"] ?? "\(node.nodeId)_formal.mp3",
+                        streetSlow: node.audioRefs?["street_slow"] ?? "\(node.nodeId)_street_slow.mp3",
+                        streetFast: node.audioRefs?["street_fast"] ?? "\(node.nodeId)_street_fast.mp3"
+                    ),
+                    packVersion: 2,
+                    englishAudioRef: node.audioRefs?["english_prompt"]
+                        ?? "\(node.nodeId)_english.mp3"
                 ))
             }
         }

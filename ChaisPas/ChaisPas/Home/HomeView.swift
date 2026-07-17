@@ -32,6 +32,7 @@ struct HomeView: View {
     @State private var showingSession = false
     @State private var showingDebug = false
     @State private var comingSoon: ModeStub?
+    @State private var playingScenario: Scenario?
 
     var body: some View {
         NavigationStack {
@@ -72,6 +73,11 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showingDebug) { DebugView() }
         .sheet(item: $comingSoon) { ComingSoonSheet(stub: $0) }
+        .fullScreenCover(item: $playingScenario, onDismiss: {
+            withAnimation(DSMotion.spring) { refresh() }
+        }) { scenario in
+            ScenarioPlayerView(scenario: scenario)
+        }
     }
 
     // MARK: Header
@@ -231,7 +237,7 @@ struct HomeView: View {
     }
 
     private func scenarioCard(_ scenario: Scenario) -> some View {
-        Button { comingSoon = .speak } label: {
+        Button { playingScenario = scenario } label: {
             VStack(alignment: .leading, spacing: DSSpacing.sm) {
                 Image(systemName: scenario.icon)
                     .font(.system(size: 18))

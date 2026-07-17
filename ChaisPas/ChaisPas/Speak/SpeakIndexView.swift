@@ -2,12 +2,12 @@ import SwiftData
 import SwiftUI
 
 /// Speak mode index (PLAN2 §5.2): the 12 everyday-France scenarios, ordered
-/// easy → hard. Cards are browsable now; the dialogue player is phase 11.
+/// easy → hard. Each card opens the dialogue player.
 struct SpeakIndexView: View {
     @Query(sort: [SortDescriptor(\Scenario.difficulty), SortDescriptor(\Scenario.id)])
     private var scenarios: [Scenario]
 
-    @State private var comingSoon: ModeStub?
+    @State private var playing: Scenario?
 
     var body: some View {
         ZStack {
@@ -26,11 +26,13 @@ struct SpeakIndexView: View {
         }
         .toolbarBackground(DSColor.background, for: .navigationBar)
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(item: $comingSoon) { ComingSoonSheet(stub: $0) }
+        .fullScreenCover(item: $playing) { scenario in
+            ScenarioPlayerView(scenario: scenario)
+        }
     }
 
     private func scenarioCard(_ scenario: Scenario) -> some View {
-        Button { comingSoon = .speak } label: {
+        Button { playing = scenario } label: {
             HStack(alignment: .top, spacing: DSSpacing.lg) {
                 Image(systemName: scenario.icon)
                     .font(.system(size: 20))
@@ -57,6 +59,7 @@ struct SpeakIndexView: View {
             .background(DSColor.surface, in: RoundedRectangle(cornerRadius: 16))
         }
         .buttonStyle(.plain)
+        .accessibilityIdentifier("scenario-\(scenario.id)")
     }
 
     private func meta(_ scenario: Scenario) -> String {

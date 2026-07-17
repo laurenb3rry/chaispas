@@ -11,6 +11,8 @@ final class AudioPlayer: NSObject, AVAudioPlayerDelegate {
         case v1
         /// content_pack_v2/learn/audio — Learn drills, tables, words, examples.
         case v2Learn
+        /// content_pack_v2/speak/audio — scenario NPC and user lines.
+        case v2Speak
         /// content_pack_v2/english_prompts — hands-free prompt audio (v1 + v2).
         case englishPrompts
     }
@@ -32,6 +34,8 @@ final class AudioPlayer: NSObject, AVAudioPlayerDelegate {
             ContentPack.audioURL(fileName: fileName)
         case .v2Learn:
             ContentPackV2.audioURL(fileName: fileName, module: .learn)
+        case .v2Speak:
+            ContentPackV2.audioURL(fileName: fileName, module: .speak)
         case .englishPrompts:
             ContentPackV2.audioURL(fileName: fileName, module: .englishPrompts)
         }

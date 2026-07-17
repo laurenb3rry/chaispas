@@ -14,6 +14,10 @@ final class Scenario {
     var variantsData: Data
     var completedCount: Int = 0
     var lastPlayed: Date?
+    /// variantId → when it was last started; drives the least-recently-played
+    /// rotation so replays differ (PLAN2 §3.4). Default keeps migration
+    /// lightweight for phase-8 stores.
+    var variantLastPlayed: [String: Date] = [:]
 
     init(
         id: String,

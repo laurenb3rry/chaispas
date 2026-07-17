@@ -1,0 +1,95 @@
+//
+//  SpeakModeUITests.swift
+//  ChaisPasUITests
+//
+//  Phase 11 acceptance (PLAN2 §9), through the real UI: open a scenario from
+//  the Speak index, play the dialogue end to end — skipping NPC audio with
+//  stage taps, choosing at a branch point, self-grading every line — and
+//  land on the summary with the replay-different-variant CTA.
+//
+
+import XCTest
+
+final class SpeakModeUITests: XCTestCase {
+    @MainActor
+    func testFullScenarioPlaythroughWithBranch() throws {
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launch()
+
+        let home = app.buttons["recommended-today"].firstMatch
+        XCTAssertTrue(home.waitForExistence(timeout: 30),
+                      "Home should appear once the import finishes")
+
+        // Speak index → the café scenario (difficulty 1, sorts first).
+        openSection("home-section-speak", in: app)
+        let card = app.buttons["scenario-scn_cafe"].firstMatch
+        XCTAssertTrue(card.waitForExistence(timeout: 10))
+        let close = app.buttons["speak-close"].firstMatch
+        for _ in 0..<4 where !close.exists {
+            if card.exists, card.isHittable { card.tap() }
+            _ = close.waitForExistence(timeout: 5)
+        }
+        XCTAssertTrue(close.exists, "scenario card should open the player")
+
+        // Drive the conversation. NPC lines auto-advance after their audio;
+        // a stage tap skips ahead (and reveals during the speak-pause), so
+        // the test never waits out real playback.
+        let gotIt = app.buttons["Got it"].firstMatch
+        let missed = app.buttons["Missed it"].firstMatch
+        let branchFirst = app.buttons["branch-option-0"].firstMatch
+        let branchSecond = app.buttons["branch-option-1"].firstMatch
+        let summary = app.staticTexts["Et voilà."].firstMatch
+
+        var graded = 0
+        var branchesTaken = 0
+        let deadline = Date.now.addingTimeInterval(240)
+        while !summary.exists, Date.now < deadline {
+            if gotIt.exists, gotIt.isHittable {
+                (graded % 4 == 3 && missed.exists ? missed : gotIt).tap()
+                graded += 1
+                // outgoing grade buttons animate out; never grab one mid-fade
+                _ = gotIt.waitForNonExistence(timeout: 5)
+            } else if branchFirst.exists {
+                // take the non-default path — the acceptance branch
+                (branchSecond.exists ? branchSecond : branchFirst).tap()
+                branchesTaken += 1
+                _ = branchFirst.waitForNonExistence(timeout: 5)
+            } else {
+                // NPC speaking or speak-pause: a stage tap moves things on.
+                // (0.5, 0.2) is safely below the chrome and above the
+                // centered exchange, so it never lands on a control.
+                app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.2)).tap()
+                usleep(300_000)
+            }
+        }
+
+        XCTAssertTrue(summary.waitForExistence(timeout: 10),
+                      "playthrough should reach the end screen")
+        XCTAssertGreaterThanOrEqual(graded, 4, "should have graded real exchanges")
+        XCTAssertGreaterThanOrEqual(branchesTaken, 1, "should have taken a branch")
+        XCTAssertTrue(app.buttons["replay-variant"].firstMatch.exists,
+                      "end screen should offer the different-variant replay")
+
+        // Done returns to the index, which now shows the completion count.
+        app.buttons["Done"].firstMatch.tap()
+        XCTAssertTrue(card.waitForExistence(timeout: 10))
+        XCTAssertTrue(
+            app.descendants(matching: .any).matching(
+                NSPredicate(format: "label CONTAINS %@", "played 1×")
+            ).firstMatch.waitForExistence(timeout: 5),
+            "the scenario card should reflect the completed run")
+    }
+
+    /// Scrolls Home until the section header is hittable, then opens it.
+    @MainActor
+    private func openSection(_ identifier: String, in app: XCUIApplication) {
+        let header = app.buttons[identifier].firstMatch
+        for _ in 0..<6 where !(header.exists && header.isHittable) {
+            app.swipeUp()
+        }
+        XCTAssertTrue(header.exists && header.isHittable,
+                      "\(identifier) should be reachable by scrolling Home")
+        header.tap()
+    }
+}
