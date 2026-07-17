@@ -27,4 +27,12 @@ enum DSType {
     static let tableForm = Font.system(size: 18, weight: .medium)
     /// Oversized numeral for the Today screen's due count.
     static let statNumeral = Font.system(size: 64, weight: .semibold)
+
+    /// The Reader page (phase 13) — a book-set page, not a stage: French
+    /// body at a comfortable reading size with generous leading, headline a
+    /// step under largeTitle.
+    static let readerTitle = Font.system(size: 26, weight: .semibold)
+    static let readerBody = Font.system(size: 19)
+    /// Line spacing (leading) that pairs with `readerBody`.
+    static let readerLeading: CGFloat = 9
 }

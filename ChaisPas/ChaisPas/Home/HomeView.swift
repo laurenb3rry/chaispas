@@ -31,9 +31,9 @@ struct HomeView: View {
     @State private var nextConceptTitle: String?
     @State private var showingSession = false
     @State private var showingDebug = false
-    @State private var comingSoon: ModeStub?
     @State private var playingScenario: Scenario?
     @State private var playingEpisode: ListenEpisode?
+    @State private var readingPassage: Passage?
 
     var body: some View {
         NavigationStack {
@@ -73,7 +73,6 @@ struct HomeView: View {
             SessionView()
         }
         .sheet(isPresented: $showingDebug) { DebugView() }
-        .sheet(item: $comingSoon) { ComingSoonSheet(stub: $0) }
         .fullScreenCover(item: $playingScenario, onDismiss: {
             withAnimation(DSMotion.spring) { refresh() }
         }) { scenario in
@@ -83,6 +82,11 @@ struct HomeView: View {
             withAnimation(DSMotion.spring) { refresh() }
         }) { episode in
             ListenPlayerView(episode: episode)
+        }
+        .fullScreenCover(item: $readingPassage, onDismiss: {
+            withAnimation(DSMotion.spring) { refresh() }
+        }) { passage in
+            ReaderView(passage: passage)
         }
     }
 
@@ -287,7 +291,7 @@ struct HomeView: View {
     }
 
     private func passageCard(_ passage: Passage) -> some View {
-        Button { comingSoon = .read } label: {
+        Button { readingPassage = passage } label: {
             VStack(alignment: .leading, spacing: DSSpacing.sm) {
                 Text(passage.style.uppercased())
                     .font(.system(size: 10, weight: .semibold))

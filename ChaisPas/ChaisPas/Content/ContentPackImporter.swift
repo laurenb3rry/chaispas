@@ -28,13 +28,14 @@ enum ContentPackImporter {
                 + (manifest?.vocab.drills ?? 0) + (manifest?.grammar.drills ?? 0)
             return try context.fetchCount(FetchDescriptor<ConceptNode>()) == 0
                 || context.fetchCount(FetchDescriptor<Sentence>()) == 0
-                // Learn drills only — scenario-line and episode-question
-                // sentences (also pack 2) would mask a pack update behind
-                // their own counts.
+                // Learn drills only — scenario-line, episode-question, and
+                // passage-question sentences (also pack 2) would mask a pack
+                // update behind their own counts.
                 || context.fetchCount(FetchDescriptor<Sentence>(
                     predicate: #Predicate {
                         $0.packVersion == 2 && !$0.id.starts(with: "scn_")
                             && !$0.id.starts(with: "lst_")
+                            && !$0.id.starts(with: "rd_")
                     })) < packDrills
                 || context.fetchCount(FetchDescriptor<Scenario>()) == 0
                 // Speak user lines drill through the one spine (phase 11) —
@@ -47,6 +48,9 @@ enum ContentPackImporter {
                 || context.fetchCount(FetchDescriptor<Sentence>(
                     predicate: #Predicate { $0.id.starts(with: "lst_") })) == 0
                 || context.fetchCount(FetchDescriptor<Passage>()) == 0
+                // Read questions drill through the one spine (phase 13).
+                || context.fetchCount(FetchDescriptor<Sentence>(
+                    predicate: #Predicate { $0.id.starts(with: "rd_") })) == 0
                 || context.fetchCount(FetchDescriptor<Sentence>(
                     predicate: #Predicate { $0.targetConceptId == "" })) > 0
                 || context.fetchCount(FetchDescriptor<Sentence>(
@@ -138,9 +142,24 @@ enum ContentPackImporter {
         try importEpisodesIfNeeded(context: context)
 
         report(7)
-        if try context.fetchCount(FetchDescriptor<Passage>()) == 0 {
-            let encoder = JSONEncoder()
-            for passage in try ContentPackV2.loadPassages().passages {
+        try importPassagesIfNeeded(context: context)
+    }
+
+    /// Passage rows, plus every comprehension **question** as a Sentence
+    /// (phase 13) — the same shape as Listen's: id `<passageId>_qN`,
+    /// `english` the question, french fields the correct option, graded
+    /// through `MasteryModel.recordDrill` on the comprehension axis.
+    private static func importPassagesIfNeeded(context: ModelContext) throws {
+        let needsPassages = try context.fetchCount(FetchDescriptor<Passage>()) == 0
+        let existingQuestionIds = Set(try context.fetch(FetchDescriptor<Sentence>(
+            predicate: #Predicate { $0.id.starts(with: "rd_") }
+        )).map(\.id))
+
+        guard needsPassages || existingQuestionIds.isEmpty else { return }
+
+        let encoder = JSONEncoder()
+        for passage in try ContentPackV2.loadPassages().passages {
+            if needsPassages {
                 context.insert(Passage(
                     id: passage.id,
                     title: passage.title,
@@ -151,6 +170,28 @@ enum ContentPackImporter {
                     wordCount: passage.wordCount,
                     glossData: try encoder.encode(passage.gloss),
                     questionsData: try encoder.encode(passage.questions)
+                ))
+            }
+            for (index, question) in passage.questions.enumerated() {
+                let id = "\(passage.id)_q\(index + 1)"
+                guard !existingQuestionIds.contains(id),
+                      question.options.indices.contains(question.answerIndex)
+                else { continue }
+                let answer = question.options[question.answerIndex]
+                context.insert(Sentence(
+                    id: id,
+                    conceptIds: [],
+                    targetConceptId: passage.id,
+                    english: question.question,
+                    frenchFormal: answer,
+                    frenchStreet: answer,
+                    audioRefs: AudioRefs(
+                        formal: "\(id)_formal.mp3",
+                        streetSlow: "\(id)_street_slow.mp3",
+                        streetFast: "\(id)_street_fast.mp3"
+                    ),
+                    packVersion: 2,
+                    englishAudioRef: "\(id)_english.mp3"
                 ))
             }
         }

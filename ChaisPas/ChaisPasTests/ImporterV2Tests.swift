@@ -44,12 +44,15 @@ struct ImporterV2Tests {
         let manifest = try ContentPackV2.loadManifest().content
         let v1SentenceCount = try ContentPack.loadSentences().sentences.count
         // pack v2 sentences = the Learn drills + one per scenario user line
-        // (Speak, phase 11) + one per episode question (Listen, phase 12) —
-        // every gradeable interaction drills through the spine
+        // (Speak, phase 11) + one per episode question (Listen, phase 12)
+        // + one per passage question (Read, phase 13) — every gradeable
+        // interaction drills through the spine
         let userLineTotal = try ContentPackV2.loadScenarios().scenarios
             .flatMap(\.variants).flatMap(\.nodes)
             .filter { $0.speaker == "user" }.count
-        let questionTotal = try ContentPackV2.loadEpisodes().episodes
+        let episodeQuestionTotal = try ContentPackV2.loadEpisodes().episodes
+            .map(\.questions.count).reduce(0, +)
+        let passageQuestionTotal = try ContentPackV2.loadPassages().passages
             .map(\.questions.count).reduce(0, +)
         let v2DrillTotal = manifest.learn.conjugation.drills
             + manifest.learn.vocab.drills + manifest.learn.grammar.drills
@@ -58,7 +61,7 @@ struct ImporterV2Tests {
             predicate: #Predicate { $0.packVersion == 1 })) == v1SentenceCount)
         #expect(try context.fetchCount(FetchDescriptor<Sentence>(
             predicate: #Predicate { $0.packVersion == 2 }))
-            == v2DrillTotal + userLineTotal + questionTotal)
+            == v2DrillTotal + userLineTotal + episodeQuestionTotal + passageQuestionTotal)
         #expect(try context.fetchCount(FetchDescriptor<ConceptNode>())
                 == 25 + manifest.learn.conjugation.nodes
                 + manifest.learn.vocab.nodes + manifest.learn.grammar.nodes)

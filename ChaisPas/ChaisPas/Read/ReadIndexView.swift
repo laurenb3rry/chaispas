@@ -2,12 +2,12 @@ import SwiftData
 import SwiftUI
 
 /// Read mode index (PLAN2 §5.3): passages grouped by tier, style-labeled,
-/// read/unread. Browsable now; the Reader is phase 13.
+/// read/unread with last scores. Each row opens the Reader.
 struct ReadIndexView: View {
     @Query(sort: [SortDescriptor(\Passage.tier), SortDescriptor(\Passage.id)])
     private var passages: [Passage]
 
-    @State private var comingSoon: ModeStub?
+    @State private var reading: Passage?
 
     private static let tierLabels = [
         0: "short & simple",
@@ -32,7 +32,9 @@ struct ReadIndexView: View {
         }
         .toolbarBackground(DSColor.background, for: .navigationBar)
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(item: $comingSoon) { ComingSoonSheet(stub: $0) }
+        .fullScreenCover(item: $reading) { passage in
+            ReaderView(passage: passage)
+        }
     }
 
     private var tiers: [Int] {
@@ -57,7 +59,7 @@ struct ReadIndexView: View {
     }
 
     private func passageRow(_ passage: Passage) -> some View {
-        Button { comingSoon = .read } label: {
+        Button { reading = passage } label: {
             HStack(spacing: DSSpacing.md) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(passage.style.uppercased())
@@ -71,6 +73,11 @@ struct ReadIndexView: View {
                 }
                 Spacer()
                 if passage.read {
+                    if let score = passage.lastScore {
+                        Text("\(score)/\(questionCount(passage))")
+                            .font(DSType.caption.monospacedDigit())
+                            .foregroundStyle(DSColor.textSecondary)
+                    }
                     Image(systemName: "checkmark")
                         .font(.system(size: 11, weight: .medium))
                         .foregroundStyle(DSColor.textSecondary)
@@ -84,6 +91,11 @@ struct ReadIndexView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .accessibilityIdentifier("passage-\(passage.id)")
+    }
+
+    private func questionCount(_ passage: Passage) -> Int {
+        (try? passage.decodedQuestions().count) ?? 0
     }
 }
 
