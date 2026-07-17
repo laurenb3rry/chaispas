@@ -190,8 +190,8 @@ struct LearnIndexView: View {
 
 /// Routes a Learn unit to its player by concept type. Falls back to the
 /// grammar layout (title + explanation + drill) for anything unexpected —
-/// never a dead end.
-private struct LearnUnitPlayerView: View {
+/// never a dead end. Shared with Home's recommended card (phase 14).
+struct LearnUnitPlayerView: View {
     let unit: ConceptNode
 
     var body: some View {

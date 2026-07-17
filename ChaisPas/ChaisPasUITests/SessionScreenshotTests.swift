@@ -13,7 +13,7 @@ final class SessionScreenshotTests: XCTestCase {
     func testCaptureSessionStages() throws {
         continueAfterFailure = false
         let app = XCUIApplication()
-        app.launch()
+        app.launchSuppressingPlacement()
 
         func snap(_ name: String) {
             let attachment = XCTAttachment(screenshot: app.screenshot())
@@ -22,27 +22,40 @@ final class SessionScreenshotTests: XCTestCase {
             add(attachment)
         }
 
-        let start = app.buttons["recommended-today"].firstMatch
+        let start = app.buttons["recommended-learn"].firstMatch
         let gotIt = app.buttons["Got it"].firstMatch
         let intro = app.buttons["Got it — let's build"].firstMatch
         let skip = app.buttons["Skip"].firstMatch
         let done = app.buttons["Done"].firstMatch
 
         // First launch on a fresh clone renders late; a tap synthesized the
-        // instant the button appears can be dropped, so retry until the
-        // session actually presents (fresh clone → concept intro is first).
+        // instant the button appears can be dropped, so retry until each
+        // screen actually presents. Since phase 14 the Home card belongs to
+        // the composer, so the session starts from the Learn index's
+        // Construction card (fresh clone → concept intro is first).
         XCTAssertTrue(start.waitForExistence(timeout: 30))
+        let learnHeader = app.buttons["home-section-learn"].firstMatch
+        let construction = app.buttons["learn-construction"].firstMatch
+        for _ in 0..<4 where !construction.exists {
+            if learnHeader.exists, learnHeader.isHittable { learnHeader.tap() }
+            _ = construction.waitForExistence(timeout: 5)
+        }
+        // A warm store (another class already ran a session on this clone —
+        // full-target runs share app data between classes) opens straight
+        // into warm recall with no concept intro: accept either face.
         var presented = false
         for _ in 0..<3 {
-            start.tap()
-            if intro.waitForExistence(timeout: 8) {
+            if construction.exists, construction.isHittable { construction.tap() }
+            if intro.waitForExistence(timeout: 8) || gotIt.exists {
                 presented = true
                 break
             }
         }
         XCTAssertTrue(presented, "session never presented after 3 start taps")
-        snap("1-concept-intro")
-        intro.tap()
+        if intro.exists {
+            snap("1-concept-intro")
+            intro.tap()
+        }
 
         // Ladder: listening state, then revealed state.
         sleep(1)

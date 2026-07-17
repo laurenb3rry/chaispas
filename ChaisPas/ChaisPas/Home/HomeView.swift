@@ -27,13 +27,15 @@ struct HomeView: View {
     }
 
     @State private var learn = LearnCounts()
-    @State private var dueReviews = 0
     @State private var nextConceptTitle: String?
+    @State private var recommendation: DailyRecommendation?
     @State private var showingSession = false
     @State private var showingDebug = false
+    @State private var showingSettings = false
     @State private var playingScenario: Scenario?
     @State private var playingEpisode: ListenEpisode?
     @State private var readingPassage: Passage?
+    @State private var recommendedLearnUnit: ConceptNode?
 
     var body: some View {
         NavigationStack {
@@ -73,6 +75,16 @@ struct HomeView: View {
             SessionView()
         }
         .sheet(isPresented: $showingDebug) { DebugView() }
+        .sheet(isPresented: $showingSettings, onDismiss: {
+            withAnimation(DSMotion.spring) { refresh() }
+        }) {
+            SettingsView()
+        }
+        .fullScreenCover(item: $recommendedLearnUnit, onDismiss: {
+            withAnimation(DSMotion.spring) { refresh() }
+        }) { unit in
+            LearnUnitPlayerView(unit: unit)
+        }
         .fullScreenCover(item: $playingScenario, onDismiss: {
             withAnimation(DSMotion.spring) { refresh() }
         }) { scenario in
@@ -105,7 +117,15 @@ struct HomeView: View {
                     .foregroundStyle(DSColor.textPrimary)
             }
             Spacer()
-            // Out-of-the-way door to the debug screen
+            // Out-of-the-way doors to settings and the debug screen
+            Button { showingSettings = true } label: {
+                Image(systemName: "gearshape")
+                    .font(.system(size: 13))
+                    .foregroundStyle(DSColor.textSecondary.opacity(0.5))
+                    .frame(width: 36, height: 36)
+                    .contentShape(Rectangle())
+            }
+            .accessibilityIdentifier("home-settings")
             Button { showingDebug = true } label: {
                 Image(systemName: "ant")
                     .font(.system(size: 13))
@@ -117,67 +137,131 @@ struct HomeView: View {
         .padding(.horizontal, DSSpacing.margin)
     }
 
-    // MARK: Recommended today
+    // MARK: Recommended today (the §5.5 composer)
 
-    // Static placeholder composition — the real composer (FSRS-aware
-    // round-robin, difficulty-matched picks) is phase 14. Tapping starts the
-    // Learn unit (the working Construction session).
+    // Three rows, each one tap into its slot's player. Purely a suggestion:
+    // the quiet segment hairline reflects today's DrillEvents from anywhere,
+    // not obedience to these picks. No streaks, no guilt.
     private var recommendedCard: some View {
-        Button { showingSession = true } label: {
-            VStack(alignment: .leading, spacing: DSSpacing.md) {
-                HStack {
-                    Text("RECOMMENDED TODAY")
-                        .font(DSType.caption.weight(.medium))
-                        .tracking(1.2)
+        VStack(alignment: .leading, spacing: DSSpacing.md) {
+            HStack {
+                Text("RECOMMENDED TODAY")
+                    .font(DSType.caption.weight(.medium))
+                    .tracking(1.2)
+                    .foregroundStyle(DSColor.textSecondary)
+                Spacer()
+                if let recommendation, recommendation.doneCount > 0 {
+                    Text("today · \(recommendation.doneCount) of 3")
+                        .font(DSType.caption.monospacedDigit())
                         .foregroundStyle(DSColor.textSecondary)
-                    Spacer()
-                    if dueReviews > 0 {
-                        Text(dueReviews == 1 ? "1 review due" : "\(dueReviews) reviews due")
-                            .font(DSType.caption.monospacedDigit())
-                            .foregroundStyle(DSColor.accent)
-                    }
                 }
-                VStack(alignment: .leading, spacing: DSSpacing.sm) {
-                    recommendedRow("Learn", nextConceptTitle.map { "Construction · \($0)" }
-                                            ?? "Construction · review run")
-                    if let scenario = recommendedScenario {
-                        recommendedRow("Speak", scenario.title)
-                    }
-                    if let episode = episodes.first {
-                        recommendedRow("Listen", episode.title)
-                    }
-                }
-                Text("tap to start the Learn unit")
-                    .font(DSType.caption)
-                    .foregroundStyle(DSColor.accent)
             }
-            .padding(DSSpacing.lg)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(DSColor.surface, in: RoundedRectangle(cornerRadius: 16))
+            VStack(alignment: .leading, spacing: 0) {
+                learnRow
+                if let scenario = recommendation?.speak {
+                    recommendedRow("Speak", scenario.title,
+                                   done: recommendation?.speakDone == true,
+                                   id: "recommended-speak") {
+                        playingScenario = scenario
+                    }
+                }
+                if let episode = recommendation?.listen {
+                    recommendedRow("Listen", "\(episode.title) · level \(episode.level)",
+                                   done: recommendation?.listenDone == true,
+                                   id: "recommended-listen") {
+                        playingEpisode = episode
+                    }
+                }
+            }
+            slotHairline
         }
-        .buttonStyle(.plain)
-        .accessibilityIdentifier("recommended-today")
+        .padding(DSSpacing.lg)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(DSColor.surface, in: RoundedRectangle(cornerRadius: 16))
         .padding(.horizontal, DSSpacing.margin)
     }
 
-    private var recommendedScenario: Scenario? {
-        scenarios.min {
-            ($0.completedCount, $0.difficulty, $0.id) < ($1.completedCount, $1.difficulty, $1.id)
+    @ViewBuilder
+    private var learnRow: some View {
+        let done = recommendation?.learnDone == true
+        switch recommendation?.learn {
+        case .review(let dueCount):
+            recommendedRow(
+                "Learn",
+                "Construction · \(dueCount == 1 ? "1 review due" : "\(dueCount) reviews due")",
+                done: done, id: "recommended-learn"
+            ) { showingSession = true }
+        case .reviewUnit(let unit, let dueCount):
+            recommendedRow("Learn", "\(unit.title) · \(dueCount) due",
+                           done: done, id: "recommended-learn") {
+                recommendedLearnUnit = unit
+            }
+        case .unit(let unit):
+            recommendedRow("Learn", "\(moduleName(unit.type)) · \(unit.title)",
+                           done: done, id: "recommended-learn") {
+                recommendedLearnUnit = unit
+            }
+        case .construction, .none:
+            recommendedRow("Learn", nextConceptTitle.map { "Construction · \($0)" }
+                                    ?? "Construction · review run",
+                           done: done, id: "recommended-learn") {
+                showingSession = true
+            }
         }
     }
 
-    private func recommendedRow(_ mode: String, _ title: String) -> some View {
-        HStack(alignment: .firstTextBaseline, spacing: DSSpacing.md) {
-            Text(mode.uppercased())
-                .font(.system(size: 10, weight: .semibold))
-                .tracking(1)
-                .foregroundStyle(DSColor.textSecondary)
-                .frame(width: 48, alignment: .leading)
-            Text(title)
-                .font(DSType.body)
-                .foregroundStyle(DSColor.textPrimary)
-                .lineLimit(1)
+    private func moduleName(_ type: ConceptType) -> String {
+        switch type {
+        case .conjugation: "Conjugation"
+        case .vocabPack: "Vocabulary"
+        case .grammar: "Grammar"
+        default: "Construction"
         }
+    }
+
+    private func recommendedRow(
+        _ mode: String, _ title: String, done: Bool, id: String,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            HStack(alignment: .firstTextBaseline, spacing: DSSpacing.md) {
+                Text(mode.uppercased())
+                    .font(.system(size: 10, weight: .semibold))
+                    .tracking(1)
+                    .foregroundStyle(DSColor.textSecondary)
+                    .frame(width: 48, alignment: .leading)
+                Text(title)
+                    .font(DSType.body)
+                    .foregroundStyle(done ? DSColor.textSecondary : DSColor.textPrimary)
+                    .lineLimit(1)
+                Spacer()
+                if done {
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundStyle(DSColor.textSecondary)
+                }
+            }
+            .padding(.vertical, DSSpacing.sm)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier(id)
+    }
+
+    /// "today: 2 of 3" as a hairline (§5.5) — three quiet segments, no bar.
+    private var slotHairline: some View {
+        HStack(spacing: DSSpacing.xs) {
+            ForEach(Array(slotStates.enumerated()), id: \.offset) { _, done in
+                Capsule()
+                    .fill(done ? DSColor.accent : DSColor.background)
+                    .frame(height: 2)
+            }
+        }
+    }
+
+    private var slotStates: [Bool] {
+        guard let recommendation else { return [false, false, false] }
+        return [recommendation.learnDone, recommendation.speakDone, recommendation.listenDone]
     }
 
     // MARK: Learn (the centerpiece — largest section)
@@ -381,16 +465,13 @@ struct HomeView: View {
         counts.grammarMastered = mastered(grammar)
         learn = counts
 
-        let now = Date.now
-        dueReviews = (try? modelContext.fetchCount(FetchDescriptor<Sentence>(
-            predicate: #Predicate { $0.fsrsStability > 0 && $0.fsrsDue <= now }
-        ))) ?? 0
-
         let unlocked = (try? MasteryModel.unlockedConceptIds(context: modelContext)) ?? []
         nextConceptTitle = v1
             .filter { unlocked.contains($0.id) && !$0.introduced }
             .min { ($0.tier, $0.id) < ($1.tier, $1.id) }?
             .title
+
+        recommendation = try? RecommendedPath.compose(context: modelContext)
     }
 }
 

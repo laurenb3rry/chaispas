@@ -26,7 +26,7 @@ final class LibraryScreenshotTests: XCTestCase {
     func testCaptureLibraryScreens() throws {
         continueAfterFailure = false
         let app = XCUIApplication()
-        app.launch()
+        app.launchSuppressingPlacement()
 
         func snap(_ name: String) {
             sleep(1)  // let springs settle
@@ -36,7 +36,7 @@ final class LibraryScreenshotTests: XCTestCase {
             add(attachment)
         }
 
-        let home = app.buttons["recommended-today"].firstMatch
+        let home = app.buttons["recommended-learn"].firstMatch
         XCTAssertTrue(home.waitForExistence(timeout: 30))
         snap("1-home-top")
 

@@ -15,9 +15,9 @@ final class LibraryNavigationUITests: XCTestCase {
     func testBrowseEveryMode() throws {
         continueAfterFailure = false
         let app = XCUIApplication()
-        app.launch()
+        app.launchSuppressingPlacement()
 
-        let home = app.buttons["recommended-today"].firstMatch
+        let home = app.buttons["recommended-learn"].firstMatch
         XCTAssertTrue(home.waitForExistence(timeout: 30),
                       "Home should appear once the import finishes")
 
@@ -96,7 +96,7 @@ final class LibraryNavigationUITests: XCTestCase {
     /// Back taps drop like any synthesized tap — re-tap until Home returns.
     @MainActor
     private func goBack(_ app: XCUIApplication) {
-        let home = app.buttons["recommended-today"].firstMatch
+        let home = app.buttons["recommended-learn"].firstMatch
         for _ in 0..<3 where !home.exists {
             let back = app.navigationBars.buttons.firstMatch
             if back.exists, back.isHittable { back.tap() }

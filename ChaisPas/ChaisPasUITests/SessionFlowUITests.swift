@@ -15,7 +15,7 @@ final class SessionFlowUITests: XCTestCase {
     func testFullSessionFlow() throws {
         continueAfterFailure = false
         let app = XCUIApplication()
-        app.launch()
+        app.launchSuppressingPlacement()
 
         let gotIt = app.buttons["Got it"].firstMatch
         let intro = app.buttons["Got it — let's build"].firstMatch
@@ -25,14 +25,23 @@ final class SessionFlowUITests: XCTestCase {
 
         // Home fades in behind RootView's async-import transition; a tap
         // synthesized mid-transition can be dropped (the phase-4 gotcha), so
-        // re-tap the recommended card until the session actually presents.
-        // On a fresh store the session opens with the concept intro.
-        let start = app.buttons["recommended-today"].firstMatch
-        XCTAssertTrue(start.waitForExistence(timeout: 30),
+        // re-tap until each screen actually presents. Since phase 14 the
+        // Home card belongs to the composer, so the session starts from the
+        // Learn index's Construction card. On a fresh store the session
+        // opens with the concept intro.
+        let home = app.buttons["recommended-learn"].firstMatch
+        XCTAssertTrue(home.waitForExistence(timeout: 30),
                       "Home should appear once the import finishes")
+        let learnHeader = app.buttons["home-section-learn"].firstMatch
+        let start = app.buttons["learn-construction"].firstMatch
+        for _ in 0..<4 where !start.exists {
+            if learnHeader.exists, learnHeader.isHittable { learnHeader.tap() }
+            _ = start.waitForExistence(timeout: 5)
+        }
+        XCTAssertTrue(start.exists, "the Learn index should show the Construction card")
         var entered = false
         for _ in 0..<4 where !entered {
-            if start.exists { start.tap() }
+            if start.exists, start.isHittable { start.tap() }
             entered = intro.waitForExistence(timeout: 5) || gotIt.exists
         }
         XCTAssertTrue(entered, "session should present after tapping Start")
@@ -68,7 +77,7 @@ final class SessionFlowUITests: XCTestCase {
         done.tap()
         XCTAssertTrue(
             start.waitForExistence(timeout: 10),
-            "Home should return after the session completes"
+            "the Learn index should return after the session completes"
         )
     }
 }

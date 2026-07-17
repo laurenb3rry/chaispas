@@ -5,11 +5,14 @@ import SwiftUI
 /// that need pack import show a minimal loading state while the import runs
 /// on a background context, then spring-transition in. `needsImport` is
 /// decided synchronously at app init (cheap fetchCounts) so a normal launch
-/// never flashes the loading screen.
+/// never flashes the loading screen. A first launch (no drill history, never
+/// offered) lands on the placement assessment before Home — skippable, and
+/// suppressible in UI tests via `-placementOffered YES` launch arguments.
 struct RootView: View {
     @Environment(\.modelContext) private var modelContext
 
     @State private var importing: Bool
+    @State private var offeringPlacement = false
     @State private var stage = "Preparing"
     @State private var stageIndex = 0
 
@@ -22,26 +25,36 @@ struct RootView: View {
             if importing {
                 loadingState
                     .transition(.opacity)
+            } else if offeringPlacement {
+                PlacementView(isFirstRun: true) {
+                    PlacementGate.markOffered()
+                    withAnimation(DSMotion.spring) { offeringPlacement = false }
+                }
+                .transition(.opacity)
             } else {
                 HomeView()
                     .transition(.opacity)
             }
         }
         .task {
-            guard importing else { return }
-            let container = modelContext.container
-            await Task.detached(priority: .userInitiated) {
-                let context = ModelContext(container)
-                ContentPackImporter.importIfNeeded(context: context) { label, index in
-                    Task { @MainActor in
-                        withAnimation(DSMotion.spring) {
-                            stage = label
-                            stageIndex = index
+            if importing {
+                let container = modelContext.container
+                await Task.detached(priority: .userInitiated) {
+                    let context = ModelContext(container)
+                    ContentPackImporter.importIfNeeded(context: context) { label, index in
+                        Task { @MainActor in
+                            withAnimation(DSMotion.spring) {
+                                stage = label
+                                stageIndex = index
+                            }
                         }
                     }
-                }
-            }.value
-            withAnimation(DSMotion.spring) { importing = false }
+                }.value
+            }
+            withAnimation(DSMotion.spring) {
+                offeringPlacement = PlacementGate.shouldOffer(context: modelContext)
+                importing = false
+            }
         }
     }
 

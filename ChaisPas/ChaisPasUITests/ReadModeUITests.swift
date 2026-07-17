@@ -14,9 +14,9 @@ final class ReadModeUITests: XCTestCase {
     func testReadPassageEndToEnd() throws {
         continueAfterFailure = false
         let app = XCUIApplication()
-        app.launch()
+        app.launchSuppressingPlacement()
 
-        let home = app.buttons["recommended-today"].firstMatch
+        let home = app.buttons["recommended-learn"].firstMatch
         XCTAssertTrue(home.waitForExistence(timeout: 30),
                       "Home should appear once the import finishes")
 

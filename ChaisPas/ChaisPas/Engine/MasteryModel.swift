@@ -87,9 +87,14 @@ enum MasteryModel {
 
     /// conceptId → production mastery.
     static func productionScores(context: ModelContext) throws -> [String: Double] {
+        try scores(axis: .production, context: context)
+    }
+
+    /// conceptId → mastery on one axis.
+    static func scores(axis: DrillAxis, context: ModelContext) throws -> [String: Double] {
         let all = try context.fetch(FetchDescriptor<MasteryScore>())
         return Dictionary(
-            all.filter { $0.axis == .production }.map { ($0.conceptId, $0.score) },
+            all.filter { $0.axis == axis }.map { ($0.conceptId, $0.score) },
             uniquingKeysWith: { a, _ in a }
         )
     }
