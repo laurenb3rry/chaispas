@@ -43,6 +43,13 @@ struct DrillStageView: View {
                                     .foregroundStyle(DSColor.accent)
                             }
                         }
+                        if let spoken = engine.spokenText {
+                            SpokenTranscriptView(
+                                spoken: spoken,
+                                targets: [sentence.frenchFormal, sentence.frenchStreet]
+                            )
+                            .transition(.opacity)
+                        }
                     }
                     .transition(.opacity.combined(with: .offset(y: 14)))
                 }
@@ -78,9 +85,13 @@ struct DrillStageView: View {
                 .transition(.opacity.combined(with: .offset(y: 10)))
             } else {
                 VStack(spacing: DSSpacing.lg) {
-                    // BACKFILL: becomes a live waveform once the mic /
-                    // SFSpeechRecognizer lands (phase 15)
                     BreathingIndicator()
+                    if engine.speechActive, let spoken = engine.spokenText {
+                        // Live mirror of what the mic is hearing.
+                        SpokenTranscriptView(spoken: spoken, targets: nil)
+                            .frame(maxWidth: .infinity)
+                            .multilineTextAlignment(.center)
+                    }
                     Text("say it in French — tap to reveal")
                         .font(DSType.caption)
                         .foregroundStyle(DSColor.textSecondary)
@@ -108,8 +119,8 @@ struct DrillStageView: View {
 
 // MARK: - Breathing indicator
 
-/// Quiet pulse marking "your turn to speak".
-/// BACKFILL: replace with a live mic waveform in phase 15.
+/// Quiet pulse marking "your turn to speak" — the §8 breathing indicator,
+/// deliberately not a live waveform: the instrument shouldn't perform.
 struct BreathingIndicator: View {
     @State private var expanded = false
 

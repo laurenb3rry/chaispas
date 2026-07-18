@@ -80,6 +80,12 @@ final class SessionEngine {
     private(set) var itemsCompleted = 0
     private(set) var gradedCount = 0
     private(set) var correctCount = 0
+    /// The running transcript of what the user is saying — a mirror for
+    /// self-grading, never a grade. Nil when nothing has been heard.
+    private(set) var spokenText: String?
+    /// The stage shows "listening" instead of "tap to reveal" when the mic
+    /// is live.
+    var speechActive: Bool { transcriber?.availability == .available }
     var newConcept: ConceptNode? { plan.newConcept }
     var targetConceptTitle: String { plan.targetConceptTitle }
     var startedAt = Date.now
@@ -89,6 +95,11 @@ final class SessionEngine {
     private let context: ModelContext
     private let mode: Mode
     private let audio = AudioPlayer()
+    /// Live transcription (PLAN2 §7, revised): a mirror only — it never
+    /// grades or advances. Nil when the feature is toggled off, so every
+    /// path then behaves exactly as before speech existed.
+    private let transcriber: SpeechTranscriber? =
+        SpeechTranscriber.enabled ? SpeechTranscriber() : nil
     private var plan = SessionPlan(
         warmRecall: [], newConcept: nil, targetConceptId: "",
         targetConceptTitle: "", ladderPool: [], spontaneousPool: []
@@ -126,6 +137,9 @@ final class SessionEngine {
 
     func start() {
         audio.configureSession()
+        // First use requests mic + speech permission; any refusal just
+        // means no transcript — self-grade is unaffected.
+        Task { await transcriber?.prepare() }
         startedAt = .now
         switch mode {
         case .fullSession: startFullSession()
@@ -174,8 +188,17 @@ final class SessionEngine {
     /// Ends the session from any phase, logging what was completed.
     func end() {
         stepTask?.cancel()
+        transcriber?.stop()
         audio.stop()
         writeSessionLog()
+    }
+
+    /// The live transcript from the mic (PLAN2 §7). Purely a mirror: it sets
+    /// `spokenText` and nothing else — never grades, reveals, or advances.
+    /// Fed by the transcriber; also the injectable seam unit tests drive.
+    func applyTranscript(_ text: String) {
+        guard drillStep == .listening || drillStep == .revealed else { return }
+        transition { self.spokenText = text }
     }
 
     // MARK: Drill interactions (production items)
@@ -197,11 +220,12 @@ final class SessionEngine {
         sentence.packVersion == 2 ? .v2Learn : .v1
     }
 
-    /// Self-grade. BACKFILL: SFSpeechRecognizer (fr-FR, on-device) should
-    /// auto-grade the spoken response and make these buttons the fallback.
+    /// Self-grade for the current item. Speech is only a mirror — the user
+    /// always makes the call.
     func grade(correct: Bool) {
         guard drillStep == .revealed, let sentence = currentSentence else { return }
         stepTask?.cancel()
+        transcriber?.stop()
         audio.stop()
         transition { self.drillStep = .graded(correct: correct) }
         if correct { DSHaptics.gradeSuccess() } else { DSHaptics.gradeWarning() }
@@ -357,11 +381,13 @@ final class SessionEngine {
 
     private func startDrill(_ sentence: Sentence) {
         stepTask?.cancel()
+        transcriber?.stop()
         usedSentenceIds.insert(sentence.id)
         promptShownAt = .now
         transition {
             self.currentSentence = sentence
             self.drillStep = .listening
+            self.spokenText = nil
         }
         // The speak-pause: long enough to say the sentence aloud, scaled to
         // its length. Auto-reveal keeps the flow hands-free capable.
@@ -378,6 +404,15 @@ final class SessionEngine {
                 // spoken prompt ends, not when the text appeared.
                 promptShownAt = .now
             }
+            // The mic opens once the prompt has finished speaking, so the
+            // transcript only ever reflects the user.
+            self.transcriber?.start { [weak self] text in
+                self?.applyTranscript(text)
+            }
+            // Auto-reveal is the hands-free (screen-off) affordance. When the
+            // transcript mirror is live the user is watching the screen and
+            // taps to reveal when done, so the timer would only cut them off.
+            guard !self.speechActive else { return }
             try? await Task.sleep(for: .seconds(pause))
             guard !Task.isCancelled else { return }
             reveal(auto: true)
@@ -387,6 +422,8 @@ final class SessionEngine {
     private func reveal(auto: Bool) {
         guard drillStep == .listening, let sentence = currentSentence else { return }
         stepTask?.cancel()
+        // Close the mic and freeze the transcript for the self-grade.
+        transcriber?.stop()
         latencyMs = Int(Date.now.timeIntervalSince(promptShownAt) * 1000)
         transition { self.drillStep = .revealed }
         DSHaptics.reveal()

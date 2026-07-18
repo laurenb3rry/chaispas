@@ -108,7 +108,7 @@ struct ScenarioPlayerView: View {
 private struct ScenarioStageView: View {
     let engine: ScenarioEngine
 
-    private var isUserTurn: Bool { engine.userLine != nil || engine.step == .branching }
+    private var isUserTurn: Bool { engine.userLine != nil }
 
     private var gradeTint: Color? {
         if case .userGraded(let correct) = engine.step {
@@ -127,10 +127,7 @@ private struct ScenarioStageView: View {
                         .id(npc.nodeId)
                         .transition(.opacity.combined(with: .offset(y: 14)))
                 }
-                if engine.step == .branching {
-                    branchBlock
-                        .transition(.opacity.combined(with: .offset(y: 14)))
-                } else if let user = engine.userLine {
+                if let user = engine.userLine {
                     userBlock(user)
                         .id(user.nodeId)
                         .transition(.opacity.combined(with: .offset(y: 14)))
@@ -163,8 +160,7 @@ private struct ScenarioStageView: View {
                         .transition(.opacity.combined(with: .offset(y: 8)))
                 }
             }
-            if engine.step == .npcSpeaking || engine.step == .npcGlossed
-                || engine.step == .branching {
+            if engine.step == .npcSpeaking || engine.step == .npcGlossed {
                 HStack(spacing: DSSpacing.md) {
                     npcReplayButton("speaker.wave.2", slow: false,
                                     identifier: "npc-replay-fast")
@@ -173,7 +169,7 @@ private struct ScenarioStageView: View {
                 }
             }
         }
-        .opacity(isUserTurn && engine.step != .branching ? 0.45 : 1)
+        .opacity(isUserTurn ? 0.45 : 1)
     }
 
     private func npcReplayButton(
@@ -194,26 +190,41 @@ private struct ScenarioStageView: View {
     // the reading scale (the 10c example-pair register).
     private func userBlock(_ user: ScenarioNode) -> some View {
         let revealed = engine.step != .userListening
+        let alternates = engine.alternateLines
         return VStack(alignment: .leading, spacing: DSSpacing.xl) {
-            Text(user.english)
-                .font(revealed ? DSType.englishPrompt : DSType.stagePrompt)
-                .foregroundStyle(revealed ? DSColor.textSecondary : DSColor.textPrimary)
+            // The intent. At a former branch point, every offered line is a
+            // fine answer — say any one (no choosing, no tapping an option).
+            VStack(alignment: .leading, spacing: DSSpacing.sm) {
+                if !alternates.isEmpty {
+                    Text("SAY ANY OF THESE")
+                        .font(DSType.caption.weight(.medium))
+                        .tracking(1.2)
+                        .foregroundStyle(DSColor.textSecondary)
+                }
+                Text(user.english)
+                    .font(revealed ? DSType.englishPrompt : DSType.stagePrompt)
+                    .foregroundStyle(revealed ? DSColor.textSecondary : DSColor.textPrimary)
+                ForEach(alternates, id: \.nodeId) { alt in
+                    Text(alt.english)
+                        .font(revealed ? DSType.englishPrompt : DSType.stagePrompt)
+                        .foregroundStyle(revealed ? DSColor.textSecondary : DSColor.textPrimary)
+                }
+            }
 
             if revealed {
                 VStack(alignment: .leading, spacing: DSSpacing.lg) {
-                    Text(user.frenchStreet)
-                        .font(DSType.stageFrench)
-                        .foregroundStyle(gradeTint ?? DSColor.textPrimary)
-                    if let formal = user.frenchFormal, formal != user.frenchStreet {
-                        VStack(alignment: .leading, spacing: DSSpacing.xs) {
-                            Text("IN FULL")
-                                .font(DSType.caption.weight(.medium))
-                                .tracking(1.2)
-                                .foregroundStyle(DSColor.textSecondary)
-                            Text(formal)
-                                .font(DSType.frenchCompact)
-                                .foregroundStyle(DSColor.accent)
-                        }
+                    userFrench(user, primary: true)
+                    // Alternates carry equal weight — any was acceptable.
+                    ForEach(alternates, id: \.nodeId) { alt in
+                        userFrench(alt, primary: false)
+                    }
+                    if let spoken = engine.spokenText {
+                        SpokenTranscriptView(
+                            spoken: spoken,
+                            targets: ([user] + alternates)
+                                .flatMap { [$0.frenchStreet, $0.frenchFormal].compactMap { $0 } }
+                        )
+                        .transition(.opacity)
                     }
                 }
                 .transition(.opacity.combined(with: .offset(y: 14)))
@@ -221,25 +232,19 @@ private struct ScenarioStageView: View {
         }
     }
 
-    // A branch point: 2–3 English intents; the tap decides your line.
-    private var branchBlock: some View {
-        VStack(alignment: .leading, spacing: DSSpacing.md) {
-            Text("how do you reply?")
-                .font(DSType.caption)
-                .foregroundStyle(DSColor.textSecondary)
-            ForEach(Array(engine.branches.enumerated()), id: \.offset) { index, branch in
-                Button { engine.choose(branch) } label: {
-                    Text(branch.labelEnglish)
-                        .font(DSType.body.weight(.medium))
-                        .foregroundStyle(DSColor.textPrimary)
-                        .multilineTextAlignment(.leading)
-                        .padding(.horizontal, DSSpacing.lg)
-                        .padding(.vertical, DSSpacing.md + 2)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(DSColor.surface, in: RoundedRectangle(cornerRadius: 14))
-                }
-                .buttonStyle(.plain)
-                .accessibilityIdentifier("branch-option-\(index)")
+    /// One acceptable French answer at the reveal: street at stage scale for
+    /// the primary, a step down for the equally-fine alternates.
+    @ViewBuilder
+    private func userFrench(_ node: ScenarioNode, primary: Bool) -> some View {
+        VStack(alignment: .leading, spacing: DSSpacing.xs) {
+            Text(node.frenchStreet)
+                .font(primary ? DSType.stageFrench : DSType.stageFrenchSecondary)
+                .foregroundStyle(primary ? (gradeTint ?? DSColor.textPrimary)
+                                         : DSColor.textPrimary)
+            if let formal = node.frenchFormal, formal != node.frenchStreet {
+                Text(formal)
+                    .font(DSType.frenchCompact)
+                    .foregroundStyle(DSColor.accent)
             }
         }
     }
@@ -254,8 +259,12 @@ private struct ScenarioStageView: View {
                 tapHint("tap to continue")
             case .userListening:
                 VStack(spacing: DSSpacing.lg) {
-                    // BACKFILL: live waveform once speech recognition lands.
                     BreathingIndicator()
+                    if engine.speechActive, let spoken = engine.spokenText {
+                        SpokenTranscriptView(spoken: spoken, targets: nil)
+                            .frame(maxWidth: .infinity)
+                            .multilineTextAlignment(.center)
+                    }
                     Text("say it in French, then tap")
                         .font(DSType.caption)
                         .foregroundStyle(DSColor.textSecondary)
@@ -275,7 +284,6 @@ private struct ScenarioStageView: View {
                 }
                 .transition(.opacity.combined(with: .offset(y: 10)))
             default:
-                // Branch options carry their own affordance — stay quiet.
                 EmptyView()
             }
         }

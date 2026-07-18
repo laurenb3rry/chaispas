@@ -18,7 +18,7 @@ final class PlacementUITests: XCTestCase {
     func testPlacementRunEndToEnd() throws {
         continueAfterFailure = false
         let app = XCUIApplication()
-        app.launchArguments += ["-placementForceOffer", "YES"]
+        app.launchArguments += ["-placementForceOffer", "YES", "-showSpokenTranscript", "NO"]
         app.launch()
 
         // Fresh install → the calibration intro, before Home.
@@ -100,7 +100,7 @@ final class PlacementUITests: XCTestCase {
     func testSkipGoesStraightToHome() throws {
         continueAfterFailure = false
         let app = XCUIApplication()
-        app.launchArguments += ["-placementForceOffer", "YES"]
+        app.launchArguments += ["-placementForceOffer", "YES", "-showSpokenTranscript", "NO"]
         app.launch()
 
         let skip = app.buttons["placement-skip"].firstMatch

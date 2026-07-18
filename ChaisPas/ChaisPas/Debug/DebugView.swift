@@ -31,10 +31,19 @@ struct DebugView: View {
             DSColor.background.ignoresSafeArea()
             ScrollView {
                 VStack(alignment: .leading, spacing: DSSpacing.xl) {
-                    Text("Debug")
-                        .font(DSType.largeTitle)
-                        .tracking(DSType.largeTitleTracking)
-                        .foregroundStyle(DSColor.textPrimary)
+                    VStack(alignment: .leading, spacing: DSSpacing.xs) {
+                        Text("Developer")
+                            .font(DSType.caption.weight(.medium))
+                            .tracking(1.2)
+                            .foregroundStyle(DSColor.textSecondary)
+                        Text("Debug")
+                            .font(DSType.largeTitle)
+                            .tracking(DSType.largeTitleTracking)
+                            .foregroundStyle(DSColor.textPrimary)
+                        Text("Internal build inspector — store vs. pack manifest and audio checks. Not part of the app's flow.")
+                            .font(DSType.caption)
+                            .foregroundStyle(DSColor.textSecondary)
+                    }
 
                     VStack(alignment: .leading, spacing: DSSpacing.md) {
                         statRow("Concepts loaded", "\(conceptCount)")

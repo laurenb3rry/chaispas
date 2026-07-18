@@ -39,6 +39,37 @@ struct SpeakModeTests {
         }
     }
 
+    /// Persistent-store round-trip: a scenario's completion must survive a
+    /// save and a fresh fetch. Catches a save that silently throws (and rolls
+    /// back) on disk — invisible to the in-memory tests.
+    @Test func completionPersistsToDisk() throws {
+        let url = URL(fileURLWithPath: NSTemporaryDirectory())
+            .appendingPathComponent("\(UUID().uuidString).store")
+        defer { try? FileManager.default.removeItem(at: url) }
+        let schema = Schema([
+            ConceptNode.self, Sentence.self, DrillEvent.self, MasteryScore.self,
+            SessionLog.self, Scenario.self, ListenEpisode.self, Passage.self,
+        ])
+        let container = try ModelContainer(
+            for: schema, configurations: [ModelConfiguration(schema: schema, url: url)])
+        let context = ModelContext(container)
+        ContentPackImporter.importIfNeeded(context: context)
+
+        let scenario = try #require(try context.fetch(FetchDescriptor<Scenario>(
+            predicate: #Predicate { $0.id == "scn_cafe" })).first)
+        scenario.completedCount += 1
+        scenario.lastPlayed = .now
+        scenario.variantLastPlayed["scn_cafe_v2"] = .now
+        try context.save()  // NOT try? — a real failure must surface here
+
+        // Fresh context on the same store — reads what actually persisted.
+        let reader = ModelContext(container)
+        let refetched = try #require(try reader.fetch(FetchDescriptor<Scenario>(
+            predicate: #Predicate { $0.id == "scn_cafe" })).first)
+        #expect(refetched.completedCount == 1)
+        #expect(refetched.variantLastPlayed["scn_cafe_v2"] != nil)
+    }
+
     // MARK: Importer
 
     @Test func importerCreatesASentencePerScenarioUserLine() throws {
@@ -149,8 +180,10 @@ struct SpeakModeTests {
         // The flow is click-based end to end: every state except the brief
         // post-grade beat waits on a user action, so the driver taps through
         // NPC lines (French → gloss → advance) exactly like a finger would.
+        // A former branch point is now just a user turn that offers several
+        // acceptable lines (`alternateLines`) — no choosing, no tapping.
         var graded = 0
-        var branchesTaken = 0
+        var sawBranchTurn = false
         var sawGlossGating = false
         var settled: ScenarioEngine.Step?
         for _ in 0..<120 {
@@ -170,17 +203,12 @@ struct SpeakModeTests {
             case .npcGlossed:
                 engine.stageTapped()
             case .userListening:
+                if !engine.alternateLines.isEmpty { sawBranchTurn = true }
                 engine.reveal()
             case .userRevealed:
                 // Miss every fourth line so accuracy math gets both paths.
                 engine.grade(correct: graded % 4 != 3)
                 graded += 1
-            case .branching:
-                let branches = engine.branches
-                #expect((2...3).contains(branches.count),
-                        "branch points offer 2–3 intents")
-                engine.choose(try #require(branches.last))
-                branchesTaken += 1
             case .ended:
                 break
             case .userGraded:
@@ -191,7 +219,7 @@ struct SpeakModeTests {
         #expect(sawGlossGating, "NPC lines start French-only")
 
         #expect(settled == .ended, "playthrough should reach the end")
-        #expect(branchesTaken >= 1, "the café scenario has at least one branch point")
+        #expect(sawBranchTurn, "the café scenario has at least one collapsed branch turn")
         #expect(graded >= 4, "a scenario is a real conversation, not a couple of lines")
         #expect(engine.exchangesCompleted == graded)
         #expect(engine.correctCount == graded - graded / 4)
@@ -219,6 +247,44 @@ struct SpeakModeTests {
             excluding: variantId
         )
         #expect(next != nil && next?.variantId != variantId)
+    }
+
+    /// Phase 15 (§7, revised): the live transcript is a mirror only. A
+    /// transcript arriving mid-turn sets `spokenText` but never reveals,
+    /// grades, or advances — the user stays in control. This is exactly what
+    /// the transcriber's callback invokes, proven without a live recognizer.
+    @Test func liveTranscriptMirrorsButNeverAdvances() async throws {
+        let container = try makeContainer()
+        let context = ModelContext(container)
+        ContentPackImporter.importIfNeeded(context: context)
+        let scenario = try #require(try context.fetch(FetchDescriptor<Scenario>(
+            predicate: #Predicate { $0.id == "scn_cafe" })).first)
+
+        let engine = ScenarioEngine(scenario: scenario, context: context, silent: true)
+        engine.start()
+        for _ in 0..<10 where engine.step != .userListening {
+            engine.stageTapped()
+            try await Task.sleep(for: .milliseconds(5))
+        }
+        try await waitUntil { engine.step == .userListening }
+
+        // Transcript updates land, but the turn does not move and nothing is
+        // graded — even a transcript that exactly matches the target.
+        engine.applyTranscript("un")
+        engine.applyTranscript("un café s'il vous plaît")
+        #expect(engine.spokenText == "un café s'il vous plaît")
+        #expect(engine.step == .userListening)
+        #expect(engine.exchangesCompleted == 0)
+        #expect(try context.fetchCount(FetchDescriptor<DrillEvent>()) == 0)
+
+        // The user reveals and self-grades — that is the only path forward.
+        engine.reveal()
+        #expect(engine.step == .userRevealed)
+        // Transcript survives into the reveal for the side-by-side comparison.
+        #expect(engine.spokenText == "un café s'il vous plaît")
+        engine.grade(correct: true)
+        #expect(engine.correctCount == 1)
+        #expect(try context.fetchCount(FetchDescriptor<DrillEvent>()) == 1)
     }
 
     /// Abandoning mid-scenario (the X) records the grades made so far but no

@@ -152,6 +152,39 @@ struct PlacementTests {
         #expect(engine.staircaseIndex == 3)
     }
 
+    /// Phase 15 (§7, revised): the production transcript is a mirror only.
+    /// It sets `spokenText` but never reveals, grades, or advances the
+    /// module — the user still taps to reveal and self-grades.
+    @Test func liveTranscriptMirrorsButNeverAdvancesProduction() async throws {
+        let context = try importedContext()
+        let engine = PlacementEngine(context: context, silent: true, seed: 7)
+        engine.start()
+        // Skip the staircase (all misses) to reach production.
+        engine.beginModule()
+        while engine.module == .staircase, engine.currentStaircaseItem != nil {
+            try await answerRung(engine, correctly: false)
+        }
+        try await waitUntil { engine.module == .production }
+        engine.beginModule()
+
+        let first = try #require(engine.currentProductionItem)
+        engine.applyTranscript(first.sentence.frenchFormal)
+        #expect(engine.spokenText == first.sentence.frenchFormal)
+        // Still the same prompt, still awaiting the user's reveal.
+        #expect(engine.productionIndex == 0)
+        #expect(engine.productionStep == .prompt)
+
+        // The user drives: reveal, then self-grade, then it advances.
+        engine.revealProduction()
+        #expect(engine.productionStep == .revealed)
+        #expect(engine.spokenText == first.sentence.frenchFormal)
+        engine.gradeProduction(correct: true)
+        try await waitUntil {
+            engine.productionIndex == 1 || engine.module != .production
+        }
+        #expect(engine.currentProductionItem != nil || engine.module == .vocab)
+    }
+
     @Test func transcriptionMatchingIsExactOnWordsLenientOnTypography() {
         // Case, edge punctuation, typographic apostrophes, spacing: folded.
         #expect(PlacementEngine.transcriptionMatches(

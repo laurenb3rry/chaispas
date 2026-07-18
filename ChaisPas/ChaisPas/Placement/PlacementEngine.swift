@@ -110,6 +110,10 @@ final class PlacementEngine {
     private(set) var productionItems: [ProductionItem] = []
     private(set) var productionIndex = 0
     private(set) var productionStep: ProductionStep = .prompt
+    /// The running transcript of what the user is saying on a production
+    /// prompt — a mirror for self-grading, never a grade.
+    private(set) var spokenText: String?
+    var speechActive: Bool { transcriber?.availability == .available }
 
     private(set) var vocabItems: [VocabItem] = []
     private(set) var vocabIndex = 0
@@ -158,6 +162,9 @@ final class PlacementEngine {
 
     private let context: ModelContext
     private let audio = AudioPlayer()
+    /// Live transcription for the production module (PLAN2 §6 + §7, revised):
+    /// a mirror only, never a grader. Nil when toggled off or under test.
+    private let transcriber: SpeechTranscriber?
     /// Test hook: skips audio and shrinks every wait. Never set from app code.
     private let silent: Bool
     private var stepTask: Task<Void, Never>?
@@ -179,6 +186,7 @@ final class PlacementEngine {
          seed: UInt64 = .random(in: .min ... .max)) {
         self.context = context
         self.silent = silent
+        self.transcriber = (silent || !SpeechTranscriber.enabled) ? nil : SpeechTranscriber()
         var rng = SeededRNG(seed: seed)
         buildItems(rng: &rng)
     }
@@ -187,6 +195,7 @@ final class PlacementEngine {
 
     func start() {
         if !silent { audio.configureSession() }
+        Task { await transcriber?.prepare() }
     }
 
     /// The user taps into the module from its intro line.
@@ -198,7 +207,11 @@ final class PlacementEngine {
             guard !staircaseItems.isEmpty else { return enter(.production) }
             playStaircaseAudio()
         case .production:
-            if productionItems.isEmpty { enter(.vocab) }
+            if productionItems.isEmpty {
+                enter(.vocab)
+            } else {
+                beginProductionListening()
+            }
         case .vocab:
             if vocabItems.isEmpty { finishAssessment() }
         case .summary:
@@ -209,7 +222,16 @@ final class PlacementEngine {
     /// Leaves mid-assessment (the X): stops everything, seeds nothing.
     func abandon() {
         stepTask?.cancel()
+        transcriber?.stop()
         audio.stop()
+    }
+
+    /// The live transcript from the mic on a production prompt (PLAN2 §7) — a
+    /// mirror only: it sets `spokenText` and nothing else. Fed by the
+    /// transcriber; also the seam unit tests drive.
+    func applyTranscript(_ text: String) {
+        guard module == .production else { return }
+        transition { self.spokenText = text }
     }
 
     private func enter(_ next: Module) {
@@ -314,14 +336,24 @@ final class PlacementEngine {
         }
     }
 
-    // MARK: Module 2 — elicited production (self-graded for now;
-    // speech recognition replaces the honor system in phase 15)
+    // MARK: Module 2 — elicited production (self-graded; the mic mirrors
+    // what you say but never grades — PLAN2 §7 revised)
 
     func revealProduction() {
         guard let item = currentProductionItem, productionStep == .prompt else { return }
+        // Mic closes and the transcript freezes for the self-grade.
+        transcriber?.stop()
         transition { self.productionStep = .revealed }
         if !silent { DSHaptics.reveal() }
         playProductionAudio(item)
+    }
+
+    /// Opens the mic to mirror the user's spoken answer for this prompt.
+    private func beginProductionListening() {
+        spokenText = nil
+        transcriber?.start { [weak self] text in
+            self?.applyTranscript(text)
+        }
     }
 
     func replayProductionAudio() {
@@ -340,6 +372,7 @@ final class PlacementEngine {
     func gradeProduction(correct: Bool) {
         guard let item = currentProductionItem, productionStep == .revealed else { return }
         stepTask?.cancel()
+        transcriber?.stop()
         audio.stop()
         gradeHaptic(correct)
         productionAnswers.append(.init(
@@ -357,6 +390,7 @@ final class PlacementEngine {
                     self.productionIndex += 1
                     self.productionStep = .prompt
                 }
+                self.beginProductionListening()
             }
         }
     }

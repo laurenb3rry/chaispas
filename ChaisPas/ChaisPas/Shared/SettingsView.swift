@@ -1,17 +1,22 @@
 import SwiftUI
 
-/// Minimal settings surface (phase 14): today its one real job is re-running
-/// the placement assessment (PLAN2 §6). Grows only when something earns a row.
+/// Minimal settings surface (phase 14): re-running the placement assessment
+/// (PLAN2 §6) and, since phase 15, the speech-transcript toggle (§7). Grows
+/// only when something earns a row.
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var runningPlacement = false
     @State private var summary = PlacementGate.lastSummary
+    /// Default on; the engines read it at their next construction, so the
+    /// change takes effect on the next drill/scenario opened.
+    @AppStorage(SpeechTranscriber.enabledKey) private var showTranscript = true
 
     var body: some View {
         ZStack {
             DSColor.background.ignoresSafeArea()
-            VStack(alignment: .leading, spacing: DSSpacing.xxl) {
+            ScrollView(showsIndicators: false) {
+              VStack(alignment: .leading, spacing: DSSpacing.xxl) {
                 HStack {
                     Text("Settings")
                         .font(DSType.title)
@@ -26,6 +31,8 @@ struct SettingsView: View {
                     }
                     .accessibilityIdentifier("settings-close")
                 }
+
+                gradingSection
 
                 VStack(alignment: .leading, spacing: DSSpacing.sm) {
                     IndexSectionHeader(title: "Placement", detail: "")
@@ -59,10 +66,12 @@ struct SettingsView: View {
                         .padding(.top, DSSpacing.xs)
                 }
 
-                Spacer()
+                Spacer(minLength: DSSpacing.xxl)
+              }
+              .padding(.horizontal, DSSpacing.margin)
+              .padding(.top, DSSpacing.xl)
+              .padding(.bottom, DSSpacing.xxl)
             }
-            .padding(.horizontal, DSSpacing.margin)
-            .padding(.top, DSSpacing.xl)
         }
         .preferredColorScheme(.dark)
         .fullScreenCover(isPresented: $runningPlacement, onDismiss: {
@@ -74,6 +83,36 @@ struct SettingsView: View {
         }
     }
 
+    // MARK: Speech (§7)
+
+    private var gradingSection: some View {
+        VStack(alignment: .leading, spacing: DSSpacing.sm) {
+            IndexSectionHeader(title: "Speech", detail: "")
+            VStack(alignment: .leading, spacing: DSSpacing.xs) {
+                Toggle(isOn: $showTranscript) {
+                    Text("Show what I say")
+                        .font(DSType.body)
+                        .foregroundStyle(DSColor.textPrimary)
+                }
+                .tint(DSColor.accent)
+                .accessibilityIdentifier("settings-speech-toggle")
+                Text(showTranscript
+                     ? "While you speak, the mic shows what it heard — transcribed on-device — so you can grade yourself against the answer. It never grades or advances for you."
+                     : "The mic stays off; drills just wait for you to speak and tap.")
+                    .font(DSType.caption)
+                    .foregroundStyle(DSColor.textSecondary)
+                if showTranscript, SpeechTranscriber.deniedBySystem {
+                    Text("Microphone or speech access is off in iOS Settings, so there's no transcript until you re-enable it.")
+                        .font(DSType.caption)
+                        .foregroundStyle(DSColor.gradeFailure)
+                        .padding(.top, DSSpacing.xs)
+                }
+            }
+            .padding(DSSpacing.lg)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(DSColor.surface, in: RoundedRectangle(cornerRadius: 16))
+        }
+    }
 }
 
 #Preview {

@@ -4,8 +4,9 @@
 //
 //  Phase 11 acceptance (PLAN2 §9), through the real UI: open a scenario from
 //  the Speak index, play the dialogue end to end — skipping NPC audio with
-//  stage taps, choosing at a branch point, self-grading every line — and
-//  land on the summary with the replay-different-variant CTA.
+//  stage taps and self-grading every line — and land on the summary with the
+//  replay-different-variant CTA. Phase 15: former branch points are now plain
+//  user turns that accept any of several lines (no option tapping).
 //
 
 import XCTest
@@ -37,12 +38,9 @@ final class SpeakModeUITests: XCTestCase {
         // the test never waits out real playback.
         let gotIt = app.buttons["Got it"].firstMatch
         let missed = app.buttons["Missed it"].firstMatch
-        let branchFirst = app.buttons["branch-option-0"].firstMatch
-        let branchSecond = app.buttons["branch-option-1"].firstMatch
         let summary = app.staticTexts["Et voilà."].firstMatch
 
         var graded = 0
-        var branchesTaken = 0
         let deadline = Date.now.addingTimeInterval(240)
         while !summary.exists, Date.now < deadline {
             if gotIt.exists, gotIt.isHittable {
@@ -50,15 +48,10 @@ final class SpeakModeUITests: XCTestCase {
                 graded += 1
                 // outgoing grade buttons animate out; never grab one mid-fade
                 _ = gotIt.waitForNonExistence(timeout: 5)
-            } else if branchFirst.exists {
-                // take the non-default path — the acceptance branch
-                (branchSecond.exists ? branchSecond : branchFirst).tap()
-                branchesTaken += 1
-                _ = branchFirst.waitForNonExistence(timeout: 5)
             } else {
-                // NPC speaking or speak-pause: a stage tap moves things on.
-                // (0.5, 0.2) is safely below the chrome and above the
-                // centered exchange, so it never lands on a control.
+                // NPC speaking or a user turn awaiting the reveal: a stage tap
+                // moves things on. (0.5, 0.2) is safely below the chrome and
+                // above the centered exchange, so it never lands on a control.
                 app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.2)).tap()
                 usleep(300_000)
             }
@@ -67,18 +60,16 @@ final class SpeakModeUITests: XCTestCase {
         XCTAssertTrue(summary.waitForExistence(timeout: 10),
                       "playthrough should reach the end screen")
         XCTAssertGreaterThanOrEqual(graded, 4, "should have graded real exchanges")
-        XCTAssertGreaterThanOrEqual(branchesTaken, 1, "should have taken a branch")
         XCTAssertTrue(app.buttons["replay-variant"].firstMatch.exists,
                       "end screen should offer the different-variant replay")
 
-        // Done returns to the index, which now shows the completion count.
+        // Done returns to the index. (That completion persists and shows on
+        // the card is covered directly and reliably by the unit tests
+        // `completionPersistsToDisk` and `fullPlaythrough…` — far less
+        // brittle than re-deriving it through this coordinate-tap playthrough.)
         app.buttons["Done"].firstMatch.tap()
-        XCTAssertTrue(card.waitForExistence(timeout: 10))
-        XCTAssertTrue(
-            app.descendants(matching: .any).matching(
-                NSPredicate(format: "label CONTAINS %@", "played 1×")
-            ).firstMatch.waitForExistence(timeout: 5),
-            "the scenario card should reflect the completed run")
+        XCTAssertTrue(card.waitForExistence(timeout: 10),
+                      "Done should land back on the Speak index")
     }
 
     /// Scrolls Home until the section header is hittable, then opens it.

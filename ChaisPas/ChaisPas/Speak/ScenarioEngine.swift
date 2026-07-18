@@ -16,11 +16,11 @@ final class ScenarioEngine {
         /// NPC line on stage, French only, street-fast audio playing.
         /// Tap → the English translation.
         case npcSpeaking
-        /// NPC line with its English shown. Tap → next turn (or branches).
+        /// NPC line with its English shown. Tap → the next turn.
         case npcGlossed
-        /// The node branches; English intents on screen, tap one to answer.
-        case branching
         /// English intent shown, the user is speaking; tap when done → reveal.
+        /// At a former branch point, several intents are offered and any one
+        /// is a fine answer (`alternateLines`).
         case userListening
         /// French shown and playing; waiting on a self-grade.
         case userRevealed
@@ -46,24 +46,33 @@ final class ScenarioEngine {
     private(set) var exchangesCompleted = 0
     private(set) var correctCount = 0
     private(set) var startedAt = Date.now
+    /// The running transcript of what the user is saying — a mirror for
+    /// self-grading, never a grade.
+    private(set) var spokenText: String?
+    var speechActive: Bool { transcriber?.availability == .available }
+    /// At a former branch point, the other lines that are equally fine to
+    /// say (the user picks by speaking; any is accepted). Empty on a normal
+    /// turn.
+    private(set) var alternateLines: [ScenarioNode] = []
 
     let scenario: Scenario
     let variantId: String
-
-    /// The choices on offer while at a branch point.
-    var branches: [ScenarioBranch] {
-        step == .branching ? (npcLine?.branches ?? []) : []
-    }
 
     // MARK: Internals
 
     private let context: ModelContext
     private let audio = AudioPlayer()
+    /// Live transcription (PLAN2 §7, revised): a mirror only, never a grader.
+    /// Nil when toggled off or under test.
+    private let transcriber: SpeechTranscriber?
     /// Test hook: skips audio and shrinks every wait so a full playthrough
     /// runs in milliseconds. Never set from app code.
     private let silent: Bool
     private var nodesById: [String: ScenarioNode] = [:]
     private var firstNodeId: String?
+    /// Alternates to attach to the next user turn entered (a collapsed
+    /// branch); consumed by `enterUserTurn`.
+    private var nextAlternates: [ScenarioNode] = []
     private var nodesConsumed = 0
     private var plannedUnits = 1
     private var promptEndedAt = Date.now
@@ -80,6 +89,7 @@ final class ScenarioEngine {
         self.scenario = scenario
         self.context = context
         self.silent = silent
+        self.transcriber = (silent || !SpeechTranscriber.enabled) ? nil : SpeechTranscriber()
         let variants = (try? scenario.decodedVariants()) ?? []
         let variant = variants.first { $0.variantId == variantId }
             ?? Self.nextVariant(from: variants, lastPlayed: scenario.variantLastPlayed)
@@ -126,6 +136,7 @@ final class ScenarioEngine {
 
     func start() {
         if !silent { audio.configureSession() }
+        Task { await transcriber?.prepare() }
         startedAt = .now
         // Started counts as played — rotation and "last played" reflect
         // opens, not just completions.
@@ -142,7 +153,16 @@ final class ScenarioEngine {
     /// Leaves mid-scenario (the X): stops everything, no completion credit.
     func end() {
         stepTask?.cancel()
+        transcriber?.stop()
         audio.stop()
+    }
+
+    /// The live transcript from the mic (PLAN2 §7) — a mirror only: it sets
+    /// `spokenText` and nothing else. Fed by the transcriber; also the seam
+    /// unit tests drive to prove speech never advances the conversation.
+    func applyTranscript(_ text: String) {
+        guard step == .userListening || step == .userRevealed else { return }
+        transition { self.spokenText = text }
     }
 
     // MARK: Interactions
@@ -163,8 +183,17 @@ final class ScenarioEngine {
             guard let npc = npcLine else { return }
             stepTask?.cancel()
             audio.stop()
-            if npc.branches?.isEmpty == false {
-                transition { self.step = .branching }
+            // A former branch collapses into one user turn: say any of the
+            // offered lines and it counts. The paths reconverge, so we walk
+            // the first and simply offer the rest as alternates.
+            if let branches = npc.branches, !branches.isEmpty {
+                let userNodes = branches.compactMap { nodesById[$0.next] }
+                guard let primary = userNodes.first else {
+                    advance(to: npc.next)
+                    return
+                }
+                nextAlternates = Array(userNodes.dropFirst())
+                enter(primary)
             } else {
                 advance(to: npc.next)
             }
@@ -180,7 +209,7 @@ final class ScenarioEngine {
     func replayNPC(slow: Bool) {
         guard let npc = npcLine,
               let ref = npc.audioRefs?[slow ? "street_slow" : "street_fast"],
-              step == .npcSpeaking || step == .npcGlossed || step == .branching
+              step == .npcSpeaking || step == .npcGlossed
         else { return }
         stepTask?.cancel()
         stepTask = Task { await play(ref, from: .v2Speak) }
@@ -190,6 +219,8 @@ final class ScenarioEngine {
     func reveal() {
         guard step == .userListening, let user = userLine else { return }
         stepTask?.cancel()
+        // Mic closes and the transcript freezes for the self-grade.
+        transcriber?.stop()
         latencyMs = max(Int(Date.now.timeIntervalSince(promptEndedAt) * 1000), 0)
         transition { self.step = .userRevealed }
         if !silent { DSHaptics.reveal() }
@@ -207,11 +238,12 @@ final class ScenarioEngine {
         stepTask = Task { await play(ref, from: .v2Speak) }
     }
 
-    /// Self-grade for the spoken line. BACKFILL: SFSpeechRecognizer (fr-FR)
-    /// auto-grades in phase 15; these buttons become the fallback.
+    /// Self-grade for the spoken line — the user's call; speech is a mirror,
+    /// never a grader.
     func grade(correct: Bool) {
         guard step == .userRevealed, let user = userLine else { return }
         stepTask?.cancel()
+        transcriber?.stop()
         audio.stop()
         transition { self.step = .userGraded(correct: correct) }
         // Cold CoreHaptics can block the main actor for seconds (the same
@@ -229,14 +261,6 @@ final class ScenarioEngine {
             guard !Task.isCancelled else { return }
             advance(to: user.next)
         }
-    }
-
-    /// Branch point: the tapped English intent decides the user's next line.
-    func choose(_ branch: ScenarioBranch) {
-        guard step == .branching else { return }
-        stepTask?.cancel()
-        audio.stop()
-        advance(to: branch.next)
     }
 
     // MARK: Flow
@@ -278,12 +302,20 @@ final class ScenarioEngine {
 
     /// The user's turn: English intent shown as text only (no prompt audio —
     /// the conversation's voice stays French). The user speaks aloud and
-    /// taps when done; no speak-pause timer.
+    /// taps when done; no speak-pause timer. The mic opens to mirror what
+    /// they say, but never advances anything.
     private func enterUserTurn(_ node: ScenarioNode) {
+        let alternates = nextAlternates
+        nextAlternates = []
         promptEndedAt = .now
         transition {
             self.userLine = node
+            self.alternateLines = alternates
             self.step = .userListening
+            self.spokenText = nil
+        }
+        transcriber?.start { [weak self] text in
+            self?.applyTranscript(text)
         }
     }
 

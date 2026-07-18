@@ -220,6 +220,13 @@ struct PlacementView: View {
                                     .font(DSType.stageFrenchSecondary)
                                     .foregroundStyle(DSColor.accent)
                             }
+                            if let spoken = engine.spokenText {
+                                SpokenTranscriptView(
+                                    spoken: spoken,
+                                    targets: [item.sentence.frenchFormal,
+                                              item.sentence.frenchStreet]
+                                )
+                            }
                         }
                         .transition(.opacity.combined(with: .offset(y: 14)))
                     }
@@ -245,6 +252,11 @@ struct PlacementView: View {
                         Button { engine.revealProduction() } label: {
                             VStack(spacing: DSSpacing.lg) {
                                 BreathingIndicator()
+                                if engine.speechActive, let spoken = engine.spokenText {
+                                    SpokenTranscriptView(spoken: spoken, targets: nil)
+                                        .frame(maxWidth: .infinity)
+                                        .multilineTextAlignment(.center)
+                                }
                                 Text("say it in French — tap to check")
                                     .font(DSType.caption)
                                     .foregroundStyle(DSColor.textSecondary)
