@@ -178,12 +178,11 @@ struct SpeakModeTests {
         #expect(scenario.variantLastPlayed[variantId] != nil)
 
         // The flow is click-based end to end: every state except the brief
-        // post-grade beat waits on a user action, so the driver taps through
-        // NPC lines (French → gloss → advance) exactly like a finger would.
-        // A former branch point is now just a user turn that offers several
-        // acceptable lines (`alternateLines`) — no choosing, no tapping.
+        // post-grade beat waits on a user action. Taps are location-based now
+        // — tap the NPC's French line for its English, tap lower to advance —
+        // and a branch is just a plain user turn (advanceFromNPC walks the
+        // first path). The driver exercises both taps like a finger would.
         var graded = 0
-        var sawBranchTurn = false
         var sawGlossGating = false
         var settled: ScenarioEngine.Step?
         for _ in 0..<120 {
@@ -196,14 +195,14 @@ struct SpeakModeTests {
             settled = engine.step
             switch engine.step {
             case .npcSpeaking:
-                // French first, English gated behind the tap.
+                // French first, English only when you tap the line.
                 if !engine.npcGlossShown { sawGlossGating = true }
-                engine.stageTapped()
-                #expect(engine.npcGlossShown, "first tap opens the English")
+                engine.revealNPCEnglish()
+                #expect(engine.npcGlossShown, "tapping the French opens the English")
+                engine.advanceOrReveal()  // then tap lower to move on
             case .npcGlossed:
-                engine.stageTapped()
+                engine.advanceOrReveal()
             case .userListening:
-                if !engine.alternateLines.isEmpty { sawBranchTurn = true }
                 engine.reveal()
             case .userRevealed:
                 // Miss every fourth line so accuracy math gets both paths.
@@ -218,8 +217,7 @@ struct SpeakModeTests {
         }
         #expect(sawGlossGating, "NPC lines start French-only")
 
-        #expect(settled == .ended, "playthrough should reach the end")
-        #expect(sawBranchTurn, "the café scenario has at least one collapsed branch turn")
+        #expect(settled == .ended, "playthrough should reach the end (branch collapsed)")
         #expect(graded >= 4, "a scenario is a real conversation, not a couple of lines")
         #expect(engine.exchangesCompleted == graded)
         #expect(engine.correctCount == graded - graded / 4)
@@ -263,7 +261,7 @@ struct SpeakModeTests {
         let engine = ScenarioEngine(scenario: scenario, context: context, silent: true)
         engine.start()
         for _ in 0..<10 where engine.step != .userListening {
-            engine.stageTapped()
+            engine.advanceOrReveal()
             try await Task.sleep(for: .milliseconds(5))
         }
         try await waitUntil { engine.step == .userListening }
@@ -300,7 +298,7 @@ struct SpeakModeTests {
         engine.start()
         // Tap through the opening NPC line(s) to the first user turn.
         for _ in 0..<10 where engine.step != .userListening {
-            engine.stageTapped()
+            engine.advanceOrReveal()
             try await Task.sleep(for: .milliseconds(5))
         }
         try await waitUntil { engine.step == .userListening }

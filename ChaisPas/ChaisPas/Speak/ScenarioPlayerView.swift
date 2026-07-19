@@ -140,13 +140,16 @@ private struct ScenarioStageView: View {
 
             footer
         }
+        // Tapping low ("tap to continue") advances the NPC line or reveals
+        // your answer; tapping the NPC's French line (below) shows its
+        // English instead — a child gesture that wins over this one.
         .contentShape(Rectangle())
-        .onTapGesture { engine.stageTapped() }
+        .onTapGesture { engine.advanceOrReveal() }
     }
 
     // The other side: French only while it plays — comprehension first.
-    // The English waits behind a tap, then stays as context. Replay
-    // controls only while it's their moment.
+    // Tap the French line to reveal its English beneath it; it then stays as
+    // context. Replay controls only while it's their moment.
     private func npcBlock(_ npc: ScenarioNode) -> some View {
         VStack(alignment: .leading, spacing: DSSpacing.md) {
             VStack(alignment: .leading, spacing: DSSpacing.xs) {
@@ -160,6 +163,9 @@ private struct ScenarioStageView: View {
                         .transition(.opacity.combined(with: .offset(y: 8)))
                 }
             }
+            // Tap the line itself → its English (no-op once shown).
+            .contentShape(Rectangle())
+            .onTapGesture { engine.revealNPCEnglish() }
             if engine.step == .npcSpeaking || engine.step == .npcGlossed {
                 HStack(spacing: DSSpacing.md) {
                     npcReplayButton("speaker.wave.2", slow: false,
@@ -190,39 +196,31 @@ private struct ScenarioStageView: View {
     // the reading scale (the 10c example-pair register).
     private func userBlock(_ user: ScenarioNode) -> some View {
         let revealed = engine.step != .userListening
-        let alternates = engine.alternateLines
         return VStack(alignment: .leading, spacing: DSSpacing.xl) {
-            // The intent. At a former branch point, every offered line is a
-            // fine answer — say any one (no choosing, no tapping an option).
-            VStack(alignment: .leading, spacing: DSSpacing.sm) {
-                if !alternates.isEmpty {
-                    Text("SAY ANY OF THESE")
-                        .font(DSType.caption.weight(.medium))
-                        .tracking(1.2)
-                        .foregroundStyle(DSColor.textSecondary)
-                }
-                Text(user.english)
-                    .font(revealed ? DSType.englishPrompt : DSType.stagePrompt)
-                    .foregroundStyle(revealed ? DSColor.textSecondary : DSColor.textPrimary)
-                ForEach(alternates, id: \.nodeId) { alt in
-                    Text(alt.english)
-                        .font(revealed ? DSType.englishPrompt : DSType.stagePrompt)
-                        .foregroundStyle(revealed ? DSColor.textSecondary : DSColor.textPrimary)
-                }
-            }
+            Text(user.english)
+                .font(revealed ? DSType.englishPrompt : DSType.stagePrompt)
+                .foregroundStyle(revealed ? DSColor.textSecondary : DSColor.textPrimary)
 
             if revealed {
                 VStack(alignment: .leading, spacing: DSSpacing.lg) {
-                    userFrench(user, primary: true)
-                    // Alternates carry equal weight — any was acceptable.
-                    ForEach(alternates, id: \.nodeId) { alt in
-                        userFrench(alt, primary: false)
+                    Text(user.frenchStreet)
+                        .font(DSType.stageFrench)
+                        .foregroundStyle(gradeTint ?? DSColor.textPrimary)
+                    if let formal = user.frenchFormal, formal != user.frenchStreet {
+                        VStack(alignment: .leading, spacing: DSSpacing.xs) {
+                            Text("IN FULL")
+                                .font(DSType.caption.weight(.medium))
+                                .tracking(1.2)
+                                .foregroundStyle(DSColor.textSecondary)
+                            Text(formal)
+                                .font(DSType.frenchCompact)
+                                .foregroundStyle(DSColor.accent)
+                        }
                     }
                     if let spoken = engine.spokenText {
                         SpokenTranscriptView(
                             spoken: spoken,
-                            targets: ([user] + alternates)
-                                .flatMap { [$0.frenchStreet, $0.frenchFormal].compactMap { $0 } }
+                            targets: [user.frenchStreet, user.frenchFormal].compactMap { $0 }
                         )
                         .transition(.opacity)
                     }
@@ -232,29 +230,12 @@ private struct ScenarioStageView: View {
         }
     }
 
-    /// One acceptable French answer at the reveal: street at stage scale for
-    /// the primary, a step down for the equally-fine alternates.
-    @ViewBuilder
-    private func userFrench(_ node: ScenarioNode, primary: Bool) -> some View {
-        VStack(alignment: .leading, spacing: DSSpacing.xs) {
-            Text(node.frenchStreet)
-                .font(primary ? DSType.stageFrench : DSType.stageFrenchSecondary)
-                .foregroundStyle(primary ? (gradeTint ?? DSColor.textPrimary)
-                                         : DSColor.textPrimary)
-            if let formal = node.frenchFormal, formal != node.frenchStreet {
-                Text(formal)
-                    .font(DSType.frenchCompact)
-                    .foregroundStyle(DSColor.accent)
-            }
-        }
-    }
-
     @ViewBuilder
     private var footer: some View {
         ZStack {
             switch engine.step {
             case .npcSpeaking:
-                tapHint("tap for the English")
+                tapHint("tap to continue · tap the French for its meaning")
             case .npcGlossed:
                 tapHint("tap to continue")
             case .userListening:

@@ -39,10 +39,14 @@ final class SessionFlowUITests: XCTestCase {
             _ = start.waitForExistence(timeout: 5)
         }
         XCTAssertTrue(start.exists, "the Learn index should show the Construction card")
+        // The session opens on the concept intro on a fresh store, or straight
+        // into a warm-recall drill (listening) on a store with due reviews —
+        // detect either (there's no auto-reveal timer to surface a grade).
+        let sayIt = app.staticTexts["say it in French — tap to reveal"].firstMatch
         var entered = false
         for _ in 0..<4 where !entered {
             if start.exists, start.isHittable { start.tap() }
-            entered = intro.waitForExistence(timeout: 5) || gotIt.exists
+            entered = intro.waitForExistence(timeout: 5) || gotIt.exists || sayIt.exists
         }
         XCTAssertTrue(entered, "session should present after tapping Start")
         if intro.exists { intro.tap() }
@@ -66,7 +70,11 @@ final class SessionFlowUITests: XCTestCase {
                 // the next iteration can't grab an outgoing element mid-fade
                 _ = gotIt.waitForNonExistence(timeout: 5)
             } else {
-                usleep(500_000)
+                // No auto-reveal timer any more — a stage tap reveals the
+                // answer during the listening step (a harmless no-op during
+                // the street mirror, which self-advances on its audio timers).
+                app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.4)).tap()
+                usleep(300_000)
             }
         }
         XCTAssertGreaterThanOrEqual(graded, 8, "ladder should run at least 8 items")

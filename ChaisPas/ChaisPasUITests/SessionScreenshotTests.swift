@@ -40,13 +40,15 @@ final class SessionScreenshotTests: XCTestCase {
             if learnHeader.exists, learnHeader.isHittable { learnHeader.tap() }
             _ = construction.waitForExistence(timeout: 5)
         }
-        // A warm store (another class already ran a session on this clone —
-        // full-target runs share app data between classes) opens straight
-        // into warm recall with no concept intro: accept either face.
+        // A warm store (accumulated app data on the clone) opens straight
+        // into a warm-recall drill (listening) with no concept intro, and
+        // there's no auto-reveal timer to surface a grade — detect the
+        // listening hint too.
+        let sayIt = app.staticTexts["say it in French — tap to reveal"].firstMatch
         var presented = false
         for _ in 0..<3 {
             if construction.exists, construction.isHittable { construction.tap() }
-            if intro.waitForExistence(timeout: 8) || gotIt.exists {
+            if intro.waitForExistence(timeout: 8) || gotIt.exists || sayIt.exists {
                 presented = true
                 break
             }
@@ -57,18 +59,27 @@ final class SessionScreenshotTests: XCTestCase {
             intro.tap()
         }
 
-        // Ladder: listening state, then revealed state.
+        // Ladder: listening state, then reveal it with a stage tap — there
+        // is no auto-reveal timer any more.
+        let stageTap = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.4))
         sleep(1)
         snap("2-ladder-listening")
+        stageTap.tap()
         XCTAssertTrue(gotIt.waitForExistence(timeout: 12))
         sleep(1)  // let the reveal spring settle before capturing
         snap("3-ladder-revealed")
 
         var graded = 0
         while graded < 40, !done.exists, !skip.exists {
-            guard gotIt.waitForExistence(timeout: 12) else { break }
-            gotIt.tap()
-            graded += 1
+            if gotIt.exists {
+                gotIt.tap()
+                graded += 1
+                _ = gotIt.waitForNonExistence(timeout: 5)
+            } else {
+                // reveal the next prompt (no-op during the street mirror)
+                stageTap.tap()
+                usleep(300_000)
+            }
         }
 
         if skip.waitForExistence(timeout: 10) {

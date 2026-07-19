@@ -13,14 +13,12 @@ import SwiftUI
 @Observable
 final class ScenarioEngine {
     enum Step: Equatable {
-        /// NPC line on stage, French only, street-fast audio playing.
-        /// Tap → the English translation.
+        /// NPC line on stage, French only, street-fast audio playing. Tap the
+        /// line → its English; tap lower → advance.
         case npcSpeaking
-        /// NPC line with its English shown. Tap → the next turn.
+        /// NPC line with its English shown. Tap lower → the next turn.
         case npcGlossed
         /// English intent shown, the user is speaking; tap when done → reveal.
-        /// At a former branch point, several intents are offered and any one
-        /// is a fine answer (`alternateLines`).
         case userListening
         /// French shown and playing; waiting on a self-grade.
         case userRevealed
@@ -50,10 +48,6 @@ final class ScenarioEngine {
     /// self-grading, never a grade.
     private(set) var spokenText: String?
     var speechActive: Bool { transcriber?.availability == .available }
-    /// At a former branch point, the other lines that are equally fine to
-    /// say (the user picks by speaking; any is accepted). Empty on a normal
-    /// turn.
-    private(set) var alternateLines: [ScenarioNode] = []
 
     let scenario: Scenario
     let variantId: String
@@ -70,9 +64,6 @@ final class ScenarioEngine {
     private let silent: Bool
     private var nodesById: [String: ScenarioNode] = [:]
     private var firstNodeId: String?
-    /// Alternates to attach to the next user turn entered (a collapsed
-    /// branch); consumed by `enterUserTurn`.
-    private var nextAlternates: [ScenarioNode] = []
     private var nodesConsumed = 0
     private var plannedUnits = 1
     private var promptEndedAt = Date.now
@@ -166,41 +157,45 @@ final class ScenarioEngine {
     }
 
     // MARK: Interactions
+    //
+    // Taps are location-based (user preference): tapping the NPC's French
+    // line reveals its English beneath it; tapping lower down ("tap to
+    // continue") advances — so you can move on without ever seeing the
+    // English, or peek at it first, your call. No forced double-tap.
 
-    /// Stage tap — the pedal that moves the conversation. NPC French →
-    /// English gloss → next turn (or branches); user turn: done speaking →
-    /// reveal.
-    func stageTapped() {
+    /// Tap on the NPC's French line → show its English gloss. No-op once
+    /// shown or when it isn't the NPC's moment.
+    func revealNPCEnglish() {
+        guard step == .npcSpeaking else { return }
+        stepTask?.cancel()
+        audio.stop()
+        transition {
+            self.npcGlossShown = true
+            self.step = .npcGlossed
+        }
+    }
+
+    /// Tap lower down → move on. On the NPC's line it advances (whether or
+    /// not the English was shown); on your turn it reveals your answer.
+    func advanceOrReveal() {
         switch step {
-        case .npcSpeaking:
-            stepTask?.cancel()
-            audio.stop()
-            transition {
-                self.npcGlossShown = true
-                self.step = .npcGlossed
-            }
-        case .npcGlossed:
-            guard let npc = npcLine else { return }
-            stepTask?.cancel()
-            audio.stop()
-            // A former branch collapses into one user turn: say any of the
-            // offered lines and it counts. The paths reconverge, so we walk
-            // the first and simply offer the rest as alternates.
-            if let branches = npc.branches, !branches.isEmpty {
-                let userNodes = branches.compactMap { nodesById[$0.next] }
-                guard let primary = userNodes.first else {
-                    advance(to: npc.next)
-                    return
-                }
-                nextAlternates = Array(userNodes.dropFirst())
-                enter(primary)
-            } else {
-                advance(to: npc.next)
-            }
-        case .userListening:
-            reveal()
-        default:
-            break
+        case .npcSpeaking, .npcGlossed: advanceFromNPC()
+        case .userListening: reveal()
+        default: break
+        }
+    }
+
+    private func advanceFromNPC() {
+        guard let npc = npcLine else { return }
+        stepTask?.cancel()
+        audio.stop()
+        // A branch just walks the first path (they reconverge); it's a plain
+        // user turn — self-grade means whichever line you actually say counts.
+        if let branches = npc.branches, !branches.isEmpty,
+           let primary = branches.compactMap({ nodesById[$0.next] }).first {
+            enter(primary)
+        } else {
+            advance(to: npc.next)
         }
     }
 
@@ -305,12 +300,9 @@ final class ScenarioEngine {
     /// taps when done; no speak-pause timer. The mic opens to mirror what
     /// they say, but never advances anything.
     private func enterUserTurn(_ node: ScenarioNode) {
-        let alternates = nextAlternates
-        nextAlternates = []
         promptEndedAt = .now
         transition {
             self.userLine = node
-            self.alternateLines = alternates
             self.step = .userListening
             self.spokenText = nil
         }

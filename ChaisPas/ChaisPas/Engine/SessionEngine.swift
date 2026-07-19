@@ -198,9 +198,6 @@ final class SessionEngine {
 
     // MARK: Drill interactions (production items)
 
-    /// User taps to hear the answer before the speak-pause elapses.
-    func reveal() { reveal(auto: false) }
-
     func replayAudio() {
         guard let sentence = currentSentence, drillStep == .revealed else { return }
         stepTask?.cancel()
@@ -372,7 +369,7 @@ final class SessionEngine {
         writeSessionLog()
     }
 
-    // MARK: Production drill (prompt → pause → reveal → grade)
+    // MARK: Production drill (prompt → speak → tap to reveal → grade)
 
     private func startDrill(_ sentence: Sentence) {
         stepTask?.cancel()
@@ -384,29 +381,18 @@ final class SessionEngine {
             self.drillStep = .listening
             self.spokenText = nil
         }
-        // The speak-pause: long enough to say the sentence aloud, scaled to
-        // its length. Auto-reveal keeps the flow hands-free capable.
-        let words = sentence.frenchFormal.split(separator: " ").count
-        let pause = min(max(1.6 + 0.45 * Double(words), 3.0), 8.0)
-        // The English prompt is shown, never spoken — every Learn drill reads
-        // silently, exactly like Construction (user preference; the English
-        // prompt audio files stay in the pack, just unused).
-        stepTask = Task {
-            // The mic opens immediately so the transcript reflects the user.
-            self.transcriber?.start { [weak self] text in
-                self?.applyTranscript(text)
-            }
-            // Auto-reveal is the hands-free (screen-off) affordance. When the
-            // transcript mirror is live the user is watching the screen and
-            // taps to reveal when done, so the timer would only cut them off.
-            guard !self.speechActive else { return }
-            try? await Task.sleep(for: .seconds(pause))
-            guard !Task.isCancelled else { return }
-            reveal(auto: true)
+        // The English prompt is shown, never spoken, and it stays put until
+        // you tap to reveal — nothing is on a timer, nothing auto-advances
+        // (user preference). The mic opens immediately so the live transcript
+        // reflects what you say.
+        transcriber?.start { [weak self] text in
+            self?.applyTranscript(text)
         }
     }
 
-    private func reveal(auto: Bool) {
+    /// User taps to reveal the answer when they're ready — the only way the
+    /// prompt advances (there is no timer).
+    func reveal() {
         guard drillStep == .listening, let sentence = currentSentence else { return }
         stepTask?.cancel()
         // Close the mic and freeze the transcript for the self-grade.
