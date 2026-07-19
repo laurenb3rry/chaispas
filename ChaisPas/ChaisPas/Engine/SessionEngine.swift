@@ -16,11 +16,6 @@ final class SessionEngine {
     enum Mode {
         case fullSession
         case drillRun(unit: ConceptNode)
-
-        var drillRunUnit: ConceptNode? {
-            if case .drillRun(let unit) = self { return unit }
-            return nil
-        }
     }
 
     enum Phase: Equatable {
@@ -393,19 +388,11 @@ final class SessionEngine {
         // its length. Auto-reveal keeps the flow hands-free capable.
         let words = sentence.frenchFormal.split(separator: " ").count
         let pause = min(max(1.6 + 0.45 * Double(words), 3.0), 8.0)
-        // Drill runs speak the English prompt first (§5.1 hands-free);
-        // Construction stays as-is until its own hands-free pass.
-        let promptAudio = mode.drillRunUnit != nil ? sentence.englishAudioRef : nil
+        // The English prompt is shown, never spoken — every Learn drill reads
+        // silently, exactly like Construction (user preference; the English
+        // prompt audio files stay in the pack, just unused).
         stepTask = Task {
-            if let promptAudio {
-                await audio.play(fileName: promptAudio, from: .englishPrompts)
-                guard !Task.isCancelled else { return }
-                // The speak-pause (and the latency clock) start once the
-                // spoken prompt ends, not when the text appeared.
-                promptShownAt = .now
-            }
-            // The mic opens once the prompt has finished speaking, so the
-            // transcript only ever reflects the user.
+            // The mic opens immediately so the transcript reflects the user.
             self.transcriber?.start { [weak self] text in
                 self?.applyTranscript(text)
             }
