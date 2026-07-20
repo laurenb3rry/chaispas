@@ -87,7 +87,7 @@ final class PlacementUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Calibrated."].exists)
 
         // Done → Home, with the composer card composed.
-        let home = app.buttons["recommended-learn"].firstMatch
+        let home = app.buttons["continue-learn"].firstMatch
         for _ in 0..<4 where !home.exists {
             if done.exists, done.isHittable { done.tap() }
             _ = home.waitForExistence(timeout: 5)
@@ -105,7 +105,7 @@ final class PlacementUITests: XCTestCase {
 
         let skip = app.buttons["placement-skip"].firstMatch
         XCTAssertTrue(skip.waitForExistence(timeout: 30))
-        let home = app.buttons["recommended-learn"].firstMatch
+        let home = app.buttons["continue-learn"].firstMatch
         for _ in 0..<4 where !home.exists {
             if skip.exists, skip.isHittable { skip.tap() }
             _ = home.waitForExistence(timeout: 5)

@@ -29,7 +29,7 @@ final class SessionFlowUITests: XCTestCase {
         // Home card belongs to the composer, so the session starts from the
         // Learn index's Construction card. On a fresh store the session
         // opens with the concept intro.
-        let home = app.buttons["recommended-learn"].firstMatch
+        let home = app.buttons["continue-learn"].firstMatch
         XCTAssertTrue(home.waitForExistence(timeout: 30),
                       "Home should appear once the import finishes")
         let learnHeader = app.buttons["home-section-learn"].firstMatch

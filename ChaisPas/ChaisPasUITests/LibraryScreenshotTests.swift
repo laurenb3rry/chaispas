@@ -36,7 +36,7 @@ final class LibraryScreenshotTests: XCTestCase {
             add(attachment)
         }
 
-        let home = app.buttons["recommended-learn"].firstMatch
+        let home = app.buttons["continue-learn"].firstMatch
         XCTAssertTrue(home.waitForExistence(timeout: 30))
         snap("1-home-top")
 

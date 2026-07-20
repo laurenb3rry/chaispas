@@ -12,10 +12,7 @@ struct ExplanationSectionsView: View {
         VStack(alignment: .leading, spacing: 0) {
             ForEach(Array(sections.enumerated()), id: \.offset) { index, section in
                 VStack(alignment: .leading, spacing: DSSpacing.sm) {
-                    Text(section.header.uppercased())
-                        .font(DSType.caption.weight(.medium))
-                        .tracking(1.2)
-                        .foregroundStyle(DSColor.accent)
+                    Eyebrow(section.header, color: DSColor.accent)
 
                     Text(section.body)
                         .font(DSType.body)
@@ -74,10 +71,7 @@ struct TenseUsageView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: DSSpacing.lg) {
             VStack(alignment: .leading, spacing: DSSpacing.sm) {
-                Text("WHEN TO USE IT")
-                    .font(DSType.caption.weight(.medium))
-                    .tracking(1.2)
-                    .foregroundStyle(DSColor.accent)
+                Eyebrow("When to use it", color: DSColor.accent)
                 Text(usage.note)
                     .font(DSType.body)
                     .foregroundStyle(DSColor.textPrimary)
@@ -86,8 +80,10 @@ struct TenseUsageView: View {
 
             ForEach(Array(usage.contrasts.enumerated()), id: \.offset) { _, contrast in
                 VStack(alignment: .leading, spacing: DSSpacing.sm) {
+                    // Two columns split by a hairline — de-carded contrast.
                     HStack(alignment: .top, spacing: DSSpacing.md) {
                         contrastCell(french: contrast.aFrench, english: contrast.aEnglish)
+                        Rectangle().fill(DSColor.hairline).frame(width: 1)
                         contrastCell(french: contrast.bFrench, english: contrast.bEnglish)
                     }
                     Text(contrast.point)
@@ -102,14 +98,13 @@ struct TenseUsageView: View {
     private func contrastCell(french: String, english: String) -> some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(french)
-                .font(DSType.body.weight(.medium))
+                .font(DSType.frenchCompact)
                 .foregroundStyle(DSColor.textPrimary)
             Text(english)
                 .font(DSType.caption)
                 .foregroundStyle(DSColor.textSecondary)
         }
-        .padding(DSSpacing.md)
         .frame(maxWidth: .infinity, alignment: .topLeading)
-        .background(DSColor.surface, in: RoundedRectangle(cornerRadius: 12))
+        .padding(.vertical, DSSpacing.xs)
     }
 }

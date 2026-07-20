@@ -95,8 +95,8 @@ struct ConjugationPlayerView: View {
     }
 
     private var chromeCaption: String {
-        var parts = ["CONJUGATION"]
-        if let family = packNode?.family { parts.append(family.uppercased()) }
+        var parts = ["Conjugation"]
+        if let family = packNode?.family { parts.append(family) }
         return parts.joined(separator: " · ")
     }
 
@@ -133,18 +133,16 @@ struct ConjugationPlayerView: View {
                         withAnimation(DSMotion.spring) { selectedTense = tense.key }
                     } label: {
                         VStack(alignment: .leading, spacing: DSSpacing.sm) {
-                            Text(tense.label.uppercased())
-                                .font(DSType.caption.weight(.medium))
-                                .tracking(1.2)
-                                .foregroundStyle(selectedTense == tense.key
-                                                 ? DSColor.textPrimary : DSColor.textSecondary)
+                            Eyebrow(tense.label,
+                                    color: selectedTense == tense.key
+                                        ? DSColor.textPrimary : DSColor.textTertiary)
                             Capsule()
                                 .fill(selectedTense == tense.key ? DSColor.accent : .clear)
                                 .frame(width: 24, height: 2)
                         }
                         .contentShape(Rectangle())
                     }
-                    .buttonStyle(.plain)
+                    .buttonStyle(.pressable)
                 }
             }
         }
@@ -259,10 +257,7 @@ struct ConjugationPlayerView: View {
 
     private func streetNotes(_ notes: String) -> some View {
         VStack(alignment: .leading, spacing: DSSpacing.xs) {
-            Text("ON THE STREET")
-                .font(DSType.caption.weight(.medium))
-                .tracking(1.2)
-                .foregroundStyle(DSColor.textSecondary)
+            Eyebrow("On the street", micro: true)
             Text(notes)
                 .font(DSType.frenchCompact)
                 .foregroundStyle(DSColor.accent)
@@ -291,19 +286,17 @@ struct PlayerChrome: View {
 
     var body: some View {
         HStack {
-            Text(caption)
-                .font(DSType.caption.weight(.medium))
-                .tracking(1.2)
-                .foregroundStyle(DSColor.textSecondary)
+            Eyebrow(caption, micro: true)
                 .lineLimit(1)
             Spacer()
             Button(action: onClose) {
                 Image(systemName: "xmark")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundStyle(DSColor.textSecondary)
-                    .frame(width: 36, height: 36)
+                    .frame(width: 34, height: 34)
                     .contentShape(Rectangle())
             }
+            .buttonStyle(.pressable)
             .accessibilityIdentifier("player-close")
         }
         .padding(.horizontal, DSSpacing.margin)
@@ -321,9 +314,10 @@ struct StartDrillButton: View {
                 .font(DSType.body.weight(.medium))
                 .foregroundStyle(DSColor.background)
                 .frame(maxWidth: .infinity)
-                .frame(height: 52)
+                .frame(height: 48)
                 .background(DSColor.accent, in: Capsule())
         }
+        .buttonStyle(.pressable)
         .padding(.horizontal, DSSpacing.margin)
         .padding(.bottom, DSSpacing.xxl)
     }

@@ -61,10 +61,7 @@ struct DrillRunView: View {
     private func chrome(_ engine: SessionEngine) -> some View {
         VStack(spacing: DSSpacing.md) {
             HStack {
-                Text("DRILL · \(unit.title.uppercased())")
-                    .font(DSType.caption.weight(.medium))
-                    .tracking(1.2)
-                    .foregroundStyle(DSColor.textSecondary)
+                Eyebrow("Drill · \(unit.title)", micro: true)
                     .lineLimit(1)
                 Spacer()
                 Button {
@@ -74,9 +71,10 @@ struct DrillRunView: View {
                     Image(systemName: "xmark")
                         .font(.system(size: 14, weight: .medium))
                         .foregroundStyle(DSColor.textSecondary)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 34, height: 34)
                         .contentShape(Rectangle())
                 }
+                .buttonStyle(.pressable)
                 .accessibilityIdentifier("drill-close")
             }
             .padding(.horizontal, DSSpacing.margin)
@@ -129,9 +127,10 @@ private struct DrillRunSummaryView: View {
                     .font(DSType.body.weight(.medium))
                     .foregroundStyle(DSColor.background)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 52)
+                    .frame(height: 48)
                     .background(DSColor.accent, in: Capsule())
             }
+            .buttonStyle(.pressable)
             .padding(.horizontal, DSSpacing.margin)
             .padding(.bottom, DSSpacing.xxl)
         }
@@ -140,12 +139,11 @@ private struct DrillRunSummaryView: View {
 
     private func row(_ label: String, _ value: String) -> some View {
         HStack {
-            Text(label)
-                .font(DSType.body)
-                .foregroundStyle(DSColor.textSecondary)
+            Eyebrow(label)
             Spacer()
             Text(value)
-                .font(DSType.body.monospacedDigit())
+                .font(DSType.monoData)
+                .monospacedDigit()
                 .foregroundStyle(DSColor.textPrimary)
         }
     }

@@ -22,7 +22,7 @@ final class SessionScreenshotTests: XCTestCase {
             add(attachment)
         }
 
-        let start = app.buttons["recommended-learn"].firstMatch
+        let start = app.buttons["continue-learn"].firstMatch
         let gotIt = app.buttons["Got it"].firstMatch
         let intro = app.buttons["Got it — let's build"].firstMatch
         let skip = app.buttons["Skip"].firstMatch

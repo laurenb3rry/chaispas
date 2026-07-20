@@ -3,12 +3,13 @@ import SwiftUI
 
 /// Learn mode index (PLAN2 §5.1): Construction (the working v1 session),
 /// then verbs, vocab packs, and grammar lessons, each opening its player.
-/// Rows carry live mastery hairlines; unmet prerequisites render as
-/// "recommended after …" captions, never locks (§8).
+/// Phase 16: de-carded — full-bleed hairlines, a mono data layer, mastery as a
+/// quiet reading. Unmet prerequisites render as "recommended after …", never
+/// locks (§8).
 struct LearnIndexView: View {
     @Environment(\.modelContext) private var modelContext
 
-    /// Sub-mode tile tapped on Home; scrolled to once on first appear.
+    /// Sub-mode tapped on Home; scrolled to once on first appear.
     let focus: LearnSection?
 
     @State private var conjugation: [ConceptNode] = []
@@ -29,8 +30,9 @@ struct LearnIndexView: View {
             ScrollViewReader { proxy in
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: DSSpacing.xxl) {
-                        IndexHeader(title: "Learn", subtitle: "four ways into the same spine")
-                        constructionCard
+                        IndexHeader(title: "Learn", subtitle: "four ways into one spine")
+                            .padding(.horizontal, DSSpacing.margin)
+                        constructionSection
                             .id(LearnSection.construction)
                         nodeSection(.conjugation, title: "Conjugation",
                                     detail: "\(conjugation.count) verbs · \(masteredCount(conjugation)) mastered",
@@ -42,14 +44,13 @@ struct LearnIndexView: View {
                                     detail: "\(grammar.count) lessons · \(masteredCount(grammar)) mastered",
                                     nodes: grammar)
                     }
-                    .padding(.horizontal, DSSpacing.margin)
-                    .padding(.vertical, DSSpacing.xl)
+                    .padding(.top, DSSpacing.md)
+                    .padding(.bottom, DSSpacing.xxl)
                 }
                 .onAppear {
                     refresh()
                     guard let focus, focus != .construction, !hasScrolledToFocus else { return }
                     hasScrolledToFocus = true
-                    // after layout, so the anchor rows exist
                     DispatchQueue.main.async { proxy.scrollTo(focus, anchor: .top) }
                 }
             }
@@ -68,58 +69,60 @@ struct LearnIndexView: View {
         }
     }
 
-    // MARK: Construction (works today — routes to the real session)
+    // MARK: Construction (routes to the real session)
 
-    private var constructionCard: some View {
-        Button { showingSession = true } label: {
-            VStack(alignment: .leading, spacing: DSSpacing.sm) {
-                HStack {
-                    Text("Construction")
-                        .font(DSType.title)
-                        .foregroundStyle(DSColor.textPrimary)
-                    Spacer()
+    private var constructionSection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            IndexSectionHeader(title: "Construction")
+                .padding(.horizontal, DSSpacing.margin)
+                .padding(.bottom, DSSpacing.sm)
+            Hairline(strong: true)
+            Button { showingSession = true } label: {
+                HStack(spacing: DSSpacing.md) {
+                    VStack(alignment: .leading, spacing: DSSpacing.xs) {
+                        Text("The sentence-building session")
+                            .font(DSType.body)
+                            .foregroundStyle(DSColor.textPrimary)
+                        Text("English prompt, spoken French, native reveal.")
+                            .font(DSType.caption)
+                            .foregroundStyle(DSColor.textSecondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                        MonoData(constructionDetail, color: DSColor.accent)
+                            .padding(.top, DSSpacing.xs)
+                    }
+                    Spacer(minLength: DSSpacing.sm)
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 12, weight: .medium))
-                        .foregroundStyle(DSColor.textSecondary)
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundStyle(DSColor.textTertiary)
                 }
-                Text("The sentence-building session — English prompt, spoken French, native reveal.")
-                    .font(DSType.caption)
-                    .foregroundStyle(DSColor.textSecondary)
-                    .multilineTextAlignment(.leading)
-                Text(constructionDetail)
-                    .font(DSType.caption.monospacedDigit())
-                    .foregroundStyle(DSColor.accent)
-                    .padding(.top, DSSpacing.xs)
+                .padding(.vertical, DSSpacing.md)
+                .padding(.horizontal, DSSpacing.margin)
+                .contentShape(Rectangle())
             }
-            .padding(DSSpacing.lg)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(DSColor.surface, in: RoundedRectangle(cornerRadius: 16))
+            .buttonStyle(.pressable)
+            .accessibilityIdentifier("learn-construction")
         }
-        .buttonStyle(.plain)
-        .accessibilityIdentifier("learn-construction")
     }
 
     private var constructionDetail: String {
         var parts = ["\(constructionTotal) concepts", "\(constructionIntroduced) introduced"]
-        if dueReviews > 0 { parts.append("\(dueReviews) reviews due") }
+        if dueReviews > 0 { parts.append("\(dueReviews) due") }
         return parts.joined(separator: " · ")
     }
 
     // MARK: Node sections (each row opens its unit's player)
 
     private func nodeSection(
-        _ anchor: LearnSection, title: String, detail: String,
-        nodes: [ConceptNode]
+        _ anchor: LearnSection, title: String, detail: String, nodes: [ConceptNode]
     ) -> some View {
-        VStack(alignment: .leading, spacing: DSSpacing.sm) {
+        VStack(alignment: .leading, spacing: 0) {
             IndexSectionHeader(title: title, detail: detail)
-            VStack(spacing: 0) {
-                ForEach(nodes, id: \.id) { node in
-                    nodeRow(node)
-                    if node.id != nodes.last?.id {
-                        RowDivider()
-                    }
-                }
+                .padding(.horizontal, DSSpacing.margin)
+                .padding(.bottom, DSSpacing.sm)
+            Hairline(strong: true)
+            ForEach(Array(nodes.enumerated()), id: \.element.id) { index, node in
+                nodeRow(node)
+                if index < nodes.count - 1 { Hairline() }
             }
         }
         .id(anchor)
@@ -128,28 +131,29 @@ struct LearnIndexView: View {
     private func nodeRow(_ node: ConceptNode) -> some View {
         Button { activeUnit = node } label: {
             HStack(spacing: DSSpacing.md) {
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: DSSpacing.xs) {
                     Text(node.title)
                         .font(DSType.body)
                         .foregroundStyle(DSColor.textPrimary)
-                        .multilineTextAlignment(.leading)
+                        .lineLimit(1)
                     if let hint = recommendationHint(node) {
                         Text(hint)
                             .font(DSType.caption)
                             .foregroundStyle(DSColor.textSecondary)
+                            .lineLimit(1)
                     }
                 }
-                Spacer()
+                Spacer(minLength: DSSpacing.md)
                 MasteryBar(fraction: scores[node.id] ?? 0)
             }
             .padding(.vertical, DSSpacing.md)
+            .padding(.horizontal, DSSpacing.margin)
             .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
+        .buttonStyle(.pressable)
     }
 
-    /// Soft affordance, not a lock (§8): name the first prerequisite that
-    /// hasn't crossed the unlock threshold yet.
+    /// Soft affordance, not a lock (§8): name the first unmet prerequisite.
     private func recommendationHint(_ node: ConceptNode) -> String? {
         guard
             let unmet = node.prereqIds.first(where: {
@@ -189,8 +193,7 @@ struct LearnIndexView: View {
 }
 
 /// Routes a Learn unit to its player by concept type. Falls back to the
-/// grammar layout (title + explanation + drill) for anything unexpected —
-/// never a dead end. Shared with Home's recommended card (phase 14).
+/// grammar layout for anything unexpected — never a dead end.
 struct LearnUnitPlayerView: View {
     let unit: ConceptNode
 

@@ -31,10 +31,7 @@ struct PlacementView: View {
         VStack(alignment: .leading, spacing: 0) {
             Spacer()
             VStack(alignment: .leading, spacing: DSSpacing.xl) {
-                Text("CALIBRATION")
-                    .font(DSType.caption.weight(.medium))
-                    .tracking(1.2)
-                    .foregroundStyle(DSColor.textSecondary)
+                Eyebrow("Calibration")
                 Text("Let's take a reading.")
                     .font(DSType.largeTitle)
                     .tracking(DSType.largeTitleTracking)
@@ -56,9 +53,10 @@ struct PlacementView: View {
                         .font(DSType.body.weight(.medium))
                         .foregroundStyle(DSColor.background)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 52)
+                        .frame(height: 48)
                         .background(DSColor.accent, in: Capsule())
                 }
+                .buttonStyle(.pressable)
                 .accessibilityIdentifier("placement-begin")
                 Button(action: onDone) {
                     Text(isFirstRun ? "Not now — just start" : "Not now")
@@ -68,6 +66,7 @@ struct PlacementView: View {
                         .frame(height: 44)
                         .contentShape(Rectangle())
                 }
+                .buttonStyle(.pressable)
                 .accessibilityIdentifier("placement-skip")
             }
             .padding(.horizontal, DSSpacing.margin)
@@ -102,10 +101,7 @@ struct PlacementView: View {
     private func chrome(_ engine: PlacementEngine) -> some View {
         VStack(spacing: DSSpacing.md) {
             HStack {
-                Text("CALIBRATION · \(moduleLabel(engine.module))")
-                    .font(DSType.caption.weight(.medium))
-                    .tracking(1.2)
-                    .foregroundStyle(DSColor.textSecondary)
+                Eyebrow("Calibration · \(moduleLabel(engine.module))", micro: true)
                 Spacer()
                 Button {
                     engine.abandon()
@@ -114,9 +110,10 @@ struct PlacementView: View {
                     Image(systemName: "xmark")
                         .font(.system(size: 14, weight: .medium))
                         .foregroundStyle(DSColor.textSecondary)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 34, height: 34)
                         .contentShape(Rectangle())
                 }
+                .buttonStyle(.pressable)
                 .accessibilityIdentifier("placement-close")
             }
             .padding(.horizontal, DSSpacing.margin)
@@ -136,10 +133,10 @@ struct PlacementView: View {
 
     private func moduleLabel(_ module: PlacementEngine.Module) -> String {
         switch module {
-        case .staircase: "LISTEN"
-        case .production: "SPEAK"
-        case .vocab: "WORDS"
-        case .summary: "DONE"
+        case .staircase: "Listen"
+        case .production: "Speak"
+        case .vocab: "Words"
+        case .summary: "Done"
         }
     }
 
@@ -179,9 +176,10 @@ struct PlacementView: View {
                     .font(DSType.body.weight(.medium))
                     .foregroundStyle(DSColor.background)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 52)
+                    .frame(height: 48)
                     .background(DSColor.accent, in: Capsule())
             }
+            .buttonStyle(.pressable)
             .accessibilityIdentifier("placement-ready")
             .padding(.horizontal, DSSpacing.margin)
             .padding(.bottom, DSSpacing.xxl)
@@ -239,11 +237,12 @@ struct PlacementView: View {
                         HStack(spacing: DSSpacing.md) {
                             Button { engine.replayProductionAudio() } label: {
                                 Image(systemName: "speaker.wave.2")
-                                    .font(.system(size: 17, weight: .medium))
+                                    .font(.system(size: 16, weight: .medium))
                                     .foregroundStyle(DSColor.textPrimary)
-                                    .frame(width: 52, height: 52)
+                                    .frame(width: 48, height: 48)
                                     .background(DSColor.surface, in: Circle())
                             }
+                            .buttonStyle(.pressable)
                             productionGrade(engine, "Not yet", correct: false)
                             productionGrade(engine, "Got it", correct: true)
                         }
@@ -285,9 +284,10 @@ struct PlacementView: View {
                 .font(DSType.body.weight(.medium))
                 .foregroundStyle(correct ? DSColor.background : DSColor.textPrimary)
                 .frame(maxWidth: .infinity)
-                .frame(height: 52)
+                .frame(height: 48)
                 .background(correct ? DSColor.accent : DSColor.surface, in: Capsule())
         }
+        .buttonStyle(.pressable)
         .accessibilityIdentifier(correct ? "placement-got-it" : "placement-not-yet")
     }
 
@@ -331,9 +331,10 @@ struct PlacementView: View {
                 .font(DSType.body.weight(.medium))
                 .foregroundStyle(tint)
                 .frame(maxWidth: .infinity)
-                .frame(height: 52)
+                .frame(height: 48)
                 .background(DSColor.surface, in: Capsule())
         }
+        .buttonStyle(.pressable)
         .disabled(engine.vocabSelection != nil)
         .accessibilityIdentifier(saidWord ? "placement-word-yes" : "placement-word-no")
     }
@@ -352,10 +353,7 @@ struct PlacementView: View {
                 // line Settings will remember.
                 if let result = engine.result {
                     VStack(alignment: .leading, spacing: DSSpacing.sm) {
-                        Text("YOUR LEVEL")
-                            .font(DSType.caption.weight(.medium))
-                            .tracking(1.2)
-                            .foregroundStyle(DSColor.textSecondary)
+                        Eyebrow("Your level")
                         Text("Listen \(result.listenLevel) · Read tier \(result.readTier)")
                             .font(DSType.title)
                             .foregroundStyle(DSColor.accent)
@@ -378,9 +376,10 @@ struct PlacementView: View {
                     .font(DSType.body.weight(.medium))
                     .foregroundStyle(DSColor.background)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 52)
+                    .frame(height: 48)
                     .background(DSColor.accent, in: Capsule())
             }
+            .buttonStyle(.pressable)
             .accessibilityIdentifier("placement-done")
             .padding(.horizontal, DSSpacing.margin)
             .padding(.bottom, DSSpacing.xxl)
@@ -407,10 +406,7 @@ private struct StaircaseTranscriptionStage: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading, spacing: DSSpacing.xl) {
-                Text(item.register.label.uppercased())
-                    .font(DSType.caption.weight(.medium))
-                    .tracking(1.2)
-                    .foregroundStyle(DSColor.textSecondary)
+                Eyebrow(item.register.label)
                 Button { engine.replayStaircaseAudio() } label: {
                     HStack(spacing: DSSpacing.sm) {
                         Image(systemName: "speaker.wave.2")
@@ -462,9 +458,10 @@ private struct StaircaseTranscriptionStage: View {
                     .font(DSType.body.weight(.medium))
                     .foregroundStyle(DSColor.background)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 52)
+                    .frame(height: 48)
                     .background(DSColor.accent, in: Capsule())
             }
+            .buttonStyle(.pressable)
             .accessibilityIdentifier("placement-submit")
             .disabled(typed.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             .opacity(typed.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? 0.4 : 1)
@@ -480,10 +477,7 @@ private struct StaircaseTranscriptionStage: View {
                 .foregroundStyle(matched ? DSColor.gradeSuccess : DSColor.gradeFailure)
             if !matched {
                 VStack(alignment: .leading, spacing: DSSpacing.xs) {
-                    Text("IT SAID")
-                        .font(DSType.caption.weight(.medium))
-                        .tracking(1.2)
-                        .foregroundStyle(DSColor.textSecondary)
+                    Eyebrow("It said", micro: true)
                     Text(item.answer)
                         .font(DSType.stageFrenchSecondary)
                         .foregroundStyle(DSColor.accent)
@@ -503,9 +497,10 @@ private struct StaircaseTranscriptionStage: View {
                         .font(DSType.body.weight(.medium))
                         .foregroundStyle(DSColor.background)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 52)
+                        .frame(height: 48)
                         .background(DSColor.accent, in: Capsule())
                 }
+                .buttonStyle(.pressable)
                 .accessibilityIdentifier("placement-next")
             }
         }

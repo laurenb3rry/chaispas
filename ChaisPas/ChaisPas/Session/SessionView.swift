@@ -63,10 +63,7 @@ struct SessionView: View {
     private func chrome(_ engine: SessionEngine) -> some View {
         VStack(spacing: DSSpacing.md) {
             HStack {
-                Text(engine.phase.label.uppercased())
-                    .font(DSType.caption.weight(.medium))
-                    .tracking(1.2)
-                    .foregroundStyle(DSColor.textSecondary)
+                Eyebrow(engine.phase.label, micro: true)
                     .contentTransition(.opacity)
                 Spacer()
                 Button {
@@ -76,9 +73,10 @@ struct SessionView: View {
                     Image(systemName: "xmark")
                         .font(.system(size: 14, weight: .medium))
                         .foregroundStyle(DSColor.textSecondary)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 34, height: 34)
                         .contentShape(Rectangle())
                 }
+                .buttonStyle(.pressable)
             }
             .padding(.horizontal, DSSpacing.margin)
 
@@ -114,10 +112,7 @@ private struct ConceptIntroView: View {
         VStack(alignment: .leading, spacing: 0) {
             ScrollView {
                 VStack(alignment: .leading, spacing: DSSpacing.xl) {
-                    Text("TIER \(concept.tier) · \(conceptTypeLabel.uppercased())")
-                        .font(DSType.caption.weight(.medium))
-                        .tracking(1.2)
-                        .foregroundStyle(DSColor.textSecondary)
+                    Eyebrow("Tier \(concept.tier) · \(conceptTypeLabel)")
                         .padding(.top, DSSpacing.xxl)
 
                     Text(concept.title)
@@ -158,9 +153,10 @@ private struct ConceptIntroView: View {
                     .font(DSType.body.weight(.medium))
                     .foregroundStyle(DSColor.background)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 52)
+                    .frame(height: 48)
                     .background(DSColor.accent, in: Capsule())
             }
+            .buttonStyle(.pressable)
             .padding(.horizontal, DSSpacing.margin)
             .padding(.bottom, DSSpacing.xxl)
         }
@@ -183,10 +179,7 @@ private struct StreetMirrorView: View {
             Spacer()
 
             VStack(alignment: .leading, spacing: DSSpacing.xl) {
-                Text(engine.mirrorStep.label.uppercased())
-                    .font(DSType.caption.weight(.medium))
-                    .tracking(1.2)
-                    .foregroundStyle(DSColor.textSecondary)
+                Eyebrow(engine.mirrorStep.label, micro: true)
                     .contentTransition(.opacity)
 
                 Text(sentence.frenchStreet)
@@ -222,6 +215,7 @@ private struct StreetMirrorView: View {
                     Button("Skip") { engine.skipMirrorItem() }
                         .font(DSType.caption)
                         .foregroundStyle(DSColor.textSecondary)
+                        .buttonStyle(.pressable)
                 }
             }
             .padding(.bottom, DSSpacing.xxl)
@@ -269,9 +263,10 @@ private struct SummaryView: View {
                     .font(DSType.body.weight(.medium))
                     .foregroundStyle(DSColor.background)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 52)
+                    .frame(height: 48)
                     .background(DSColor.accent, in: Capsule())
             }
+            .buttonStyle(.pressable)
             .padding(.horizontal, DSSpacing.margin)
             .padding(.bottom, DSSpacing.xxl)
         }
@@ -280,12 +275,11 @@ private struct SummaryView: View {
 
     private func summaryRow(_ label: String, _ value: String) -> some View {
         HStack {
-            Text(label)
-                .font(DSType.body)
-                .foregroundStyle(DSColor.textSecondary)
+            Eyebrow(label)
             Spacer()
             Text(value)
-                .font(DSType.body.monospacedDigit())
+                .font(DSType.monoData)
+                .monospacedDigit()
                 .foregroundStyle(DSColor.textPrimary)
         }
     }

@@ -53,7 +53,7 @@ struct GrammarPlayerView: View {
 
     private var explanationStage: some View {
         VStack(spacing: 0) {
-            PlayerChrome(caption: "GRAMMAR · TIER \(unit.tier)") { close() }
+            PlayerChrome(caption: "Grammar · Tier \(unit.tier)") { close() }
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: DSSpacing.xl) {
@@ -88,7 +88,7 @@ struct GrammarPlayerView: View {
 
     private var examplesStage: some View {
         VStack(spacing: 0) {
-            PlayerChrome(caption: "GRAMMAR · \(unit.title.uppercased())") { close() }
+            PlayerChrome(caption: "Grammar · \(unit.title)") { close() }
 
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 0) {
@@ -154,9 +154,10 @@ struct GrammarPlayerView: View {
                 .font(DSType.body.weight(.medium))
                 .foregroundStyle(DSColor.background)
                 .frame(maxWidth: .infinity)
-                .frame(height: 52)
+                .frame(height: 48)
                 .background(DSColor.accent, in: Capsule())
         }
+        .buttonStyle(.pressable)
         .padding(.horizontal, DSSpacing.margin)
         .padding(.bottom, DSSpacing.xxl)
     }
