@@ -26,21 +26,15 @@ struct DrillStageView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            // The readout and its action footer are ONE centred block — read
-            // the answer, grade right below it. Equal spacers keep the block
-            // deliberately composed rather than marooned dead-centre.
-            Spacer(minLength: DSSpacing.lg)
+            Spacer()
 
             readout
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, DSSpacing.margin)
 
-            Spacer().frame(height: DSSpacing.xxl)
+            Spacer()
 
             footer
-                .padding(.horizontal, DSSpacing.margin)
-
-            Spacer(minLength: DSSpacing.lg)
         }
         .contentShape(Rectangle())
         .onTapGesture {
@@ -52,10 +46,6 @@ struct DrillStageView: View {
 
     private var readout: some View {
         VStack(alignment: .leading, spacing: DSSpacing.sm) {
-            Eyebrow(revealed ? "Reveal" : "Say it in French", micro: true)
-            Hairline()
-                .padding(.bottom, DSSpacing.sm)
-
             // The English cue: prominent while speaking, recedes on reveal.
             Text(sentence.english)
                 .font(revealed ? DSType.englishPrompt : DSType.stagePrompt)
@@ -92,35 +82,40 @@ struct DrillStageView: View {
 
     @ViewBuilder
     private var footer: some View {
-        if revealed {
-            HStack(spacing: DSSpacing.md) {
-                Button { engine.replayAudio() } label: {
-                    Image(systemName: "speaker.wave.2")
-                        .font(.system(size: 16, weight: .medium))
-                        .foregroundStyle(DSColor.textPrimary)
-                        .frame(width: 48, height: 48)
-                        .background(DSColor.surface, in: Circle())
+        ZStack {
+            if revealed {
+                HStack(spacing: DSSpacing.md) {
+                    Button { engine.replayAudio() } label: {
+                        Image(systemName: "speaker.wave.2")
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundStyle(DSColor.textPrimary)
+                            .frame(width: 48, height: 48)
+                            .background(DSColor.surface, in: Circle())
+                    }
+                    .buttonStyle(.pressable)
+                    gradeButton("Missed it", correct: false)
+                    gradeButton("Got it", correct: true)
                 }
-                .buttonStyle(.pressable)
-                gradeButton("Missed it", correct: false)
-                gradeButton("Got it", correct: true)
-            }
-            .transition(revealTransition)
-        } else {
-            VStack(spacing: DSSpacing.md) {
-                BreathingIndicator()
-                if engine.speechActive, let spoken = engine.spokenText {
-                    SpokenTranscriptView(spoken: spoken, targets: nil)
-                        .frame(maxWidth: .infinity)
-                        .multilineTextAlignment(.center)
+                .transition(revealTransition)
+            } else {
+                VStack(spacing: DSSpacing.md) {
+                    BreathingIndicator()
+                    if engine.speechActive, let spoken = engine.spokenText {
+                        SpokenTranscriptView(spoken: spoken, targets: nil)
+                            .frame(maxWidth: .infinity)
+                            .multilineTextAlignment(.center)
+                    }
+                    Text("tap to reveal")
+                        .font(DSType.caption)
+                        .foregroundStyle(DSColor.textSecondary)
                 }
-                Text("tap to reveal")
-                    .font(DSType.caption)
-                    .foregroundStyle(DSColor.textSecondary)
+                .frame(maxWidth: .infinity)
+                .transition(.opacity)
             }
-            .frame(maxWidth: .infinity)
-            .transition(.opacity)
         }
+        .padding(.horizontal, DSSpacing.margin)
+        .padding(.bottom, DSSpacing.xxl)
+        .frame(height: 110, alignment: .bottom)
     }
 
     private func gradeButton(_ label: String, correct: Bool) -> some View {
