@@ -3,3 +3,14 @@ xcuserdata/
 DerivedData/
 *.xcuserstate
 build/
+
+.claude/
+
+# Headroom shiz
+.tokensave/
+.serena/
+.headroom*
+
+# Planning docs local
+PLAN.md
+PLAN2.md
