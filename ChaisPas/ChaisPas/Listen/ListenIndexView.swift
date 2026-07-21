@@ -2,8 +2,10 @@ import SwiftData
 import SwiftUI
 
 /// Listen mode index (PLAN2 §5.4): episodes grouped by level A–D with
-/// durations and best scores. Each row opens the staged player.
+/// durations and best scores. Phase 16: de-carded — level as a mono marker,
+/// full-bleed hairlines, mono metadata.
 struct ListenIndexView: View {
+
     @Query(sort: [SortDescriptor(\ListenEpisode.level), SortDescriptor(\ListenEpisode.id)])
     private var episodes: [ListenEpisode]
 
@@ -22,12 +24,13 @@ struct ListenIndexView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: DSSpacing.xxl) {
                     IndexHeader(title: "Listen", subtitle: "the comprehension gym")
+                        .padding(.horizontal, DSSpacing.margin)
                     ForEach(levels, id: \.self) { level in
                         levelSection(level)
                     }
                 }
-                .padding(.horizontal, DSSpacing.margin)
-                .padding(.vertical, DSSpacing.xl)
+                .padding(.top, DSSpacing.md)
+                .padding(.bottom, DSSpacing.xxl)
             }
         }
         .toolbarBackground(DSColor.background, for: .navigationBar)
@@ -45,15 +48,14 @@ struct ListenIndexView: View {
         let group = episodes.filter { $0.level == level }
         var detail = "\(group.count) episodes"
         if let blurb = Self.levelBlurbs[level] { detail += " · \(blurb)" }
-        return VStack(alignment: .leading, spacing: DSSpacing.sm) {
+        return VStack(alignment: .leading, spacing: 0) {
             IndexSectionHeader(title: "Level \(level)", detail: detail)
-            VStack(spacing: 0) {
-                ForEach(group) { episode in
-                    episodeRow(episode)
-                    if episode.id != group.last?.id {
-                        RowDivider()
-                    }
-                }
+                .padding(.horizontal, DSSpacing.margin)
+                .padding(.bottom, DSSpacing.sm)
+            Hairline(strong: true)
+            ForEach(Array(group.enumerated()), id: \.element.id) { index, episode in
+                episodeRow(episode)
+                if index < group.count - 1 { Hairline() }
             }
         }
     }
@@ -62,30 +64,26 @@ struct ListenIndexView: View {
         Button { playing = episode } label: {
             HStack(spacing: DSSpacing.md) {
                 Text(episode.level)
-                    .font(DSType.caption.weight(.semibold))
-                    .foregroundStyle(DSColor.textSecondary)
-                    .frame(width: 28, height: 28)
-                    .background(DSColor.surface, in: RoundedRectangle(cornerRadius: 8))
-                VStack(alignment: .leading, spacing: 2) {
+                    .font(DSType.monoMicro).tracking(DSType.microTracking)
+                    .foregroundStyle(DSColor.accent)
+                    .frame(width: 18)
+                VStack(alignment: .leading, spacing: DSSpacing.xs) {
                     Text(episode.title)
                         .font(DSType.body)
                         .foregroundStyle(DSColor.textPrimary)
-                        .multilineTextAlignment(.leading)
+                        .lineLimit(1)
                     if let best = bestScoreLabel(episode) {
-                        Text(best)
-                            .font(DSType.caption.monospacedDigit())
-                            .foregroundStyle(DSColor.textSecondary)
+                        MonoData(best)
                     }
                 }
-                Spacer()
-                Text(DSFormat.duration(episode.durationSec))
-                    .font(DSType.caption.monospacedDigit())
-                    .foregroundStyle(DSColor.textSecondary)
+                Spacer(minLength: DSSpacing.md)
+                MonoData(DSFormat.duration(episode.durationSec))
             }
-            .padding(.vertical, DSSpacing.sm)
+            .padding(.vertical, DSSpacing.md)
+            .padding(.horizontal, DSSpacing.margin)
             .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
+        .buttonStyle(.pressable)
         .accessibilityIdentifier("episode-\(episode.id)")
     }
 

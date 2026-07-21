@@ -26,6 +26,7 @@ struct VocabPlayerView: View {
                     .transition(.move(edge: .leading).combined(with: .opacity))
             }
         }
+        .swipeDownToDismiss { playTask?.cancel(); audio.stop(); dismiss() }
         .preferredColorScheme(.dark)
         .task {
             guard packNode == nil else { return }
@@ -45,7 +46,7 @@ struct VocabPlayerView: View {
         VStack(spacing: 0) {
             // The pack title already says "Vocabulary 1 · words 1–25" —
             // no mode prefix, or the chrome stutters and truncates.
-            PlayerChrome(caption: unit.title.uppercased()) {
+            PlayerChrome(caption: unit.title) {
                 playTask?.cancel()
                 audio.stop()
                 dismiss()
@@ -82,10 +83,7 @@ struct VocabPlayerView: View {
             }
 
             VStack(spacing: DSSpacing.md) {
-                Text("\(wordIndex + 1) OF \(words.count)")
-                    .font(DSType.caption.weight(.medium).monospacedDigit())
-                    .tracking(1.2)
-                    .foregroundStyle(DSColor.textSecondary)
+                Eyebrow("\(wordIndex + 1) of \(words.count)")
                 // Position through the pack as a hairline, not dots.
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {
@@ -106,10 +104,7 @@ struct VocabPlayerView: View {
         VStack(spacing: 0) {
             Spacer()
             VStack(alignment: .leading, spacing: DSSpacing.lg) {
-                Text(word.pos.uppercased())
-                    .font(DSType.caption.weight(.medium))
-                    .tracking(1.2)
-                    .foregroundStyle(DSColor.textSecondary)
+                Eyebrow(word.pos, micro: true)
 
                 Text(word.lemma)
                     .font(DSType.stageFrench)

@@ -16,7 +16,7 @@ final class ReadModeUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchSuppressingPlacement()
 
-        let home = app.buttons["recommended-learn"].firstMatch
+        let home = app.buttons["continue-learn"].firstMatch
         XCTAssertTrue(home.waitForExistence(timeout: 30),
                       "Home should appear once the import finishes")
 

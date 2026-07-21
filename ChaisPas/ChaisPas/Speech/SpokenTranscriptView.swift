@@ -14,10 +14,7 @@ struct SpokenTranscriptView: View {
     var body: some View {
         if let targets {
             VStack(alignment: .leading, spacing: DSSpacing.xs) {
-                Text("YOU SAID")
-                    .font(DSType.caption.weight(.medium))
-                    .tracking(1.2)
-                    .foregroundStyle(DSColor.textSecondary)
+                Eyebrow("You said", micro: true)
                 colored(SpokenComparison.compare(spoken: spoken, targets: targets))
                     .font(DSType.frenchCompact)
             }

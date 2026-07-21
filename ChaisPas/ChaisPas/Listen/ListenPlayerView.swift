@@ -21,6 +21,7 @@ struct ListenPlayerView: View {
                 content(engine)
             }
         }
+        .swipeDownToDismiss(enabled: swipeEnabled) { engine?.end(); dismiss() }
         .preferredColorScheme(.dark)
         .task {
             guard engine == nil else { return }
@@ -28,6 +29,13 @@ struct ListenPlayerView: View {
             self.engine = engine
             engine.start()
         }
+    }
+
+    /// Off during the scrolling transcript / slow-pass stages (the X still
+    /// closes); on for the focused cold-listen, questions and shadow stages.
+    private var swipeEnabled: Bool {
+        let stage = engine?.stage
+        return stage != .transcript && stage != .slow
     }
 
     private func content(_ engine: ListenEngine) -> some View {
@@ -60,10 +68,7 @@ struct ListenPlayerView: View {
     private func chrome(_ engine: ListenEngine) -> some View {
         VStack(spacing: DSSpacing.md) {
             HStack {
-                Text(chromeLabel(engine))
-                    .font(DSType.caption.weight(.medium))
-                    .tracking(1.2)
-                    .foregroundStyle(DSColor.textSecondary)
+                Eyebrow(chromeLabel(engine), micro: true)
                     .lineLimit(1)
                     .contentTransition(.opacity)
                 Spacer()
@@ -74,9 +79,10 @@ struct ListenPlayerView: View {
                     Image(systemName: "xmark")
                         .font(.system(size: 14, weight: .medium))
                         .foregroundStyle(DSColor.textSecondary)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 34, height: 34)
                         .contentShape(Rectangle())
                 }
+                .buttonStyle(.pressable)
                 .accessibilityIdentifier("listen-close")
             }
             .padding(.horizontal, DSSpacing.margin)
@@ -96,13 +102,13 @@ struct ListenPlayerView: View {
 
     private func chromeLabel(_ engine: ListenEngine) -> String {
         let stage = switch engine.stage {
-        case .cold: "COLD LISTEN"
-        case .questions: "QUESTION \(engine.questionIndex + 1) OF \(engine.questions.count)"
-        case .transcript: "THE TRANSCRIPT"
-        case .slow: "SLOW PASS"
-        case .shadow: "SHADOW"
+        case .cold: "Cold listen"
+        case .questions: "Question \(engine.questionIndex + 1) of \(engine.questions.count)"
+        case .transcript: "The transcript"
+        case .slow: "Slow pass"
+        case .shadow: "Shadow"
         }
-        return "LISTEN · \(stage)"
+        return "Listen · \(stage)"
     }
 }
 
@@ -146,18 +152,20 @@ private struct ColdListenStageView: View {
                         .font(DSType.body.weight(.medium))
                         .foregroundStyle(DSColor.background)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 52)
+                        .frame(height: 48)
                         .background(DSColor.accent, in: Capsule())
                 }
+                .buttonStyle(.pressable)
                 .accessibilityIdentifier("to-questions")
                 Button { engine.replayCold() } label: {
                     Text("Listen again")
                         .font(DSType.body.weight(.medium))
                         .foregroundStyle(DSColor.textPrimary)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 52)
+                        .frame(height: 48)
                         .background(DSColor.surface, in: Capsule())
                 }
+                .buttonStyle(.pressable)
             } else {
                 Button {
                     engine.playback == .paused
@@ -169,6 +177,7 @@ private struct ColdListenStageView: View {
                         .frame(width: 64, height: 64)
                         .background(DSColor.surface, in: Circle())
                 }
+                .buttonStyle(.pressable)
                 .accessibilityIdentifier("playback-toggle")
             }
         }
@@ -192,10 +201,12 @@ private struct QuestionStageView: View {
                         .font(DSType.stagePrompt)
                         .foregroundStyle(DSColor.textPrimary)
 
-                    VStack(spacing: DSSpacing.md) {
+                    VStack(spacing: 0) {
+                        Hairline()
                         ForEach(Array(question.options.enumerated()), id: \.offset) {
                             index, option in
                             optionButton(option, index: index, question: question)
+                            Hairline()
                         }
                     }
                 }
@@ -222,17 +233,24 @@ private struct QuestionStageView: View {
         } else {
             nil
         }
+        let letters = ["a", "b", "c", "d", "e"]
         return Button { engine.answer(index) } label: {
-            Text(option)
-                .font(DSType.body.weight(answered && isCorrect ? .medium : .regular))
-                .foregroundStyle(tint ?? DSColor.textPrimary)
-                .multilineTextAlignment(.leading)
-                .padding(.horizontal, DSSpacing.lg)
-                .padding(.vertical, DSSpacing.md + 2)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(DSColor.surface, in: RoundedRectangle(cornerRadius: 14))
+            HStack(alignment: .firstTextBaseline, spacing: DSSpacing.md) {
+                Text(letters[min(index, letters.count - 1)])
+                    .font(DSType.monoMicro).tracking(DSType.microTracking)
+                    .foregroundStyle(tint ?? DSColor.textTertiary)
+                    .frame(width: 14, alignment: .leading)
+                Text(option)
+                    .font(DSType.body.weight(answered && isCorrect ? .medium : .regular))
+                    .foregroundStyle(tint ?? DSColor.textPrimary)
+                    .multilineTextAlignment(.leading)
+                Spacer(minLength: 0)
+            }
+            .padding(.vertical, DSSpacing.md)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
+        .buttonStyle(.pressable)
         .disabled(answered)
         .accessibilityIdentifier("question-option-\(index)")
     }
@@ -248,6 +266,7 @@ private struct TranscriptStageView: View {
         VStack(spacing: 0) {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 0) {
+                    PullToDismissDetector { engine.end(); onDone() }.frame(height: 0)
                     header
                         .padding(.bottom, DSSpacing.lg)
                     ForEach(Array(engine.lines.enumerated()), id: \.element.lineId) {
@@ -262,6 +281,7 @@ private struct TranscriptStageView: View {
                 .padding(.top, DSSpacing.xl)
                 .padding(.bottom, DSSpacing.lg)
             }
+            .pullDismissBounce()
 
             footer
         }
@@ -273,9 +293,8 @@ private struct TranscriptStageView: View {
                 .font(DSType.title)
                 .foregroundStyle(DSColor.textPrimary)
             if engine.questionsCompleted {
-                Text("\(engine.correctCount) of \(engine.questions.count) questions · tap a line to hear it")
-                    .font(DSType.caption.monospacedDigit())
-                    .foregroundStyle(DSColor.textSecondary)
+                MonoData("\(engine.correctCount) of \(engine.questions.count) questions · tap a line to hear it",
+                         color: DSColor.textSecondary)
             }
         }
     }
@@ -287,10 +306,7 @@ private struct TranscriptStageView: View {
         let playing = engine.playingLineId == line.lineId
         return Button { engine.playLine(line) } label: {
             VStack(alignment: .leading, spacing: DSSpacing.xs) {
-                Text(speakerLabel(line).uppercased())
-                    .font(.system(size: 10, weight: .semibold))
-                    .tracking(1)
-                    .foregroundStyle(DSColor.textSecondary.opacity(0.7))
+                Eyebrow(speakerLabel(line), color: DSColor.textTertiary, micro: true)
                 Text(line.frenchStreet)
                     .font(DSType.frenchCompact)
                     .foregroundStyle(playing ? DSColor.accent : DSColor.textPrimary)
@@ -324,20 +340,22 @@ private struct TranscriptStageView: View {
                     } label: {
                         Image(systemName: engine.playback == .paused
                               || engine.playback == .finished ? "play.fill" : "pause.fill")
-                            .font(.system(size: 17, weight: .medium))
+                            .font(.system(size: 16, weight: .medium))
                             .foregroundStyle(DSColor.textPrimary)
-                            .frame(width: 52, height: 52)
+                            .frame(width: 48, height: 48)
                             .background(DSColor.surface, in: Circle())
                     }
+                    .buttonStyle(.pressable)
                     .disabled(engine.playback == .finished)
                     Button { engine.backToTranscript() } label: {
                         Text("Back to the transcript")
                             .font(DSType.body.weight(.medium))
                             .foregroundStyle(DSColor.textPrimary)
                             .frame(maxWidth: .infinity)
-                            .frame(height: 52)
+                            .frame(height: 48)
                             .background(DSColor.surface, in: Capsule())
                     }
+                    .buttonStyle(.pressable)
                     .accessibilityIdentifier("end-slow-pass")
                 }
             } else {
@@ -354,9 +372,10 @@ private struct TranscriptStageView: View {
                         .font(DSType.body.weight(.medium))
                         .foregroundStyle(DSColor.background)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 52)
+                        .frame(height: 48)
                         .background(DSColor.accent, in: Capsule())
                 }
+                .buttonStyle(.pressable)
             }
         }
         .padding(.horizontal, DSSpacing.margin)
@@ -373,9 +392,10 @@ private struct TranscriptStageView: View {
                 .font(DSType.body.weight(.medium))
                 .foregroundStyle(DSColor.textPrimary)
                 .frame(maxWidth: .infinity)
-                .frame(height: 52)
+                .frame(height: 48)
                 .background(DSColor.surface, in: Capsule())
         }
+        .buttonStyle(.pressable)
         .accessibilityIdentifier(identifier)
     }
 }
@@ -396,10 +416,7 @@ private struct ShadowStageView: View {
 
             if let line = engine.currentShadowLine {
                 VStack(alignment: .leading, spacing: DSSpacing.xl) {
-                    Text(engine.shadowStep.label.uppercased())
-                        .font(DSType.caption.weight(.medium))
-                        .tracking(1.2)
-                        .foregroundStyle(DSColor.textSecondary)
+                    Eyebrow(engine.shadowStep.label, micro: true)
                         .contentTransition(.opacity)
 
                     Text(line.frenchStreet)
@@ -429,6 +446,7 @@ private struct ShadowStageView: View {
                     Button("Skip") { engine.skipShadowItem() }
                         .font(DSType.caption)
                         .foregroundStyle(DSColor.textSecondary)
+                        .buttonStyle(.pressable)
                         .accessibilityIdentifier("shadow-skip")
                 }
             }

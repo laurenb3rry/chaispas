@@ -13,8 +13,63 @@ enum LearnSection: String, Hashable {
     case construction, conjugation, vocabulary, grammar
 }
 
-/// Home section header: tracked-caps title + count detail + chevron, the
-/// whole row a NavigationLink into the mode's index.
+// MARK: - Data-layer primitives (the phase-16 signature)
+
+/// Mono uppercased eyebrow / section label — sans is for content, mono for
+/// what the instrument reports. Tracking loosens on these small caps.
+struct Eyebrow: View {
+    let text: String
+    var color: Color = DSColor.textSecondary
+    var micro = false
+
+    init(_ text: String, color: Color = DSColor.textSecondary, micro: Bool = false) {
+        self.text = text; self.color = color; self.micro = micro
+    }
+
+    var body: some View {
+        Text(text.uppercased())
+            .font(micro ? DSType.monoMicro : DSType.monoLabel)
+            .tracking(micro ? DSType.microTracking : DSType.labelTracking)
+            .foregroundStyle(color)
+    }
+}
+
+/// Mono metadata (counts, durations) — tabular, recessive by default.
+struct MonoData: View {
+    let text: String
+    var color: Color = DSColor.textTertiary
+
+    init(_ text: String, color: Color = DSColor.textTertiary) {
+        self.text = text; self.color = color
+    }
+
+    var body: some View {
+        Text(text)
+            .font(DSType.monoData).tracking(DSType.dataTracking)
+            .monospacedDigit()
+            .foregroundStyle(color)
+    }
+}
+
+/// The primary structural device — a thin rule between rows.
+struct Hairline: View {
+    var strong = false
+    var body: some View {
+        Rectangle()
+            .fill(strong ? DSColor.hairlineStrong : DSColor.hairline)
+            .frame(height: 1)
+    }
+}
+
+/// Kept name for existing call sites — now a plain hairline.
+struct RowDivider: View {
+    var body: some View { Hairline() }
+}
+
+// MARK: - Section headers
+
+/// Home section header: mono eyebrow + faint mono detail + chevron, the whole
+/// row a NavigationLink into the mode's index. Pair it with a `Hairline`.
 struct LibrarySectionHeader: View {
     let title: String
     let detail: String
@@ -23,17 +78,12 @@ struct LibrarySectionHeader: View {
     var body: some View {
         NavigationLink(value: destination) {
             HStack(alignment: .firstTextBaseline, spacing: DSSpacing.sm) {
-                Text(title.uppercased())
-                    .font(DSType.caption.weight(.medium))
-                    .tracking(1.2)
-                    .foregroundStyle(DSColor.textPrimary)
-                Text(detail)
-                    .font(DSType.caption)
-                    .foregroundStyle(DSColor.textSecondary)
+                Eyebrow(title)
                 Spacer()
+                Eyebrow(detail, color: DSColor.textTertiary)
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 11, weight: .medium))
-                    .foregroundStyle(DSColor.textSecondary)
+                    .font(.system(size: 10, weight: .semibold))
+                    .foregroundStyle(DSColor.textTertiary)
             }
             .contentShape(Rectangle())
         }
@@ -41,46 +91,47 @@ struct LibrarySectionHeader: View {
     }
 }
 
-/// An index screen's large-title moment (the system nav bar stays chrome-less,
-/// contributing only the back chevron).
+/// An index screen's title moment: restrained sans title + mono caption.
 struct IndexHeader: View {
     let title: String
     let subtitle: String
 
     var body: some View {
-        VStack(alignment: .leading, spacing: DSSpacing.xs) {
+        VStack(alignment: .leading, spacing: DSSpacing.sm) {
             Text(title)
                 .font(DSType.largeTitle)
                 .tracking(DSType.largeTitleTracking)
                 .foregroundStyle(DSColor.textPrimary)
-            Text(subtitle)
-                .font(DSType.caption)
-                .foregroundStyle(DSColor.textSecondary)
+            Eyebrow(subtitle)
         }
     }
 }
 
-/// Sub-section header inside an index screen (no navigation).
+/// Sub-section header inside an index screen (no navigation). Pair with a
+/// `Hairline(strong: true)`.
 struct IndexSectionHeader: View {
     let title: String
-    let detail: String
+    var detail: String? = nil
+
+    // Existing call sites pass (title:detail:); keep that shape.
+    init(title: String, detail: String = "") {
+        self.title = title
+        self.detail = detail.isEmpty ? nil : detail
+    }
 
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: DSSpacing.sm) {
-            Text(title.uppercased())
-                .font(DSType.caption.weight(.medium))
-                .tracking(1.2)
-                .foregroundStyle(DSColor.textPrimary)
-            Text(detail)
-                .font(DSType.caption)
-                .foregroundStyle(DSColor.textSecondary)
+            Eyebrow(title)
+            if let detail {
+                Eyebrow(detail, color: DSColor.textTertiary)
+            }
             Spacer()
         }
     }
 }
 
-/// Production mastery as a quiet 40×2 hairline — an instrument reading,
-/// not a progress bar.
+/// Production mastery as a quiet 36×2 hairline — an instrument reading, not a
+/// progress bar.
 struct MasteryBar: View {
     let fraction: Double
 
@@ -88,14 +139,13 @@ struct MasteryBar: View {
         ZStack(alignment: .leading) {
             Capsule().fill(DSColor.surface)
             Capsule().fill(DSColor.accent)
-                .frame(width: 40 * max(0, min(1, fraction)))
+                .frame(width: 36 * max(0, min(1, fraction)))
         }
-        .frame(width: 40, height: 2)
+        .frame(width: 36, height: 2)
     }
 }
 
-/// Keeps scrolled content legible under the status bar on screens without a
-/// navigation bar (Home): a background-colored fade over the top safe area.
+/// Keeps scrolled content legible under the status bar on chrome-less screens.
 struct StatusBarScrim: View {
     var body: some View {
         GeometryReader { geo in
@@ -107,15 +157,6 @@ struct StatusBarScrim: View {
         }
         .ignoresSafeArea(edges: .top)
         .allowsHitTesting(false)
-    }
-}
-
-/// Thin separator between rows in a list group.
-struct RowDivider: View {
-    var body: some View {
-        Rectangle()
-            .fill(DSColor.textSecondary.opacity(0.12))
-            .frame(height: 0.5)
     }
 }
 

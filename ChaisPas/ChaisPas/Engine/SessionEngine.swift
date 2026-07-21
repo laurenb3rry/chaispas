@@ -25,7 +25,7 @@ final class SessionEngine {
             switch self {
             case .warmRecall: "Warm recall"
             case .conceptIntro: "New today"
-            case .ladder: "Build it"
+            case .ladder: "Say it in French"
             case .streetMirror: "Street mirror"
             case .spontaneous: "Mix it up"
             case .summary: "Done"

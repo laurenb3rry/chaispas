@@ -21,6 +21,7 @@ struct ScenarioPlayerView: View {
                 content(engine)
             }
         }
+        .swipeDownToDismiss { engine?.end(); dismiss() }
         .preferredColorScheme(.dark)
         .task {
             guard engine == nil else { return }
@@ -53,10 +54,7 @@ struct ScenarioPlayerView: View {
     private func chrome(_ engine: ScenarioEngine) -> some View {
         VStack(spacing: DSSpacing.md) {
             HStack {
-                Text("SPEAK · \(scenario.title.uppercased())")
-                    .font(DSType.caption.weight(.medium))
-                    .tracking(1.2)
-                    .foregroundStyle(DSColor.textSecondary)
+                Eyebrow("Speak · \(scenario.title)", micro: true)
                     .lineLimit(1)
                 Spacer()
                 Button {
@@ -66,9 +64,10 @@ struct ScenarioPlayerView: View {
                     Image(systemName: "xmark")
                         .font(.system(size: 14, weight: .medium))
                         .foregroundStyle(DSColor.textSecondary)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 34, height: 34)
                         .contentShape(Rectangle())
                 }
+                .buttonStyle(.pressable)
                 .accessibilityIdentifier("speak-close")
             }
             .padding(.horizontal, DSSpacing.margin)
@@ -188,6 +187,7 @@ private struct ScenarioStageView: View {
                 .frame(width: 44, height: 44)
                 .background(DSColor.surface, in: Circle())
         }
+        .buttonStyle(.pressable)
         .accessibilityIdentifier(identifier)
     }
 
@@ -208,10 +208,7 @@ private struct ScenarioStageView: View {
                         .foregroundStyle(gradeTint ?? DSColor.textPrimary)
                     if let formal = user.frenchFormal, formal != user.frenchStreet {
                         VStack(alignment: .leading, spacing: DSSpacing.xs) {
-                            Text("IN FULL")
-                                .font(DSType.caption.weight(.medium))
-                                .tracking(1.2)
-                                .foregroundStyle(DSColor.textSecondary)
+                            Eyebrow("In full", micro: true)
                             Text(formal)
                                 .font(DSType.frenchCompact)
                                 .foregroundStyle(DSColor.accent)
@@ -255,11 +252,12 @@ private struct ScenarioStageView: View {
                 HStack(spacing: DSSpacing.md) {
                     Button { engine.replayUser() } label: {
                         Image(systemName: "speaker.wave.2")
-                            .font(.system(size: 17, weight: .medium))
+                            .font(.system(size: 16, weight: .medium))
                             .foregroundStyle(DSColor.textPrimary)
-                            .frame(width: 52, height: 52)
+                            .frame(width: 48, height: 48)
                             .background(DSColor.surface, in: Circle())
                     }
+                    .buttonStyle(.pressable)
                     gradeButton("Missed it", correct: false)
                     gradeButton("Got it", correct: true)
                 }
@@ -286,9 +284,10 @@ private struct ScenarioStageView: View {
                 .font(DSType.body.weight(.medium))
                 .foregroundStyle(correct ? DSColor.background : DSColor.textPrimary)
                 .frame(maxWidth: .infinity)
-                .frame(height: 52)
+                .frame(height: 48)
                 .background(correct ? DSColor.accent : DSColor.surface, in: Capsule())
         }
+        .buttonStyle(.pressable)
         .disabled(engine.step != .userRevealed)
     }
 }
@@ -329,18 +328,20 @@ private struct ScenarioSummaryView: View {
                         .font(DSType.body.weight(.medium))
                         .foregroundStyle(DSColor.textPrimary)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 52)
+                        .frame(height: 48)
                         .background(DSColor.surface, in: Capsule())
                 }
+                .buttonStyle(.pressable)
                 .accessibilityIdentifier("replay-variant")
                 Button(action: onDone) {
                     Text("Done")
                         .font(DSType.body.weight(.medium))
                         .foregroundStyle(DSColor.background)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 52)
+                        .frame(height: 48)
                         .background(DSColor.accent, in: Capsule())
                 }
+                .buttonStyle(.pressable)
             }
             .padding(.horizontal, DSSpacing.margin)
             .padding(.bottom, DSSpacing.xxl)
@@ -350,12 +351,11 @@ private struct ScenarioSummaryView: View {
 
     private func row(_ label: String, _ value: String) -> some View {
         HStack {
-            Text(label)
-                .font(DSType.body)
-                .foregroundStyle(DSColor.textSecondary)
+            Eyebrow(label)
             Spacer()
             Text(value)
-                .font(DSType.body.monospacedDigit())
+                .font(DSType.monoData)
+                .monospacedDigit()
                 .foregroundStyle(DSColor.textPrimary)
         }
     }

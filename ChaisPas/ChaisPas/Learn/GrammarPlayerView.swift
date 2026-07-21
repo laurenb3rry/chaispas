@@ -41,6 +41,9 @@ struct GrammarPlayerView: View {
                     .transition(.move(edge: .trailing).combined(with: .opacity))
             }
         }
+        // Only the (non-scrolling) drill stage uses drag-to-dismiss; the
+        // scrolling explanation/examples use pull-to-dismiss.
+        .swipeDownToDismiss(enabled: stage == .drilling) { close() }
         .preferredColorScheme(.dark)
         .task {
             audio.configureSession()
@@ -53,10 +56,11 @@ struct GrammarPlayerView: View {
 
     private var explanationStage: some View {
         VStack(spacing: 0) {
-            PlayerChrome(caption: "GRAMMAR · TIER \(unit.tier)") { close() }
+            PlayerChrome(caption: "Grammar · Tier \(unit.tier)") { close() }
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: DSSpacing.xl) {
+                    PullToDismissDetector { close() }.frame(height: 0)
                     Text(unit.title)
                         .font(DSType.largeTitle)
                         .tracking(DSType.largeTitleTracking)
@@ -77,6 +81,7 @@ struct GrammarPlayerView: View {
                 .padding(.horizontal, DSSpacing.margin)
                 .padding(.bottom, DSSpacing.xl)
             }
+            .pullDismissBounce()
 
             advanceButton("The examples") {
                 withAnimation(DSMotion.spring) { stage = .examples }
@@ -88,10 +93,11 @@ struct GrammarPlayerView: View {
 
     private var examplesStage: some View {
         VStack(spacing: 0) {
-            PlayerChrome(caption: "GRAMMAR · \(unit.title.uppercased())") { close() }
+            PlayerChrome(caption: "Grammar · \(unit.title)") { close() }
 
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 0) {
+                    PullToDismissDetector { close() }.frame(height: 0)
                     ForEach(Array(unit.examples.enumerated()), id: \.offset) { index, example in
                         exampleRow(example, index: index)
                         if index < unit.examples.count - 1 {
@@ -103,6 +109,7 @@ struct GrammarPlayerView: View {
                 .padding(.top, DSSpacing.sm)
                 .padding(.bottom, DSSpacing.xl)
             }
+            .pullDismissBounce()
 
             StartDrillButton {
                 playTask?.cancel()
@@ -154,9 +161,10 @@ struct GrammarPlayerView: View {
                 .font(DSType.body.weight(.medium))
                 .foregroundStyle(DSColor.background)
                 .frame(maxWidth: .infinity)
-                .frame(height: 52)
+                .frame(height: 48)
                 .background(DSColor.accent, in: Capsule())
         }
+        .buttonStyle(.pressable)
         .padding(.horizontal, DSSpacing.margin)
         .padding(.bottom, DSSpacing.xxl)
     }

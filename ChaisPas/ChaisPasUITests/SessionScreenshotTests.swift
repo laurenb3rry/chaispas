@@ -22,7 +22,7 @@ final class SessionScreenshotTests: XCTestCase {
             add(attachment)
         }
 
-        let start = app.buttons["recommended-learn"].firstMatch
+        let start = app.buttons["continue-learn"].firstMatch
         let gotIt = app.buttons["Got it"].firstMatch
         let intro = app.buttons["Got it — let's build"].firstMatch
         let skip = app.buttons["Skip"].firstMatch
@@ -44,7 +44,7 @@ final class SessionScreenshotTests: XCTestCase {
         // into a warm-recall drill (listening) with no concept intro, and
         // there's no auto-reveal timer to surface a grade — detect the
         // listening hint too.
-        let sayIt = app.staticTexts["say it in French — tap to reveal"].firstMatch
+        let sayIt = app.staticTexts["SAY IT IN FRENCH"].firstMatch
         var presented = false
         for _ in 0..<3 {
             if construction.exists, construction.isHittable { construction.tap() }

@@ -16,7 +16,7 @@ final class LearnModeUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchSuppressingPlacement()
 
-        let home = app.buttons["recommended-learn"].firstMatch
+        let home = app.buttons["continue-learn"].firstMatch
         XCTAssertTrue(home.waitForExistence(timeout: 30),
                       "Home should appear once the import finishes")
 
@@ -125,7 +125,7 @@ final class LearnModeUITests: XCTestCase {
     /// its own tile (which re-anchors the index scroll).
     @MainActor
     private func backToHome(_ app: XCUIApplication) {
-        let home = app.buttons["recommended-learn"].firstMatch
+        let home = app.buttons["continue-learn"].firstMatch
         for _ in 0..<3 where !home.exists {
             app.navigationBars.buttons.firstMatch.tap()
             _ = home.waitForExistence(timeout: 5)

@@ -39,6 +39,7 @@ struct ReaderView: View {
             chrome
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 0) {
+                    PullToDismissDetector { dismiss() }.frame(height: 0)
                     header
                         .padding(.bottom, DSSpacing.xxl)
                     passageBody
@@ -72,6 +73,7 @@ struct ReaderView: View {
                     .animation(DSMotion.spring, value: activeGloss)
                 }
             }
+            .pullDismissBounce()
         }
     }
 
@@ -84,9 +86,10 @@ struct ReaderView: View {
                 Image(systemName: "xmark")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundStyle(DSColor.textSecondary)
-                    .frame(width: 36, height: 36)
+                    .frame(width: 34, height: 34)
                     .contentShape(Rectangle())
             }
+            .buttonStyle(.pressable)
             .accessibilityIdentifier("read-close")
         }
         .padding(.horizontal, DSSpacing.margin)
@@ -96,10 +99,7 @@ struct ReaderView: View {
     // Style and tier worn lightly: one tracked caption over the headline.
     private var header: some View {
         VStack(alignment: .leading, spacing: DSSpacing.sm) {
-            Text("\(styleLabel.uppercased()) · TIER \(passage.tier) · \(passage.wordCount) WORDS")
-                .font(DSType.caption.weight(.medium))
-                .tracking(1.2)
-                .foregroundStyle(DSColor.textSecondary)
+            Eyebrow("\(styleLabel) · Tier \(passage.tier) · \(passage.wordCount) words")
             Text(passage.title)
                 .font(DSType.readerTitle)
                 .tracking(-0.4)
@@ -163,10 +163,7 @@ struct ReaderView: View {
             ForEach(Array(messages.enumerated()), id: \.offset) { index, message in
                 VStack(alignment: .leading, spacing: DSSpacing.xs) {
                     if let sender = message.sender {
-                        Text(sender.uppercased())
-                            .font(.system(size: 10, weight: .semibold))
-                            .tracking(1)
-                            .foregroundStyle(DSColor.textSecondary.opacity(0.7))
+                        Eyebrow(sender, color: DSColor.textTertiary, micro: true)
                     }
                     GlossTextView(
                         paragraphId: index,
@@ -199,14 +196,11 @@ struct ReaderView: View {
 
     private func questionSection(_ engine: ReadEngine) -> some View {
         VStack(alignment: .leading, spacing: DSSpacing.xl) {
-            RowDivider()
+            Hairline()
                 .padding(.top, DSSpacing.xxl)
                 .padding(.bottom, DSSpacing.sm)
 
-            Text("DID IT LAND?")
-                .font(DSType.caption.weight(.medium))
-                .tracking(1.2)
-                .foregroundStyle(DSColor.textSecondary)
+            Eyebrow("Did it land?")
 
             ForEach(Array(engine.questions.enumerated()), id: \.offset) { index, question in
                 questionBlock(engine, question: question, index: index)
@@ -226,15 +220,19 @@ struct ReaderView: View {
             Text(question.question)
                 .font(DSType.body.weight(.medium))
                 .foregroundStyle(DSColor.textPrimary)
-            ForEach(Array(question.options.enumerated()), id: \.offset) { option, text in
-                optionButton(engine, questionIndex: index, option: option,
-                             text: text, question: question)
+            VStack(spacing: 0) {
+                Hairline()
+                ForEach(Array(question.options.enumerated()), id: \.offset) { option, text in
+                    optionButton(engine, questionIndex: index, option: option,
+                                 text: text, question: question)
+                    Hairline()
+                }
             }
         }
     }
 
-    /// The Listen register: chosen option tinted by grade, correct one
-    /// revealed green on a miss. Quiet.
+    /// De-carded answer rows: a mono letter + the option, chosen one tinted by
+    /// grade, the correct one revealed green on a miss. Quiet.
     private func optionButton(
         _ engine: ReadEngine, questionIndex: Int, option: Int,
         text: String, question: ComprehensionQuestion
@@ -250,17 +248,24 @@ struct ReaderView: View {
         } else {
             nil
         }
+        let letters = ["a", "b", "c", "d", "e"]
         return Button { engine.answer(question: questionIndex, option: option) } label: {
-            Text(text)
-                .font(DSType.body.weight(answered && isCorrect ? .medium : .regular))
-                .foregroundStyle(tint ?? DSColor.textPrimary)
-                .multilineTextAlignment(.leading)
-                .padding(.horizontal, DSSpacing.lg)
-                .padding(.vertical, DSSpacing.md + 2)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(DSColor.surface, in: RoundedRectangle(cornerRadius: 14))
+            HStack(alignment: .firstTextBaseline, spacing: DSSpacing.md) {
+                Text(letters[min(option, letters.count - 1)])
+                    .font(DSType.monoMicro).tracking(DSType.microTracking)
+                    .foregroundStyle(tint ?? DSColor.textTertiary)
+                    .frame(width: 14, alignment: .leading)
+                Text(text)
+                    .font(DSType.body.weight(answered && isCorrect ? .medium : .regular))
+                    .foregroundStyle(tint ?? DSColor.textPrimary)
+                    .multilineTextAlignment(.leading)
+                Spacer(minLength: 0)
+            }
+            .padding(.vertical, DSSpacing.md)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
+        .buttonStyle(.pressable)
         .disabled(answered)
         .accessibilityIdentifier("question-\(questionIndex)-option-\(option)")
     }
@@ -268,17 +273,17 @@ struct ReaderView: View {
     /// The quiet done state: one line and a way back.
     private func doneBlock(_ engine: ReadEngine) -> some View {
         VStack(alignment: .leading, spacing: DSSpacing.lg) {
-            Text("\(engine.correctCount) of \(engine.questions.count) · marked as read")
-                .font(DSType.caption.monospacedDigit())
-                .foregroundStyle(DSColor.textSecondary)
+            MonoData("\(engine.correctCount) of \(engine.questions.count) · marked as read",
+                     color: DSColor.textSecondary)
             Button { dismiss() } label: {
                 Text("Done")
                     .font(DSType.body.weight(.medium))
                     .foregroundStyle(DSColor.background)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 52)
+                    .frame(height: 48)
                     .background(DSColor.accent, in: Capsule())
             }
+            .buttonStyle(.pressable)
         }
         .padding(.top, DSSpacing.sm)
     }
