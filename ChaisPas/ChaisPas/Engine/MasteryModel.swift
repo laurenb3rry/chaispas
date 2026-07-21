@@ -12,11 +12,24 @@ enum MasteryModel {
     /// (Home tiles, Learn index) — stricter than unlocking, which is a hint.
     static let masteredThreshold = 0.8
 
-    /// Latency weighting: full credit at or under this latency…
-    static let fastLatencyMs = 2_000
+    /// Latency weighting for a *production* drill: the latency we record is
+    /// prompt-shown → tap-to-reveal, which includes reading the English AND
+    /// speaking the whole French answer aloud — not just hesitation. The old
+    /// 2 s/8 s window was a keyboard-recall budget: no spoken answer clears
+    /// 2 s, so almost every correct rep landed in the slow band. These reflect
+    /// the real cost of producing a short sentence out loud.
+    /// Full credit at or under this latency…
+    static let fastLatencyMs = 4_000
     /// …decaying linearly to `slowCredit` at or beyond this latency.
-    static let slowLatencyMs = 8_000
-    static let slowCredit = 0.5
+    static let slowLatencyMs = 12_000
+    /// Floor credit for a correct-but-slow answer. Must stay **above**
+    /// `unlockThreshold`: the EMA converges to the evidence target, so a floor
+    /// below the unlock gate means a perfectly accurate learner asymptotes
+    /// under the gate and never unlocks the next concept (the Construction
+    /// "stuck at 1 introduced" bug). Slow is still worth less than fast (→1.0,
+    /// toward the 0.8 mastered bar), but a correct answer, however slow, is
+    /// evidence you *can* produce it — enough to unlock, not enough to master.
+    static let slowCredit = 0.65
 
     /// Latency thresholds for mapping drill results to FSRS grades.
     static let fsrsHardLatencyMs = 6_000

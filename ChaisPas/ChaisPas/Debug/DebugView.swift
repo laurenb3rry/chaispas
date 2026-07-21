@@ -18,6 +18,11 @@ struct DebugView: View {
     /// (label, store count, manifest count) rows for the v2 inventory.
     @State private var v2Rows: [(String, Int, Int)] = []
 
+    /// (title, production mastery, introduced, unlocked) for the v1 Construction
+    /// concepts, tier order — the ladder the SessionPlanner walks. Lets you
+    /// watch production mastery climb toward the 0.6 unlock gate rep by rep.
+    @State private var masteryRows: [(String, Double, Bool, Bool)] = []
+
     var body: some View {
         ZStack {
             DSColor.background.ignoresSafeArea()
@@ -31,6 +36,12 @@ struct DebugView: View {
                         statRow("New (never drilled)", "\(newCount)")
                         statRow("Reviews due now", "\(dueReviewCount)")
                         statRow("Concepts unlocked", "\(unlockedCount)")
+                    }
+
+                    section("Construction mastery", detail: "production · 0.6 unlocks") {
+                        ForEach(masteryRows, id: \.0) { row in
+                            masteryRow(row.0, row.1, introduced: row.2, unlocked: row.3)
+                        }
                     }
 
                     section("Pack v2 inventory", detail: "store / manifest") {
@@ -110,6 +121,38 @@ struct DebugView: View {
         }
     }
 
+    /// One Construction concept: production mastery vs. the unlock gate, with
+    /// its introduced/unlocked state. Value tints red until it clears 0.6.
+    private func masteryRow(
+        _ title: String, _ production: Double, introduced: Bool, unlocked: Bool
+    ) -> some View {
+        VStack(spacing: 0) {
+            HStack {
+                VStack(alignment: .leading, spacing: DSSpacing.xs) {
+                    Text(title)
+                        .font(DSType.body)
+                        .foregroundStyle(DSColor.textPrimary)
+                        .lineLimit(1)
+                    Text([introduced ? "introduced" : "not introduced",
+                          unlocked ? "unlocked" : "locked"].joined(separator: " · "))
+                        .font(DSType.caption)
+                        .foregroundStyle(DSColor.textTertiary)
+                }
+                Spacer()
+                Text(String(format: "%.2f", production))
+                    .font(DSType.monoData)
+                    .monospacedDigit()
+                    .foregroundStyle(
+                        production > MasteryModel.unlockThreshold
+                            ? DSColor.textTertiary : DSColor.gradeFailure
+                    )
+            }
+            .padding(.vertical, DSSpacing.md)
+            .padding(.horizontal, DSSpacing.margin)
+            Hairline()
+        }
+    }
+
     // MARK: Data
 
     private func refresh() {
@@ -124,10 +167,23 @@ struct DebugView: View {
                 predicate: #Predicate { $0.fsrsStability > 0 && $0.fsrsDue <= now }
             ))
             unlockedCount = try MasteryModel.unlockedConceptIds(context: modelContext).count
+            try refreshMastery()
             try refreshV2()
         } catch {
             status = "Refresh failed: \(error.localizedDescription)"
         }
+    }
+
+    /// The v1 Construction concepts in the order the planner introduces them
+    /// (tier, then id), with production mastery, introduced flag, and whether
+    /// prereqs currently clear the unlock gate.
+    private func refreshMastery() throws {
+        let production = try MasteryModel.productionScores(context: modelContext)
+        let unlocked = try MasteryModel.unlockedConceptIds(context: modelContext)
+        masteryRows = try modelContext.fetch(FetchDescriptor<ConceptNode>())
+            .filter { SessionPlanner.v1Types.contains($0.type) }
+            .sorted { ($0.tier, $0.id) < ($1.tier, $1.id) }
+            .map { ($0.title, production[$0.id] ?? 0, $0.introduced, unlocked.contains($0.id)) }
     }
 
     private func refreshV2() throws {

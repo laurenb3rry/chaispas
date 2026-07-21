@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import SwiftData
 import Testing
 @testable import ChaisPas
 
@@ -106,5 +107,71 @@ struct MasteryModelTests {
         }
         #expect(score > MasteryModel.unlockThreshold)
         #expect(score < 1)
+    }
+
+    /// The evidence floor for a *correct* answer must clear the unlock gate.
+    /// The EMA converges to the evidence target, so a floor at or below the
+    /// gate would strand a perfectly accurate learner below it forever — the
+    /// Construction "stuck at 1 introduced" bug. Guards the invariant directly.
+    @Test func slowCorrectFloorClearsUnlockGate() {
+        #expect(MasteryModel.slowCredit > MasteryModel.unlockThreshold)
+    }
+
+    private func makeContext() throws -> ModelContext {
+        let schema = Schema([
+            ConceptNode.self, Sentence.self, DrillEvent.self, MasteryScore.self,
+            SessionLog.self, Scenario.self, ListenEpisode.self, Passage.self,
+        ])
+        return ModelContext(try ModelContainer(
+            for: schema,
+            configurations: [ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)]
+        ))
+    }
+
+    /// End-to-end progression: a learner who is always correct but always slow
+    /// (the realistic Construction case — the recorded latency spans reading
+    /// the prompt and speaking the whole answer) must eventually push the
+    /// target concept's production mastery past the unlock gate, which flips
+    /// the next concept to unlocked. This is the regression for the stuck-
+    /// forever bug: under the old floor (slowCredit ≤ unlockThreshold) the loop
+    /// asymptotes below the gate and `cest` never unlocks.
+    @Test func slowButCorrectRepsEventuallyUnlockNextConcept() throws {
+        let context = try makeContext()
+
+        let cognates = ConceptNode(
+            id: "cognate_bridges", type: .vocabCluster, tier: 0, prereqIds: [],
+            title: "Cognate bridges", explanationText: "", examples: [],
+            streetMapping: "", introduced: true
+        )
+        let cest = ConceptNode(
+            id: "cest", type: .construction, tier: 0, prereqIds: ["cognate_bridges"],
+            title: "C'est", explanationText: "", examples: [], streetMapping: ""
+        )
+        context.insert(cognates)
+        context.insert(cest)
+
+        let drill = Sentence(
+            id: "cog_001", conceptIds: ["cognate_bridges"],
+            targetConceptId: "cognate_bridges", english: "the situation",
+            frenchFormal: "la situation", frenchStreet: "la situation",
+            audioRefs: AudioRefs(formal: "a.mp3", streetSlow: "b.mp3", streetFast: "c.mp3")
+        )
+        context.insert(drill)
+        try context.save()
+
+        // cest is gated on cognate_bridges, which starts at 0 mastery.
+        #expect(!(try MasteryModel.unlockedConceptIds(context: context)).contains("cest"))
+
+        // Consistently correct, but always in the slow band (≥ slowLatencyMs).
+        for _ in 0..<40 {
+            try MasteryModel.recordDrill(
+                sentence: drill, axis: .production, correct: true,
+                latencyMs: 30_000, context: context
+            )
+        }
+
+        let production = try MasteryModel.productionScores(context: context)
+        #expect((production["cognate_bridges"] ?? 0) > MasteryModel.unlockThreshold)
+        #expect((try MasteryModel.unlockedConceptIds(context: context)).contains("cest"))
     }
 }
