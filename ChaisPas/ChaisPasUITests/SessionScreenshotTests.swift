@@ -44,7 +44,7 @@ final class SessionScreenshotTests: XCTestCase {
         // into a warm-recall drill (listening) with no concept intro, and
         // there's no auto-reveal timer to surface a grade — detect the
         // listening hint too.
-        let sayIt = app.staticTexts["say it in French — tap to reveal"].firstMatch
+        let sayIt = app.staticTexts["SAY IT IN FRENCH"].firstMatch
         var presented = false
         for _ in 0..<3 {
             if construction.exists, construction.isHittable { construction.tap() }

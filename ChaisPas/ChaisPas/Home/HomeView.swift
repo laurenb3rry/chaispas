@@ -108,7 +108,7 @@ struct HomeView: View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: DSSpacing.xs) {
                 Eyebrow(Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day()))
-                Text("Chais pas.")
+                Text("chaispas")
                     .font(DSType.largeTitle)
                     .tracking(DSType.largeTitleTracking)
                     .foregroundStyle(DSColor.textPrimary)

@@ -39,6 +39,7 @@ struct ReaderView: View {
             chrome
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 0) {
+                    PullToDismissDetector { dismiss() }.frame(height: 0)
                     header
                         .padding(.bottom, DSSpacing.xxl)
                     passageBody
@@ -72,6 +73,7 @@ struct ReaderView: View {
                     .animation(DSMotion.spring, value: activeGloss)
                 }
             }
+            .pullDismissBounce()
         }
     }
 

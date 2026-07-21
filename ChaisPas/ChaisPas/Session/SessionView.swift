@@ -17,6 +17,9 @@ struct SessionView: View {
                 content(engine)
             }
         }
+        .swipeDownToDismiss(enabled: engine?.phase != .conceptIntro) {
+            engine?.end(); dismiss()
+        }
         .preferredColorScheme(.dark)
         .task {
             guard engine == nil else { return }

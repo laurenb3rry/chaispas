@@ -26,6 +26,7 @@ struct VocabPlayerView: View {
                     .transition(.move(edge: .leading).combined(with: .opacity))
             }
         }
+        .swipeDownToDismiss { playTask?.cancel(); audio.stop(); dismiss() }
         .preferredColorScheme(.dark)
         .task {
             guard packNode == nil else { return }

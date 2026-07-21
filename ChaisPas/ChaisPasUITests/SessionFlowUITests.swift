@@ -42,7 +42,7 @@ final class SessionFlowUITests: XCTestCase {
         // The session opens on the concept intro on a fresh store, or straight
         // into a warm-recall drill (listening) on a store with due reviews —
         // detect either (there's no auto-reveal timer to surface a grade).
-        let sayIt = app.staticTexts["say it in French — tap to reveal"].firstMatch
+        let sayIt = app.staticTexts["SAY IT IN FRENCH"].firstMatch
         var entered = false
         for _ in 0..<4 where !entered {
             if start.exists, start.isHittable { start.tap() }

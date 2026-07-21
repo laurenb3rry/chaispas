@@ -21,6 +21,7 @@ struct ScenarioPlayerView: View {
                 content(engine)
             }
         }
+        .swipeDownToDismiss { engine?.end(); dismiss() }
         .preferredColorScheme(.dark)
         .task {
             guard engine == nil else { return }

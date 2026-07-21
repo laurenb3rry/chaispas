@@ -38,6 +38,11 @@ struct ConjugationPlayerView: View {
                     .transition(.move(edge: .leading).combined(with: .opacity))
             }
         }
+        // Only the (non-scrolling) drill stage uses the drag-to-dismiss; the
+        // scrolling table uses pull-to-dismiss and must own its own drags.
+        .swipeDownToDismiss(enabled: drilling) {
+            playTask?.cancel(); audio.stop(); dismiss()
+        }
         .preferredColorScheme(.dark)
         .task {
             guard packNode == nil else { return }
@@ -60,6 +65,10 @@ struct ConjugationPlayerView: View {
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: DSSpacing.xl) {
+                    PullToDismissDetector {
+                        playTask?.cancel(); audio.stop(); dismiss()
+                    }
+                    .frame(height: 0)
                     header
 
                     if let node = packNode {
@@ -85,6 +94,7 @@ struct ConjugationPlayerView: View {
                 .padding(.horizontal, DSSpacing.margin)
                 .padding(.bottom, DSSpacing.xl)
             }
+            .pullDismissBounce()
 
             StartDrillButton {
                 playTask?.cancel()

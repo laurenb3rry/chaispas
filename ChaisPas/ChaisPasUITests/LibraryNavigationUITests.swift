@@ -39,8 +39,13 @@ final class LibraryNavigationUITests: XCTestCase {
 
         // A real Learn player (phase 10): verb row → conjugation table with
         // its drill CTA, closable. (Full drill runs live in LearnModeUITests.)
-        firstVerb.tap()
+        // The row tap opens a full-screen cover; a dropped synthesized tap
+        // leaves it closed, so re-tap until the cover's CTA appears.
         let startDrill = app.buttons["Start the drill"].firstMatch
+        for _ in 0..<4 where !startDrill.exists {
+            if firstVerb.exists, firstVerb.isHittable { firstVerb.tap() }
+            _ = startDrill.waitForExistence(timeout: 5)
+        }
         XCTAssertTrue(startDrill.waitForExistence(timeout: 10),
                       "verb row should open the conjugation player")
         app.buttons["player-close"].firstMatch.tap()
@@ -69,19 +74,20 @@ final class LibraryNavigationUITests: XCTestCase {
                       "Read index should group passages by tier")
         goBack(app)
 
-        // LISTEN — level sections with their blurbs exist only on the index.
+        // LISTEN — level section headers exist only on the index (Home shows a
+        // bare "A" marker, not "LEVEL A").
         openSection("home-section-listen", in: app)
-        let levelBlurb = app.staticTexts.matching(
-            NSPredicate(format: "label CONTAINS %@", "slower street")
-        ).firstMatch
-        XCTAssertTrue(levelBlurb.waitForExistence(timeout: 10),
+        XCTAssertTrue(app.staticTexts["LEVEL A"].firstMatch.waitForExistence(timeout: 10),
                       "Listen index should show the level sections")
         goBack(app)
 
         XCTAssertTrue(home.waitForExistence(timeout: 5))
     }
 
-    /// Scrolls Home until the section header is hittable, then opens it.
+    /// Scrolls Home until the section header is hittable, then opens it. The
+    /// tap that pushes the index drops like any synthesized tap (more likely on
+    /// Home's deepest section, after several swipes), so re-tap until the push
+    /// lands — a navigation bar with a back button appears only on the index.
     @MainActor
     private func openSection(_ identifier: String, in app: XCUIApplication) {
         let header = app.buttons[identifier].firstMatch
@@ -90,7 +96,12 @@ final class LibraryNavigationUITests: XCTestCase {
         }
         XCTAssertTrue(header.exists && header.isHittable,
                       "\(identifier) should be reachable by scrolling Home")
-        header.tap()
+        let backButton = app.navigationBars.buttons.firstMatch
+        for _ in 0..<4 where !backButton.exists {
+            if header.exists, header.isHittable { header.tap() }
+            _ = backButton.waitForExistence(timeout: 5)
+        }
+        XCTAssertTrue(backButton.exists, "\(identifier) should push its index")
     }
 
     /// Back taps drop like any synthesized tap — re-tap until Home returns.

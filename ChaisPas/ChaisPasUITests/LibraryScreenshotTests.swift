@@ -120,7 +120,7 @@ final class LibraryScreenshotTests: XCTestCase {
         for (identifier, marker, name) in [
             ("home-section-speak", "A Paris café", "6-speak-index"),
             ("home-section-read", "TIER 0", "7-read-index"),
-            ("home-section-listen", "slower street", "8-listen-index"),
+            ("home-section-listen", "SLOWER STREET", "8-listen-index"),
         ] {
             let header = app.buttons[identifier].firstMatch
             for _ in 0..<6 where !(header.exists && header.isHittable) {

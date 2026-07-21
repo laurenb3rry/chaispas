@@ -5,6 +5,7 @@ import SwiftUI
 /// read/unread with last scores. Phase 16: de-carded — style as a mono
 /// eyebrow, full-bleed hairlines, mono metadata.
 struct ReadIndexView: View {
+
     @Query(sort: [SortDescriptor(\Passage.tier), SortDescriptor(\Passage.id)])
     private var passages: [Passage]
 

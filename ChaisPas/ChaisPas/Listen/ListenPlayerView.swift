@@ -21,6 +21,7 @@ struct ListenPlayerView: View {
                 content(engine)
             }
         }
+        .swipeDownToDismiss(enabled: swipeEnabled) { engine?.end(); dismiss() }
         .preferredColorScheme(.dark)
         .task {
             guard engine == nil else { return }
@@ -28,6 +29,13 @@ struct ListenPlayerView: View {
             self.engine = engine
             engine.start()
         }
+    }
+
+    /// Off during the scrolling transcript / slow-pass stages (the X still
+    /// closes); on for the focused cold-listen, questions and shadow stages.
+    private var swipeEnabled: Bool {
+        let stage = engine?.stage
+        return stage != .transcript && stage != .slow
     }
 
     private func content(_ engine: ListenEngine) -> some View {
@@ -258,6 +266,7 @@ private struct TranscriptStageView: View {
         VStack(spacing: 0) {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 0) {
+                    PullToDismissDetector { engine.end(); onDone() }.frame(height: 0)
                     header
                         .padding(.bottom, DSSpacing.lg)
                     ForEach(Array(engine.lines.enumerated()), id: \.element.lineId) {
@@ -272,6 +281,7 @@ private struct TranscriptStageView: View {
                 .padding(.top, DSSpacing.xl)
                 .padding(.bottom, DSSpacing.lg)
             }
+            .pullDismissBounce()
 
             footer
         }

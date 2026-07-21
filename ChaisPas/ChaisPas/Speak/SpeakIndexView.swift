@@ -5,6 +5,7 @@ import SwiftUI
 /// easy → hard. Phase 16: de-carded into a sequence list — a mono index (real
 /// easy→hard order), title + blurb, mono level marker, hairline rhythm.
 struct SpeakIndexView: View {
+
     @Query(sort: [SortDescriptor(\Scenario.difficulty), SortDescriptor(\Scenario.id)])
     private var scenarios: [Scenario]
 
