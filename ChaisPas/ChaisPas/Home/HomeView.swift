@@ -276,7 +276,7 @@ struct HomeView: View {
             Hairline(strong: true)
             ForEach(Array(scenarios.prefix(3).enumerated()), id: \.element.id) { index, scenario in
                 Button { playingScenario = scenario } label: {
-                    modeRow(icon: scenario.icon, title: scenario.title,
+                    modeRow(title: scenario.title,
                             sub: scenario.settingBlurb, marker: "LVL \(scenario.difficulty)")
                 }
                 .buttonStyle(.pressable)

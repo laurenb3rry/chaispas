@@ -1,20 +1,19 @@
 import SwiftData
 import SwiftUI
 
-/// Launch gate: populated stores go straight to the Home library; stores
-/// that need pack import show a minimal loading state while the import runs
-/// on a background context, then spring-transition in. `needsImport` is
-/// decided synchronously at app init (cheap fetchCounts) so a normal launch
-/// never flashes the loading screen. A first launch (no drill history, never
-/// offered) lands on the placement assessment before Home — skippable, and
-/// suppressible in UI tests via `-placementOffered YES` launch arguments.
+/// Launch gate: populated stores go straight to the Home library; a store that
+/// needs the pack import runs it on a background context behind a plain dark
+/// screen (no loading UI — the dark launch screen already covers the brief
+/// flash), then spring-transitions in. `needsImport` is decided synchronously
+/// at app init (cheap fetchCounts) so a normal launch never waits. A first
+/// launch (no drill history, never offered) lands on the placement assessment
+/// before Home — skippable, and suppressible in UI tests via
+/// `-placementOffered YES` launch arguments.
 struct RootView: View {
     @Environment(\.modelContext) private var modelContext
 
     @State private var importing: Bool
     @State private var offeringPlacement = false
-    @State private var stage = "Preparing"
-    @State private var stageIndex = 0
 
     init(needsImport: Bool) {
         _importing = State(initialValue: needsImport)
@@ -23,7 +22,9 @@ struct RootView: View {
     var body: some View {
         Group {
             if importing {
-                loadingState
+                // First-launch import runs behind a plain dark screen — no
+                // loading UI; the dark launch screen already covers the flash.
+                DSColor.background.ignoresSafeArea()
                     .transition(.opacity)
             } else if offeringPlacement {
                 PlacementView(isFirstRun: true) {
@@ -40,15 +41,7 @@ struct RootView: View {
             if importing {
                 let container = modelContext.container
                 await Task.detached(priority: .userInitiated) {
-                    let context = ModelContext(container)
-                    ContentPackImporter.importIfNeeded(context: context) { label, index in
-                        Task { @MainActor in
-                            withAnimation(DSMotion.spring) {
-                                stage = label
-                                stageIndex = index
-                            }
-                        }
-                    }
+                    ContentPackImporter.importIfNeeded(context: ModelContext(container))
                 }.value
             }
             withAnimation(DSMotion.spring) {
@@ -56,40 +49,6 @@ struct RootView: View {
                 importing = false
             }
         }
-    }
-
-    private var loadingState: some View {
-        ZStack {
-            DSColor.background.ignoresSafeArea()
-            VStack(spacing: DSSpacing.xl) {
-                Text("Chais pas.")
-                    .font(DSType.largeTitle)
-                    .tracking(DSType.largeTitleTracking)
-                    .foregroundStyle(DSColor.textPrimary)
-
-                VStack(spacing: DSSpacing.md) {
-                    // progress as a thin hairline, per the design language
-                    GeometryReader { geo in
-                        ZStack(alignment: .leading) {
-                            Capsule().fill(DSColor.surface)
-                            Capsule().fill(DSColor.accent)
-                                .frame(width: geo.size.width * fraction)
-                        }
-                    }
-                    .frame(width: 160, height: 2)
-
-                    Text(stage)
-                        .font(DSType.caption)
-                        .foregroundStyle(DSColor.textSecondary)
-                        .contentTransition(.opacity)
-                }
-            }
-        }
-        .preferredColorScheme(.dark)
-    }
-
-    private var fraction: CGFloat {
-        CGFloat(stageIndex + 1) / CGFloat(ContentPackImporter.stages.count)
     }
 }
 
