@@ -22,6 +22,7 @@ struct LearnIndexView: View {
     @State private var dueReviews = 0
     @State private var hasScrolledToFocus = false
     @State private var showingSession = false
+    @State private var showingTestTables = false
     @State private var activeUnit: ConceptNode?
 
     var body: some View {
@@ -34,9 +35,7 @@ struct LearnIndexView: View {
                             .padding(.horizontal, DSSpacing.margin)
                         constructionSection
                             .id(LearnSection.construction)
-                        nodeSection(.conjugation, title: "Conjugation",
-                                    detail: "\(conjugation.count) verbs · \(masteredCount(conjugation)) mastered",
-                                    nodes: conjugation)
+                        conjugationSection
                         nodeSection(.vocabulary, title: "Vocabulary",
                                     detail: "\(vocabPacks.count) packs · \(masteredCount(vocabPacks)) mastered",
                                     nodes: vocabPacks)
@@ -67,6 +66,37 @@ struct LearnIndexView: View {
         }) { unit in
             LearnUnitPlayerView(unit: unit)
         }
+        .fullScreenCover(isPresented: $showingTestTables) {
+            ConjugationTestTablesView()
+        }
+    }
+
+    // MARK: Conjugation (its header carries the "test tables" entry point)
+
+    /// Like `nodeSection`, but the detail slot on the right is a tappable
+    /// "Test tables" label that opens the conjugation-table test instead of a
+    /// mastery count.
+    private var conjugationSection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(alignment: .firstTextBaseline, spacing: DSSpacing.sm) {
+                Eyebrow("Conjugation")
+                Spacer()
+                Button { showingTestTables = true } label: {
+                    Eyebrow("Test tables", color: DSColor.accent)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.pressable)
+                .accessibilityIdentifier("conjugation-test-tables")
+            }
+            .padding(.horizontal, DSSpacing.margin)
+            .padding(.bottom, DSSpacing.sm)
+            Hairline(strong: true)
+            ForEach(Array(conjugation.enumerated()), id: \.element.id) { index, node in
+                nodeRow(node, title: conjugationTitle(node))
+                if index < conjugation.count - 1 { Hairline() }
+            }
+        }
+        .id(LearnSection.conjugation)
     }
 
     // MARK: Construction (routes to the real session)
@@ -121,20 +151,39 @@ struct LearnIndexView: View {
                 .padding(.bottom, DSSpacing.sm)
             Hairline(strong: true)
             ForEach(Array(nodes.enumerated()), id: \.element.id) { index, node in
-                nodeRow(node)
+                nodeRow(node, title: nodeTitle(node))
                 if index < nodes.count - 1 { Hairline() }
             }
         }
         .id(anchor)
     }
 
-    private func nodeRow(_ node: ConceptNode) -> some View {
+    /// Default row title: the concept's title as-is.
+    private func nodeTitle(_ node: ConceptNode) -> Text {
+        Text(node.title)
+            .font(DSType.body)
+            .foregroundStyle(DSColor.textPrimary)
+    }
+
+    /// Conjugation rows drop the em-dash: the verb, three spaces, then the
+    /// meaning in a slightly smaller italic.
+    private func conjugationTitle(_ node: ConceptNode) -> Text {
+        let parts = node.title.components(separatedBy: " — ")
+        guard parts.count == 2 else { return nodeTitle(node) }
+        return Text(parts[0])
+            .font(DSType.body)
+            .foregroundStyle(DSColor.textPrimary)
+            + Text("   ")
+            + Text(parts[1])
+                .font(.system(size: 14).italic())
+                .foregroundStyle(DSColor.textSecondary)
+    }
+
+    private func nodeRow(_ node: ConceptNode, title: Text) -> some View {
         Button { activeUnit = node } label: {
             HStack(spacing: DSSpacing.md) {
                 VStack(alignment: .leading, spacing: DSSpacing.xs) {
-                    Text(node.title)
-                        .font(DSType.body)
-                        .foregroundStyle(DSColor.textPrimary)
+                    title
                         .lineLimit(1)
                     if let hint = recommendationHint(node) {
                         Text(hint)
