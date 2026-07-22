@@ -44,19 +44,11 @@ struct PlacementView: View {
             .padding(.horizontal, DSSpacing.margin)
             Spacer()
             VStack(spacing: DSSpacing.md) {
-                Button {
+                PrimaryButton("Begin") {
                     let engine = PlacementEngine(context: modelContext)
                     engine.start()
                     withAnimation(DSMotion.spring) { self.engine = engine }
-                } label: {
-                    Text("Begin")
-                        .font(DSType.body.weight(.medium))
-                        .foregroundStyle(DSColor.background)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 48)
-                        .background(DSColor.accent, in: Capsule())
                 }
-                .buttonStyle(.pressable)
                 .accessibilityIdentifier("placement-begin")
                 Button(action: onDone) {
                     Text(isFirstRun ? "Not now — just start" : "Not now")
@@ -171,18 +163,10 @@ struct PlacementView: View {
             }
             .padding(.horizontal, DSSpacing.margin)
             Spacer()
-            Button { engine.beginModule() } label: {
-                Text("Ready")
-                    .font(DSType.body.weight(.medium))
-                    .foregroundStyle(DSColor.background)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 48)
-                    .background(DSColor.accent, in: Capsule())
-            }
-            .buttonStyle(.pressable)
-            .accessibilityIdentifier("placement-ready")
-            .padding(.horizontal, DSSpacing.margin)
-            .padding(.bottom, DSSpacing.xxl)
+            PrimaryButton("Ready") { engine.beginModule() }
+                .accessibilityIdentifier("placement-ready")
+                .padding(.horizontal, DSSpacing.margin)
+                .padding(.bottom, DSSpacing.xxl)
         }
     }
 
@@ -371,18 +355,10 @@ struct PlacementView: View {
             }
             .padding(.horizontal, DSSpacing.margin)
             Spacer()
-            Button(action: onDone) {
-                Text("Done")
-                    .font(DSType.body.weight(.medium))
-                    .foregroundStyle(DSColor.background)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 48)
-                    .background(DSColor.accent, in: Capsule())
-            }
-            .buttonStyle(.pressable)
-            .accessibilityIdentifier("placement-done")
-            .padding(.horizontal, DSSpacing.margin)
-            .padding(.bottom, DSSpacing.xxl)
+            PrimaryButton("Done", action: onDone)
+                .accessibilityIdentifier("placement-done")
+                .padding(.horizontal, DSSpacing.margin)
+                .padding(.bottom, DSSpacing.xxl)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -453,16 +429,8 @@ private struct StaircaseTranscriptionStage: View {
                 .padding(DSSpacing.lg)
                 .background(DSColor.surface, in: RoundedRectangle(cornerRadius: 12))
                 .accessibilityIdentifier("placement-answer")
-            Button { engine.submitStaircase(typed) } label: {
-                Text("Check")
-                    .font(DSType.body.weight(.medium))
-                    .foregroundStyle(DSColor.background)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 48)
-                    .background(DSColor.accent, in: Capsule())
-            }
-            .buttonStyle(.pressable)
-            .accessibilityIdentifier("placement-submit")
+            PrimaryButton("Check") { engine.submitStaircase(typed) }
+                .accessibilityIdentifier("placement-submit")
             .disabled(typed.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             .opacity(typed.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? 0.4 : 1)
         }
@@ -492,16 +460,8 @@ private struct StaircaseTranscriptionStage: View {
                         .contentShape(Rectangle())
                 }
                 .accessibilityIdentifier("placement-close-enough")
-                Button { engine.advanceStaircase() } label: {
-                    Text("Next")
-                        .font(DSType.body.weight(.medium))
-                        .foregroundStyle(DSColor.background)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 48)
-                        .background(DSColor.accent, in: Capsule())
-                }
-                .buttonStyle(.pressable)
-                .accessibilityIdentifier("placement-next")
+                PrimaryButton("Next") { engine.advanceStaircase() }
+                    .accessibilityIdentifier("placement-next")
             }
         }
     }

@@ -214,16 +214,8 @@ struct ConjugationTestTablesView: View {
     }
 
     private var primaryButton: some View {
-        Button { primaryAction() } label: {
-            Text(graded ? "Next verb" : "Check")
-                .font(DSType.body.weight(.medium))
-                .foregroundStyle(DSColor.background)
-                .frame(maxWidth: .infinity)
-                .frame(height: 48)
-                .background(DSColor.accent, in: Capsule())
-        }
-        .buttonStyle(.pressable)
-        .accessibilityIdentifier("conjugation-test-primary")
+        PrimaryButton(graded ? "Next verb" : "Check") { primaryAction() }
+            .accessibilityIdentifier("conjugation-test-primary")
     }
 
     private func primaryAction() {
@@ -244,17 +236,9 @@ struct ConjugationTestTablesView: View {
                 MonoData("\(correctCount)/\(gradedCount) forms correct", color: DSColor.accent)
             }
             Spacer()
-            Button { dismiss() } label: {
-                Text("Done")
-                    .font(DSType.body.weight(.medium))
-                    .foregroundStyle(DSColor.background)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 48)
-                    .background(DSColor.accent, in: Capsule())
-            }
-            .buttonStyle(.pressable)
-            .padding(.horizontal, DSSpacing.margin)
-            .padding(.bottom, DSSpacing.xxl)
+            PrimaryButton("Done") { dismiss() }
+                .padding(.horizontal, DSSpacing.margin)
+                .padding(.bottom, DSSpacing.xxl)
         }
     }
 

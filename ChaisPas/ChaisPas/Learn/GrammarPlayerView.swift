@@ -156,17 +156,9 @@ struct GrammarPlayerView: View {
     // MARK: Pieces
 
     private func advanceButton(_ label: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Text(label)
-                .font(DSType.body.weight(.medium))
-                .foregroundStyle(DSColor.background)
-                .frame(maxWidth: .infinity)
-                .frame(height: 48)
-                .background(DSColor.accent, in: Capsule())
-        }
-        .buttonStyle(.pressable)
-        .padding(.horizontal, DSSpacing.margin)
-        .padding(.bottom, DSSpacing.xxl)
+        PrimaryButton(label, action: action)
+            .padding(.horizontal, DSSpacing.margin)
+            .padding(.bottom, DSSpacing.xxl)
     }
 
     private func play(_ fileName: String, key: String) {

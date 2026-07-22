@@ -333,15 +333,7 @@ private struct ScenarioSummaryView: View {
                 }
                 .buttonStyle(.pressable)
                 .accessibilityIdentifier("replay-variant")
-                Button(action: onDone) {
-                    Text("Done")
-                        .font(DSType.body.weight(.medium))
-                        .foregroundStyle(DSColor.background)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 48)
-                        .background(DSColor.accent, in: Capsule())
-                }
-                .buttonStyle(.pressable)
+                PrimaryButton("Done", action: onDone)
             }
             .padding(.horizontal, DSSpacing.margin)
             .padding(.bottom, DSSpacing.xxl)

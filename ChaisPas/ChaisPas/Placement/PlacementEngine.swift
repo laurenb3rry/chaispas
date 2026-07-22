@@ -2,22 +2,6 @@ import Foundation
 import SwiftData
 import SwiftUI
 
-/// Deterministic RNG (SplitMix64) so placement runs are seedable in tests
-/// while staying varied across real runs.
-struct SeededRNG: RandomNumberGenerator {
-    private var state: UInt64
-
-    init(seed: UInt64) { state = seed }
-
-    mutating func next() -> UInt64 {
-        state &+= 0x9E37_79B9_7F4A_7C15
-        var z = state
-        z = (z ^ (z >> 30)) &* 0xBF58_476D_1CE4_E5B9
-        z = (z ^ (z >> 27)) &* 0x94D0_49BB_1331_11EB
-        return z ^ (z >> 31)
-    }
-}
-
 /// Drives the three-module placement assessment (PLAN.md §3, PLAN2 §6):
 /// comprehension staircase → elicited production → vocab yes/no → summary,
 /// then seeds the priors. All content comes from the shipped packs; the
@@ -187,8 +171,11 @@ final class PlacementEngine {
         self.context = context
         self.silent = silent
         self.transcriber = (silent || !SpeechTranscriber.enabled) ? nil : SpeechTranscriber()
-        var rng = SeededRNG(seed: seed)
-        buildItems(rng: &rng)
+        let items = PlacementItems.build(context: context, seed: seed)
+        staircaseItems = items.staircase
+        productionItems = items.production
+        vocabItems = items.vocab
+        vocabPackIdsByBand = items.vocabPackIdsByBand
     }
 
     // MARK: Lifecycle
@@ -441,112 +428,6 @@ final class PlacementEngine {
             self.module = .summary
             self.awaitingStart = false
         }
-    }
-
-    // MARK: Item sampling (all from the shipped packs)
-
-    private func buildItems(rng: inout SeededRNG) {
-        let nodes = (try? context.fetch(FetchDescriptor<ConceptNode>())) ?? []
-        let v1Tiers = Dictionary(
-            nodes.filter { SessionPlanner.v1Types.contains($0.type) }.map { ($0.id, $0.tier) },
-            uniquingKeysWith: { a, _ in a }
-        )
-        let v1Sentences = (try? context.fetch(FetchDescriptor<Sentence>(
-            predicate: #Predicate { $0.packVersion == 1 }
-        ))) ?? []
-        let byTier = Dictionary(grouping: v1Sentences) { v1Tiers[$0.targetConceptId] ?? -1 }
-
-        buildStaircase(byTier: byTier, rng: &rng)
-        buildProduction(byTier: byTier, nodes: nodes, rng: &rng)
-        buildVocab(rng: &rng)
-    }
-
-    private func buildStaircase(byTier: [Int: [Sentence]], rng: inout SeededRNG) {
-        var usedIds = Set<String>()
-        for rung in Self.rungs {
-            let pool = (byTier[rung.tier] ?? []).filter { !usedIds.contains($0.id) }
-            guard let sentence = pool.randomElement(using: &rng) else { continue }
-            usedIds.insert(sentence.id)
-
-            // The transcription target is whatever register the audio
-            // actually speaks.
-            let (audioFile, answer) = switch rung.register {
-            case .formal: (sentence.audioRefs.formal, sentence.frenchFormal)
-            case .streetSlow: (sentence.audioRefs.streetSlow, sentence.frenchStreet)
-            case .streetFast: (sentence.audioRefs.streetFast, sentence.frenchStreet)
-            }
-            staircaseItems.append(StaircaseItem(
-                tier: rung.tier,
-                register: rung.register,
-                audioFile: audioFile,
-                answer: answer
-            ))
-        }
-    }
-
-    private func buildProduction(
-        byTier: [Int: [Sentence]], nodes: [ConceptNode], rng: inout SeededRNG
-    ) {
-        // Two prompts per v1 tier plus one verb after each of the first
-        // three tiers: t0 t0 v · t1 t1 v · t2 t2 v · t3 t3 — 11 items.
-        var usedIds = Set<String>()
-        func tierItem(_ tier: Int) -> ProductionItem? {
-            var pool = (byTier[tier] ?? []).filter { !usedIds.contains($0.id) }
-            // Middle-difficulty slice: skip the trivial openers and the
-            // hardest combinations — one prompt has to stand for the tier.
-            pool.sort {
-                $0.frenchFormal.split(separator: " ").count
-                    < $1.frenchFormal.split(separator: " ").count
-            }
-            if pool.count >= 8 {
-                pool = Array(pool[(pool.count / 4)..<(pool.count * 3 / 4)])
-            }
-            guard let sentence = pool.randomElement(using: &rng) else { return nil }
-            usedIds.insert(sentence.id)
-            return ProductionItem(sentence: sentence, tier: tier, verbConceptId: nil)
-        }
-
-        let verbs = nodes.filter { $0.type == .conjugation }
-            .sorted { ($0.tier, $0.id) < ($1.tier, $1.id) }
-            .prefix(3)
-        var verbItems: [ProductionItem] = verbs.compactMap { verb in
-            let verbId = verb.id
-            let drills = (try? context.fetch(FetchDescriptor<Sentence>(
-                predicate: #Predicate { $0.targetConceptId == verbId }
-            ))) ?? []
-            return drills.randomElement(using: &rng).map {
-                ProductionItem(sentence: $0, tier: nil, verbConceptId: verbId)
-            }
-        }
-
-        for tier in 0...3 {
-            productionItems.append(contentsOf: [tierItem(tier), tierItem(tier)].compactMap { $0 })
-            if !verbItems.isEmpty, tier < 3 {
-                productionItems.append(verbItems.removeFirst())
-            }
-        }
-    }
-
-    private func buildVocab(rng: inout SeededRNG) {
-        // Real words sampled across the frequency ranks: the 40 packs fold
-        // into 5 bands of 8, four words each.
-        let packs = ((try? ContentPackV2.loadLearn(.vocab))?.nodes ?? [])
-            .sorted { $0.id < $1.id }
-        var real: [VocabItem] = []
-        for band in 0..<Self.bandCount {
-            let bandPacks = packs.dropFirst(band * 8).prefix(8)
-            guard !bandPacks.isEmpty else { continue }
-            vocabPackIdsByBand[band] = bandPacks.map(\.id)
-            let lemmas = bandPacks.flatMap { $0.words ?? [] }
-                .map(\.lemma)
-                .filter { !$0.contains(" ") }  // pseudo-words are single tokens
-            real.append(contentsOf: lemmas.shuffled(using: &rng)
-                .prefix(Self.realWordsPerBand)
-                .map { VocabItem(text: $0, band: band, isWord: true) })
-        }
-        guard !real.isEmpty else { return }
-        let pseudo = Self.pseudoWords.map { VocabItem(text: $0, band: nil, isWord: false) }
-        vocabItems = (real + pseudo).shuffled(using: &rng)
     }
 
     // MARK: Helpers

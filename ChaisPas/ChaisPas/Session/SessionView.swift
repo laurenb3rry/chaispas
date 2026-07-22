@@ -151,17 +151,9 @@ private struct ConceptIntroView: View {
                 .padding(.horizontal, DSSpacing.margin)
             }
 
-            Button(action: onContinue) {
-                Text("Got it — let's build")
-                    .font(DSType.body.weight(.medium))
-                    .foregroundStyle(DSColor.background)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 48)
-                    .background(DSColor.accent, in: Capsule())
-            }
-            .buttonStyle(.pressable)
-            .padding(.horizontal, DSSpacing.margin)
-            .padding(.bottom, DSSpacing.xxl)
+            PrimaryButton("Got it — let's build", action: onContinue)
+                .padding(.horizontal, DSSpacing.margin)
+                .padding(.bottom, DSSpacing.xxl)
         }
     }
 }
@@ -261,17 +253,9 @@ private struct SummaryView: View {
 
             Spacer()
 
-            Button(action: onDone) {
-                Text("Done")
-                    .font(DSType.body.weight(.medium))
-                    .foregroundStyle(DSColor.background)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 48)
-                    .background(DSColor.accent, in: Capsule())
-            }
-            .buttonStyle(.pressable)
-            .padding(.horizontal, DSSpacing.margin)
-            .padding(.bottom, DSSpacing.xxl)
+            PrimaryButton("Done", action: onDone)
+                .padding(.horizontal, DSSpacing.margin)
+                .padding(.bottom, DSSpacing.xxl)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }

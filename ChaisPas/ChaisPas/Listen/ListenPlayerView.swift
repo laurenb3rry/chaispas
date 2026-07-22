@@ -147,16 +147,8 @@ private struct ColdListenStageView: View {
     private var footer: some View {
         VStack(spacing: DSSpacing.md) {
             if engine.playback == .finished {
-                Button { engine.toQuestions() } label: {
-                    Text("The questions")
-                        .font(DSType.body.weight(.medium))
-                        .foregroundStyle(DSColor.background)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 48)
-                        .background(DSColor.accent, in: Capsule())
-                }
-                .buttonStyle(.pressable)
-                .accessibilityIdentifier("to-questions")
+                PrimaryButton("The questions") { engine.toQuestions() }
+                    .accessibilityIdentifier("to-questions")
                 Button { engine.replayCold() } label: {
                     Text("Listen again")
                         .font(DSType.body.weight(.medium))
@@ -367,15 +359,7 @@ private struct TranscriptStageView: View {
                         engine.toShadow()
                     }
                 }
-                Button(action: onDone) {
-                    Text("Done")
-                        .font(DSType.body.weight(.medium))
-                        .foregroundStyle(DSColor.background)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 48)
-                        .background(DSColor.accent, in: Capsule())
-                }
-                .buttonStyle(.pressable)
+                PrimaryButton("Done", action: onDone)
             }
         }
         .padding(.horizontal, DSSpacing.margin)

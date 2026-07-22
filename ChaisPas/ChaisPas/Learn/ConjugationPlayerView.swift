@@ -319,16 +319,8 @@ struct StartDrillButton: View {
     let action: () -> Void
 
     var body: some View {
-        Button(action: action) {
-            Text("Start the drill")
-                .font(DSType.body.weight(.medium))
-                .foregroundStyle(DSColor.background)
-                .frame(maxWidth: .infinity)
-                .frame(height: 48)
-                .background(DSColor.accent, in: Capsule())
-        }
-        .buttonStyle(.pressable)
-        .padding(.horizontal, DSSpacing.margin)
-        .padding(.bottom, DSSpacing.xxl)
+        PrimaryButton("Start the drill", action: action)
+            .padding(.horizontal, DSSpacing.margin)
+            .padding(.bottom, DSSpacing.xxl)
     }
 }

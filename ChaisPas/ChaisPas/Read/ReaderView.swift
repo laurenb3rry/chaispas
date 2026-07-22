@@ -275,15 +275,7 @@ struct ReaderView: View {
         VStack(alignment: .leading, spacing: DSSpacing.lg) {
             MonoData("\(engine.correctCount) of \(engine.questions.count) · marked as read",
                      color: DSColor.textSecondary)
-            Button { dismiss() } label: {
-                Text("Done")
-                    .font(DSType.body.weight(.medium))
-                    .foregroundStyle(DSColor.background)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 48)
-                    .background(DSColor.accent, in: Capsule())
-            }
-            .buttonStyle(.pressable)
+            PrimaryButton("Done") { dismiss() }
         }
         .padding(.top, DSSpacing.sm)
     }

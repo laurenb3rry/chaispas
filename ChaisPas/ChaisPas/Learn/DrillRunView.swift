@@ -122,17 +122,9 @@ private struct DrillRunSummaryView: View {
 
             Spacer()
 
-            Button(action: onDone) {
-                Text("Done")
-                    .font(DSType.body.weight(.medium))
-                    .foregroundStyle(DSColor.background)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 48)
-                    .background(DSColor.accent, in: Capsule())
-            }
-            .buttonStyle(.pressable)
-            .padding(.horizontal, DSSpacing.margin)
-            .padding(.bottom, DSSpacing.xxl)
+            PrimaryButton("Done", action: onDone)
+                .padding(.horizontal, DSSpacing.margin)
+                .padding(.bottom, DSSpacing.xxl)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
