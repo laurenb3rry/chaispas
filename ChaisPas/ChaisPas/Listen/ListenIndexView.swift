@@ -36,7 +36,7 @@ struct ListenIndexView: View {
         .toolbarBackground(DSColor.background, for: .navigationBar)
         .navigationBarTitleDisplayMode(.inline)
         .fullScreenCover(item: $playing) { episode in
-            ListenPlayerView(episode: episode)
+            ListenPlayerView(episode: episode).noteCapture("Listen")
         }
     }
 

@@ -36,7 +36,7 @@ struct ReadIndexView: View {
         .toolbarBackground(DSColor.background, for: .navigationBar)
         .navigationBarTitleDisplayMode(.inline)
         .fullScreenCover(item: $reading) { passage in
-            ReaderView(passage: passage)
+            ReaderView(passage: passage).noteCapture("Read")
         }
     }
 

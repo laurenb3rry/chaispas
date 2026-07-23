@@ -37,7 +37,7 @@ struct SpeakIndexView: View {
         .toolbarBackground(DSColor.background, for: .navigationBar)
         .navigationBarTitleDisplayMode(.inline)
         .fullScreenCover(item: $playing) { scenario in
-            ScenarioPlayerView(scenario: scenario)
+            ScenarioPlayerView(scenario: scenario).noteCapture("Speak")
         }
     }
 

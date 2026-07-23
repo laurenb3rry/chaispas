@@ -59,7 +59,7 @@ struct LearnIndexView: View {
         .fullScreenCover(isPresented: $showingSession, onDismiss: {
             withAnimation(DSMotion.spring) { refresh() }
         }) {
-            SessionView()
+            SessionView().noteCapture("Construction")
         }
         .fullScreenCover(item: $activeUnit, onDismiss: {
             withAnimation(DSMotion.spring) { refresh() }
@@ -67,7 +67,7 @@ struct LearnIndexView: View {
             LearnUnitPlayerView(unit: unit)
         }
         .fullScreenCover(isPresented: $showingTestTables) {
-            ConjugationTestTablesView()
+            ConjugationTestTablesView().noteCapture("Conjugation")
         }
     }
 
@@ -247,10 +247,23 @@ struct LearnUnitPlayerView: View {
     let unit: ConceptNode
 
     var body: some View {
+        content.noteCapture(contextLabel)
+    }
+
+    @ViewBuilder
+    private var content: some View {
         switch unit.type {
         case .conjugation: ConjugationPlayerView(unit: unit)
         case .vocabPack: VocabPlayerView(unit: unit)
         default: GrammarPlayerView(unit: unit)
+        }
+    }
+
+    private var contextLabel: String {
+        switch unit.type {
+        case .conjugation: "Conjugation"
+        case .vocabPack: "Vocabulary"
+        default: "Grammar"
         }
     }
 }

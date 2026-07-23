@@ -33,6 +33,7 @@ struct HomeView: View {
     @State private var showingSession = false
     @State private var showingDebug = false
     @State private var showingSettings = false
+    @State private var showingNotes = false
     @State private var playingScenario: Scenario?
     @State private var playingEpisode: ListenEpisode?
     @State private var readingPassage: Passage?
@@ -72,9 +73,10 @@ struct HomeView: View {
         .fullScreenCover(isPresented: $showingSession, onDismiss: {
             withAnimation(DSMotion.spring) { refresh() }
         }) {
-            SessionView()
+            SessionView().noteCapture("Construction")
         }
         .sheet(isPresented: $showingDebug) { DebugView() }
+        .fullScreenCover(isPresented: $showingNotes) { NotesView() }
         .sheet(isPresented: $showingSettings, onDismiss: {
             withAnimation(DSMotion.spring) { refresh() }
         }) {
@@ -88,17 +90,17 @@ struct HomeView: View {
         .fullScreenCover(item: $playingScenario, onDismiss: {
             withAnimation(DSMotion.spring) { refresh() }
         }) { scenario in
-            ScenarioPlayerView(scenario: scenario)
+            ScenarioPlayerView(scenario: scenario).noteCapture("Speak")
         }
         .fullScreenCover(item: $playingEpisode, onDismiss: {
             withAnimation(DSMotion.spring) { refresh() }
         }) { episode in
-            ListenPlayerView(episode: episode)
+            ListenPlayerView(episode: episode).noteCapture("Listen")
         }
         .fullScreenCover(item: $readingPassage, onDismiss: {
             withAnimation(DSMotion.spring) { refresh() }
         }) { passage in
-            ReaderView(passage: passage)
+            ReaderView(passage: passage).noteCapture("Read")
         }
     }
 
@@ -114,6 +116,14 @@ struct HomeView: View {
                     .foregroundStyle(DSColor.textPrimary)
             }
             Spacer()
+            Button { showingNotes = true } label: {
+                Image(systemName: "note.text")
+                    .font(.system(size: 13))
+                    .foregroundStyle(DSColor.textTertiary)
+                    .frame(width: 34, height: 34)
+                    .contentShape(Rectangle())
+            }
+            .accessibilityIdentifier("home-notes")
             Button { showingSettings = true } label: {
                 Image(systemName: "gearshape")
                     .font(.system(size: 13))
@@ -444,7 +454,7 @@ struct HomeView: View {
     HomeView()
         .modelContainer(
             for: [ConceptNode.self, Sentence.self, DrillEvent.self, MasteryScore.self,
-                  SessionLog.self, Scenario.self, ListenEpisode.self, Passage.self],
+                  SessionLog.self, Scenario.self, ListenEpisode.self, Passage.self, Note.self],
             inMemory: true
         )
 }

@@ -25,6 +25,7 @@ struct ChaisPasApp: App {
             Scenario.self,
             ListenEpisode.self,
             Passage.self,
+            Note.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
