@@ -23,6 +23,10 @@ import SwiftData
 private struct NoteCaptureModifier: ViewModifier {
     @Environment(\.modelContext) private var modelContext
     let context: String
+    /// Lets a surface with its own audio (Listen) duck it for the duration of
+    /// a note, so the episode never keeps talking underneath the composer.
+    var onBeginCapture: () -> Void = {}
+    var onEndCapture: () -> Void = {}
 
     @State private var composing = false
     /// The brief throw-into-the-screen phase after a save, before teardown.
@@ -69,6 +73,7 @@ private struct NoteCaptureModifier: ViewModifier {
                         .onEnded { _ in
                             guard !composing else { return }
                             DSHaptics.reveal()
+                            onBeginCapture()
                             composing = true
                         }
                 )
@@ -100,6 +105,7 @@ private struct NoteCaptureModifier: ViewModifier {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.32) {
             composing = false
             sending = false
+            onEndCapture()
         }
     }
 
@@ -111,6 +117,7 @@ private struct NoteCaptureModifier: ViewModifier {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.30) {
             composing = false
             dismissing = false
+            onEndCapture()
         }
     }
 }
@@ -118,7 +125,15 @@ private struct NoteCaptureModifier: ViewModifier {
 extension View {
     /// Enables two-finger-pinch note capture on this surface. The label is a
     /// super-light breadcrumb recorded on notes taken here ("Grammar", "Speak").
-    func noteCapture(_ context: String) -> some View {
-        modifier(NoteCaptureModifier(context: context))
+    /// `onBeginCapture`/`onEndCapture` let a surface with its own audio duck it
+    /// for the note's duration (Listen pauses/resumes the episode).
+    func noteCapture(
+        _ context: String,
+        onBeginCapture: @escaping () -> Void = {},
+        onEndCapture: @escaping () -> Void = {}
+    ) -> some View {
+        modifier(NoteCaptureModifier(context: context,
+                                     onBeginCapture: onBeginCapture,
+                                     onEndCapture: onEndCapture))
     }
 }

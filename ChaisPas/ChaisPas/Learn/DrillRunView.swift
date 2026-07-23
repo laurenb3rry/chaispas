@@ -38,9 +38,14 @@ struct DrillRunView: View {
                 case .summary:
                     DrillRunSummaryView(engine: engine, onDone: onFinished)
                 default:
-                    if let sentence = engine.currentSentence {
-                        DrillStageView(engine: engine, sentence: sentence)
+                    if let sentence = engine.displaySentence {
+                        DrillStageView(engine: engine, sentence: sentence,
+                                       reviewing: engine.isReviewing)
                             .id(sentence.id)
+                            // Swipe left → the previous prompt (review); swipe
+                            // right → back to the live one. Simultaneous so it
+                            // rides alongside tap-to-reveal and swipe-to-dismiss.
+                            .simultaneousGesture(backSwipe)
                     } else {
                         // Nothing to drill (empty pool) — shouldn't happen with
                         // pack content, but never strand the user.
@@ -54,6 +59,24 @@ struct DrillRunView: View {
                 removal: .move(edge: .leading).combined(with: .opacity)
             ))
         }
+    }
+
+    /// Horizontal swipe over the drill stage: right steps back through prior
+    /// prompts (the natural "go backwards" direction), left returns toward the
+    /// live one. Only claims a decisively horizontal drag, so vertical
+    /// swipe-to-dismiss and taps are untouched.
+    private var backSwipe: some Gesture {
+        DragGesture(minimumDistance: 24, coordinateSpace: .local)
+            .onEnded { value in
+                guard abs(value.translation.width) > abs(value.translation.height),
+                      abs(value.translation.width) > 44,
+                      let engine else { return }
+                if value.translation.width > 0 {
+                    engine.goBack()
+                } else if engine.isReviewing {
+                    engine.returnToCurrent()
+                }
+            }
     }
 
     /// Same persistent chrome as the session: what you're drilling, a way

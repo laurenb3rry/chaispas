@@ -173,6 +173,29 @@ final class ListenEngine {
         transition { self.playback = .playing }
     }
 
+    /// Whether note capture paused audio that was genuinely playing — so
+    /// resuming afterward never revives audio the user (or a finished stage)
+    /// had already stopped on their own.
+    private var pausedForNoteCapture = false
+
+    /// Taking a note should never leave the episode talking underneath —
+    /// covers every stage (cold/slow full-mix, line replay, shadow), not just
+    /// the ones with their own pause control.
+    func pauseForNoteCapture() {
+        guard audio.isPlaying else { return }
+        pausedForNoteCapture = true
+        audio.pause()
+        if playback == .playing { transition { self.playback = .paused } }
+    }
+
+    /// Mirrors whatever `pauseForNoteCapture` actually paused.
+    func resumeFromNoteCapture() {
+        guard pausedForNoteCapture else { return }
+        pausedForNoteCapture = false
+        audio.resume()
+        if playback == .paused { transition { self.playback = .playing } }
+    }
+
     /// "Listen again" on the finished cold stage.
     func replayCold() {
         guard stage == .cold else { return }

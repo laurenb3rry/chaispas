@@ -95,7 +95,7 @@ struct HomeView: View {
         .fullScreenCover(item: $playingEpisode, onDismiss: {
             withAnimation(DSMotion.spring) { refresh() }
         }) { episode in
-            ListenPlayerView(episode: episode).noteCapture("Listen")
+            ListenPlayerView(episode: episode)
         }
         .fullScreenCover(item: $readingPassage, onDismiss: {
             withAnimation(DSMotion.spring) { refresh() }
@@ -231,7 +231,7 @@ struct HomeView: View {
 
     private var learnSection: some View {
         VStack(alignment: .leading, spacing: 0) {
-            LibrarySectionHeader(title: "Learn", detail: "4 ways in", destination: .learn(nil))
+            LibrarySectionHeader(title: "Learn", detail: "4 sections", destination: .learn(nil))
                 .accessibilityIdentifier("home-section-learn")
                 .padding(.horizontal, DSSpacing.margin)
                 .padding(.bottom, DSSpacing.sm)

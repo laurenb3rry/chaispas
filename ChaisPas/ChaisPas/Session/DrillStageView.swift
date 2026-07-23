@@ -8,13 +8,15 @@ import SwiftUI
 struct DrillStageView: View {
     let engine: SessionEngine
     let sentence: Sentence
+    /// True when this is a swiped-back review of a past prompt, not the live one.
+    var reviewing: Bool = false
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    private var revealed: Bool { engine.drillStep != .listening }
+    private var revealed: Bool { engine.displayStep != .listening }
 
     private var gradeTint: Color? {
-        if case .graded(let correct) = engine.drillStep {
+        if case .graded(let correct) = engine.displayStep {
             return correct ? DSColor.gradeSuccess : DSColor.gradeFailure
         }
         return nil
@@ -46,6 +48,9 @@ struct DrillStageView: View {
 
     private var readout: some View {
         VStack(alignment: .leading, spacing: DSSpacing.sm) {
+            if reviewing {
+                Eyebrow("Reviewing", color: DSColor.accent, micro: true)
+            }
             // The English cue: prominent while speaking, recedes on reveal.
             Text(sentence.english)
                 .font(revealed ? DSType.englishPrompt : DSType.stagePrompt)
@@ -93,8 +98,21 @@ struct DrillStageView: View {
                             .background(DSColor.surface, in: Circle())
                     }
                     .buttonStyle(.pressable)
-                    gradeButton("Missed it", correct: false)
-                    gradeButton("Got it", correct: true)
+                    if reviewing {
+                        Button { engine.returnToCurrent() } label: {
+                            Text("Back to current")
+                                .font(DSType.body.weight(.medium))
+                                .foregroundStyle(DSColor.textPrimary)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 48)
+                                .background(DSColor.surface, in: Capsule())
+                        }
+                        .buttonStyle(.pressable)
+                        .accessibilityIdentifier("drill-return-current")
+                    } else {
+                        gradeButton("Missed it", correct: false)
+                        gradeButton("Got it", correct: true)
+                    }
                 }
                 .transition(revealTransition)
             } else {

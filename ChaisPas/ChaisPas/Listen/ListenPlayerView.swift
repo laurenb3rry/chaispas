@@ -22,6 +22,11 @@ struct ListenPlayerView: View {
             }
         }
         .swipeDownToDismiss(enabled: swipeEnabled) { engine?.end(); dismiss() }
+        // A note shouldn't leave the episode talking underneath it — duck
+        // whatever's playing on capture, pick it back up on close/send.
+        .noteCapture("Listen",
+                     onBeginCapture: { engine?.pauseForNoteCapture() },
+                     onEndCapture: { engine?.resumeFromNoteCapture() })
         .preferredColorScheme(.dark)
         .task {
             guard engine == nil else { return }

@@ -78,12 +78,35 @@ final class SessionEngine {
     /// The running transcript of what the user is saying — a mirror for
     /// self-grading, never a grade. Nil when nothing has been heard.
     private(set) var spokenText: String?
+    /// When non-nil, we're reviewing a past prompt (drill runs only): the index
+    /// into `history` being shown. The live frontier is untouched underneath.
+    private(set) var reviewIndex: Int?
     /// The stage shows "listening" instead of "tap to reveal" when the mic
     /// is live.
     var speechActive: Bool { transcriber?.availability == .available }
     var newConcept: ConceptNode? { plan.newConcept }
     var targetConceptTitle: String { plan.targetConceptTitle }
     var startedAt = Date.now
+
+    // MARK: Drill-run navigation (review a prior prompt / resume a run)
+
+    var isReviewing: Bool { reviewIndex != nil }
+
+    /// The prompt currently on screen: a past one while reviewing, otherwise the
+    /// live frontier.
+    var displaySentence: Sentence? {
+        if let i = reviewIndex, history.indices.contains(i) { return history[i] }
+        return currentSentence
+    }
+
+    /// The step to render: a reviewed prompt always shows revealed.
+    var displayStep: DrillStep { isReviewing ? .revealed : drillStep }
+
+    /// A prior prompt exists to swipe back to (drill runs only).
+    var canGoBack: Bool {
+        guard isDrillRun else { return false }
+        return (reviewIndex ?? (history.count - 1)) > 0
+    }
 
     // MARK: Internals
 
@@ -100,6 +123,9 @@ final class SessionEngine {
         targetConceptTitle: "", ladderPool: [], spontaneousPool: []
     )
     private var usedSentenceIds = Set<String>()
+    /// Every prompt shown this drill run, in order — the spine for swipe-back
+    /// review and for the resume snapshot. Populated in drill-run mode only.
+    private var history: [Sentence] = []
     private var promptShownAt = Date.now
     private var latencyMs = 0
     private var stepTask: Task<Void, Never>?
@@ -127,6 +153,9 @@ final class SessionEngine {
         self.context = context
         self.mode = mode
     }
+
+    private var isDrillRun: Bool { if case .drillRun = mode { true } else { false } }
+    private var drillUnit: ConceptNode? { if case .drillRun(let u) = mode { u } else { nil } }
 
     // MARK: Lifecycle
 
@@ -177,6 +206,26 @@ final class SessionEngine {
             targetConceptTitle: unit.title, ladderPool: pool, spontaneousPool: []
         )
         plannedUnits = max(min(Self.ladderLength, pool.count), 1)
+
+        // Resume a run left part-way through: rebuild the ladder's position from
+        // the snapshot so the same prompt comes back up, not the first one.
+        if let snap = DrillRunStore.load(unitId: unit.id), !snap.shownIds.isEmpty {
+            let byId = Dictionary(pool.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
+            history = snap.shownIds.compactMap { byId[$0] }
+            if let frontier = history.last {
+                usedSentenceIds = Set(history.map { $0.id })
+                rung = snap.rung
+                ladderStreak = snap.ladderStreak
+                itemsCompleted = snap.itemsCompleted
+                gradedCount = snap.gradedCount
+                correctCount = snap.correctCount
+                startedAt = snap.startedAt
+                progress = min(Double(itemsCompleted) / Double(plannedUnits), 1)
+                transition { self.phase = .ladder }
+                startDrill(frontier)
+                return
+            }
+        }
         enterLadder()
     }
 
@@ -199,7 +248,7 @@ final class SessionEngine {
     // MARK: Drill interactions (production items)
 
     func replayAudio() {
-        guard let sentence = currentSentence, drillStep == .revealed else { return }
+        guard let sentence = displaySentence, displayStep == .revealed else { return }
         stepTask?.cancel()
         stepTask = Task {
             await audio.play(fileName: sentence.audioRefs.formal,
@@ -215,7 +264,7 @@ final class SessionEngine {
     /// Self-grade for the current item. Speech is only a mirror — the user
     /// always makes the call.
     func grade(correct: Bool) {
-        guard drillStep == .revealed, let sentence = currentSentence else { return }
+        guard !isReviewing, drillStep == .revealed, let sentence = currentSentence else { return }
         stepTask?.cancel()
         transcriber?.stop()
         audio.stop()
@@ -231,6 +280,9 @@ final class SessionEngine {
             latencyMs: latencyMs,
             context: context
         )
+        // A miss anywhere in a drill lands the item in the MissedIt bank (or
+        // resets its streak if it's already there) to be typed back later.
+        if !correct { MissedItStore.capture(sentenceId: sentence.id) }
         gradedCount += 1
         if correct { correctCount += 1 }
         completeUnit()
@@ -244,6 +296,7 @@ final class SessionEngine {
                 rung = max(rung - 2, 0)
             }
         }
+        if isDrillRun { persistSnapshot() }
 
         stepTask = Task {
             try? await Task.sleep(for: Self.gradeBeat)
@@ -259,6 +312,38 @@ final class SessionEngine {
         try? context.save()
         completeUnit()
         enterLadder()
+    }
+
+    // MARK: Drill-run review navigation
+
+    /// Swipe-left: step back to the previous prompt as a read-only review — the
+    /// live frontier and all grading are left untouched underneath.
+    func goBack() {
+        guard isDrillRun, canGoBack else { return }
+        stepTask?.cancel()
+        transcriber?.stop()
+        audio.stop()
+        let target = (reviewIndex ?? (history.count - 1)) - 1
+        transition { self.reviewIndex = target }
+        guard history.indices.contains(target) else { return }
+        let sentence = history[target]
+        stepTask = Task {
+            await audio.play(fileName: sentence.audioRefs.formal,
+                             from: Self.frenchAudioLocation(of: sentence))
+        }
+    }
+
+    /// Return from review to the live frontier (swipe-right / the "current" pill).
+    func returnToCurrent() {
+        guard isReviewing else { return }
+        stepTask?.cancel()
+        audio.stop()
+        transition { self.reviewIndex = nil }
+        // If the frontier was still waiting on an answer, reopen the mic.
+        if drillStep == .listening {
+            promptShownAt = .now
+            transcriber?.start { [weak self] text in self?.applyTranscript(text) }
+        }
     }
 
     /// Skips the rest of the current street-mirror item.
@@ -361,12 +446,28 @@ final class SessionEngine {
     private func enterSummary() {
         stepTask?.cancel()
         audio.stop()
+        // The run is finished — drop its resume snapshot so a fresh open starts over.
+        if let unit = drillUnit { DrillRunStore.clear(unitId: unit.id) }
         transition {
             self.phase = .summary
             self.currentSentence = nil
+            self.reviewIndex = nil
             self.progress = 1
         }
         writeSessionLog()
+    }
+
+    private func persistSnapshot() {
+        guard isDrillRun, let unit = drillUnit else { return }
+        DrillRunStore.save(unitId: unit.id, snapshot: DrillRunSnapshot(
+            shownIds: history.map(\.id),
+            rung: rung,
+            ladderStreak: ladderStreak,
+            itemsCompleted: itemsCompleted,
+            gradedCount: gradedCount,
+            correctCount: correctCount,
+            startedAt: startedAt
+        ))
     }
 
     // MARK: Production drill (prompt → speak → tap to reveal → grade)
@@ -380,6 +481,11 @@ final class SessionEngine {
             self.currentSentence = sentence
             self.drillStep = .listening
             self.spokenText = nil
+            self.reviewIndex = nil
+        }
+        if isDrillRun {
+            if history.last?.id != sentence.id { history.append(sentence) }
+            persistSnapshot()
         }
         // The English prompt is shown, never spoken, and it stays put until
         // you tap to reveal — nothing is on a timer, nothing auto-advances
@@ -393,7 +499,7 @@ final class SessionEngine {
     /// User taps to reveal the answer when they're ready — the only way the
     /// prompt advances (there is no timer).
     func reveal() {
-        guard drillStep == .listening, let sentence = currentSentence else { return }
+        guard !isReviewing, drillStep == .listening, let sentence = currentSentence else { return }
         stepTask?.cancel()
         // Close the mic and freeze the transcript for the self-grade.
         transcriber?.stop()

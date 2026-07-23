@@ -13,6 +13,8 @@ struct ConjugationPlayerView: View {
     @State private var packNode: ContentPackV2.LearnNode?
     @State private var tenseUsage: [String: ContentPackV2.TenseUsage] = [:]
     @State private var drilling = false
+    /// A drill left part-way through is waiting to be resumed.
+    @State private var resumable = false
     @State private var selectedTense = Self.tenses.first!.key
     @State private var playingKey: String?
     @State private var audio = AudioPlayer()
@@ -50,6 +52,7 @@ struct ConjugationPlayerView: View {
             let file = try? ContentPackV2.loadLearn(.conjugation)
             packNode = file?.nodes.first { $0.id == unit.id }
             tenseUsage = file?.tenseUsage ?? [:]
+            resumable = DrillRunStore.hasProgress(unit.id)
         }
     }
 
@@ -96,7 +99,7 @@ struct ConjugationPlayerView: View {
             }
             .pullDismissBounce()
 
-            StartDrillButton {
+            StartDrillButton(title: resumable ? "Resume drill" : "Start the drill") {
                 playTask?.cancel()
                 audio.stop()
                 withAnimation(DSMotion.spring) { drilling = true }
@@ -110,16 +113,28 @@ struct ConjugationPlayerView: View {
         return parts.joined(separator: " · ")
     }
 
+    /// Split the concept title ("avoir — to have") for the header so it renders
+    /// in its final shape before `packNode` loads — otherwise the raw title
+    /// flashes as one line, then reflows into infinitive + gloss.
+    private var fallbackInfinitive: String {
+        unit.title.components(separatedBy: " — ").first ?? unit.title
+    }
+
+    private var fallbackEnglish: String? {
+        let parts = unit.title.components(separatedBy: " — ")
+        return parts.count >= 2 ? parts[1] : nil
+    }
+
     private var header: some View {
         VStack(alignment: .leading, spacing: DSSpacing.lg) {
             VStack(alignment: .leading, spacing: DSSpacing.xs) {
                 // The infinitive is the star; the politesse module has none,
                 // so its full title carries the moment.
-                Text(packNode?.infinitive ?? unit.title)
+                Text(packNode?.infinitive ?? fallbackInfinitive)
                     .font(DSType.largeTitle)
                     .tracking(DSType.largeTitleTracking)
                     .foregroundStyle(DSColor.textPrimary)
-                if let english = packNode?.english {
+                if let english = packNode?.english ?? fallbackEnglish {
                     Text(english)
                         .font(DSType.body)
                         .foregroundStyle(DSColor.textSecondary)
@@ -314,12 +329,14 @@ struct PlayerChrome: View {
     }
 }
 
-/// The CTA every Learn player's intro ends in.
+/// The CTA every Learn player's intro ends in. Reads "Resume drill" when a run
+/// is waiting to be picked up.
 struct StartDrillButton: View {
+    var title: String = "Start the drill"
     let action: () -> Void
 
     var body: some View {
-        PrimaryButton("Start the drill", action: action)
+        PrimaryButton(title, action: action)
             .padding(.horizontal, DSSpacing.margin)
             .padding(.bottom, DSSpacing.xxl)
     }

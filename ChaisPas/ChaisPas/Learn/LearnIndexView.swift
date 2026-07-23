@@ -23,6 +23,7 @@ struct LearnIndexView: View {
     @State private var hasScrolledToFocus = false
     @State private var showingSession = false
     @State private var showingTestTables = false
+    @State private var showingMissedIt = false
     @State private var activeUnit: ConceptNode?
 
     var body: some View {
@@ -31,7 +32,7 @@ struct LearnIndexView: View {
             ScrollViewReader { proxy in
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: DSSpacing.xxl) {
-                        IndexHeader(title: "Learn", subtitle: "four ways into one spine")
+                        learnHeader
                             .padding(.horizontal, DSSpacing.margin)
                         constructionSection
                             .id(LearnSection.construction)
@@ -68,6 +69,41 @@ struct LearnIndexView: View {
         }
         .fullScreenCover(isPresented: $showingTestTables) {
             ConjugationTestTablesView().noteCapture("Conjugation")
+        }
+        .fullScreenCover(isPresented: $showingMissedIt, onDismiss: {
+            withAnimation(DSMotion.spring) { refresh() }
+        }) {
+            MissedItView()
+        }
+    }
+
+    // MARK: Header (title + the MissedIt entry point)
+
+    /// The "Learn" title, with a small bullseye on the far right — the exact
+    /// glyph treatment as the Home screen's notes/settings icons (same size,
+    /// same static tertiary gray, no dynamic tint) — that opens the MissedIt
+    /// bank. No subheader.
+    ///
+    /// Home's icons look `.top`-aligned only because they sit beside a small
+    /// eyebrow + title stack — the eyebrow's cap-height is close in scale to
+    /// the icon, so their tops coincide. A single large title has no such
+    /// reference, so a 13pt glyph is centered against it instead: the correct
+    /// optical balance when the two elements are wildly different scales.
+    private var learnHeader: some View {
+        HStack(alignment: .center) {
+            Text("Learn")
+                .font(DSType.largeTitle)
+                .tracking(DSType.largeTitleTracking)
+                .foregroundStyle(DSColor.textPrimary)
+            Spacer()
+            Button { showingMissedIt = true } label: {
+                Image(systemName: "target")
+                    .font(.system(size: 13))
+                    .foregroundStyle(DSColor.textTertiary)
+                    .frame(width: 34, height: 34)
+                    .contentShape(Rectangle())
+            }
+            .accessibilityIdentifier("learn-missedit")
         }
     }
 
@@ -110,7 +146,7 @@ struct LearnIndexView: View {
             Button { showingSession = true } label: {
                 HStack(spacing: DSSpacing.md) {
                     VStack(alignment: .leading, spacing: DSSpacing.xs) {
-                        Text("The sentence-building session")
+                        Text("Michel Thomas-ish")
                             .font(DSType.body)
                             .foregroundStyle(DSColor.textPrimary)
                         Text("English prompt, spoken French, native reveal.")
